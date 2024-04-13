@@ -38,11 +38,11 @@ export default {
     extend: {
       backgroundImage: () => ({
         "blue-purple-orange":
-          "linear-gradient(-90deg, #FF9433 1%, #E24BB3 70%, #435ECF 100%)",
+          "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "transparent-white-1":
           "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%)",
         "transparent-white-2":
-          "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 80%)",
+          "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
       }),
       dropShadow: {
         "glow-white-2": [
