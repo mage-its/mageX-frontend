@@ -26,7 +26,7 @@ export default function ComingSoon() {
       <Particles
         id="tsparticles"
         particlesLoaded={particlesLoaded}
-        url="particles.json"
+        url="./particles.json"
       />
       <div className="relative z-20">
         <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
