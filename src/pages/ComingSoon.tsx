@@ -1,10 +1,10 @@
 import { FaEnvelope, FaInstagram, FaLine, FaTiktok } from "react-icons/fa6";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import { type Container } from "@tsparticles/engine";
-import { useEffect, useState } from "react";
-import x from "../assets/brand/x.svg";
-import cn from "../utils/cn";
+import { type ISourceOptions, type Container } from "@tsparticles/engine";
+import { useEffect, useMemo, useState } from "react";
+import x from "@/assets/brand/x.svg";
+import cn from "@/utils/cn";
 
 export default function ComingSoon() {
   const [, setInit] = useState(false);
@@ -21,12 +21,81 @@ export default function ComingSoon() {
     console.log(container);
   };
 
+  const options: ISourceOptions = useMemo(
+    () => ({
+      background: {
+        color: {
+          value: "#1B181F",
+        },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: [],
+            parallax: {
+              enable: true,
+              force: 50,
+              smooth: 10,
+            },
+          },
+        },
+        modes: {
+          push: {
+            quantity: 4,
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        move: {
+          direction: "right",
+          enable: true,
+          outModes: {
+            default: "out",
+          },
+          random: false,
+          speed: 0.5,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+          },
+          value: 600,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          value: { min: 0.5, max: 2 },
+        },
+      },
+      detectRetina: true,
+    }),
+    []
+  );
+
   return (
     <main className="bg-purple-4 relative overflow-hidden px-5 md:px-[50px] pb-14 min-h-screen">
       <Particles
         id="tsparticles"
         particlesLoaded={particlesLoaded}
-        url="./particles.json"
+        options={options}
       />
       <div className="relative z-20">
         <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
