@@ -1,10 +1,11 @@
-import { FaEnvelope, FaInstagram, FaLine, FaTiktok } from "react-icons/fa6";
+import { FaEnvelope, FaLine, FaTiktok } from "react-icons/fa6";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { type ISourceOptions, type Container } from "@tsparticles/engine";
 import { useEffect, useMemo, useState } from "react";
 import x from "@/assets/brand/x.svg";
 import cn from "@/utils/cn";
+import { AiFillInstagram } from "react-icons/ai";
 
 export default function ComingSoon() {
   const [, setInit] = useState(false);
@@ -60,14 +61,20 @@ export default function ComingSoon() {
           value: "#ffffff",
         },
         move: {
-          direction: "right",
+          direction: "bottom-left",
           enable: true,
           outModes: {
             default: "out",
           },
           random: false,
-          speed: 0.5,
+          speed: 1,
           straight: false,
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 600,
+          },
         },
         number: {
           density: {
@@ -79,7 +86,19 @@ export default function ComingSoon() {
           value: 0.5,
         },
         shape: {
-          type: "circle",
+          type: "star",
+          stroke: {
+            width: 0,
+            color: "#000000"
+          },
+          polygon: {
+            nb_sides: 5
+          },
+          image: {
+            src: "img/github.svg",
+            width: 100,
+            height: 100
+          }
         },
         size: {
           value: { min: 0.5, max: 2 },
@@ -122,7 +141,7 @@ export default function ComingSoon() {
             COMING SOON
           </h3>
         </div>
-        <div className="flex flex-row flex-wrap h-38 max-w-[1060px] mt-[52px] justify-center gap-5 md:gap-y-7 md:gap-x-10 lg:gap-x-36 lg  mx-auto">
+        <div className="flex flex-row flex-wrap h-38 max-w-[1065px] mt-[52px] justify-center gap-5 md:gap-y-7 md:gap-x-10 lg:gap-x-36 lg  mx-auto">
           <a className="flex md:gap-5 gap-2 items-center">
             <FaEnvelope className="text-light md:text-[45px] text-[30px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
@@ -130,7 +149,7 @@ export default function ComingSoon() {
             </p>
           </a>
           <a className="flex md:gap-5 gap-2 items-center">
-            <FaInstagram className="text-light md:text-[45px] text-[30px]" />
+            <AiFillInstagram className="text-light md:text-[50px] text-[35px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage_its
             </p>
