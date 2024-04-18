@@ -1,4 +1,4 @@
-import { FaEnvelope, FaLine, FaTiktok } from "react-icons/fa6";
+import { FaLine, FaLinkedin, FaYoutube } from "react-icons/fa6";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { type ISourceOptions, type Container } from "@tsparticles/engine";
@@ -141,26 +141,26 @@ export default function ComingSoon() {
             COMING SOON
           </h3>
         </div>
-        <div className="flex flex-row flex-wrap h-38 max-w-[1065px] mt-[52px] justify-center gap-5 md:gap-y-7 md:gap-x-10 lg:gap-x-36 lg  mx-auto">
-          <a className="flex md:gap-5 gap-2 items-center">
-            <FaEnvelope className="text-light md:text-[45px] text-[30px]" />
+        <div className="flex flex-row flex-wrap h-38 max-w-[1070px] mt-[52px] justify-center gap-5 md:gap-y-7 md:gap-x-10 lg:gap-x-36 lg  mx-auto">
+          <a href="https://www.youtube.com/@mageits4169" className="flex md:gap-5 gap-2 items-center cursor-pointer">
+            <FaYoutube className="text-light md:text-[50px] text-[35px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage.ce.its
             </p>
           </a>
-          <a className="flex md:gap-5 gap-2 items-center">
+          <a href="https://www.instagram.com/mage_its/" className="flex md:gap-5 gap-2 items-center cursor-pointer">
             <AiFillInstagram className="text-light md:text-[50px] text-[35px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage_its
             </p>
           </a>
-          <a className="flex md:gap-5 gap-2 items-center">
-            <FaTiktok className="text-light md:text-[45px] text-[30px]" />
+          <a href="https://www.linkedin.com/company/mage-x" className="flex md:gap-5 gap-2 items-center cursor-pointer">
+            <FaLinkedin  className="text-light md:text-[45px] text-[30px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage_its
             </p>
           </a>
-          <a className="flex md:gap-5 gap-2 items-center">
+          <a href="https://line.me/R/ti/p/rio5948f" className="flex md:gap-5 gap-2 items-center cursor-pointer">
             <FaLine className="text-light md:text-[45px] text-[30px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               @rio5948f
