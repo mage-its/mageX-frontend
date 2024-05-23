@@ -2,12 +2,13 @@ import { Navbar } from "@/components/Navbar"
 
 export default function Home() {
   return (
-    <main className="bg-dark h-screen">
+    <main >
       <Navbar />
-      <div>
+      <div className=" bg-[#000000] h-screen">
      
 
       </div>
     </main>
   );
 }
+//bg-gradient-to-r from-dark to-black

@@ -9,6 +9,7 @@ export default {
     },
     colors: {
       transparent: "transparent",
+      black: "#000",
       mage: {
         orange: "#FF9437",
         blue: "#132777",
