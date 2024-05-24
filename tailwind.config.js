@@ -8,6 +8,8 @@ export default {
     },
     colors: {
       transparent: "transparent",
+      white: "#ffffff",
+      f57c00: "#f57c00",
       mage: {
         orange: "#FF9437",
         blue: "#132777",
@@ -36,14 +38,13 @@ export default {
       light: "#FFFFFF",
     },
     extend: {
-      backgroundImage: () => ({
-        "blue-purple-orange":
-          "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
-        "transparent-white-1":
-          "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%)",
-        "transparent-white-2":
-          "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
-      }),
+      backgroundImage: {
+        "blue-purple-orange": "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "transparent-white-1": "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%)",
+        "transparent-white-2": "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
+        "orange-gradient": "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
+        "navbar-select-gradient": "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)"
+      },
       dropShadow: {
         "glow-white-2": [
           "0 0px 20px rgba(255,255, 255, 1)",
@@ -56,6 +57,25 @@ export default {
           "0 0px 40px rgba(255, 255,255, 0.8)",
           "0 0px 50px rgba(255, 255,255, 0.7)",
         ],
+      },
+      keyframes: {
+        rotate: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        rotate: 'rotate 1s linear',
+        slideIn: 'slideIn 0.5s forwards',
+        slideOut: 'slideOut 0.5s forwards'
       },
     },
   },
