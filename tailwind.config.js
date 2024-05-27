@@ -5,11 +5,11 @@ export default {
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
+      airstrike: ["Airstrike"],
     },
     colors: {
       transparent: "transparent",
       white: "#ffffff",
-      f57c00: "#f57c00",
       mage: {
         orange: "#FF9437",
         blue: "#132777",
@@ -25,11 +25,25 @@ export default {
         1: "#E553A8",
       },
       orange: {
-        1: "#D79273",
-        2: "#F77F5A",
-        3: "#FE874F",
-        4: "#FFC291",
-        5: "#FFE1C9",
+        primary: {
+          1: "#D79273",
+          2: "#F77F5A",
+          3: "#FE874F",
+          4: "#FFC291",
+          5: "#FFE1C9",
+        },
+        hover: {
+          1: "#AD755C",
+          2: "#C76142",
+          3: "#CC6C3F",
+          4: "#CD9B73",
+          5: "#C9AF9A",
+        },
+        pressed: {
+          1: "#815846",
+          2: "#9C4B32",
+          3: "#7C3F22",
+        },
       },
       red: {
         1: "#FF4646",
@@ -38,13 +52,46 @@ export default {
       light: "#FFFFFF",
     },
     extend: {
-      backgroundImage: {
-        "blue-purple-orange": "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
-        "transparent-white-1": "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%)",
-        "transparent-white-2": "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
-        "orange-gradient": "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
-        "navbar-select-gradient": "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)"
-      },
+      backgroundImage: () => ({
+        "vertical-gta":
+          "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "horizontal-gta":
+          "linear-gradient(180deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "transparent-white-1/2":
+          "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%)",
+        "transparent-white-1":
+          "linear-gradient(rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%)",
+        "transparent-white-2":
+          "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
+        "grayscale":
+          "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
+        "purple-grad-1":
+          "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
+        "purple-grad-2":
+          "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
+        "purple-grad-3":
+          "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
+        "purple-white":
+          "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
+        "orange-white":
+          "linear-gradient(#FB8A4A 0%, #FFC290 50%, #FFE1CA 100%)",
+        "brown-grad":
+          "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
+        "orange-grad":
+          "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+        "orange-grad-2":
+          "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
+        "orange-grad-3":
+          "linear-gradient(246.26deg, #FF4646 1.72%, #FFE1C9 157.26%)",
+        "skin-grad":
+          "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
+        "orange-purple":
+          "linear-gradient(181.25deg, #E553A8 -33.94%, #F77F5A 18.83%, #F77F5A 61.94%, #E553A8 109.51%)",
+        "navbar-select-gradient":
+          "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
+        "blue-purple-orange":
+          "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+      }),
       dropShadow: {
         "glow-white-2": [
           "0 0px 20px rgba(255,255, 255, 1)",

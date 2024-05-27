@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Airstrike";
+  src: url('/fonts/Airstrike.ttf');
+}
+
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;

@@ -1,37 +1,32 @@
 import React from 'react';
 import Navbar from '../components/Navbar.tsx';
+import WorkshopText from '@/components/WorkshopText.tsx';
+import GuideAndRegistButtons from '@/components/GuideAndRegistButtons.tsx';
+import PCBBg from '@/components/PCBBg.tsx';
+import PuzzleBg1 from '@/components/PuzzleBg1.tsx';
+import InformationText from '@/components/InformationText.tsx';
 import WorkshopSlide from '@/components/WorkshopSlide.tsx';
 import WorkshopFooter from '@/components/WorkshopFooter.tsx';
-import AboutText from '@/components/AboutText.tsx';
 import x from '../assets/brand/logo.svg';
 
 const Workshop: React.FC = () => {
   return (
-    <main className="bg-orange-gradient relative overflow-hidden pb-14 min-h-screen">
-      {/* Satu container */}
-        {/* Navigation Bar */}
+    <main className="bg-orange-purple relative pb-14 min-h-screen overflow-hidden">
+      <div className="relative z-10">
         <Navbar />
-        <h1 style={{ textAlign: 'center' }}>WORKSHOP</h1>
-        {/* Image */}
-        <img src={x}
-          alt="X"
-          className={
-            "mx-auto select-none size-14"
-          }   
-        />
-        {/* Teks untuk image */}
-        {/* Guide book dan regist */}
-      {/* Satu container */}
-      <div style = {{marginTop: "1000px"}}></div>
-      {/* Satu container */}
-        <div style = {{ width: "80%", marginLeft: "10%", marginRight: "10%" }} >
-          <AboutText />
+        <PCBBg />
+        <WorkshopText />
+        <img src={x} alt="X" className="mx-auto select-none size-40" />
+        <p className="text-center select-none">Lorem ipsum</p>
+        <GuideAndRegistButtons />
+        <PuzzleBg1 />
+        <div className="mt-[1000px]"></div>
+        <InformationText />
+        <div className="w-[80%] mx-[10%]">
           <WorkshopSlide />
         </div>
-      {/* Satu container */}
-
-      {/* Footer */}
-      <WorkshopFooter />
+        <WorkshopFooter />
+      </div>
     </main>
   );
 }
