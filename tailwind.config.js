@@ -82,11 +82,11 @@ export default {
         "orange-grad-2":
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
-          "linear-gradient(246.26deg, #FF4646 1.72%, #FFE1C9 157.26%)",
+          "linear-gradient(246.26deg, #FF4646 16.72%, #FFE1C9 172.26%)",
         "skin-grad":
           "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
-          "linear-gradient(181.25deg, #E553A8 -33.94%, #F77F5A 18.83%, #F77F5A 61.94%, #E553A8 109.51%)",
+          "linear-gradient(181.25deg, #E553A8 -43.94%, #F77F5A 8.83%, #F77F5A 51.94%, #E553A8 99.51%)",
         "navbar-select-gradient":
           "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
         "blue-purple-orange":

@@ -4,6 +4,7 @@ import WorkshopText from '@/components/WorkshopText.tsx';
 import GuideAndRegistButtons from '@/components/GuideAndRegistButtons.tsx';
 import PCBBg from '@/components/PCBBg.tsx';
 import PuzzleBg1 from '@/components/PuzzleBg1.tsx';
+import PuzzleBg2 from '@/components/PuzzleBg2.tsx';
 import InformationText from '@/components/InformationText.tsx';
 import WorkshopSlide from '@/components/WorkshopSlide.tsx';
 import WorkshopFooter from '@/components/WorkshopFooter.tsx';
@@ -21,11 +22,13 @@ const Workshop: React.FC = () => {
         <GuideAndRegistButtons />
         <PuzzleBg1 />
         <div className="mt-[1000px]"></div>
+        <PuzzleBg2 />
         <InformationText />
         <div className="w-[80%] mx-[10%]">
           <WorkshopSlide />
         </div>
         <WorkshopFooter />
+        <div className="mt-[1000px]"></div>
       </div>
     </main>
   );
