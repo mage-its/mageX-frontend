@@ -8,9 +8,10 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        index: true,
+        path: "/competition",
         element: <Home />,
       },
+
     ],
   },
 ]);
