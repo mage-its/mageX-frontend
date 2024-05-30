@@ -31,6 +31,7 @@ export default {
           3: "#FE874F",
           4: "#FFC291",
           5: "#FFE1C9",
+          6: "#EC8562",
         },
         hover: {
           1: "#AD755C",
@@ -83,10 +84,16 @@ export default {
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
           "linear-gradient(246.26deg, #FF4646 16.72%, #FFE1C9 172.26%)",
+        "white-orange":
+          "linear-gradient(169.21deg, #FFFFFF 19.1%, #EFA264 121.73%)",
+        "white-purple":
+          "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #410327 108.78%)",
         "skin-grad":
           "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
           "linear-gradient(181.25deg, #E553A8 -43.94%, #F77F5A 8.83%, #F77F5A 51.94%, #E553A8 99.51%)",
+        "orange-purple-2":
+          "linear-gradient(120.47deg, #FF4646 -4.81%, #493187 103.24%)",
         "navbar-select-gradient":
           "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
         "blue-purple-orange":

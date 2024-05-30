@@ -8,7 +8,7 @@ import PuzzleBg2 from '@/components/PuzzleBg2.tsx';
 import InformationText from '@/components/InformationText.tsx';
 import WorkshopSlide from '@/components/WorkshopSlide.tsx';
 import WorkshopFooter from '@/components/WorkshopFooter.tsx';
-import x from '../assets/brand/logo.svg';
+import ph from '../assets/workshop/placeholder.svg'
 
 const Workshop: React.FC = () => {
   return (
@@ -17,18 +17,17 @@ const Workshop: React.FC = () => {
         <Navbar />
         <PCBBg />
         <WorkshopText />
-        <img src={x} alt="X" className="mx-auto select-none size-40" />
+        <img src={ph} alt="X" className="mx-auto select-none" />
         <p className="text-center select-none">Lorem ipsum</p>
         <GuideAndRegistButtons />
         <PuzzleBg1 />
         <div className="mt-[1000px]"></div>
         <PuzzleBg2 />
         <InformationText />
-        <div className="w-[80%] mx-[10%]">
+        <div className="w-[80%] mx-[10%] mt-[2rem]">
           <WorkshopSlide />
         </div>
         <WorkshopFooter />
-        <div className="mt-[1000px]"></div>
       </div>
     </main>
   );
