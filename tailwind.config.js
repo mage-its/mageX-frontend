@@ -2,6 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      mobile: '300px',
+      desktop: '1280px',
+    },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
@@ -32,6 +36,7 @@ export default {
           4: "#FFC291",
           5: "#FFE1C9",
           6: "#EC8562",
+          7: "#CA4F14",
         },
         hover: {
           1: "#AD755C",
@@ -51,6 +56,7 @@ export default {
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
+      gray: "#828282"
     },
     extend: {
       backgroundImage: () => ({
@@ -74,6 +80,8 @@ export default {
           "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
         "purple-white":
           "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
+        "purple-orange":
+          "linear-gradient(180deg, #4F0430 -2.08%, #E553A8 5.84%, #F77F5A 19.04%, #F77F5A 61.28%, #E553A8 103.52%)",
         "orange-white":
           "linear-gradient(#FB8A4A 0%, #FFC290 50%, #FFE1CA 100%)",
         "brown-grad":
