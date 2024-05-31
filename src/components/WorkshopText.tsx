@@ -23,7 +23,7 @@ const WorkshopText: React.FC = () => {
           pointerEvents: 'none',
           zIndex: -1
         }}
-        className="font-airstrike font-italic font-bold text-center md:text-9xl w-full inline-block"
+        className="font-airstrike font-italic font-bold text-center mobile:text-5xl desktop:text-9xl w-full inline-block"
       >
         WORKSHOP
       </span>
@@ -32,7 +32,7 @@ const WorkshopText: React.FC = () => {
           WebkitBackgroundClip: 'text',
           color: 'transparent',
         }}
-        className="font-airstrike font-italic font-bold text-center md:text-9xl w-full bg-orange-grad-3 inline-block"
+        className="font-airstrike font-italic font-bold text-center mobile:text-5xl desktop:text-9xl w-full bg-orange-grad-3 inline-block"
       >
         WORKSHOP
       </span>
