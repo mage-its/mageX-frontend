@@ -9,6 +9,7 @@ export default {
     },
     colors: {
       transparent: "transparent",
+      white: "#ffffff",
       mage: {
         orange: "#FF9437",
         blue: "#132777",
@@ -78,8 +79,18 @@ export default {
           "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
         "orange-grad":
           "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+        "orange-grad-2":
+          "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
+        "orange-grad-3":
+          "linear-gradient(246.26deg, #FF4646 1.72%, #FFE1C9 157.26%)",
         "skin-grad":
           "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
+        "orange-purple":
+          "linear-gradient(181.25deg, #E553A8 -33.94%, #F77F5A 18.83%, #F77F5A 61.94%, #E553A8 109.51%)",
+        "navbar-select-gradient":
+          "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
+        "blue-purple-orange":
+          "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
       }),
       dropShadow: {
         "glow-white-2": [
@@ -93,6 +104,25 @@ export default {
           "0 0px 40px rgba(255, 255,255, 0.8)",
           "0 0px 50px rgba(255, 255,255, 0.7)",
         ],
+      },
+      keyframes: {
+        rotate: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        rotate: 'rotate 1s linear',
+        slideIn: 'slideIn 0.5s forwards',
+        slideOut: 'slideOut 0.5s forwards'
       },
     },
   },

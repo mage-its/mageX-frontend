@@ -33,12 +33,12 @@ function NavItem({ children, active=false, theme }: NavItemProps) {
   );
 }
 
-export function Navbar({ theme="black" }: NavbarProps) {
+export function Navbar({ theme="orange" }: NavbarProps) {
   const currentRoute = window.location.pathname.split('/')[1];
   console.log(currentRoute);
   
   return (
-    <nav className="sticky flex justify-between items-center rounded-b-[20px] bg-light/10 py-3 px-[51px]">
+    <nav className="sticky top-0 flex justify-between items-center rounded-b-[20px] bg-light/10 py-3 px-[51px]">
       <img src={logo} className="h-[51px]" alt="logo" />
       <div className="flex gap-5">
         <Link to="/">
@@ -77,3 +77,5 @@ export function Navbar({ theme="black" }: NavbarProps) {
     </nav>
   )
 }
+
+export default Navbar;
