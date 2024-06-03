@@ -33,7 +33,7 @@ function NavItem({ children, active=false, theme }: NavItemProps) {
   );
 }
 
-export function Navbar({ theme="black" }: NavbarProps) {
+export function Navbar({ theme="orange" }: NavbarProps) {
   const currentRoute = window.location.pathname.split('/')[1];
   console.log(currentRoute);
   
@@ -77,3 +77,5 @@ export function Navbar({ theme="black" }: NavbarProps) {
     </nav>
   )
 }
+
+export default Navbar;
