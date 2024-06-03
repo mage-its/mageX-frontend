@@ -30,7 +30,8 @@ import { RevealButton } from "@/components/RevealButton";
 import AboutCard from "./AboutCard";
 import useMeasure from "react-use-measure";
 import InfoCard from "@/components/InfoCard";
-import TimelineCard from "@/components/TimelineCard";
+import Timeline, { TimelineCard } from "@/components/Timeline";
+import { timeline } from "@/constant/timeline";
 
 const RunningText = () => {
   return (
@@ -51,6 +52,7 @@ export default function Home() {
   const aboutControl = useAnimation()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAbout, setIsAbout] = useState(false)
+  
   const isAboutHandle = () => {
     setIsAbout(!isAbout)
   }
@@ -290,13 +292,8 @@ export default function Home() {
             Discover the dates and details of this year’s workshops and competitions!
           </p>
         </div>
-        <div className="h-[398px] border-[5px] border-gray-1 rounded-[35px] p-10 relative overflow-hidden">
-    `     <div className="absolute top-1/2 -translate-y-1/2 h-fit">
-            <div className=" absolute top-0 -translate-y-1/2 w-8 h-8 rounded-full bg-gray-2"/>
-            <div ref={timlineRef} className="bg-gray-2 w-[4300px] h-[5px]"/>
-            <div className=" absolute top-0 -translate-y-1/2 w-8 h-8 rounded-full bg-gray-2" style={{ left: timelineWidth }}/>`
-          </div>
-          <TimelineCard />
+        <div className="h-[450px] border-[5px] border-gray-1 rounded-[35px] p-10 overflow-hidden">
+          <Timeline items={timeline}/>
         </div>
       </div>
     </main>
