@@ -13,12 +13,13 @@ export default function Socials({theme} : scProp){
         <>
             <div>
                 <img 
-                src={mail}>
+                src={mail}
+                className="cursor-pointer">
                 </img>
             </div>
 
             <div className={cn(
-                "w-[24px] h-[24px] text-center rounded-full",
+                "w-[24px] h-[24px] text-center rounded-full cursor-pointer",
                 {"bg-orange-primary-2": theme == "app"},
             )}>
                 <img 
@@ -28,17 +29,17 @@ export default function Socials({theme} : scProp){
             </div>
 
             <div className={cn(
-                "w-[24px] h-[24px] text-center rounded-full",
+                "w-[24px] h-[24px] text-center rounded-full cursor-pointer",
                 {"bg-orange-primary-2": theme == "app"}
             )}>  
                 <img 
                 src={instagram}
-                className="p-[5px]"
+                className="p-[5px] "
                 ></img>
             </div>
             
             <div>
-                <img src={linesc}></img>
+                <img src={linesc} className="cursor-pointer"></img>
             </div>
         </>
     )

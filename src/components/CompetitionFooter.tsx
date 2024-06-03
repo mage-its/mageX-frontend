@@ -16,19 +16,19 @@ export default function CompFooter(){
                     src={pc2}
                     alt="PC"
                     ></img>
-                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] z-30">
+                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] z-30 cursor-pointer">
                         <img
                         src={pen2}
                         alt="About"
                         ></img>
                     </div>
-                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 px-[4px] py-[10px] z-30">
+                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 px-[4px] py-[10px] z-30 cursor-pointer">
                         <img
                         src={time2}
                         alt="Timeline"
                         ></img>
                     </div>
-                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] z-30">
+                    <div className="w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] z-30 cursor-pointer">
                         <img
                         src={view2}
                         alt="Overview"
@@ -40,15 +40,15 @@ export default function CompFooter(){
                     <img 
                     src={mail2}
                     alt="email"
-                    className="z-30">
+                    className="z-30 cursor-pointer">
                     </img>
-                    <div className="w-[30px] h-[30px] rounded-full bg-orange-primary-5 p-[6px] z-30">
+                    <div className="w-[30px] h-[30px] rounded-full bg-orange-primary-5 p-[6px] z-30 cursor-pointer">
                         <img
                         src={tiktok}
                         alt="tiktok"
                         ></img>
                     </div>
-                    <div className="w-[30px] h-[30px] rounded-full bg-orange-primary-5 p-[6px] z-30">
+                    <div className="w-[30px] h-[30px] rounded-full bg-orange-primary-5 p-[6px] z-30 cursor-pointer">
                         <img
                         src={instagram}
                         alt="instagram"
@@ -58,7 +58,7 @@ export default function CompFooter(){
                     <img
                     src={scline2}
                     alt="line"
-                    className="z-30"
+                    className="z-30 cursor-pointer"
                     ></img>
                 </div>
 

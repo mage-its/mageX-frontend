@@ -35,6 +35,7 @@ import timepen from "@/assets/competition/bx_pen.svg"
 import techmeet from "@/assets/competition/people.svg"
 
 //OVERVIEW ASSET
+import overviewBox from "@/assets/competition/overviewBox.svg"
 
 const Home: React.FC = () =>{
     return (
@@ -292,6 +293,28 @@ const Timeline: React.FC = () =>{
                         </div>
                     </div>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-[225px] z-0">
+                        <img
+                        src={blur}
+                        alt="grad"
+                        className="absolute top-0 left-0 w-[1440px] h-[208px] z-0">
+                        </img>
+
+                        <img 
+                        src={topwave}
+                        alt="Wave"
+                        className="absolute top-0 left-0 w-[1440px] h-[208px] z-10 drop-shadow-[0_0_35px_35px_rgba(226,75,179,0.25)]"
+                        ></img>
+
+                        <div className="absolute top-[30px] left-0 w-[1440px] h-[208px] z-20 bg-gradient-to-t from-[#3A0D49]/80 to-transparent"></div>
+
+                        <img 
+                        src={bottomwave}
+                        alt="Wave"
+                        className="absolute top-[62px] left-0 w-[1440px] h-[208px] z-30 drop-shadow-[0_0_35px_35px_rgba(226,75,179,0.25)] "
+                        ></img>
+                        <CompFooter></CompFooter>
+                </div>
             </div>
         </>
     )
@@ -301,17 +324,137 @@ const Overview: React.FC = () =>{
     return(
         <>
             <div className="relative overflow-hidden">
-                <div className="w-[1100px] h-[602px] mx-[170px] my-[211px] pt-[26px] bg-skin-grad border-[3px] border-orange-primary-3 rounded-[30px]">
-                    <div className="w-[731px] h-[55px] ml-[28px] rounded-[20px] bg-gradient-to-t from-[#E553A8] to-[#FFA567] text-center">
+                <div className="relative w-[1100px] h-[602px] ml-[120px] my-[211px] pt-[26px] z-10">
+                    <img src={overviewBox}></img>
+                    <div className="absolute top-0 right-0 w-[292px] h-[60px] bg-orange-primary-3 rounded-[20px] mt-[26px] cursor-pointer">
+                        <div className="w-[30px] h-[30px] my-[15px] ml-[18px] bg-light rounded-full"></div>
+                        <p className="absolute top-0 left-0 ml-[62px] mt-[20px] text-light text-[14px] font-bold">Daftar disini!</p>
+                    </div>
+                    <div className="absolute w-[731px] h-[55px] top-0 left-0 rounded-[20px] bg-orange-purple text-center mt-[64px] ml-[27px]">
                         <Title theme="app">APP DEVELOPMENT</Title>
                     </div>
-                    <div className="flex">   
-                        <div className="w-[621px] h-[386px] shrink-0 bg-light ml-[28px] mt-[25px]"></div>
+                    <div className="flex">
+                        <div className="absolute w-[621px] h-[386px] top-0 left-0 bg-light mt-[144px] ml-[27px]"></div>
                         <div>
+                            <div className="absolute w-[351px] top-0 right-0 mt-[144px] mr-[34px]">
+                                <p className="text-justify font-roboto text-[11px] font-normal">Peserta ditantang untuk membuat aplikasi yang memiliki dapat membantu pekerjaan atau bisa menyelesaikan suatu permasalahan yang ada disekitar. Peserta akan dinilai dari aplikasi yang dibuat dari segi bagaimana aplikasi tersebut bisa membantu pekerjaan manusia dan bagaimana aplikasi tersebut bisa menyelesaikan suatu permasalahan.Tema dari perlombaan App Dev ini yaitu:
+                                    <ul className="list-disc pl-6 space-y-[1px]">
+                                        <li>Kesehatan</li>
+                                        <li>Ekonomi</li>
+                                        <li>Edukasi</li>
+                                        <li>Transportasi</li>
+                                        <li>Pelayanan Publik</li>
+                                        <li>Keamanan</li>
+                                    </ul>
+                                </p>
+                                {/* POOLPRIZE */}
+                                <div className="absolute w-[171px] h-[88px] bg-orange-primary-2 mt-[8px] rounded">
+                                    <div className="absolute top-0 left-0 w-[121px] h-[18px] mt-[-5px] bg-gradient-to-l from-[#FFA567] to-[#FE874F] rounded">
+                                        <p className="text-[9px] ml-[14px] my-[3px] font-fredoka font-medium">Poolprize</p>
+                                    </div>
 
+                                    <div className="absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]">
+                                        
+                                    </div>
+
+                                    <div className="w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
+                                        <p>Phase 1</p>
+                                        <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
+                                        <p className="indent-1">Mahasiswa : Rp125.000,00</p>
+                                        <p>Phase 2</p>
+                                        <p className="indent-1">SMA/SMK/sederajat : Rp125.000,00</p>
+                                        <p className="indent-1">Mahasiswa : Rp150.000,00</p>
+                                    </div>
+                                </div>
+
+                                {/* KATEGORI */}
+                                <div className="absolute w-[171px] h-[36px] bg-orange-primary-2 mt-[105px] rounded">
+                                    <div className="absolute top-0 left-0 w-[121px] h-[18px] mt-[-5px] bg-gradient-to-l from-[#FFA567] to-[#FE874F] rounded">
+                                        <p className="text-[9px] ml-[14px] my-[3px] font-fredoka font-medium">Kategori</p>
+                                    </div>
+
+                                    <div className="absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]">
+                                        
+                                    </div>
+
+                                    <div className="w-[172px] mt-[13px] ml-[10px] text-[9px] font-fredoka font-medium">
+                                        <p>SMA/SMK/sederajat dan Mahasiswa</p>
+                                    </div>
+                                </div>
+
+                                {/* PESERTA */}
+                                <div className="absolute w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] mt-[147px] rounded">
+                                    <p className="text-[9px] ml-[14px] my-[3px] font-fredoka font-medium">1-3 Orang</p>
+                                    <div className="absolute w-[23px] h-[23px] top-0 left-0 mt-[-2px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]">
+                                        
+                                    </div>
+                                </div>
+
+                                {/* CONTACT PERSON */}
+                                <div className="absolute w-[126px] h-[112px] mt-[8px] ml-[221px] bg-orange-primary-2 rounded">
+                                    <div className="absolute top-0 left-0 w-[117px] h-[18px] mt-[-5px] bg-gradient-to-l from-[#FFA567] to-[#FE874F] rounded">
+                                        <p className="text-[9px] ml-[14px] my-[3px] font-fredoka font-medium">Contact Person</p>
+                                    </div>
+                                    <div className="absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]">
+                                        
+                                    </div>
+                                    <div className="p-[16px] text-[9px] font-fredoka font-medium gap-[7px]">
+                                        <div>
+                                            <p>Hasan</p>
+                                            <p>085394410418 (WA)</p>
+                                        </div>
+                                        
+                                        <div className="mt-[4px]">
+                                            <p>Gilang</p>
+                                            <p >081390294320 (WA)</p>
+                                        </div>
+                            
+                                        <div className="mt-[4px]">
+                                            <p>Christ</p>
+                                            <p>085815046162 (WA)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* PRIZE */}
+                                <div className="absolute w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] mt-[130px] ml-[221px] rounded">
+                                    <p className="text-[9px] ml-[14px] my-[3px] font-fredoka font-medium">5 jt ++ dan e-certif</p>
+                                    <div className="absolute w-[23px] h-[23px] top-0 left-0 mt-[-2px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="absolute bottom-0 left-0 w-[1045px] h-[60px] p-[2px] ml-[27px] mb-[-14px] rounded-[20px] border-[2px] border-[#FD874E] bg-orange-primary-5">
+                                <div className="w-[188px] h-[30px] mt-[12px] ml-[461px] gap-[12px] flex">
+                                    <div className="w-[30px] h-[30px] rounded-full border-[2px] border-[#E24BB3]"></div>
+                                    <p className="text-justify font-airstrike text-[20px] font-normal text-mage-orange">GUIDEBOOK</p>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
+                </div>
+                <div className="absolute bottom-0 left-0 w-full h-[225px] z-0">
+                        <img
+                        src={blur}
+                        alt="grad"
+                        className="absolute top-0 left-0 w-[1440px] h-[208px] z-0">
+                        </img>
+
+                        <img 
+                        src={topwave}
+                        alt="Wave"
+                        className="absolute top-0 left-0 w-[1440px] h-[208px] z-10 drop-shadow-[0_0_35px_35px_rgba(226,75,179,0.25)]"
+                        ></img>
+
+                        <div className="absolute top-[30px] left-0 w-[1440px] h-[208px] z-20 bg-gradient-to-t from-[#3A0D49]/80 to-transparent"></div>
+
+                        <img 
+                        src={bottomwave}
+                        alt="Wave"
+                        className="absolute top-[62px] left-0 w-[1440px] h-[208px] z-30 drop-shadow-[0_0_35px_35px_rgba(226,75,179,0.25)] "
+                        ></img>
+                        <CompFooter></CompFooter>
                 </div>
             </div>
         </>

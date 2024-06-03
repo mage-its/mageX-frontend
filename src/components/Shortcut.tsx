@@ -12,7 +12,7 @@ export default function Shortcut(sc : lgProp){
     return(
         <>
             <div className={cn(
-                "w-[29px] h-[29px] rounded-full content-center",
+                "w-[29px] h-[29px] rounded-full content-center cursor-pointer",
                 {"bg-orange-primary-2":sc.theme=="app"},
                 {"bg-[#B09FDC]":sc.theme=="esport"}
             )}>
