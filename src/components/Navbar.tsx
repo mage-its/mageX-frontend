@@ -38,7 +38,7 @@ export function Navbar({ theme="black" }: NavbarProps) {
   console.log(currentRoute);
   
   return (
-    <nav className="sticky top-0 flex justify-between items-center rounded-b-[20px] bg-light/10 backdrop-blur-sm py-3 px-[51px]">
+    <nav className="sticky top-0 z-10 flex justify-between items-center rounded-b-[20px] bg-light/10 backdrop-blur-sm py-3 px-[51px]">
       <img src={logo} className="h-[51px]" alt="logo" />
       <div className="flex gap-5">
         <Link to="/">

@@ -10,6 +10,10 @@ export default {
     colors: {
       transparent: "transparent",
       black: "#000",
+      gray: {
+        1: "#3E3E3E",
+        2: "#AFAFAF"
+      },
       mage: {
         orange: "#FF9437",
         blue: "#132777",
@@ -47,12 +51,13 @@ export default {
       },
       red: {
         1: "#FF4646",
+        2: "#FF4F4F"
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
     },
     extend: {
-      backgroundImage: () => ({
+      backgroundImage: {
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "horizontal-gta":
@@ -81,7 +86,8 @@ export default {
           "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
         "skin-grad":
           "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
-      }),
+          "grad-light-purple": `linear-gradient(0deg, #E7CFEA 0.2%, #9189C5 99.45%, #381A3D 99.45%)`,
+      },
       dropShadow: {
         "glow-white-2": [
           "0 0px 20px rgba(255,255, 255, 1)",
