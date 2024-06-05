@@ -9,47 +9,45 @@ import locationIcon2 from '../assets/workshop/locationIcon2.svg';
 const slides = [
   {
     header: "INTERNET OF THINGS",
-    content: "ALorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-    subtext1: "Jorem ipsum dolor",
-    subtext2: "Jorem ipsum dolor",
+    content: "",
+    tempat: "To be announced",
+    waktu: "21 September 2024",
+    pemateri1: "To be announced",
+    pemateri2: "To be announced",
     color1: "#F77F5A",
     color2: "linear-gradient(169.21deg, #FFFFFF -9.1%, #EFA264 101.73%)",
     color3: "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+    color4: "#CA4F14",
     timeIcon: timeIcon1,
     locationIcon: locationIcon1,
   },
   {
     header: "ROBOTIK",
-    content: "BLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-    subtext1: "Jorem ipsum dolor",
-    subtext2: "Jorem ipsum dolor",
+    content: "",
+    tempat: "To be announced",
+    waktu: "24 & 25 Agustus 2024",
+    pemateri1: "To be announced",
+    pemateri2: "To be announced",
+    color1: "#6F56B4",
+    color2: "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #7E0F4F 108.78%)",
+    color3: "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
+    color4: "#6F56B4",
+    timeIcon: timeIcon2,
+    locationIcon: locationIcon2,
+  },
+  {
+    header: "MULTIMEDIA",
+    content: "",
+    tempat: "To be announced",
+    waktu: "20 & 28 Juli 2024",
+    pemateri1: "To be announced",
+    pemateri2: "To be announced",
     color1: "#F77F5A",
     color2: "linear-gradient(169.21deg, #FFFFFF -9.1%, #EFA264 101.73%)",
     color3: "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+    color4: "#CA4F14",
     timeIcon: timeIcon1,
     locationIcon: locationIcon1,
-  },
-  {
-    header: "GAME DEVELOPMENT",
-    content: "CLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-    subtext1: "Jorem ipsum dolor",
-    subtext2: "Jorem ipsum dolor",
-    color1: "#6F56B4",
-    color2: "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #7E0F4F 108.78%)",
-    color3: "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
-    timeIcon: timeIcon2,
-    locationIcon: locationIcon2,
-  },
-  {
-    header: "APPLICATION DEVELOPMENT",
-    content: "DLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-    subtext1: "Jorem ipsum dolor",
-    subtext2: "Jorem ipsum dolor",
-    color1: "#6F56B4",
-    color2: "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #7E0F4F 108.78%)",
-    color3: "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
-    timeIcon: timeIcon2,
-    locationIcon: locationIcon2,
   },
 ];
 
@@ -66,11 +64,11 @@ const WorkshopSlide = () => {
 
   // Card
   const mobileContent = [];
-  for(let i = 0; i < 4; i++)
+  for(let i = 0; i < 3; i++)
   {
     mobileContent.push(
         <div className="flex-col mb-[1rem] transition-colors duration-1000 ease-in items-center w-full h-[45vh] overflow-hidden rounded-2xl border-4 relative"
-            style={{ background: slides[i].color2, borderColor: slides[i].color1 }}>
+            style={{ background: slides[i].color2, borderColor: slides[i].color4 }}>
           <div className="flex h-[90%] transition-transform duration-1000 w-full"
               style={{ transform: `translateX(-${i * 100}%)` }}>
             {slides.map((slide, index) => (
@@ -95,7 +93,7 @@ const WorkshopSlide = () => {
                         pointerEvents: 'none',
                         zIndex: -1,
                       }}
-                      className="font-airstrike text-white mt-[3rem] font-italic text-left text-[4.5vw] leading-[2rem] w-full inline-block"
+                      className="font-airstrike text-white mt-[3rem] font-italic text-left text-[20px] leading-[2rem] w-full inline-block"
                     >
                       {slide.header}
                     </span>
@@ -109,25 +107,25 @@ const WorkshopSlide = () => {
                       <div className="flex relative items-center w-[50%]">
                         <img
                           src={ slides[i].locationIcon }
-                          className="w-[10%]"
+                          className="w-[15%]"
                         />
                         <span
                           className="relative ml-2 text-[1vh] w-[90%]"
                           style = {{ color: slides[i].color1 }}
                         >
-                          {slide.subtext1}
+                          {slide.tempat}
                         </span>
                       </div>
                       <div className="flex relative items-center w-[50%]">
                         <img
                           src={ slides[i].timeIcon }
-                          className="w-[10%]"
+                          className="w-[15%]"
                         />
                         <span
                           className="relative ml-2 text-[1vh] w-[90%]"
                           style = {{ color: slides[i].color1 }}
                         >
-                          {slide.subtext2}
+                          {slide.waktu}
                         </span>
                       </div>
                     </div>
@@ -138,7 +136,7 @@ const WorkshopSlide = () => {
                   {/* Placeholder for image*/}
                   <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[1rem]">
                     <span
-                      className="text-9xl"
+                      className="text-5xl"
                       style={{ color: slides[i].color1 }}
                     >
                       ?
@@ -162,9 +160,9 @@ const WorkshopSlide = () => {
                     className="relative transition-colors duration-1000 ease-in text-white font-bold py-1 px-2 rounded-[1.5rem] text-[1vh] text-center mx-[2.5%] w-[45%] h-[2.3rem] flex items-center justify-center"
                     style={{ background: slides[i].color1 }}
                   >
-                    Jorem ipsum dolor
+                    {slides[i].pemateri1}
                     <br />
-                    Jorem ipsum dolor
+                    {slides[i].pemateri2}
                   </div>
                 </div>
               </div>
@@ -176,9 +174,10 @@ const WorkshopSlide = () => {
 
   return (
     <div>
-      <div className="relative items-center hidden desktop:block">
-        <div className="flex-col transition-colors duration-1000 ease-in items-center w-full h-[90vh] overflow-hidden rounded-2xl border-8 relative"
-            style={{ background: slides[currentIndex].color2, borderColor: slides[currentIndex].color1 }}>
+      {/* For Ipad and Desktop */}
+      <div className="relative items-center hidden select-none ipad:block desktop:block">
+        <div className="flex-col drop-shadow-lg transition-colors duration-1000 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[50vh] desktop:h-[90vh]"
+            style={{ background: slides[currentIndex].color2, borderColor: slides[currentIndex].color4 }}>
           <div className="flex h-[90%] transition-transform duration-1000 w-full"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {slides.map((slide, index) => (
@@ -207,7 +206,7 @@ const WorkshopSlide = () => {
                         pointerEvents: 'none',
                         zIndex: -1,
                       }}
-                      className="font-airstrike text-white mt-[3rem] font-italic text-left text-[5vw] leading-[4.5rem] w-full inline-block"
+                      className="font-airstrike text-white mt-[3rem] font-italic text-left w-full inline-block ipad:text-[4.5vw] ipad:leading-[3rem] desktop:text-[5vw] desktop:leading-[4.5rem]"
                     >
                       {slide.header}
                     </span>
@@ -215,7 +214,7 @@ const WorkshopSlide = () => {
                   
                   <div className="ml-[1rem] text-gray font-fredoka p-5 rounded mb-[4rem] w-full">
                     {/* Content */}
-                    <div className="text-gray-800 text-base mb-2">{slides[currentIndex].content}</div>
+                    <div className="text-gray-800 mb-2 ipad:text-[12px] ipad:leading-[1rem] desktop:text-[1rem] desktop:leading-[1.5rem]">{slides[currentIndex].content}</div>
                     {/* Location and time */}
                     <div className="flex">
                       <div className="flex items-center w-[50%]">
@@ -223,10 +222,10 @@ const WorkshopSlide = () => {
                           src={ slides[currentIndex].locationIcon }
                         />
                         <span
-                          className="ml-2 text-[1.5rem]"
+                          className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
                           style = {{ color: slides[currentIndex].color1 }}
                         >
-                          {slide.subtext1}
+                          {slide.tempat}
                         </span>
                       </div>
                       <div className="flex items-center w-[50%]">
@@ -234,17 +233,17 @@ const WorkshopSlide = () => {
                           src={ slides[currentIndex].timeIcon }
                         />
                         <span
-                          className="ml-2 text-[1.5rem]"
+                          className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
                           style = {{ color: slides[currentIndex].color1 }}
                         >
-                          {slide.subtext2}
+                          {slide.waktu}
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="w-[40%] h-[85%] flex items-center justify-center">
+                <div className="w-[40%] h-[75%] flex items-center justify-center ipad:mt-[10%] desktop:mt-[5%]">
                   {/* Placeholder for image*/}
                   <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem]">
                     <span
@@ -262,7 +261,7 @@ const WorkshopSlide = () => {
                     style = {{ background: slides[currentIndex].color3 }}
                   >
                     <button
-                      className="relative bg-light text-center text-[1.5rem] w-full h-full font-bold py-2 px-4 rounded-[0.4rem]"
+                      className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
                       style={{ color: slides[currentIndex].color1, borderColor: slides[currentIndex].color2 }}
                     >
                       Daftar sekarang!
@@ -272,9 +271,9 @@ const WorkshopSlide = () => {
                     className="relative transition-colors duration-1000 ease-in text-white font-bold py-2  px-4 rounded-[1.5rem] text-center mx-[2.5%] w-[35%] h-[4rem]"
                     style={{ background: slides[currentIndex].color1 }}
                     >
-                    Jorem ipsum dolor
+                    {slides[currentIndex].pemateri1}
                     <br />
-                    Jorem ipsum dolor
+                    {slides[currentIndex].pemateri2}
                   </div>
                 </div>
               </div>
@@ -282,7 +281,8 @@ const WorkshopSlide = () => {
           </div>
         </div>
         
-        <div className="absolute bottom-[-4rem] left-1/2 transform rounded-[2rem] -translate-x-1/2 flex bg-dark w-[12.5%] h-[5%]">
+        {/* Slider */}
+        <div className="absolute left-1/2 transform rounded-[2rem] -translate-x-1/2 flex bg-dark p-[0.5rem] ipad:bottom-[-6rem] ipad:h-[5%] ipad:w-[20%] desktop:bottom-[-4rem] desktop:h-[5%] desktop:w-[14%]">
           {slides.map((_, index) => (
             <div
               key={index}
@@ -309,7 +309,7 @@ const WorkshopSlide = () => {
       </div>
 
       {/* For mobile */}
-      <div className="relative items-center hidden mobile:block desktop:hidden">
+      <div className="relative items-center hidden mobile:block ipad:hidden desktop:hidden">
           {mobileContent}
       </div>
     </div>

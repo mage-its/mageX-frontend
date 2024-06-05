@@ -2,9 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      mobile: '300px',
-      desktop: '1280px',
+    screens: {           // Custom screen size
+      mobile: '300px',   // sm
+      ipad: '650px',     // md
+      desktop: '1280px', // lg
     },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
