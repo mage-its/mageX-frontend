@@ -71,6 +71,8 @@ export default {
           "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
         "purple-grad-3":
           "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
+        "purple-grad-4":
+          "linear-gradient(180deg, #16083D -4.01%, #210F53 45.03%, #463477 79.39%, #A38EDB 143.42%)",
         "purple-white":
           "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
         "orange-white":
@@ -83,6 +85,8 @@ export default {
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
           "linear-gradient(246.26deg, #FF4646 1.72%, #FFE1C9 157.26%)",
+        "orange-grad-4":
+          "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "skin-grad":
           "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
