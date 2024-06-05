@@ -11,8 +11,9 @@ export default {
       transparent: "transparent",
       black: "#000",
       gray: {
-        1: "#3E3E3E",
-        2: "#AFAFAF"
+        1: "#141414",
+        2: "#3E3E3E",
+        3: "#AFAFAF",
       },
       white: "#ffffff",
       mage: {
@@ -52,7 +53,7 @@ export default {
       },
       red: {
         1: "#FF4646",
-        2: "#FF4F4F"
+        2: "#FF4F4F",
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
@@ -69,28 +70,21 @@ export default {
           "linear-gradient(rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%)",
         "transparent-white-2":
           "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
-        "grayscale":
-          "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
-        "purple-grad-1":
-          "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
-        "purple-grad-2":
-          "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
-        "purple-grad-3":
-          "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
+        grayscale: "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
+        "purple-grad-1": "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
+        "purple-grad-2": "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
+        "purple-grad-3": "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
         "purple-white":
           "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
         "orange-white":
           "linear-gradient(#FB8A4A 0%, #FFC290 50%, #FFE1CA 100%)",
-        "brown-grad":
-          "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
-        "orange-grad":
-          "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+        "brown-grad": "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
+        "orange-grad": "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
         "orange-grad-2":
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
           "linear-gradient(246.26deg, #FF4646 1.72%, #FFE1C9 157.26%)",
-        "skin-grad":
-          "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
+        "skin-grad": "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
           "linear-gradient(181.25deg, #E553A8 -33.94%, #F77F5A 18.83%, #F77F5A 61.94%, #E553A8 109.51%)",
         "navbar-select-gradient":
@@ -113,22 +107,22 @@ export default {
       },
       keyframes: {
         rotate: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' }
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
         },
         slideIn: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0)' }
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
         },
         slideOut: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(100%)' }
-        }
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
-        rotate: 'rotate 1s linear',
-        slideIn: 'slideIn 0.5s forwards',
-        slideOut: 'slideOut 0.5s forwards'
+        rotate: "rotate 1s linear",
+        slideIn: "slideIn 0.5s forwards",
+        slideOut: "slideOut 0.5s forwards",
       },
     },
   },

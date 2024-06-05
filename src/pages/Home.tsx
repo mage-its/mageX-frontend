@@ -1,6 +1,6 @@
-import { Navbar } from "@/components/Navbar"
+import { Navbar } from "@/components/Navbar";
 import gtaX from "@/assets/brand/gtaX.svg";
-import {  animate, motion, useAnimation, useMotionValue } from 'framer-motion';
+import { animate, motion, useAnimation, useMotionValue } from "framer-motion";
 import logo from "@/assets/brand/logo.svg";
 import puzzle1 from "@/assets/components/puzzle1.svg";
 import puzzle2 from "@/assets/components/puzzle2.svg";
@@ -15,15 +15,18 @@ import puzzle10 from "@/assets/components/puzzle10.svg";
 import puzzle11 from "@/assets/components/puzzle11.svg";
 import puzzle12 from "@/assets/components/puzzle12.svg";
 import puzzle13 from "@/assets/components/puzzle13.svg";
+import puzzleGta from "@/assets/components/puzzleGta.svg";
+import mascot from "@/assets/brand/mascot.svg";
 
-import Juara1App9 from '@/assets/gallery/Juara1App9.png'
-import Juara1Iot9 from '@/assets/gallery/Juara1Iot9.png'
-import Juara1Robotic9 from '@/assets/gallery/Juara1Robotic9.png'
-import Juara1Game5 from '@/assets/gallery/Juara1Game5.png'
-import Juara1Iot5 from '@/assets/gallery/Juara1Iot5.png'
-import Juara2App5 from '@/assets/gallery/Juara2App5.png'
+import Juara1App9 from "@/assets/gallery/Juara1App9.png";
+import Juara1Iot9 from "@/assets/gallery/Juara1Iot9.png";
+import Juara1Robotic9 from "@/assets/gallery/Juara1Robotic9.png";
+import Juara1Game5 from "@/assets/gallery/Juara1Game5.png";
+import Juara1Iot5 from "@/assets/gallery/Juara1Iot5.png";
+import Juara2App5 from "@/assets/gallery/Juara2App5.png";
 
-import { FaAngleRight, FaAngleLeft, FaComment  } from "react-icons/fa6";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import { HiCursorClick } from "react-icons/hi";
 import { JustifyPuzzle } from "@/components/JustifyPuzzle";
 import { useEffect, useRef, useState } from "react";
 import { RevealButton } from "@/components/RevealButton";
@@ -32,6 +35,7 @@ import useMeasure from "react-use-measure";
 import InfoCard from "@/components/InfoCard";
 import Timeline, { TimelineCard } from "@/components/Timeline";
 import { timeline } from "@/constant/timeline";
+import WorkshopCard from "@/components/WorkshopCard";
 
 const RunningText = () => {
   return (
@@ -41,75 +45,102 @@ const RunningText = () => {
         MAGE X
       </h1>
     </div>
-  )
+  );
+};
+
+interface MascotNameProps extends React.ComponentPropsWithoutRef<"div"> {
+  name: string;
 }
 
+const MascotName = ({ name, ...props }: MascotNameProps) => {
+  return (
+    <div
+      className="bg-vertical-gta bg-clip-text leading-none text-transparent font-black font-roboto w-full text-[165px] flex justify-between"
+      {...props}
+    >
+      {name.split("").map((char) => (
+        <span>{char}</span>
+      ))}
+    </div>
+  );
+};
+
 export default function Home() {
-  const [runningRef, { width: runningWidth }] = useMeasure()
-  const [timlineRef, { width: timelineWidth }] = useMeasure()
-  const runningXTranslate = useMotionValue(0)
-  const aboutRef = useRef<HTMLDivElement>(null)
-  const aboutControl = useAnimation()
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAbout, setIsAbout] = useState(false)
-  
+  const [runningRef, { width: runningWidth }] = useMeasure();
+  const runningXTranslate = useMotionValue(0);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const aboutControl = useAnimation();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAbout, setIsAbout] = useState(false);
+
   const isAboutHandle = () => {
-    setIsAbout(!isAbout)
-  }
+    setIsAbout(!isAbout);
+  };
   useEffect(() => {
-    if(isAbout) {
-      aboutControl.start("popUp")
-      aboutControl.start("blur")
+    if (isAbout) {
+      aboutControl.start("popUp");
+      aboutControl.start("blur");
     } else {
-      aboutControl.start("popDown")
-      aboutControl.start("noBlur")
+      aboutControl.start("popDown");
+      aboutControl.start("noBlur");
     }
-  })
+  });
 
   useEffect(() => {
-    const runningFinalPosition = -runningWidth+ 461 + window.innerWidth - ( window.innerWidth % 461);
-    console.log(runningFinalPosition)
+    const runningFinalPosition =
+      -runningWidth + 461 + window.innerWidth - (window.innerWidth % 461);
+    console.log(runningFinalPosition);
 
-    const runningControls = animate(runningXTranslate,[0, runningFinalPosition], {
-      duration: 15,
-      repeat: Infinity,
-      repeatType: "loop",
-      ease: "linear",
-      repeatDelay: 0,
-    })
+    const runningControls = animate(
+      runningXTranslate,
+      [0, runningFinalPosition],
+      {
+        duration: 15,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "linear",
+        repeatDelay: 0,
+      }
+    );
 
     return runningControls.stop;
-  }, [runningWidth, runningXTranslate])
+  }, [runningWidth, runningXTranslate]);
 
   const incrementSlide = () => {
-    setCurrentSlide((prev) => prev + 1)
-  }
+    setCurrentSlide((prev) => prev + 1);
+  };
 
   const decrementSlide = () => {
-    setCurrentSlide((prev) => prev - 1)
-  }
+    setCurrentSlide((prev) => prev - 1);
+  };
 
   return (
     <main className="h-fit bg-gradient-to-r from-dark to-black">
-      <svg xmlns='http://www.w3.org/2000/svg' width="0" height="0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
         <defs>
-          <linearGradient x1="50%" y1="92.034%" x2="50%" y2="7.2%" id="horizontal-gta">
+          <linearGradient
+            x1="50%"
+            y1="92.034%"
+            x2="50%"
+            y2="7.2%"
+            id="horizontal-gta"
+          >
             <stop offset="0%" stop-color=" #435ECF" />
             <stop offset="35%" stop-color="#E24BB3" />
             <stop offset="100%" stop-color="#FF9433" />
           </linearGradient>
         </defs>
       </svg>
-      <Navbar theme="black"/>
+      <Navbar theme="black" />
 
       <div className="bg-gradient-to-r from-dark to-black h-screen text-center relative overflow-clip">
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: 300 }}
-          transition={{ 
+          transition={{
             duration: 0.2,
             ease: "easeOut",
-            delay: 0.5
+            delay: 0.5,
           }}
           className="bg-horizontal-gta rounded-full blur-2xl w-16 h-16 absolute right-[49%] z-10"
         />
@@ -117,15 +148,15 @@ export default function Home() {
           <h1 className="bg-transparent-white-1 bg-clip-text text-transparent font-airstrike text-[60px] -mb-6 pt-20">
             MAGE
           </h1>
-            <div className="flex items-center justify-center gap-[10px]">
-            <motion.p 
+          <div className="flex items-center justify-center gap-[10px]">
+            <motion.p
               className="bg-vertical-gta bg-clip-text text-transparent text-[30px] font-fredoka font-medium"
               animate={{ filter: "grayscale(0)" }}
               initial={{ filter: "grayscale(100%)" }}
               transition={{
                 duration: 0.5,
                 ease: "easeInOut",
-                delay: 0.9
+                delay: 0.9,
               }}
             >
               A New Decade
@@ -138,162 +169,379 @@ export default function Home() {
               transition={{
                 duration: 0.5,
                 ease: "easeInOut",
-                delay: 0.9
+                delay: 0.9,
               }}
             />
-            <motion.p 
+            <motion.p
               className="bg-vertical-gta bg-clip-text text-transparent text-[30px] font-fredoka font-medium"
               animate={{ filter: "grayscale(0)" }}
               initial={{ filter: "grayscale(100%)" }}
               transition={{
                 duration: 0.5,
                 ease: "easeInOut",
-                delay: 0.9
+                delay: 0.9,
               }}
             >
               A New Journey
             </motion.p>
           </div>
         </div>
-        <RevealButton text="Tentang Mage" onClick={isAboutHandle}/>
+        <RevealButton text="Tentang Mage" onClick={isAboutHandle} />
         <div className=" transition-all duration-500 ">
-            <JustifyPuzzle src={puzzle1} className="absolute -bottom-[8.9vw] -left-[1.5vw] w-[18vw] " alt="" />
-            <JustifyPuzzle rotate={5} y={-10} src={puzzle2} className="absolute -bottom-[8.9vw] left-[12.6vw] h-[18vw] z-10" alt="" />
-            <JustifyPuzzle src={puzzle3} className="absolute -bottom-[8.4vw] left-[24.6vw] w-[20.4vw]" alt="" />
-            <JustifyPuzzle src={puzzle4} className="absolute -bottom-[8.9vw] left-[41.3vw] h-[18vw]" alt="" />
-            <JustifyPuzzle src={puzzle5} className="absolute -bottom-[8.4vw] left-[53.3vw] w-[20.4vw]" alt="" />
-            <JustifyPuzzle x={30} y={-20} src={puzzle6} className="absolute -bottom-[8.9vw] left-[70vw] h-[18vw] z-10" alt="" />
-            <JustifyPuzzle src={puzzle13} className="absolute -bottom-[8.9vw] left-[82vw] w-[18vw]" alt="" />
+          <JustifyPuzzle
+            src={puzzle1}
+            className="absolute -bottom-[8.9vw] -left-[1.5vw] w-[18vw] "
+            alt=""
+          />
+          <JustifyPuzzle
+            rotate={5}
+            y={-10}
+            src={puzzle2}
+            className="absolute -bottom-[8.9vw] left-[12.6vw] h-[18vw] z-10"
+            alt=""
+          />
+          <JustifyPuzzle
+            src={puzzle3}
+            className="absolute -bottom-[8.4vw] left-[24.6vw] w-[20.4vw]"
+            alt=""
+          />
+          <JustifyPuzzle
+            src={puzzle4}
+            className="absolute -bottom-[8.9vw] left-[41.3vw] h-[18vw]"
+            alt=""
+          />
+          <JustifyPuzzle
+            src={puzzle5}
+            className="absolute -bottom-[8.4vw] left-[53.3vw] w-[20.4vw]"
+            alt=""
+          />
+          <JustifyPuzzle
+            x={30}
+            y={-20}
+            src={puzzle6}
+            className="absolute -bottom-[8.9vw] left-[70vw] h-[18vw] z-10"
+            alt=""
+          />
+          <JustifyPuzzle
+            src={puzzle13}
+            className="absolute -bottom-[8.9vw] left-[82vw] w-[18vw]"
+            alt=""
+          />
 
-            <JustifyPuzzle src={puzzle7} className="absolute bottom-[2.6vw] -left-[1.5vw] w-[15.3vw]" alt="" />
-            <JustifyPuzzle rotate={10} y={-40} src={puzzle8} className="absolute bottom-[5.3vw] left-[10vw]  w-[20.9vw]" alt="" />
+          <JustifyPuzzle
+            src={puzzle7}
+            className="absolute bottom-[2.6vw] -left-[1.5vw] w-[15.3vw]"
+            alt=""
+          />
+          <JustifyPuzzle
+            rotate={10}
+            y={-40}
+            src={puzzle8}
+            className="absolute bottom-[5.3vw] left-[10vw]  w-[20.9vw]"
+            alt=""
+          />
 
-            <JustifyPuzzle src={puzzle10} className="absolute bottom-[2.6vw] -right-[0.8vw] w-[15.3vw]" alt="" />
-            <JustifyPuzzle rotate={-4} x={-20} src={puzzle9} className="absolute bottom-[5.3vw] right-[10.6vw]  w-[20.9vw]" alt="" />
+          <JustifyPuzzle
+            src={puzzle10}
+            className="absolute bottom-[2.6vw] -right-[0.8vw] w-[15.3vw]"
+            alt=""
+          />
+          <JustifyPuzzle
+            rotate={-4}
+            x={-20}
+            src={puzzle9}
+            className="absolute bottom-[5.3vw] right-[10.6vw]  w-[20.9vw]"
+            alt=""
+          />
 
-            <JustifyPuzzle rotate={-103} x={40} y={-40} src={puzzle11} className="absolute bottom-[19.8vw] -left-[4.3vw]  w-[20.5vw]" alt=""/>
+          <JustifyPuzzle
+            rotate={-103}
+            x={40}
+            y={-40}
+            src={puzzle11}
+            className="absolute bottom-[19.8vw] -left-[4.3vw]  w-[20.5vw]"
+            alt=""
+          />
 
-            <JustifyPuzzle rotate={120} x={30} src={puzzle12} className="absolute bottom-[19.8vw] -right-[3.6vw]  w-[20.5vw]" alt="" />
+          <JustifyPuzzle
+            rotate={120}
+            x={30}
+            src={puzzle12}
+            className="absolute bottom-[19.8vw] -right-[3.6vw]  w-[20.5vw]"
+            alt=""
+          />
         </div>
       </div>
-      <motion.div 
+      <motion.div
         ref={aboutRef}
         className="fixed top-0 z-20"
         variants={{
-          popUp: {top: 0},
-          popDown: {top: 1500}
+          popUp: { top: 0 },
+          popDown: { top: 1500 },
         }}
         initial="popDown"
         animate={aboutControl}
         transition={{
           duration: 0.5,
-          ease: "circInOut"
+          ease: "circInOut",
         }}
       >
         <div className="w-screen h-screen flex flex-col justify-center items-center pt-4">
-        <div className="rounded-[50px] max-w-[1370px] border-4 border-[#323232] bg-dark h-full mb-5 pt-[20px] px-20 pb-[10px]">
-          <h1 className="font-roboto text-[50px] text-light font-bold text-center mb-4">
-            Discover the Depths of 
-            <span className="ml-4 bg-vertical-gta bg-clip-text text-transparent font-roboto font-black">MAGE</span>
-          </h1>
-          <p className="font-fredoka font-medium text-xl text-center text-light mb-[30px]">
-            MAGE ( Multimedia dan Game Event ) adalah suatu serangkaian acara yang diadakan oleh Departemen Teknik 
-            Komputer Fakultas dari FTEIC Institut Teknologi Sepuluh Nopember Surabaya yang meliputi perlombaan-perlombaan
-            serta workshop. MAGE juga adalah media untuk pelajar dan akademisi dalam mengeksplor kreativitas, inovasi, 
-            dan kemampuan di berbagai bidang IT.
-          </p>
-          <div className="overflow-hidden">
-            <motion.div 
-              className="flex flex-nowrap gap-4 mb-9"
-              animate={{ x: -currentSlide * 405 * 3 }}
-            >
-              <div className="flex gap-4 justify-center">
-                <AboutCard title="MAGE 9" desc="Juara 1: App Development kategori Mahasiswa" img={Juara1App9}/>
-                <AboutCard title="MAGE 9" desc="Tim TEKERJET CAROX’Z meraih Juara 1 pada kompetisi Robotic" img={Juara1Robotic9}/>
-                <AboutCard title="MAGE 9" desc="Tim TheNextWay meraih Juara 1 pada kompetisi IoT" img={Juara1Iot9}/>
-              </div>
-              
-              <div className="flex gap-4 justify-center">
-                <AboutCard title="MAGE 5" desc="Mahasiswa Telkom University menjadi juara pada sebuah event skala nasional yang terselenggara di Institut Teknologi Sepuluh November (ITS) Surabaya, yaitu Multimedia and Game Event (MAGE) 5." img={Juara1Iot5}/>
-                <AboutCard title="MAGE 5" desc="Mendominasi di Final, Tim AMCC Universitas Amikom Yogyakarta Juara MAGE 5 di Institut Teknologi Sepuluh November Surabaya" img={Juara2App5}/>
-                <AboutCard title="MAGE 5" desc="Tim GAT Juara 1 pada Kompetisi Multimedia and Game Event (MAGE) 5" img={Juara1Game5}/>
-              </div>
+          <div className="rounded-[50px] max-w-[1370px] border-4 border-[#323232] bg-dark h-full mb-5 pt-[20px] px-20 pb-[10px]">
+            <h1 className="font-roboto text-[50px] text-light font-bold text-center mb-4">
+              Discover the Depths of
+              <span className="ml-4 bg-vertical-gta bg-clip-text text-transparent font-roboto font-black">
+                MAGE
+              </span>
+            </h1>
+            <p className="font-fredoka font-medium text-xl text-center text-light mb-[30px]">
+              MAGE ( Multimedia dan Game Event ) adalah suatu serangkaian acara
+              yang diadakan oleh Departemen Teknik Komputer Fakultas dari FTEIC
+              Institut Teknologi Sepuluh Nopember Surabaya yang meliputi
+              perlombaan-perlombaan serta workshop. MAGE juga adalah media untuk
+              pelajar dan akademisi dalam mengeksplor kreativitas, inovasi, dan
+              kemampuan di berbagai bidang IT.
+            </p>
+            <div className="overflow-hidden">
+              <motion.div
+                className="flex flex-nowrap gap-4 mb-9"
+                animate={{ x: -currentSlide * 405 * 3 }}
+              >
+                <div className="flex gap-4 justify-center">
+                  <AboutCard
+                    title="MAGE 9"
+                    desc="Juara 1: App Development kategori Mahasiswa"
+                    img={Juara1App9}
+                  />
+                  <AboutCard
+                    title="MAGE 9"
+                    desc="Tim TEKERJET CAROX’Z meraih Juara 1 pada kompetisi Robotic"
+                    img={Juara1Robotic9}
+                  />
+                  <AboutCard
+                    title="MAGE 9"
+                    desc="Tim TheNextWay meraih Juara 1 pada kompetisi IoT"
+                    img={Juara1Iot9}
+                  />
+                </div>
 
-            </motion.div>
-          </div>
-          <div className="flex justify-between items-center">
-            <motion.button 
-              className="w-[44px] h-[44px] rounded-full bg-light flex justify-center items-center" 
-              onClick={decrementSlide} 
-              disabled={currentSlide == 0}
-              animate={{ opacity: currentSlide == 0 ? 0.5 : 1}}
-            >
-                <FaAngleLeft className="text-[30px]" fill="url(#horizontal-gta)"/>
-            </motion.button>
-            <div className="flex gap-2.5">
-              <motion.div
-                className="w-[180px] h-4 bg-light rounded-full"
-                animate={{ width: currentSlide == 0 ? 180 : 16}}
-              />
-              <motion.div
-                className="w-4 h-4 bg-gray-1 rounded-full"
-                animate={{ width: currentSlide == 1 ? 180 : 16}}
-              />
+                <div className="flex gap-4 justify-center">
+                  <AboutCard
+                    title="MAGE 5"
+                    desc="Mahasiswa Telkom University menjadi juara pada sebuah event skala nasional 
+                          yang terselenggara di Institut Teknologi Sepuluh November (ITS) Surabaya, 
+                          yaitu Multimedia and Game Event (MAGE) 5."
+                    img={Juara1Iot5}
+                  />
+                  <AboutCard
+                    title="MAGE 5"
+                    desc="Mendominasi di Final, Tim AMCC Universitas Amikom Yogyakarta Juara MAGE 5 
+                          di Institut Teknologi Sepuluh November Surabaya"
+                    img={Juara2App5}
+                  />
+                  <AboutCard
+                    title="MAGE 5"
+                    desc="Tim GAT Juara 1 pada Kompetisi Multimedia and Game Event (MAGE) 5"
+                    img={Juara1Game5}
+                  />
+                </div>
+              </motion.div>
             </div>
-            <motion.button 
-              className="w-[44px] h-[44px] rounded-full bg-light flex justify-center items-center" 
-              onClick={incrementSlide} 
-              disabled={currentSlide == 1}
-              animate={{ opacity: currentSlide == 1 ? 0.5 : 1}}
-            >
-                <FaAngleRight className="text-[30px]" fill="url(#horizontal-gta)"/>
-            </motion.button>
+            <div className="flex justify-between items-center">
+              <motion.button
+                className="w-[44px] h-[44px] rounded-full bg-light flex justify-center items-center"
+                onClick={decrementSlide}
+                disabled={currentSlide == 0}
+                animate={{ opacity: currentSlide == 0 ? 0.5 : 1 }}
+              >
+                <FaAngleLeft
+                  className="text-[30px]"
+                  fill="url(#horizontal-gta)"
+                />
+              </motion.button>
+              <div className="flex gap-2.5">
+                <motion.div
+                  className="w-[180px] h-4 bg-light rounded-full"
+                  animate={{ width: currentSlide == 0 ? 180 : 16 }}
+                />
+                <motion.div
+                  className="w-4 h-4 bg-gray-2 rounded-full"
+                  animate={{ width: currentSlide == 1 ? 180 : 16 }}
+                />
+              </div>
+              <motion.button
+                className="w-[44px] h-[44px] rounded-full bg-light flex justify-center items-center"
+                onClick={incrementSlide}
+                disabled={currentSlide == 1}
+                animate={{ opacity: currentSlide == 1 ? 0.5 : 1 }}
+              >
+                <FaAngleRight
+                  className="text-[30px]"
+                  fill="url(#horizontal-gta)"
+                />
+              </motion.button>
+            </div>
           </div>
-        </div>
-        <RevealButton text="Tutup" color="red" onClick={isAboutHandle} isAnimate={isAbout} className="mb-4"/>
+          <RevealButton
+            text="Tutup"
+            color="red"
+            onClick={isAboutHandle}
+            isAnimate={isAbout}
+            className="mb-4"
+          />
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         ref={aboutRef}
         className="w-full h-screen z-10 fixed bg-black top-0"
         variants={{
-          blur: {opacity: 0.8, display: "block"},
-          noBlur: {opacity: 0, display: "none"}
+          blur: { opacity: 0.8, display: "block" },
+          noBlur: { opacity: 0, display: "none" },
         }}
         initial="noBlur"
         animate={aboutControl}
         transition={{
           duration: 0.5,
-          ease: "circInOut"
+          ease: "circInOut",
         }}
-      >
-
-      </motion.div>
-      <div className="bg-black h-fit text-center relative overflow-hidden pt-[50px] px-20">
-        <motion.div ref={runningRef} className="flex flex-nowrap absolute left-0" style={{x: runningXTranslate}}>
-        {Array.from({ length: 9 }).map((_, index) => (
-          <RunningText key={index} />
-        ))}
+      ></motion.div>
+      <div className="bg-gray-1 h-fit text-center relative overflow-hidden pt-[50px] px-20 flex flex-col gap-10">
+        <motion.div
+          ref={runningRef}
+          className="flex flex-nowrap absolute left-0"
+          style={{ x: runningXTranslate }}
+        >
+          {Array.from({ length: 9 }).map((_, index) => (
+            <RunningText key={index} />
+          ))}
         </motion.div>
 
-        <div className="flex flex-wrap gap-y-8 justify-evenly mt-[150px] mb-28">
-          <InfoCard title="Event Terlaksana" value="10"/>
-          <InfoCard title="Peserta Terdaftar Setiap Tahun" value="50+"/>
-          <InfoCard title="Panitia berkontribusi setiap tahun" value="80+"/>
-          <InfoCard title="Sponsor & media partner terlibat" value="50+"/>
+        <div className="flex flex-wrap gap-y-8 justify-evenly mt-[140px] mb-16">
+          <InfoCard title="Event Terlaksana" value="10" />
+          <InfoCard title="Peserta Terdaftar Setiap Tahun" value="50+" />
+          <InfoCard title="Panitia berkontribusi setiap tahun" value="80+" />
+          <InfoCard title="Sponsor & media partner terlibat" value="50+" />
         </div>
-        <div className="w-[800px] mb-6">
-          <h1 className="font-roboto text-6xl text-light font-bold text-start">
-            Unravel Our
-          </h1>
-          <h1 className="bg-vertical-gta bg-clip-text text-transparent font-bold font-roboto w-fit text-6xl text-start mb-8">Event Schedule</h1>
-          <p className="font-fredoka text-light text-2xl text-start">
-            Navigate through the chronological journey of MAGE X events.
-            Discover the dates and details of this year’s workshops and competitions!
-          </p>
+        <div className="relative pt-16">
+          <div className="w-[800px] mb-6">
+            <h1 className="font-roboto text-6xl text-light font-bold text-start">
+              Unravel Our
+            </h1>
+            <h1 className="bg-vertical-gta bg-clip-text text-transparent font-bold font-roboto w-fit text-6xl text-start mb-10">
+              Event Schedule
+            </h1>
+            <p className="font-fredoka text-light text-2xl opacity-50 text-start">
+              Navigate through the chronological journey of MAGE X events.
+              Discover the dates and details of this year’s workshops and
+              competitions!
+            </p>
+          </div>
+          <img
+            src={puzzleGta}
+            className="absolute top-0 right-0 rotate-[-135deg]"
+            alt=""
+          />
+          <img
+            src={puzzleGta}
+            className="absolute top-[15%] h-[101px] right-[15%] rotate-[135deg]"
+            alt=""
+          />
+          <img
+            src={puzzleGta}
+            className="absolute top-[10%] h-[66px] right-[30%] rotate-[90deg]"
+            alt=""
+          />
+          <div className="h-[450px] border-[5px] border-gray-2 rounded-[35px] p-10 overflow-hidden">
+            <Timeline items={timeline} />
+          </div>
         </div>
-        <div className="h-[450px] border-[5px] border-gray-1 rounded-[35px] p-10 overflow-hidden">
-          <Timeline items={timeline}/>
+
+        <div className="py-3">
+          <div className="relative flex flex-col justify-center items-center gap-[29px] self-stretch">
+            <p className="text-center font-roboto text-6xl font-bold w-[545px] h-[140px] mb-[29px] text-light">
+              Elevate Your Skills Through
+              <span className="bg-vertical-gta text-transparent bg-clip-text ">
+                {" "}
+                Workshops
+              </span>
+            </p>
+            <p className="w-[1268px] text-center font-fredoka text-2xl font-light opacity-50 text-light">
+              Immerse yourself in a world of learning and innovation with our
+              lineup of MAGE X workshops. Explore hands-on experiences, expert
+              insights, and invaluable knowledge to sharpen your skills and stay
+              ahead of the curve
+            </p>
+          </div>
+
+          <div className="relative flex justify-center items-center gap-[40px] mt-[56px]">
+            <WorkshopCard title="Multimedia">
+              Master coding skills in many language
+            </WorkshopCard>
+            <WorkshopCard title="Internet of Things (IoT)">
+              Discover IoT and hands-on learning
+            </WorkshopCard>
+            <WorkshopCard title="Robotics">
+              Explore robotics basics for innovation
+            </WorkshopCard>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="w-full mb-[130px] text-center flex flex-col gap-2 justify-center items-center">
+            <h1 className="font-roboto text-6xl text-light font-bold">
+              Meet Our
+            </h1>
+            <h1 className="bg-vertical-gta bg-clip-text text-transparent font-bold font-roboto w-fit text-6xl mb-4">
+              Futuristic Feline Bots!
+            </h1>
+            <p className="font-fredoka max-w-[1085px] text-light text-2xl opacity-50">
+              Blending the charm of felines with the power of technology,
+              introducing our Mascot: [MASCOT NAME HERE]. XX is a futuristic
+              robotic-cat that will accompany your journey all throughout MAGE
+              X!
+            </p>
+          </div>
+          <img
+            src={mascot}
+            className="absolute left-1/2 -translate-x-1/2 top-[24%] z-10 mx-auto"
+            alt=""
+          />
+          <div className="w-full h-fit ">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <MascotName
+                name="MASCOT"
+                style={{
+                  filter: `blur(${index * 2}px)`,
+                  opacity: 1 - index / 4.5,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <div className="flex flex-col justify-center items-center gap-[29px]">
+            <h1 className="text-center font-roboto text-6xl font-bold w-[545px] h-[140px] text-light">
+              Explore Our Exciting
+              <span className="bg-vertical-gta text-transparent bg-clip-text ">
+                {" "}
+                Competitions
+              </span>
+            </h1>
+            <p className="font-fredoka max-w-[1085px] text-light text-2xl opacity-50">
+              Blending the charm of felines with the power of technology,
+              introducing our Mascot: [MASCOT NAME HERE]. XX is a futuristic
+              robotic-cat that will accompany your journey all throughout MAGE
+              X!
+            </p>
+            <div className="bg-light/50 rounded-[20px] w-fit h-fit py-5 px-[30px] flex justify-center items-center gap-2">
+              <HiCursorClick className="text-3xl text-light" />
+              <HiCursorClick className="text-sm text-light" />
+
+              <p className="font-fredoka text-2xl text-light">
+                Click or Touch the Cards to View All Competitions
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </main>

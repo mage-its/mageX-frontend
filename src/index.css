@@ -8,11 +8,7 @@
 
 @font-face {
   font-family: "Airstrike";
-<<<<<<< HEAD
-  src: url('./assets/fonsts/airstrike.ttf');
-=======
-  src: url('@/assets/fonts/airstrike.ttf');
->>>>>>> main
+  src: url('./assets/fonts/airstrike.ttf');
 }
 
 @layer utilities {
