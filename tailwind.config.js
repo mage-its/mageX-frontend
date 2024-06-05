@@ -55,6 +55,8 @@ export default {
       backgroundImage: () => ({
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "vertical-gta-reverse":
+          "linear-gradient(270deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "horizontal-gta":
           "linear-gradient(180deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "transparent-white-1/2":
@@ -65,6 +67,8 @@ export default {
           "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
         "grayscale":
           "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
+        "purple-gradient":
+          "linear-gradient(180deg, #483187 0%, #6F56B4 50%, #A38EDB 100%)",
         "purple-grad-1":
           "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
         "purple-grad-2":

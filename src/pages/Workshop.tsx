@@ -8,10 +8,11 @@ import InformationText from '@/components/InformationText.tsx';
 import WorkshopSlide from '@/components/WorkshopSlide.tsx';
 import WorkshopFooter from '@/components/WorkshopFooter.tsx';
 import x from '../assets/brand/logo.svg';
+import Footer from '@/components/Footer.tsx';
 
 const Workshop: React.FC = () => {
   return (
-    <main className="bg-orange-purple relative pb-14 min-h-screen overflow-hidden">
+    <main className="bg-orange-purple relative min-h-screen overflow-hidden">
       <div className="relative z-10">
         <Navbar />
         <PCBBg />
@@ -27,6 +28,7 @@ const Workshop: React.FC = () => {
         </div>
         <WorkshopFooter />
       </div>
+      <Footer />
     </main>
   );
 }
