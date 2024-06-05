@@ -36,6 +36,7 @@ import InfoCard from "@/components/InfoCard";
 import Timeline, { TimelineCard } from "@/components/Timeline";
 import { timeline } from "@/constant/timeline";
 import WorkshopCard from "@/components/WorkshopCard";
+import Footer from "@/components/Footer";
 
 const RunningText = () => {
   return (
@@ -544,6 +545,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }
