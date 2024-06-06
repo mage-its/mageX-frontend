@@ -9,17 +9,17 @@ export default function Wave({theme}:WaveProps){
     const isOrange = theme === "orange"
     return(
         <>
-        <div>
+        <div className="z-0">
             {isOrange ? (
                 <img
                 src={OrangeWave}
                 alt="Wave"
-                className="w-full h-full shrink-0 z-0"></img>
+                className="w-full h-full shrink-0"></img>
             ):(
                 <img 
                 src={PurpleWave}
                 alt="Wave"
-                className="w-full h-full shrink-0 z-0"></img>
+                className="w-full h-full shrink-0 "></img>
             )}
         </div>
         </>

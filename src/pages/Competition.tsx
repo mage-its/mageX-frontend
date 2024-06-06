@@ -6,6 +6,8 @@ import Title from "@/components/CompetitionTitle";
 import Navbar from "@/components/Navbar";
 import NextArrow from "@/assets/competition/NextButton.svg"
 import PrevArrow from "@/assets/competition/PrevButton.svg"
+import NextArrow2 from "@/assets/competition/nextArrow2.svg"
+import PrevArrow2 from "@/assets/competition/prevArrow2.svg"
 import Wave from "@/components/Wave";
 import CompFooter from "@/components/CompetitionFooter";
 
@@ -45,7 +47,18 @@ import techmeet from "@/assets/competition/people.svg"
 //OVERVIEW ASSET
 import overviewBox from "@/assets/competition/overviewBox.svg"
 import purpleOverviewBox from "@/assets/competition/overviewBoxPurple.svg"
-import { Theme } from "@tsparticles/engine";
+import prizeIconOrange from "@/assets/competition/orangePrizeIcon.svg"
+import categoryIconOrange from "@/assets/competition/orangeCategoryIcon.svg"
+import participantIconOrange from "@/assets/competition/orangeParticIcon.svg"
+import contactIconOrange from "@/assets/competition/orangeContactIcon.svg"
+import medalIconOrange from "@/assets/competition/orangeMedalIcon.svg"
+import orangeSUB from "@/assets/competition/orangeSignUpIcon.svg"
+import purpleSUB from "@/assets/competition/purpleSignUpIcon.svg"
+import prizeIconPurple from "@/assets/competition/purplePrizeIcon.svg"
+import categoryIconPurple from "@/assets/competition/purpleCategoryIcon.svg"
+import participantIconPurple from "@/assets/competition/purplePartiIcon.svg"
+import contactIconPurple from "@/assets/competition/contactPurple.svg"
+import medalIconPurple from "@/assets/competition/purpleMedalIcon.svg"
 
 type Contest = {
     largeIcon : any
@@ -254,14 +267,14 @@ const Timeline: React.FC = () =>{
     return(
         <>
             <div className="relative overflow-hidden duration-100 transition-all ease-in-out">
-                <div className="w-[964px] h-[778px] h-full flex mx-[238px] mt-[135px] mb-[111px]">
+                <div className="w-[964px] h-[778px] h-full flex mx-[238px] mt-[135px] mb-[111px] z-10">
                     <div className="z-10">
                         <div className="mt-[15px]">
                             <Timebox 
                             date={x?.timeline[0][0]}
                             event={x?.timeline[0][1]}
                             img={x?.timeline[0][2]}
-                            leftSide
+                            side="left"
                             theme={x?.theme}
                             ></Timebox>
                         </div>
@@ -278,7 +291,7 @@ const Timeline: React.FC = () =>{
                             date={x?.timeline[2][0]}
                             event={x?.timeline[2][1]}
                             img={x?.timeline[2][2]}
-                            leftSide
+                            side="left"
                             theme={x?.theme}
                             ></Timebox>
                         </div>
@@ -295,24 +308,24 @@ const Timeline: React.FC = () =>{
                             date={x?.timeline[4][0]}
                             event={x?.timeline[4][1]}
                             img={x?.timeline[4][2]}
-                            leftSide
+                            side="left"
                             theme={x?.theme}
                             ></Timebox>
                         </div>
                     </div>
 
-                    <div className="">
+                    <div className="z-10">
                         <div className="mt-[176px]">
                             <Timebox 
                             date={x?.timeline[1][0]}
                             event={x?.timeline[1][1]}
                             img={x?.timeline[1][2]}
-                            rightSide
+                            side="right"
                             theme={x?.theme}
                             ></Timebox>
                         </div>
 
-                        <div className="w-[126px] h-[80px] mt-[21px] z-10">
+                        <div className="w-[126px] h-[80px] mt-[21px]">
                             <img 
                             src={ToLeft}
                             alt="line"
@@ -324,12 +337,12 @@ const Timeline: React.FC = () =>{
                             date={x?.timeline[3][0]}
                             event={x?.timeline[3][1]}
                             img={x?.timeline[3][2]}
-                            rightSide
+                            side="right"
                             theme={x?.theme}
                             ></Timebox>
                         </div>
 
-                        <div className="w-[126px] h-[80px] mt-[21px] z-10">
+                        <div className="w-[126px] h-[80px] mt-[21px]">
                             <img 
                             src={ToLeft}
                             alt="line"
@@ -337,7 +350,7 @@ const Timeline: React.FC = () =>{
                         </div>
                     </div>
                 </div>
-                <div className="absolute bottom-0 left-0 mt-[50px]">
+                <div className="absolute bottom-0 left-0 mt-[50px] z-0">
                     <div className={cn(
                             "relative w-full h-full z-0",
                             {"mt-[88px]" : x?.theme == "orange"},
@@ -345,7 +358,7 @@ const Timeline: React.FC = () =>{
                             )}>
                             <Wave theme={x?.theme}></Wave>
                         <div className={cn(
-                            "absolute top-0 left-0 z-10",
+                            "absolute top-0 left-0 z-0",
                             {"mt-[185px] ml-[79px]":x?.theme=="orange"},
                             {"mt-[245px] ml-[79px]":x?.theme=="purple"},
                             )}>
@@ -376,7 +389,13 @@ const Overview: React.FC = () =>{
                         {"bg-orange-primary-3" : x?.theme == "orange"},
                         {"bg-[#5B2CD3]" : x?.theme == "purple"}
                         )}>
-                        <div className="w-[30px] h-[30px] my-[15px] ml-[18px] bg-light rounded-full"></div>
+                        <div className="w-[30px] h-[30px] my-[15px] ml-[18px] bg-light rounded-full">
+                            {isOrange?(
+                                <img src={orangeSUB} className="p-[5px]"></img>
+                            ):(
+                                <img src={purpleSUB} className="p-[5px]"></img>
+                            )}
+                        </div>
                         <p className="absolute top-0 left-0 ml-[62px] mt-[20px] text-light text-[14px] font-bold">Daftar disini!</p>
                     </div>
 
@@ -424,6 +443,15 @@ const Overview: React.FC = () =>{
                                         "absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]",
                                         {"border-[#3A0D49]":x?.theme=="purple"}
                                         )}>
+                                        {isOrange?(
+                                            <img
+                                            src={prizeIconOrange} className="p-[3px]">
+                                            </img>
+                                        ):(
+                                            <img 
+                                            src={prizeIconPurple} className="p-[3px]">
+                                            </img>
+                                        )}
                                         
                                     </div>
 
@@ -456,7 +484,11 @@ const Overview: React.FC = () =>{
                                         "absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]",
                                         {"border-[#3A0D49]":x?.theme=="purple"}
                                         )}>
-                                        
+                                        {isOrange?(
+                                            <img src={categoryIconOrange} className="pl-[1px]"></img>
+                                        ):(
+                                            <img src={categoryIconPurple} className="pl-[1px]"></img>
+                                        )}
                                     </div>
 
                                     <div className="w-[172px] mt-[13px] ml-[10px] text-[9px] font-fredoka font-medium">
@@ -474,10 +506,14 @@ const Overview: React.FC = () =>{
                                         {"text-light":x?.theme=="purple"}
                                         )}>1-3 Orang</p>
                                     <div className={cn(
-                                        "absolute w-[23px] h-[23px] top-0 left-0 mt-[-2px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]",
+                                        "absolute w-[23px] h-[23px] top-0 left-0 mt-[-2px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px] content-center",
                                         {"border-[#3A0D49]":x?.theme=="purple"}
                                         )}>
-                                        
+                                        {isOrange?(
+                                            <img src={participantIconOrange} className=""></img>
+                                        ):(
+                                            <img src={participantIconPurple} className="mx-auto pt-[6px]"></img>
+                                        )}
                                     </div>
                                 </div>
 
@@ -499,7 +535,11 @@ const Overview: React.FC = () =>{
                                         "absolute w-[23px] h-[23px] top-0 left-0 mt-[-7px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]",
                                         {"border-[#3A0D49]":x?.theme=="purple"}
                                         )}>
-                                        
+                                        {isOrange?(
+                                            <img src={contactIconOrange} className="p-[4px]"></img>
+                                        ):(
+                                            <img src={contactIconPurple} className="p-[4px]"></img>
+                                        )}
                                     </div>
                                     <div className="p-[16px] text-[9px] font-fredoka font-medium gap-[7px]">
                                         <div>
@@ -532,7 +572,11 @@ const Overview: React.FC = () =>{
                                         "absolute w-[23px] h-[23px] top-0 left-0 mt-[-2px] ml-[-12px] bg-light rounded-full border-[#FE874F] border-[2px]",
                                         {"border-[#3A0D49]":x?.theme=="purple"}
                                         )}>
-                                        
+                                        {isOrange?(
+                                            <img src={medalIconOrange} className="pr-[6px] ml-[3px] py-[2px]"></img>
+                                        ):(
+                                            <img src={medalIconPurple} className="pr-[6px] ml-[3px] py-[2px]"></img>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -585,6 +629,7 @@ export default function Competition(){
     const isFirstSlide = currentIndex === 0
     const isLastSlide = currentIndex === 3
     const currentRoute = window.location.pathname.split('/')[1];
+    const isOrange = x?.theme === "orange"
 
     const prevPage = () => {
         const newIndex = currentIndex - 1
@@ -608,12 +653,23 @@ export default function Competition(){
                     )}>
                     <Navbar/>
                     {React.createElement(pages[currentIndex])}
-                    <img
-                        src={NextArrow}
-                        alt="Next"
-                        className="absolute top-0 right-0 mt-[470px] ml-[1270px] z-auto cursor-pointer"
-                        onClick={nextPage}
-                    ></img>
+                    <div>
+                        {isOrange ? (
+                            <img
+                            src={NextArrow}
+                            alt="Next"
+                            className="absolute top-0 right-0 mt-[470px] ml-[1270px] z-auto cursor-pointer"
+                            onClick={nextPage}
+                            ></img>
+                        ):(
+                            <img
+                            src={NextArrow2}
+                            alt="Next"
+                            className="absolute top-0 right-0 mt-[470px] ml-[1270px] z-auto cursor-pointer"
+                            onClick={nextPage}
+                            ></img>
+                        )}
+                    </div>
                 </main>
             </>
         )
@@ -627,12 +683,23 @@ export default function Competition(){
                     )}>
                     <Navbar/>
                     {React.createElement(pages[currentIndex])}
-                    <img
-                        src={PrevArrow}
-                        alt="Prev"
-                        className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
-                        onClick={prevPage}
-                    ></img>
+                    <div>
+                        {isOrange?(
+                            <img
+                            src={PrevArrow}
+                            alt="Prev"
+                            className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
+                            onClick={prevPage}
+                            ></img>
+                        ):(
+                            <img
+                            src={PrevArrow2}
+                            alt="Prev"
+                            className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
+                            onClick={prevPage}
+                            ></img>
+                        )}
+                    </div>
                 </main>
             </>
         )
@@ -644,20 +711,42 @@ export default function Competition(){
                     {"bg-orange-grad-4":currentRoute == "app"},
                     {"bg-purple-grad-4":currentRoute == "game"},
                     )}>
-                <Navbar/>
+                    <Navbar/>
                     {React.createElement(pages[currentIndex])}
-                        <img
-                            src={NextArrow}
-                            alt="Next"
-                            className="absolute mt-[-527px] ml-[1260px] z-auto cursor-pointer"
-                            onClick={nextPage}
-                        ></img>
-                        <img
-                            src={PrevArrow}
-                            alt="Prev"
-                            className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
-                            onClick={prevPage}
-                        ></img>
+                    <div>
+                        {isOrange?(
+                            <div>
+                                <img
+                                src={NextArrow}
+                                alt="Next"
+                                className="absolute mt-[-527px] ml-[1260px] z-auto cursor-pointer"
+                                onClick={nextPage}
+                                ></img>
+                                <img
+                                src={PrevArrow}
+                                alt="Prev"
+                                className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
+                                onClick={prevPage}
+                                ></img>
+                            </div>
+                        ):(
+                            <div>
+                                <img
+                                src={NextArrow2}
+                                alt="Next"
+                                className="absolute mt-[-527px] ml-[1260px] z-auto cursor-pointer"
+                                onClick={nextPage}
+                                ></img>
+                                <img
+                                src={PrevArrow2}
+                                alt="Prev"
+                                className="absolute mt-[-527px] ml-[8px] z-auto cursor-pointer"
+                                onClick={prevPage}
+                                ></img>
+                            </div>
+                        )}
+                    </div>
+
                 </main>
             </>
         )
