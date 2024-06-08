@@ -2,7 +2,7 @@ import React from 'react';
 
 const WorkshopText: React.FC = () => {
   return (
-    <div className="relative flex justify-center mobile:mt-8 desktop:mt-16 select-none">
+    <div className="relative flex justify-center select-none">
       <span
         style={{
           position: 'absolute',
@@ -23,7 +23,7 @@ const WorkshopText: React.FC = () => {
           pointerEvents: 'none',
           zIndex: -1
         }}
-        className="font-airstrike font-italic font-bold text-center w-full inline-block mobile:text-5xl ipad:text-8xl desktop:text-9xl "
+        className="font-airstrike font-italic font-bold text-center w-full inline-block mobile:text-5xl ipad:text-8xl desktop:text-9xl"
       >
         WORKSHOP
       </span>
@@ -32,7 +32,7 @@ const WorkshopText: React.FC = () => {
           WebkitBackgroundClip: 'text',
           color: 'transparent',
         }}
-        className="font-airstrike font-italic font-bold text-center w-full bg-orange-grad-3 inline-block mobile:text-5xl ipad:text-8xl desktop:text-9xl "
+        className="font-airstrike font-italic font-bold text-center w-full bg-orange-grad-3 inline-block mobile:text-5xl ipad:text-8xl desktop:text-9xl"
       >
         WORKSHOP
       </span>

@@ -9,7 +9,7 @@ import locationIcon2 from '../assets/workshop/locationIcon2.svg';
 const slides = [
   {
     header: "INTERNET OF THINGS",
-    content: "",
+    content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     tempat: "To be announced",
     waktu: "21 September 2024",
     pemateri1: "To be announced",
@@ -176,13 +176,13 @@ const WorkshopSlide = () => {
     <div>
       {/* For Ipad and Desktop */}
       <div className="relative items-center hidden select-none ipad:block desktop:block">
-        <div className="flex-col drop-shadow-lg transition-colors duration-1000 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[50vh] desktop:h-[90vh]"
+        <div className="flex-col drop-shadow-lg transition-colors duration-1000 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[48vh] desktop:h-[88vh]"
             style={{ background: slides[currentIndex].color2, borderColor: slides[currentIndex].color4 }}>
           <div className="flex h-[90%] transition-transform duration-1000 w-full"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {slides.map((slide, index) => (
               <div className="w-full flex-shrink-0 box-border flex" key={index}>
-                <div className="w-[60%] mt-[4rem] mb-[2.5rem] flex flex-col justify-center">
+                <div className="w-[60%] mt-[2rem] mb-[2.5rem] flex flex-col justify-center">
                   {/* Title */}
                   <div className="h-[5rem] mb-[3rem] ml-[2rem] left-0 flex break-words items-center justify-center rounded font-bold">
                     <span

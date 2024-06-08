@@ -8,7 +8,7 @@ import PuzzleBg2 from '@/components/PuzzleBg2.tsx';
 import InformationText from '@/components/InformationText.tsx';
 import WorkshopSlide from '@/components/WorkshopSlide.tsx';
 import WorkshopFooter from '@/components/WorkshopFooter.tsx';
-import ph from '../assets/workshop/placeholder.svg'
+import workshopLogo from '../assets/workshop/workshopLogo.svg'
 import pz_top_l from '../assets/workshop/puzzle-top/top-left.svg' 
 import pz_top_r from '../assets/workshop/puzzle-top/top-right.svg'
 
@@ -27,7 +27,7 @@ const Workshop: React.FC = () => {
         <Navbar />
         <PCBBg />
         <WorkshopText />
-        <img src={ph} alt="X" className="mx-auto select-none mobile:mt-[-2rem] mobile:scale-[0.5] ipad:mt-[0rem] ipad:scale-[0.85] desktop:mt-[1rem] desktop:scale-[1]"/>
+        <img src={workshopLogo} className="mx-auto select-none mobile:mt-[-2rem] mobile:scale-[0.5] ipad:mt-[0rem] ipad:scale-[0.75] desktop:mt-[1rem] desktop:scale-[1]"/>
         <p className="text-center font-fredoka text-orange-primary-5 mx-auto select-none mobile:text-[0.6rem] mobile:w-[70%] mobile:mt-[-2.5rem] ipad:text-[0.8rem] ipad:w-[50%] ipad:mt-[0rem] desktop:text-[1rem] desktop:w-[40%] desktop:mt-[1rem]">
           MAGE mengadakan workshop di bidang multimedia, IoT, dan robotik. Kegiatan ini dipandu oleh ahli untuk melatih keterampilan serta untuk mempromosikan penjurusan Teknik Komputer ITS.
         </p>
@@ -39,6 +39,9 @@ const Workshop: React.FC = () => {
           <div className="mobile:mt-[1rem] mobile:w-[90%] mobile:mx-[5%] ipad:mt-[4rem] ipad:mx-[12.5%] ipad:w-[75%] desktop:mt-[4rem] desktop:mx-[12.5%] desktop:w-[75%]">
             <WorkshopSlide />
           </div>
+        </div>
+
+        <div className="mobile:mt-[2rem] ipad:mt-[9rem] desktop:mt-[6rem]">
           <WorkshopFooter />
         </div>
       </div>
