@@ -18,11 +18,11 @@ const router = createBrowserRouter([
         element: <Workshop />,
       },
       {
-        path: 'app',
+        path: 'app_development',
         element: <Competition/>,
       },
       {
-        path: 'game',
+        path: 'esport',
         element: <Competition/>,
       }
     ],

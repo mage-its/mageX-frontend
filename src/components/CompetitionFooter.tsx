@@ -28,7 +28,7 @@ export default function CompFooter({theme}:FooterVar){
         <>
             <div className="w-[1188px] mx-auto flex justify-between items-center">
                 <div className="flex items-center gap-[24px] z-30">
-                    <div>
+                    <div className="cursor-not-allowed">
                     {isOrange?(
                             <img src={pc2} alt="PC"/>
                         ):(
@@ -71,7 +71,7 @@ export default function CompFooter({theme}:FooterVar){
                 </div>
 
                 <div className="flex items-center gap-[24px]">
-                    <div className="cursor-pointer">
+                    <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300">
                         <a href="mailto:mage.ce.its@gmail.com" target="_blank" rel="noopener noreferrer">
                         {isOrange?(
                                 <img src={mail2} className="w-[36px] h-[36px]"alt="Email"/>
@@ -81,7 +81,7 @@ export default function CompFooter({theme}:FooterVar){
                         </a>
                     </div>
                     <div className={cn(
-                        "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer",
+                        "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                         {"bg-orange-primary-5" : theme == "orange"},
                         {"bg-[#F9E3FD]" : theme == "purple"}
                         )}>
@@ -94,7 +94,7 @@ export default function CompFooter({theme}:FooterVar){
                         </a>
                     </div>
                     <div className={cn(
-                        "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer",
+                        "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                         {"bg-orange-primary-5" : theme == "orange"},
                         {"bg-[#F9E3FD]" : theme == "purple"}
                         )}>
@@ -106,7 +106,7 @@ export default function CompFooter({theme}:FooterVar){
                         )}
                         </a>
                     </div>
-                    <div className="cursor-pointer">
+                    <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px]  ease-out duration-300">
                     {isOrange?(
                             <img src={scline2} className="w-[36px] h-[36px]" alt="Line"/>
                         ):(

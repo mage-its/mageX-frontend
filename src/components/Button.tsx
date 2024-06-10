@@ -11,7 +11,7 @@ export default function CButton({children, theme}: buttonProps){
     return(
         <>
         <div className={cn(
-            "rounded-[14px] w-[137px] h-[44px] content-center bg-dark delay-50 hover:-translate-y-3 hover-scale-110 duration-300",
+            "rounded-[14px] w-[137px] h-[44px] content-center bg-dark delay-50 transition ease-linear hover:-translate-y-2",
             {"bg-orange-grad shadow-[0_3px_7px_0_rgba(253,135,78,0.60)]" : theme == "orange" && children == "Guide Book"},
             {"bg-orange-primary-5 shadow-[0_3px_7px_0_rgba(253,135,78,1)]" : theme == "orange" && children == "Log In"},
             {"bg-gradient-to-b from-[#FFC291] from-0% via-[#E24BB3] via-75% to-[#EE96D3] to-100% shadow-[0_3px_7px_0_rgba(58,13,73,1)]" : theme == "purple" && children == "Guide Book"},
