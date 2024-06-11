@@ -12,10 +12,10 @@ export default function Title({theme,children}:TitleProps){
         <>
             <div>
                 <p className={cn(
-                    "font-airstrike desktop:text-[40px] font-normal bg-clip-text text-transparent drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]",
+                    "font-airstrike desktop:text-[40px] font-normal bg-clip-text text-transparent",
                     "phone:text-[30px]",
-                    {"bg-gradient-to-b from-[#FB8A4A] from-14% to-[#FFE1CA] to-100%": theme == "orange"},
-                    {"bg-gradient-to-b from-[#9454C1] from-35% to-[#E24BB3] to-65%": theme == "purple"},
+                    {"bg-gradient-to-b from-[#FB8A4A] from-14% to-[#FFE1CA] to-100% drop-shadow-orange-outline": theme == "orange"},
+                    {"bg-gradient-to-b from-[#5315B1] from-35% to-[#E31D63] to-65% drop-shadow-purple-outline": theme == "purple"},
                     {"text-[35px]": children == "E-SPORT COMPETITION"}
                 )}>
                     {children}<span className="invisible">.</span>

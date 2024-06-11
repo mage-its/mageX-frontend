@@ -113,6 +113,28 @@ export default {
           "0 0px 40px rgba(255, 255,255, 0.8)",
           "0 0px 50px rgba(255, 255,255, 0.7)",
         ],
+        "orange-outline": [
+          "0px 0px 0px rgba(199,97,66,1)",
+          "1px 1px 0px rgba(199,97,66,1)",
+          "1px -1px 0px rgba(199,97,66,1)",
+          "-1px 1px 0px rgba(199,97,66,1)",
+          "1.5px 1.5px 0px rgba(199,97,66,1)",
+          "1.5px -1.5px 0px rgba(199,97,66,1)",
+          "-1px 1px 0px rgba(199,97,66,1)",
+          "-1px -1px 0px rgba(199,97,66,1)",
+          "0px 0px 2px rgba(199,97,66,1)",
+        ],
+        "purple-outline": [
+          "0px 0px 0px rgba(58, 13, 73, 1)",
+          "1px 1px 0px rgba(58, 13, 73, 1)",
+          "1px -1px 0px rgba(58, 13, 73, 1)",
+          "-1px 1px 0px rgba(58, 13, 73, 1)",
+          "1.5px 1.5px 0px rgba(58, 13, 73, 1)",
+          "1.5px -1.5px 0px rgba(58, 13, 73, 1)",
+          "-1px 1px 0px rgba(58, 13, 73, 1)",
+          "-1px -1px 0px rgba(58, 13, 73, 1)",
+          "0px 0px 2px rgba(58, 13, 73, 1)",
+        ],
       },
       keyframes: {
         rotate: {
