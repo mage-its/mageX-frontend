@@ -1,6 +1,13 @@
 import { Navbar } from "@/components/Navbar";
 import gtaX from "@/assets/brand/gtaX.svg";
-import { animate, motion, useAnimation, useMotionValue } from "framer-motion";
+import {
+  animate,
+  motion,
+  useAnimation,
+  useDragControls,
+  useMotionValue,
+  useWillChange,
+} from "framer-motion";
 import logo from "@/assets/brand/logo.svg";
 import puzzle1 from "@/assets/components/puzzle1.svg";
 import puzzle2 from "@/assets/components/puzzle2.svg";
@@ -24,6 +31,13 @@ import Juara1Robotic9 from "@/assets/gallery/Juara1Robotic9.png";
 import Juara1Game5 from "@/assets/gallery/Juara1Game5.png";
 import Juara1Iot5 from "@/assets/gallery/Juara1Iot5.png";
 import Juara2App5 from "@/assets/gallery/Juara2App5.png";
+import app from "@/assets/brand/app.svg";
+import iot from "@/assets/brand/iot.svg";
+import robotic from "@/assets/brand/robotic.svg";
+import ui from "@/assets/brand/ui.svg";
+import cp from "@/assets/brand/cp.svg";
+import esport from "@/assets/brand/esport.svg";
+import game from "@/assets/brand/game.svg";
 
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { HiCursorClick } from "react-icons/hi";
@@ -37,6 +51,7 @@ import Timeline, { TimelineCard } from "@/components/Timeline";
 import { timeline } from "@/constant/timeline";
 import WorkshopCard from "@/components/WorkshopCard";
 import Footer from "@/components/Footer";
+import CompetitionCard from "@/components/CompetitionCard";
 
 const RunningText = () => {
   return (
@@ -73,6 +88,17 @@ export default function Home() {
   const aboutControl = useAnimation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAbout, setIsAbout] = useState(false);
+  const MotionCompetitionCard = motion(CompetitionCard);
+  const dragCompetitionControl = useDragControls();
+  const [isCompetitionMore, setIsCompetitionMore] = useState(false);
+
+  // useEffect(() => {
+  //   if (isCompetitionMore) {
+  //     dragCompetitionControl.start("stop");
+  //   } else {
+  //     dragCompetitionControl.start();
+  //   }
+  // });
 
   const isAboutHandle = () => {
     setIsAbout(!isAbout);
@@ -114,6 +140,8 @@ export default function Home() {
   const decrementSlide = () => {
     setCurrentSlide((prev) => prev - 1);
   };
+
+  const willChange = useWillChange();
 
   return (
     <main className="h-fit bg-gradient-to-r from-dark to-black">
@@ -520,7 +548,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <div className="flex flex-col justify-center items-center gap-[29px]">
+          <div className="flex flex-col justify-center items-center gap-[29px] mb-[45px]">
             <h1 className="text-center font-roboto text-6xl font-bold w-[545px] h-[140px] text-light">
               Explore Our Exciting
               <span className="bg-vertical-gta text-transparent bg-clip-text ">
@@ -542,6 +570,60 @@ export default function Home() {
                 Click or Touch the Cards to View All Competitions
               </p>
             </div>
+          </div>
+          <div className="w-full h-[650px] overflow-hidden">
+            <motion.div
+              drag="x"
+              dragConstraints={{
+                left: -7 * 505 + window.innerWidth - 130,
+                right: 0,
+              }}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 100 }}
+              dragControls={dragCompetitionControl}
+              dragMomentum={false}
+              className="flex flex-nowrap h-full w-full gap-[30px]"
+              style={{ willChange }}
+            >
+              <MotionCompetitionCard
+                title="Robotics"
+                description="Innovate, Build, Triumph!"
+                image={robotic}
+              />
+              <MotionCompetitionCard
+                title="Game Dev"
+                description="Create, Compete, Dominate!"
+                image={game}
+                theme="purple"
+              />
+              <MotionCompetitionCard
+                title="IoT"
+                description="Innovate, Connect, Win!"
+                image={iot}
+              />
+              <MotionCompetitionCard
+                title="App Dev"
+                description="Code, Compete, Conquer!"
+                image={app}
+                theme="purple"
+              />
+              <MotionCompetitionCard
+                title="UI/UX"
+                description="Design, Impress, Win!"
+                image={ui}
+              />
+              <MotionCompetitionCard
+                title="Competitive
+                Programming"
+                description="Code, Conquer, Triumph!"
+                image={cp}
+                theme="purple"
+              />
+              <MotionCompetitionCard
+                title="E-sport"
+                description="Game On, Win Big!"
+                image={esport}
+              />
+            </motion.div>
           </div>
         </div>
       </div>
