@@ -52,6 +52,8 @@ import { timeline } from "@/constant/timeline";
 import WorkshopCard from "@/components/WorkshopCard";
 import Footer from "@/components/Footer";
 import CompetitionCard from "@/components/CompetitionCard";
+import { competition } from "@/constant/Competition";
+import SocialMedia from "@/components/SocialMedia";
 
 const RunningText = () => {
   return (
@@ -88,13 +90,14 @@ export default function Home() {
   const aboutControl = useAnimation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAbout, setIsAbout] = useState(false);
-  const MotionCompetitionCard = motion(CompetitionCard);
+  const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
   const [isCompetitionMore, setIsCompetitionMore] = useState(false);
+  const [CompetitionCardRef, { width: competitionCardWidth }] = useMeasure();
 
   // useEffect(() => {
   //   if (isCompetitionMore) {
-  //     dragCompetitionControl.start("stop");
+  //     dragCompetitionControl.start("tes");
   //   } else {
   //     dragCompetitionControl.start();
   //   }
@@ -112,6 +115,8 @@ export default function Home() {
       aboutControl.start("noBlur");
     }
   });
+
+  useEffect(() => {}, [competitionCardWidth]);
 
   useEffect(() => {
     const runningFinalPosition =
@@ -139,6 +144,15 @@ export default function Home() {
 
   const decrementSlide = () => {
     setCurrentSlide((prev) => prev - 1);
+  };
+
+  const handleComepetitionMore = () => {
+    setIsCompetitionMore(!isCompetitionMore);
+    if (!isCompetitionMore) {
+      competitionCardControl.start("more");
+    } else {
+      // competitionCardControl.start("init");
+    }
   };
 
   const willChange = useWillChange();
@@ -571,9 +585,11 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-full h-[650px] overflow-hidden">
+          <motion.div className="w-full h-[650px] overflow-hidden relative">
             <motion.div
+              onClick={handleComepetitionMore}
               drag="x"
+              dragListener={isCompetitionMore}
               dragConstraints={{
                 left: -7 * 505 + window.innerWidth - 130,
                 right: 0,
@@ -584,48 +600,42 @@ export default function Home() {
               className="flex flex-nowrap h-full w-full gap-[30px]"
               style={{ willChange }}
             >
-              <MotionCompetitionCard
-                title="Robotics"
-                description="Innovate, Build, Triumph!"
-                image={robotic}
-              />
-              <MotionCompetitionCard
-                title="Game Dev"
-                description="Create, Compete, Dominate!"
-                image={game}
-                theme="purple"
-              />
-              <MotionCompetitionCard
-                title="IoT"
-                description="Innovate, Connect, Win!"
-                image={iot}
-              />
-              <MotionCompetitionCard
-                title="App Dev"
-                description="Code, Compete, Conquer!"
-                image={app}
-                theme="purple"
-              />
-              <MotionCompetitionCard
-                title="UI/UX"
-                description="Design, Impress, Win!"
-                image={ui}
-              />
-              <MotionCompetitionCard
-                title="Competitive
-                Programming"
-                description="Code, Conquer, Triumph!"
-                image={cp}
-                theme="purple"
-              />
-              <MotionCompetitionCard
-                title="E-sport"
-                description="Game On, Win Big!"
-                image={esport}
-              />
+              {competition.map((item, index) => (
+                <CompetitionCard
+                  title={item.title}
+                  description={item.description}
+                  theme={index % 2 == 0 ? "orange" : "purple"}
+                  image={item.image}
+                  initial="init"
+                  variants={{
+                    more: {
+                      left: 0 + index * 505,
+                      x: 0,
+                      rotate: 0,
+                      scale: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeInOut",
+                      },
+                    },
+                    init: {
+                      position: "absolute",
+                      x: `${-50 + 30 * (index - 3)}%`,
+                      y: `${10 + 10 * Math.abs(index - 3)}%`,
+                      left: "50%",
+                      scale: 1.15,
+                      rotate: 4 * (index - 3) + "deg",
+                      zIndex: -2 * Math.abs(index - 3) + 10,
+                    },
+                  }}
+                  animate={competitionCardControl}
+                />
+              ))}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
+        <SocialMedia />
       </div>
       <Footer />
     </main>

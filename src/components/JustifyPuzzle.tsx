@@ -1,4 +1,4 @@
-import { HTMLMotionProps, motion, useAnimation } from "framer-motion";
+import { HTMLMotionProps, color, motion, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export interface JustifyPuzzleProps extends HTMLMotionProps<"img"> {
@@ -22,8 +22,12 @@ export function JustifyPuzzle({
   return (
     <motion.img
       ref={ref}
+      onHoverStart={() => mainControls.start("gray")}
+      onHoverEnd={() => mainControls.start("colorNoDelay")}
       variants={{
         init: { rotate: rotate, x: x, y: y, filter: "grayscale(100%)" },
+        gray: { filter: "grayscale(100%)" },
+        colorNoDelay: { filter: "grayscale(0)" },
         justify: {
           rotate: 0,
           x: 0,

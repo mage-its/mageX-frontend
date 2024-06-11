@@ -1,7 +1,7 @@
 import cn from "@/utils/cn";
 import { motion } from "framer-motion";
 
-interface CardProps {
+interface CardProps extends React.ComponentPropsWithoutRef<"div">{
   title: string;
   children: string;
 }
