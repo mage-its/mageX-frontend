@@ -9,7 +9,7 @@ import locationIcon2 from '../assets/workshop/locationIcon2.svg';
 const slides = [
   {
     header: "INTERNET OF THINGS",
-    content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    content: "Workshop IoT (Internet Of Things) merupakan salah satu pelaksanaan pelatihan yang diadakan oleh Teknik Komputer. Workshop ini dinaungi oleh salah satu lab Teknik Komputer yaitu B300. Workshop IoT berfokus kepada topik-topik pengolahan sinyal digital dan pengembangan teknologi berbasis digital. Seperti namanya, inovasi-inovasi yang diciptakan memiliki unsur internet yang berperan penting dalam proses kerjanya.",
     tempat: "To be announced",
     waktu: "21 September 2024",
     pemateri1: "To be announced",
@@ -23,7 +23,7 @@ const slides = [
   },
   {
     header: "ROBOTIK",
-    content: "",
+    content: "Workshop robotika menyediakan pembelajaran dasar ilmu ilmu robotik, membantu anda mengaktualisasi ide robotik anda, mulai penggunaan sensor dan aktuator hingga melatih ketrampilan pemrograman anda.",
     tempat: "To be announced",
     waktu: "24 & 25 Agustus 2024",
     pemateri1: "To be announced",
@@ -37,7 +37,7 @@ const slides = [
   },
   {
     header: "MULTIMEDIA",
-    content: "",
+    content: "Workshop ini adalah workshop yang mempelajari mengenai dasar dari pemrograman dalam Bahasa pemrograman seperti python dan dasar dasar multimedia. Workshop dilakukan selama 2 hari. Hari pertama mempelajari dasar dasar pemrograman dan hari kedua adalah project dan review project",
     tempat: "To be announced",
     waktu: "20 & 28 Juli 2024",
     pemateri1: "To be announced",
@@ -99,18 +99,18 @@ const WorkshopSlide = () => {
                     </span>
                   </div>
                   
-                  <div className="ml-[1rem] text-gray font-fredoka p-5 rounded mb-[4rem] w-full">
+                  <div className="ml-[1rem] text-gray font-fredoka p-5 rounded h-full w-full">
                     {/* Content */}
-                    <div className="text-gray-800 text-[1vh] mb-2">{slides[i].content}</div>
+                    <div className="text-gray-800 text-[0.75vh] mb-2">{slides[i].content}</div>
                     {/* Location and time */}
-                    <div className="flex">
+                    <div className="flex gap-[15px]">
                       <div className="flex relative items-center w-[50%]">
                         <img
                           src={ slides[i].locationIcon }
                           className="w-[15%]"
                         />
                         <span
-                          className="relative ml-2 text-[1vh] w-[90%]"
+                          className="relative ml-2 text-[0.8vh] w-[90%]"
                           style = {{ color: slides[i].color1 }}
                         >
                           {slide.tempat}
@@ -122,7 +122,7 @@ const WorkshopSlide = () => {
                           className="w-[15%]"
                         />
                         <span
-                          className="relative ml-2 text-[1vh] w-[90%]"
+                          className="relative ml-2 text-[0.8vh] w-[90%]"
                           style = {{ color: slides[i].color1 }}
                         >
                           {slide.waktu}
@@ -176,9 +176,9 @@ const WorkshopSlide = () => {
     <div>
       {/* For Ipad and Desktop */}
       <div className="relative items-center hidden select-none ipad:block desktop:block">
-        <div className="flex-col drop-shadow-lg transition-colors duration-1000 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[48vh] desktop:h-[88vh]"
+        <div className="flex-col drop-shadow-lg transition-colors duration-500 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[48vh] desktop:h-[88vh]"
             style={{ background: slides[currentIndex].color2, borderColor: slides[currentIndex].color4 }}>
-          <div className="flex h-[90%] transition-transform duration-1000 w-full"
+          <div className="flex h-[90%] transition-transform duration-500 w-full"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {slides.map((slide, index) => (
               <div className="w-full flex-shrink-0 box-border flex" key={index}>
@@ -214,27 +214,29 @@ const WorkshopSlide = () => {
                   
                   <div className="ml-[1rem] text-gray font-fredoka p-5 rounded mb-[4rem] w-full">
                     {/* Content */}
-                    <div className="text-gray-800 mb-2 ipad:text-[12px] ipad:leading-[1rem] desktop:text-[1rem] desktop:leading-[1.5rem]">{slides[currentIndex].content}</div>
+                    <div className="text-gray-800 mb-2 ipad:text-[12px] ipad:leading-[1rem] desktop:text-[1rem] desktop:leading-[1.5rem]">
+                      {slide.content}
+                    </div>
                     {/* Location and time */}
                     <div className="flex">
                       <div className="flex items-center w-[50%]">
                         <img
-                          src={ slides[currentIndex].locationIcon }
+                          src={ slide.locationIcon }
                         />
                         <span
                           className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
-                          style = {{ color: slides[currentIndex].color1 }}
+                          style = {{ color: slide.color1 }}
                         >
                           {slide.tempat}
                         </span>
                       </div>
                       <div className="flex items-center w-[50%]">
                         <img
-                          src={ slides[currentIndex].timeIcon }
+                          src={ slide.timeIcon }
                         />
                         <span
                           className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
-                          style = {{ color: slides[currentIndex].color1 }}
+                          style = {{ color: slide.color1 }}
                         >
                           {slide.waktu}
                         </span>
@@ -248,7 +250,7 @@ const WorkshopSlide = () => {
                   <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem]">
                     <span
                       className="text-9xl"
-                      style={{ color: slides[currentIndex].color1 }}
+                      style={{ color: slide.color1 }}
                     >
                       ?
                     </span>
@@ -258,22 +260,22 @@ const WorkshopSlide = () => {
                 <div className="flex absolute top-[85%] w-full">
                   <div
                     className="inset-0 p-1 rounded-[0.5rem] mx-[10%] w-[40%] h-[4rem]"
-                    style = {{ background: slides[currentIndex].color3 }}
+                    style = {{ background: slide.color3 }}
                   >
                     <button
                       className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
-                      style={{ color: slides[currentIndex].color1, borderColor: slides[currentIndex].color2 }}
+                      style={{ color: slide.color1, borderColor: slide.color2 }}
                     >
                       Daftar sekarang!
                     </button>
                   </div>
                   <div
                     className="relative transition-colors duration-1000 ease-in text-white font-bold py-2  px-4 rounded-[1.5rem] text-center mx-[2.5%] w-[35%] h-[4rem]"
-                    style={{ background: slides[currentIndex].color1 }}
+                    style={{ background: slide.color1 }}
                     >
-                    {slides[currentIndex].pemateri1}
+                    {slide.pemateri1}
                     <br />
-                    {slides[currentIndex].pemateri2}
+                    {slide.pemateri2}
                   </div>
                 </div>
               </div>

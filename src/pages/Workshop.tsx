@@ -14,7 +14,7 @@ import pz_top_r from '../assets/workshop/puzzle-top/top-right.svg'
 
 const Workshop: React.FC = () => {
   return (
-    <main className="bg-purple-orange relative pb-14 min-h-screen overflow-hidden">
+    <main className="bg-purple-orange relative min-h-screen overflow-hidden">
       <div className="relative z-10">
         <img
           src={pz_top_l}
