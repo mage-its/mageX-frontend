@@ -22,8 +22,28 @@ const router = createBrowserRouter([
         element: <Competition/>,
       },
       {
+        path: 'game_development',
+        element: <Competition/>
+      },
+      {
+        path: 'iot',
+        element: <Competition/>
+      },
+      {
+        path : 'robotic',
+        element: <Competition/>
+      },
+      {
+        path: 'ui_ux',
+        element: <Competition/>
+      },
+      {
         path: 'esport',
         element: <Competition/>,
+      },
+      {
+        path: 'competitive_programming',
+        element: <Competition/>
       }
     ],
   },
