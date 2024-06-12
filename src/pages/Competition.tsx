@@ -282,7 +282,7 @@ const Home: React.FC = () =>{
       <div className="w-full h-full">
         <div className="absolute top-[105px] w-full h-[564px]">
           <div className={cn(
-            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-20px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-240px] mobile:mt-[45px]",
+            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-20px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px]",
             {"w-[520px] h-[534px] ml-[-15px]" : x?.theme == "purple"},
             )}>
               <img
@@ -296,7 +296,7 @@ const Home: React.FC = () =>{
               ></img>
           </div>
 
-          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-0 desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-240px] mobile:mt-[45px]">
+          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-0 desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-220px] mobile:mt-[45px]">
             <img
               src={x?.rightVector}
               alt="Right"
@@ -310,17 +310,21 @@ const Home: React.FC = () =>{
         </div>
 
         <div className="w-full h-full">
-          <div className="mt-[95px] relative">
+          <div className="desktop:mt-[75px] mobile:mt-[108px]">
             <img
               src={x?.icon}
               alt="homeicon"
               className={cn(
-                "desktop:w-[320px] desktop:h-[200px] mobile:w-[180px] mobile:h-[160px] mx-auto drop-shadow-glow-white-2 hover:scale-[1.1] hover:-translate-y-4 transition-all ease-in duration-700",
-                {"desktop:w-[385px]" : x?.title == "COMPETITIVE PROGRAMMING"}
+                "desktop:w-[320px] desktop:h-[200px] mobile:w-[160px] mobile:h-[140px] mx-auto drop-shadow-glow-white-2 hover:scale-[1.1] hover:-translate-y-4 transition-all ease-in duration-700",
+                {"desktop:w-[385px] mobile:w-[225px] mobile:h-[128px]" : x?.title == "COMPETITIVE PROGRAMMING"},
+                {"" : x?.title == "APP DEVELOPMENT" || "E-SPORT COMPETITION"}
                 )}>
             </img>
 
-            <div className="relative mt-[21px] text-center mobile:mt-[37px]">
+            <div className={cn(
+              "relative mt-[21px] text-center mobile:mt-[37px]",
+              {"mobile:px-[4px]" : x?.title == "INTERNET OF THINGS"}
+              )}>
               <Title theme={x?.theme}>{x?.title}</Title>
             </div>
 
@@ -356,13 +360,14 @@ const Home: React.FC = () =>{
 const About: React.FC = () =>{
   return(
     <>
-      <div className="w-fit h-[500px] ml-[180px] flex gap-[35px]">
-          <div>
+      <div className="desktop:w-fit desktop:h-[500px] desktop:ml-[180px] desktop:flex desktop:gap-[35px] mobile:grid mobile:h-fit mobile:ml-[48px]">
+          <div className="mobile:grid desktop:gap-0 mobile:gap-[25px]">
             <div className={cn(
-              "w-[200px] h-[115px] mt-[60px] ml-[30px]",
-              {"w-[200px] h-[90px] mb-[135px]": x?.title=="UIUX"},
-              {"mb-[90px]":x?.title == "APP DEVELOPMENT" || x?.title == "E-SPORT COMPETITION"},
-              {"w-[335px] h-[135px]":x?.title == "COMPETITIVE PROGRAMMING"}
+              "desktop:w-[200px] desktop:h-[115px] desktop:mt-[60px] desktop:ml-[30px]",
+              "mobile:w-[100px] mobile:h-[57px]",
+              {"desktop:w-[200px] desktop:h-[90px] desktop:mb-[135px]": x?.title=="UIUX"},
+              {"desktop:mb-[90px]":x?.title == "APP DEVELOPMENT" || x?.title == "E-SPORT COMPETITION"},
+              {"desktop:w-[335px] desktop:h-[135px]":x?.title == "COMPETITIVE PROGRAMMING"}
               )}>
               <motion.img
                 src={x?.icon}
@@ -371,7 +376,7 @@ const About: React.FC = () =>{
               </motion.img>
             </div>
 
-            <div className="relative w-[480px] h-fit mt-[38px]">
+            <div className="relative h-fit desktop:w-[480px] desktop:mt-0 mobile:mt-[40px] mobile:w-[300px]">
               <div className="relative">
                 <Title theme={x?.theme}>
                   {x?.title}
@@ -379,9 +384,15 @@ const About: React.FC = () =>{
               </div>
             </div>
 
+            <div className="desktop:hidden mobile:block w-[300px]">
+              <img src={x?.aboutImage}
+                alt={x?.title}
+                className="w-full h-full rounded-[20px]"></img>
+            </div>
+
             <div className="mt-[8px]">
               <p className={cn(
-                "w-[365px] font-roboto text-[14px] font-semibold leading-6",
+                "desktop:w-[365px] mobile:w-[300px] mobile:text-justify font-roboto text-[14px] font-semibold leading-6",
                 {"text-orange-pressed-3": x?.theme == "orange"},
                 {"text-light": x?.theme == "purple"}
               )}>
@@ -403,8 +414,8 @@ const About: React.FC = () =>{
               </div>
             </div>
           </div>
-          <div className="w-[545px] h-[382px] mt-[60px] rounded-[20px] z-10">
-              <img src={x?.aboutImage}
+          <div className="w-[545px] h-[382px] mt-[60px] rounded-[20px] z-10 hidden desktop:block">
+            <img src={x?.aboutImage}
               alt={x?.title}
               className="w-full h-full rounded-[20px]"></img>
           </div>
@@ -416,8 +427,8 @@ const About: React.FC = () =>{
 const Timeline: React.FC = () =>{
     return(
         <>
-          <div className="relative w-fit h-full flex z-10 gap-4 mt-[-35px]">
-            <div className="z-10">
+          <div className="relative desktop:w-fit mobile:w-screen desktop:h-full mobile:h-full flex z-10 desktop:gap-4 desktop:mt-[-35px] desktop:ml-0 mobile:ml-[30px] desktop:mr-0 mobile:mr-[30px]">
+            <div className="z-10 grid desktop:gap-0 mobile:gap-[180px]">
               <div className="mt-[15px] z-10">
                 <Timebox 
                 date={x?.timeline[0][0]}
@@ -428,7 +439,7 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="w-[90px] mt-[35px] ml-[230px] z-10">
+              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[230px] z-10">
                 <img 
                 src={ToRight}
                 alt="line"
@@ -445,7 +456,7 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="w-[90px] mt-[35px] ml-[230px] z-10">
+              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[230px] z-10">
                 <img 
                 src={ToRight}
                 alt="line"
@@ -467,8 +478,8 @@ const Timeline: React.FC = () =>{
               )}
             </div>
 
-            <div className="z-10">
-              <div className="mt-[125px]">
+            <div className="grid desktop:gap-0 mobile:gap-5 z-10 desktop:ml-0 mobile:ml-[-140px]">
+              <div className="desktop:mt-[125px] mobile:mt-[150px]">
                 <Timebox 
                 date={x?.timeline[1][0]}
                 event={x?.timeline[1][1]}
@@ -478,7 +489,7 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="w-[90px] mt-[35px] ml-[30px] z-10">
+              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[30px] z-10">
                 <img 
                 src={ToLeft}
                 alt="line"
@@ -496,7 +507,7 @@ const Timeline: React.FC = () =>{
               </div>
 
               {existExtraBox ? (
-                <div className="w-[90px] mt-[35px] ml-[30px] z-10">
+                <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[30px] z-10">
                   <img 
                   src={ToLeft}
                   alt="line"
@@ -524,8 +535,9 @@ const Overview: React.FC = () =>{
           <div className="flex">
             <div className={cn(
               "w-[731px] h-[55px] mt-[25px] ml-[28px] rounded-[20px] text-center",
-              {"bg-orange-purple" : x?.theme == "orange"},
-              {"bg-[#C8BDE6]" : x?.theme == "purple"}
+              {"bg-gradient-to-b from-[#FFA567] to-[#F1798A]" : x?.theme == "orange"},
+              {"bg-[#C8BDE6]" : x?.theme == "purple"},
+              {"pt-[5px]" : x?.title =="COMPETITIVE PROGRAMMING"}
               )}>
                 <Title theme={x?.theme}>{x?.title}</Title>
             </div>
@@ -798,7 +810,7 @@ export default function Competition(){
         <Home/>
  
         <motion.div 
-          className="w-full h-full z-10 mt-[200px] flex flex-nowrap gap-[1200px]"
+          className="w-full h-full z-10 mt-[200px] desktop:flex desktop:flex-nowrap desktop:gap-[1200px] mobile:grid mobile:gap-[300px] "
           animate={{x:-currentIndex*2095}}
         >
           {React.createElement(pages[0])}
@@ -807,7 +819,7 @@ export default function Competition(){
         </motion.div>
 
         {isOrange?(
-              <div>
+              <div className="desktop:block mobile:hidden">
                 <img 
                   src={NextArrow}
                   alt="Next Page"
@@ -820,7 +832,7 @@ export default function Competition(){
                   onClick={prevPage}></img>
               </div>
             ):(
-            <div>
+            <div className="desktop:block mobile:hidden">
               <img 
                 src={NextArrow2}
                 alt="Next Page"
