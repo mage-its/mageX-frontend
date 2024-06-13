@@ -47,7 +47,7 @@ export function Navbar({ theme="orange" }: NavbarProps) {
           </NavItem>
         </Link>
         <Link to="/app">
-          <NavItem active={currentRoute == 'app'} theme={theme}>
+          <NavItem active={currentRoute == 'app_development'} theme={theme}>
             Competition
 
           </NavItem>
