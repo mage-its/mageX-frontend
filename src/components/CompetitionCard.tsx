@@ -1,6 +1,6 @@
 import cn from "@/utils/cn";
 import { HTMLMotionProps, motion } from "framer-motion";
-import { IconType } from "react-icons";
+// import { IconType } from "react-icons";
 
 interface CompetitionCardProps extends HTMLMotionProps<"div"> {
   title: string;

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import Title from "@/components/CompetitionTitle";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import NextArrow from "@/assets/competition/NextButton.svg";
 import PrevArrow from "@/assets/competition/PrevButton.svg";
 import CompFooter from "@/components/CompetitionFooter";

@@ -1,4 +1,4 @@
-import { HTMLMotionProps, color, motion, useAnimation } from "framer-motion";
+import { HTMLMotionProps, motion, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export interface JustifyPuzzleProps extends HTMLMotionProps<"img"> {

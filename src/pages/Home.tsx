@@ -9,20 +9,20 @@ import {
   useWillChange,
 } from "framer-motion";
 import logo from "@/assets/brand/logo.svg";
-import puzzle1 from "@/assets/components/puzzle1.svg";
-import puzzle2 from "@/assets/components/puzzle2.svg";
-import puzzle3 from "@/assets/components/puzzle3.svg";
-import puzzle4 from "@/assets/components/puzzle4.svg";
-import puzzle5 from "@/assets/components/puzzle5.svg";
-import puzzle6 from "@/assets/components/puzzle6.svg";
-import puzzle7 from "@/assets/components/puzzle7.svg";
-import puzzle8 from "@/assets/components/puzzle8.svg";
-import puzzle9 from "@/assets/components/puzzle9.svg";
-import puzzle10 from "@/assets/components/puzzle10.svg";
-import puzzle11 from "@/assets/components/puzzle11.svg";
-import puzzle12 from "@/assets/components/puzzle12.svg";
-import puzzle13 from "@/assets/components/puzzle13.svg";
-import puzzleGta from "@/assets/components/puzzleGta.svg";
+import puzzle1 from "@/assets/puzzle/puzzle1.svg";
+import puzzle2 from "@/assets/puzzle/puzzle2.svg";
+import puzzle3 from "@/assets/puzzle/puzzle3.svg";
+import puzzle4 from "@/assets/puzzle/puzzle4.svg";
+import puzzle5 from "@/assets/puzzle/puzzle5.svg";
+import puzzle6 from "@/assets/puzzle/puzzle6.svg";
+import puzzle7 from "@/assets/puzzle/puzzle7.svg";
+import puzzle8 from "@/assets/puzzle/puzzle8.svg";
+import puzzle9 from "@/assets/puzzle/puzzle9.svg";
+import puzzle10 from "@/assets/puzzle/puzzle10.svg";
+import puzzle11 from "@/assets/puzzle/puzzle11.svg";
+import puzzle12 from "@/assets/puzzle/puzzle12.svg";
+import puzzle13 from "@/assets/puzzle/puzzle13.svg";
+import puzzleGta from "@/assets/puzzle/puzzleGta.svg";
 import mascot from "@/assets/brand/mascot.svg";
 
 import Juara1App9 from "@/assets/gallery/Juara1App9.png";
@@ -31,15 +31,15 @@ import Juara1Robotic9 from "@/assets/gallery/Juara1Robotic9.png";
 import Juara1Game5 from "@/assets/gallery/Juara1Game5.png";
 import Juara1Iot5 from "@/assets/gallery/Juara1Iot5.png";
 import Juara2App5 from "@/assets/gallery/Juara2App5.png";
-import app from "@/assets/brand/app.svg";
-import iot from "@/assets/brand/iot.svg";
-import robotic from "@/assets/brand/robotic.svg";
-import ui from "@/assets/brand/ui.svg";
-import cp from "@/assets/brand/cp.svg";
-import esport from "@/assets/brand/esport.svg";
-import game from "@/assets/brand/game.svg";
+import ig from "@/assets/sosialMedia/ig.svg";
+import mail from "@/assets/sosialMedia/mail.svg";
+import tiktok from "@/assets/sosialMedia/tiktok.svg";
+import line from "@/assets/sosialMedia/line.svg";
+import linkedin from "@/assets/sosialMedia/linkedin.svg";
+import puzzleFooter from "@/assets/puzzle/puzzleFooter.svg";
 
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
 import { JustifyPuzzle } from "@/components/JustifyPuzzle";
 import { useEffect, useRef, useState } from "react";
@@ -47,13 +47,14 @@ import { RevealButton } from "@/components/RevealButton";
 import AboutCard from "./AboutCard";
 import useMeasure from "react-use-measure";
 import InfoCard from "@/components/InfoCard";
-import Timeline, { TimelineCard } from "@/components/Timeline";
+import Timeline from "@/components/Timeline";
 import { timeline } from "@/constant/timeline";
 import WorkshopCard from "@/components/WorkshopCard";
 import Footer from "@/components/Footer";
 import CompetitionCard from "@/components/CompetitionCard";
 import { competition } from "@/constant/Competition";
-import SocialMedia from "@/components/SocialMedia";
+import SocialMediaCard from "@/components/SocialMediaCard";
+import NeonSquare from "@/components/NeonSquare";
 
 const RunningText = () => {
   return (
@@ -93,15 +94,6 @@ export default function Home() {
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
   const [isCompetitionMore, setIsCompetitionMore] = useState(false);
-  const [CompetitionCardRef, { width: competitionCardWidth }] = useMeasure();
-
-  // useEffect(() => {
-  //   if (isCompetitionMore) {
-  //     dragCompetitionControl.start("tes");
-  //   } else {
-  //     dragCompetitionControl.start();
-  //   }
-  // });
 
   const isAboutHandle = () => {
     setIsAbout(!isAbout);
@@ -115,8 +107,6 @@ export default function Home() {
       aboutControl.start("noBlur");
     }
   });
-
-  useEffect(() => {}, [competitionCardWidth]);
 
   useEffect(() => {
     const runningFinalPosition =
@@ -176,6 +166,7 @@ export default function Home() {
       </svg>
       <Navbar theme="black" />
 
+      {/* start landing section */}
       <div className="bg-gradient-to-r from-dark to-black h-screen text-center relative overflow-clip">
         <motion.div
           initial={{ y: -100 }}
@@ -315,6 +306,9 @@ export default function Home() {
           />
         </div>
       </div>
+      {/* end landing section */}
+
+      {/* start about section */}
       <motion.div
         ref={aboutRef}
         className="fixed top-0 z-20"
@@ -447,8 +441,12 @@ export default function Home() {
           duration: 0.5,
           ease: "circInOut",
         }}
-      ></motion.div>
+      />
+      {/* end about section */}
+
       <div className="bg-gray-1 h-fit text-center relative overflow-hidden pt-[50px] px-20 flex flex-col gap-10">
+        {/* start running text section */}
+
         <motion.div
           ref={runningRef}
           className="flex flex-nowrap absolute left-0"
@@ -458,13 +456,18 @@ export default function Home() {
             <RunningText key={index} />
           ))}
         </motion.div>
+        {/* end running text section */}
 
+        {/* start infographic section */}
         <div className="flex flex-wrap gap-y-8 justify-evenly mt-[140px] mb-16">
           <InfoCard title="Event Terlaksana" value="10" />
           <InfoCard title="Peserta Terdaftar Setiap Tahun" value="50+" />
           <InfoCard title="Panitia berkontribusi setiap tahun" value="80+" />
           <InfoCard title="Sponsor & media partner terlibat" value="50+" />
         </div>
+        {/* end infographic section */}
+
+        {/* start timeline section */}
         <div className="relative pt-16">
           <div className="w-[800px] mb-6">
             <h1 className="font-roboto text-6xl text-light font-bold text-start">
@@ -498,7 +501,9 @@ export default function Home() {
             <Timeline items={timeline} />
           </div>
         </div>
+        {/* end timeline section */}
 
+        {/* start workshop section */}
         <div className="py-3">
           <div className="relative flex flex-col justify-center items-center gap-[29px] self-stretch">
             <p className="text-center font-roboto text-6xl font-bold w-[545px] h-[140px] mb-[29px] text-light">
@@ -528,7 +533,9 @@ export default function Home() {
             </WorkshopCard>
           </div>
         </div>
+        {/* end workshop section */}
 
+        {/* start mascot section */}
         <div className="relative">
           <div className="w-full mb-[130px] text-center flex flex-col gap-2 justify-center items-center">
             <h1 className="font-roboto text-6xl text-light font-bold">
@@ -561,6 +568,9 @@ export default function Home() {
             ))}
           </div>
         </div>
+        {/* end mascot section */}
+
+        {/* start competition section */}
         <div>
           <div className="flex flex-col justify-center items-center gap-[29px] mb-[45px]">
             <h1 className="text-center font-roboto text-6xl font-bold w-[545px] h-[140px] text-light">
@@ -635,7 +645,175 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
-        <SocialMedia />
+        {/* end competition section */}
+
+        {/* start socialmedia section */}
+        <div className="flex flex-col items-center gap-10 w-full px-[51px] py-20 mb-12  relative">
+          <div className="flex flex-col w-full items-center text-center mb-14">
+            <div className="flex flex-col gap-2">
+              <p className="text-white font-roboto font-bold text-5xl">
+                Stay Connected On
+              </p>
+              <p className="text-white font-roboto font-bold text-5xl">
+                Our{" "}
+                <span className=" bg-vertical-gta text-transparent bg-clip-text">
+                  Social Media
+                </span>
+              </p>
+            </div>
+            <p className="text-white text-opacity-50 font-fredoka font-light text-[24px]">
+              Get our latest update from another social media platform.
+            </p>
+            <p className="text-white text-opacity-50 font-fredoka font-light text-[24px]">
+              Stay informed, get inspired, and be a part of our journey.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-14 w-full">
+            <div className="flex flex-row justify-between w-3/4">
+              <div>
+                <SocialMediaCard
+                  href="https://www.instagram.com/mage_its"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  description="mage_its"
+                  img={ig}
+                  className="relative z-10"
+                  rotate={5.684}
+                />
+                <SocialMediaCard
+                  href="https://www.instagram.com/mage_its"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  description="mage_its"
+                  img={ig}
+                  rotate={5.684}
+                  className="absolute blur-lg animate-pulse -translate-x-32 -translate-y-32"
+                />
+              </div>
+
+              <div>
+                <SocialMediaCard
+                  href="mailto:mage.ce.its@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Email"
+                  description="mage.ce.its@gmail.com"
+                  img={mail}
+                  className="relative z-10"
+                  rotate={-3.62}
+                />
+                <SocialMediaCard
+                  href="mailto:mage.ce.its@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Email"
+                  description="mage.ce.its@gmail.com"
+                  img={mail}
+                  className="absolute blur-lg animate-pulse -translate-x-32 -translate-y-32"
+                  rotate={-3.62}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-row justify-between w-1/2">
+              <div>
+                <SocialMediaCard
+                  href="https://www.tiktok.com/@magex_its"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Tiktok"
+                  description="magex_its"
+                  img={tiktok}
+                  className="relative z-10"
+                  rotate={-3.62}
+                />
+                <SocialMediaCard
+                  href="https://www.tiktok.com/@magex_its"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Tiktok"
+                  description="magex_its"
+                  img={tiktok}
+                  className="absolute blur-lg animate-pulse -translate-x-32 -translate-y-32"
+                  rotate={-3.62}
+                />
+              </div>
+              <div>
+                <SocialMediaCard
+                  href="https://line.me/R/ti/p/rio5948f"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Line"
+                  description="@rio5498f"
+                  img={line}
+                  className="relative z-10"
+                  rotate={6.44}
+                />
+                <SocialMediaCard
+                  href="https://line.me/R/ti/p/rio5948f"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Line"
+                  description="@rio5498f"
+                  img={line}
+                  className="absolute blur-lg animate-pulse -translate-x-32 -translate-y-32"
+                  rotate={6.44}
+                />
+              </div>
+            </div>
+            <div className="w-full flex justify-center">
+              <div>
+                <SocialMediaCard
+                  href="https://www.linkedin.com/company/mage-x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Linkedin"
+                  description="mage_its"
+                  img={linkedin}
+                  className="relative z-10"
+                />
+                <SocialMediaCard
+                  href="https://www.linkedin.com/company/mage-x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Linkedin"
+                  description="mage_its"
+                  img={linkedin}
+                  className="absolute blur-lg animate-pulse -translate-x-32 -translate-y-32"
+                />
+              </div>
+            </div>
+          </div>
+          <NeonSquare className="absolute left-[8%] bottom-56 z-20 scale-[1.5] rotate-[80deg]" />
+          <NeonSquare className="absolute left-[25%] bottom-20 z-20 scale-[0.8] rotate-[-45deg]" />
+          <NeonSquare className="absolute left-[44%] -bottom-8 z-20 scale-[0.4] rotate-[50deg]" />
+          <NeonSquare className="absolute -bottom-20 z-20 scale-[0.2] rotate-[50deg]" />
+          <NeonSquare className="absolute right-[44%] -bottom-8 z-20 scale-[0.4] rotate-[40deg]" />
+          <NeonSquare className="absolute right-[25%] bottom-20 z-20 scale-[0.8] rotate-[45deg]" />
+          <NeonSquare className="absolute right-[8%] bottom-56 z-20 scale-[1.5] rotate-[-80deg]" />
+        </div>
+        {/* end socialmedia section */}
+        <div className="bg-vertical-gta h-[300px] rounded-[40px] py-[38px] relative overflow-hidden">
+          <h1 className="font-roboto font-bold text-5xl text-light mb-2">
+            Your Journey Begins Here!
+          </h1>
+          <p className="font-fredoka text-xl text-light mb-[77px]">
+            Challenge yourself and compete with the best!
+          </p>
+          <button className="flex gap-3.5 mx-auto rounded-full py-[13px] px-5 bg-dark">
+            <p className="font-fredoka text-xl text-light"> Register Now!</p>
+            <IoArrowForwardCircleOutline className="text-3xl text-light" />
+          </button>
+          <img src={puzzleFooter} alt="" className="absolute top-0 left-0" />
+          <img
+            src={puzzleFooter}
+            alt=""
+            className="absolute top-0 right-0 rotate-180"
+          />
+        </div>
       </div>
       <Footer />
     </main>
