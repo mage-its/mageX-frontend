@@ -282,26 +282,26 @@ const Home: React.FC = () =>{
       <div className="w-full h-full">
         <div className="absolute top-[105px] w-full h-[564px]">
           <div className={cn(
-            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-20px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px]",
+            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-20px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px] ipad:mt-0",
             {"w-[520px] h-[534px] ml-[-15px]" : x?.theme == "purple"},
             )}>
               <img
                 src={x?.leftVector}
                 alt="left"
                 className={cn(
-                  "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px]",
+                  "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
                   {"mix-blend-plus-darker" : x?.theme == "orange"},
                   {"mix-blend-hard-light opacity-1" : x?.theme == "purple"},
                  )}
               ></img>
           </div>
 
-          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-0 desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-220px] mobile:mt-[45px]">
+          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-0 desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-220px] mobile:mt-[45px] ipad:mt-0">
             <img
               src={x?.rightVector}
               alt="Right"
               className={cn(
-                "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px]",
+                "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
                 {"mix-blend-plus-darker" : x?.theme == "orange"},
                 {"mix-blend-hard-light opacity-1" : x?.theme == "purple"},
               )}>
@@ -339,12 +339,12 @@ const Home: React.FC = () =>{
             </div>
 
             <div className="flex mt-[25px] gap-[10px] place-content-center">
-              <div>
+              <div className="z-10">
                 <CButton theme={x?.theme}>
                   Guide Book
                 </CButton>
               </div>
-              <div>
+              <div className="z-10">
                 <CButton theme={x?.theme}>
                   Log In
                 </CButton>
@@ -360,11 +360,12 @@ const Home: React.FC = () =>{
 const About: React.FC = () =>{
   return(
     <>
-      <div className="desktop:w-fit desktop:h-[500px] desktop:ml-[180px] desktop:flex desktop:gap-[35px] mobile:grid mobile:h-fit mobile:ml-[48px]">
+      <div className="desktop:w-fit desktop:h-[500px] desktop:ml-[180px] desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[35px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto">
           <div className="mobile:grid desktop:gap-0 mobile:gap-[25px]">
             <div className={cn(
               "desktop:w-[200px] desktop:h-[115px] desktop:mt-[60px] desktop:ml-[30px]",
               "mobile:w-[100px] mobile:h-[57px]",
+              "ipad:w-[180px] ipad:h-[100px]",
               {"desktop:w-[200px] desktop:h-[90px] desktop:mb-[135px]": x?.title=="UIUX"},
               {"desktop:mb-[90px]":x?.title == "APP DEVELOPMENT" || x?.title == "E-SPORT COMPETITION"},
               {"desktop:w-[335px] desktop:h-[135px]":x?.title == "COMPETITIVE PROGRAMMING"}
@@ -376,15 +377,13 @@ const About: React.FC = () =>{
               </motion.img>
             </div>
 
-            <div className="relative h-fit desktop:w-[480px] desktop:mt-0 mobile:mt-[40px] mobile:w-[300px]">
-              <div className="relative">
-                <Title theme={x?.theme}>
-                  {x?.title}
-                </Title>
-              </div>
+            <div className="relative h-fit desktop:w-[480px] desktop:mt-0 mobile:mt-[40px] mobile:w-[300px] ipad:mt-[80px]">
+              <Title theme={x?.theme}>
+                {x?.title}
+              </Title>
             </div>
 
-            <div className="desktop:hidden mobile:block w-[300px]">
+            <div className="desktop:hidden ipad:hidden mobile:block w-[300px]">
               <img src={x?.aboutImage}
                 alt={x?.title}
                 className="w-full h-full rounded-[20px]"></img>
@@ -414,7 +413,7 @@ const About: React.FC = () =>{
               </div>
             </div>
           </div>
-          <div className="w-[545px] h-[382px] mt-[60px] rounded-[20px] z-10 hidden desktop:block">
+          <div className="desktop:w-[545px] desktop:h-[382px] ipad:w-[390px] ipad:h-[300px] desktop:mt-[60px] ipad:mt-auto dekstop:mb-0 ipad:mb-auto ipad:mt-0 rounded-[20px] z-10 mobile:hidden desktop:block ipad:block">
             <img src={x?.aboutImage}
               alt={x?.title}
               className="w-full h-full rounded-[20px]"></img>
@@ -427,9 +426,9 @@ const About: React.FC = () =>{
 const Timeline: React.FC = () =>{
     return(
         <>
-          <div className="relative desktop:w-fit mobile:w-screen desktop:h-full mobile:h-full flex z-10 desktop:gap-4 desktop:mt-[-35px] desktop:ml-0 mobile:ml-[30px] desktop:mr-0 mobile:mr-[30px]">
-            <div className="z-10 grid desktop:gap-0 mobile:gap-[180px]">
-              <div className="mt-[15px] z-10">
+          <div className="relative desktop:w-fit  desktop:h-full mobile:h-[700px] desktop:flex ipad:flex mobile:grid z-10 desktop:gap-4 desktop:mt-[-35px] desktop:ml-0 desktop:mr-0 mobile:ml-[60px] mobile:mr-[40px]">
+            <div className="z-10 grid desktop:gap-0 ipad:gap-0 mobile:gap-0 desktop:px-0">
+              <div className="desktop:relative ipad:relative mobile:absolute mobile:top-0 desktop:left-0 mobile:left-0 desktop:mr-0 mobile:mr-auto mt-[15px] z-10">
                 <Timebox 
                 date={x?.timeline[0][0]}
                 event={x?.timeline[0][1]}
@@ -439,14 +438,14 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[230px] z-10">
+              <div className="desktop:block ipad:block mobile:hidden w-[90px] desktop:mt-[35px] ipad:mt-[-35px] ml-[230px] z-10">
                 <img 
                 src={ToRight}
                 alt="line"
                 ></img>
               </div>
 
-              <div className="mt-[60px] z-10">
+              <div className="desktop:relative mobile:absolute mobile:top-0 desktop:left-0 mobile:left-0 desktop:mt-[60px] mobile:mt-[300px] z-10">
                 <Timebox 
                 date={x?.timeline[2][0]}
                 event={x?.timeline[2][1]}
@@ -456,7 +455,7 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[230px] z-10">
+              <div className="desktop:block ipad:block mobile:hidden w-[90px] mt-[35px] ml-[230px] z-10">
                 <img 
                 src={ToRight}
                 alt="line"
@@ -464,7 +463,7 @@ const Timeline: React.FC = () =>{
               </div>
 
               {existExtraBox?(
-                <div className="mt-[65px] z-20">
+                <div className="desktop:relative mobile:absolute desktop:mt-[65px] mobile:mt-[600px] desktop:left-0 mobile:left-0 z-20">
                   <Timebox 
                   date={x?.timeline[4][0]}
                   event={x?.timeline[4][1]}
@@ -478,8 +477,8 @@ const Timeline: React.FC = () =>{
               )}
             </div>
 
-            <div className="grid desktop:gap-0 mobile:gap-5 z-10 desktop:ml-0 mobile:ml-[-140px]">
-              <div className="desktop:mt-[125px] mobile:mt-[150px]">
+            <div className="desktop:relative mobile:absolute ipad:relative grid desktop:gap-0 ipad:gap-0 mobile:gap-[180px] z-10 desktop:ml-0 mobile:ml-0">
+              <div className="desktop:relative ipad:relative mobile:absolute desktop:left-0 mobile:left-0 desktop:mt-[125px] mobile:mt-[150px]">
                 <Timebox 
                 date={x?.timeline[1][0]}
                 event={x?.timeline[1][1]}
@@ -489,14 +488,14 @@ const Timeline: React.FC = () =>{
                 ></Timebox>
               </div>
 
-              <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[30px] z-10">
+              <div className="desktop:block ipad:block mobile:hidden w-[90px] mt-[35px] ml-[30px] z-10">
                 <img 
                 src={ToLeft}
                 alt="line"
                 ></img>
               </div>
 
-              <div className="mt-[60px] z-10">
+              <div className="desktop:relative mobile:absolute desktop:mt-[60px] desktop:left-0 mobile:left-0 mobile:mt-[450px] z-10">
                 <Timebox 
                 date={x?.timeline[3][0]}
                 event={x?.timeline[3][1]}
@@ -507,7 +506,7 @@ const Timeline: React.FC = () =>{
               </div>
 
               {existExtraBox ? (
-                <div className="desktop:block mobile:hidden w-[90px] mt-[35px] ml-[30px] z-10">
+                <div className="desktop:block ipad:block mobile:hidden w-[90px] desktop:mt-[35px] ipad:mt-0 ml-[30px] z-10">
                   <img 
                   src={ToLeft}
                   alt="line"
@@ -528,13 +527,13 @@ const Overview: React.FC = () =>{
     return(
         <>
         <div className={cn(
-          "relative w-fit h-full border-[3px] rounded-[30px] mx-auto mt-[-45px]",
-          {"bg-skin-grad border-[#FD874E] ml-[140px]": x?.theme == "orange"},
-          {"bg-[#493187] border-[#C8BDE6] ml-[140px]": x?.theme == "purple"}
+          "relative desktop:w-fit desktop:h-full mobile:w-[300px] mobile:h-fit border-[3px] rounded-[30px] mx-auto desktop:mt-[-45px] desktop:ml-[130px]",
+          {"bg-skin-grad border-[#FD874E]": x?.theme == "orange"},
+          {"bg-[#493187] border-[#C8BDE6]": x?.theme == "purple"}
           )}>
-          <div className="flex">
+          <div className="desktop:flex mobile:grid">
             <div className={cn(
-              "w-[731px] h-[55px] mt-[25px] ml-[28px] rounded-[20px] text-center",
+              "desktop:w-[731px]  mobile:w-[268px] desktop:h-[55px] mobile:h-[105px] desktop:p-0 mobile:p-1 mt-[25px] desktop:ml-[28px] mobile:ml-[14px] rounded-[20px] text-center",
               {"bg-gradient-to-b from-[#FFA567] to-[#F1798A]" : x?.theme == "orange"},
               {"bg-[#C8BDE6]" : x?.theme == "purple"},
               {"pt-[5px]" : x?.title =="COMPETITIVE PROGRAMMING"}
@@ -542,7 +541,7 @@ const Overview: React.FC = () =>{
                 <Title theme={x?.theme}>{x?.title}</Title>
             </div>
             <div className={cn(
-              "w-[292px] h-[55px] rounded-[20px] ml-[29px] mt-[25px] cursor-pointer flex hover:scale-[1.05] ease-in duration-300",
+              "desktop:w-[292px] mobile:w-[268px] h-[55px] rounded-[20px] desktop:ml-[29px] mobile:ml-[14px] mt-[25px] cursor-pointer flex hover:scale-[1.05] ease-in duration-300",
               {"bg-orange-primary-3 hover:bg-orange-pressed-1" : x?.theme == "orange"},
               {"bg-[#5B2CD3]" : x?.theme == "purple"}
               )}>
@@ -559,14 +558,14 @@ const Overview: React.FC = () =>{
             </div>
           </div>
 
-          <div className="flex mt-5 ml-[28px] mr-[34px] mt-[25px] gap-[38px]">
-            <div className="w-[621px] h-[386px] ml-[28px]">
+          <div className="desktop:flex mobile:grid mt-5 desktop:ml-[28px] mobile:ml-[15px] mr-[34px] mt-[25px] gap-[38px]">
+            <div className="desktop:w-[621px] mobile:w-[265px] desktop:h-[386px] mobile:h-[205px] desktop:ml-[28px]">
               <img 
               src={x?.overviewImage}
               alt={x?.title}
               className="w-full h-full"></img>
             </div>
-            <div className="w-[350px] h-[362px]">
+            <div className="desktop:w-[350px] mobile:w-[265px] desktop:h-[362px] mobile:h-fit">
               <p className={cn(
                 "text-justify font-roboto text-[11px] font-normal]",
                 {"font-fredoka text-light":x?.theme=="purple"}
@@ -586,11 +585,11 @@ const Overview: React.FC = () =>{
                 )}
               </p>
 
-              <div className="flex">
+              <div className="desktop:flex mobile:grid desktop:ml-0 mobile:ml-[15px]">
                 <div>
                   {/* POOLPRIZE */}
                   <div className={cn(
-                    "absolute w-[171px] h-[88px] bg-orange-primary-2 mt-[8px] rounded",
+                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[3px] w-[171px] h-[88px] bg-orange-primary-2 desktop:mt-[8px] mobile:mt-[32px] rounded",
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                   )}>
                     <div className={cn(
@@ -618,19 +617,18 @@ const Overview: React.FC = () =>{
                         )}
                       </div>
                     </div>
-                    <div className="w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
-                      <p>Phase 1</p>
+                    <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
+                        <p>Phase 1</p>
                       <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
                       <p className="indent-1">Mahasiswa : Rp125.000,00</p>
                       <p>Phase 2</p>
                       <p className="indent-1">SMA/SMK/sederajat : Rp125.000,00</p>
-                      <p className="indent-1">Mahasiswa : Rp150.000,00</p>
                     </div>
                   </div>
 
                   {/* KATEGORI */}
                   <div className={cn(
-                    "absolute w-[171px] h-[36px] bg-orange-primary-2 mt-[105px] rounded",
+                    "desktop:absolute mobile:relative dekstop:pt-0 mobile:pt-[3px] w-[171px] h-[36px] bg-orange-primary-2 desktop:mt-[105px] mobile:mt-[32px] rounded",
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                   )}>
                     <div className={cn(
@@ -659,7 +657,7 @@ const Overview: React.FC = () =>{
 
                   {/* PESERTA */}
                   <div className={cn(
-                    "absolute w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] mt-[147px] rounded",
+                    "desktop:absolute mobile:relative desktop:pt-0 mobile:py-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[147px] mobile:mt-[32px] rounded",
                     {"bg-gradient-to-r from-[#3A0D49] to-[#7B2A62]": x?.theme == "purple"}
                   )}>
                     <p className={cn(
@@ -681,7 +679,7 @@ const Overview: React.FC = () =>{
 
                 <div>
                   <div className={cn(
-                     "absolute w-[126px] h-[112px] mt-[8px] ml-[221px] bg-orange-primary-2 rounded",
+                     "desktop:absolute mobile:relative w-[126px] h-[112px] desktop:mt-[8px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 bg-orange-primary-2 rounded",
                      {"bg-[#F9E3FD]" : x?.theme == "purple"}
                   )}>
                     <div className={cn(
@@ -724,7 +722,7 @@ const Overview: React.FC = () =>{
                   </div>
 
                   <div className={cn(
-                    "absolute w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] mt-[130px] ml-[221px] rounded",
+                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[130px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 rounded",
                     {"bg-gradient-to-r from-[#3A0D49] to-[#7B2A62]": x?.theme == "purple"}
                   )}>
                     <p className={cn(
@@ -748,15 +746,15 @@ const Overview: React.FC = () =>{
           </div>
 
           <div className={cn(
-            "w-[1045px] h-[60px] p-[2px] ml-[27px] mt-[25px] mb-[26px] rounded-[20px] border-[2px] border-[#FD874E] bg-orange-primary-5",
+            "desktop:w-[1045px] desktop:h-[60px] mobile:w-[268px] p-[2px] desktop:ml-[27px] mobile:ml-[14px] mt-[25px] desktop:mb-[26px] mobile:mb-[36px] rounded-[20px] border-[2px] border-[#FD874E] bg-orange-primary-5",
             {"bg-[#C8BDE6] border-[#9888C3]":x?.theme=="purple"}
           )}>
-            <div className="w-[188px] h-[30px] mt-[12px] ml-[461px] gap-[12px] flex">
+            <div className="desktop:w-[188px] desktop:h-[30px] desktop:mt-[12px] desktop:ml-[461px] mobile:ml-[57px] desktop:gap-[12px] mobile:gap-[8px] flex">
               {isOrange?(
-                <div className="w-[30px] h-[30px] rounded-full border-[2px] border-[#E24BB3]"></div>
+                <div className="desktop:w-[30px] mobile:w-[17px] desktop:h-[30px] mobile:h-[17px] rounded-full border-[2px] border-[#E24BB3] cursor-pointer desktop:mt-0 mobile:mt-[6px]"></div>
               ):(
-                <div className="w-[30px] h-[30px] rounded-full bg-gradient-to-b from-[#E24BB3] to-[#FB8A4A] content-center cursor-pointer">
-                  <div className="w-[27px] h-[27px] mx-auto my-auto rounded-full bg-[#C8BDE6] hover:bg-light/10 transition-colors ease-in duration-300"></div>
+                <div className="desktop:w-[30px] mobile:w-[17px] desktop:h-[30px] mobile:h-[17px] rounded-full bg-gradient-to-b from-[#E24BB3] to-[#FB8A4A] content-center cursor-pointer desktop:mt-0 mobile:mt-[6px]">
+                  <div className="desktop:w-[27px] desktop:h-[27px] mobile:w-[14px] mobile:h-[14px] mx-auto my-auto rounded-full bg-[#C8BDE6] hover:bg-light/10 transition-colors ease-in duration-300"></div>
                 </div>
               )}
               <p className={cn(
@@ -810,7 +808,7 @@ export default function Competition(){
         <Home/>
  
         <motion.div 
-          className="w-full h-full z-10 mt-[200px] desktop:flex desktop:flex-nowrap desktop:gap-[1200px] mobile:grid mobile:gap-[300px] "
+          className="w-full h-full z-10 mt-[200px] desktop:flex desktop:flex-nowrap desktop:gap-[1200px] mobile:grid mobile:gap-[130px] "
           animate={{x:-currentIndex*2095}}
         >
           {React.createElement(pages[0])}
@@ -847,7 +845,7 @@ export default function Competition(){
             )}
 
         <div className={cn(
-          "z-0 mt-[-40px]",
+          "z-0 desktop:mt-[-40px] mobile:mt-0",
           {"mt-0":x?.theme=="orange"}
           )}>
           <div className={cn(
@@ -857,13 +855,13 @@ export default function Competition(){
             )}>
               <Wave theme={x?.theme}></Wave>
             <div className={cn(
-              "absolute top-0 left-0",
-              {"mt-[185px] ml-[79px]":x?.theme=="orange"},
-              {"mt-[245px] ml-[79px]":x?.theme=="purple"},
+              "absolute desktop:top-0 desktop:left-0 mobile:bottom-0 mobile:right-0",
+              {"desktop:mt-[185px] desktop:ml-[79px] mobile:mb-[6px] mobile:mr-[43px]":x?.theme=="orange"},
+              {"desktop:mt-[245px] desktop:ml-[79px] mobile:mb-[6px] mobile:mr-[43px]":x?.theme=="purple"},
             )}>
-              <div className="w-[1188px] mx-auto flex justify-between items-center">
+              <div className="desktop:w-[1188px] mobile:w-[300px] mx-auto flex justify-between items-center">
                 <div className="flex items-center gap-[24px] z-30">
-                  <div className="cursor-not-allowed">
+                  <div className="cursor-not-allowed desktop:block mobile:hidden">
                     {isOrange?(
                       <img src={pc2} alt="PC"/>
                     ):(
@@ -874,7 +872,7 @@ export default function Competition(){
                   <div
                     onClick={aboutShortcut}
                     className={cn(
-                      "w-[36px] h-[36px] rounded-full p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -888,7 +886,7 @@ export default function Competition(){
                   <div
                     onClick={timelineShortcut}
                     className={cn(
-                      "w-[36px] h-[36px] rounded-full px-[4px] py-[10px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full px-[4px] py-[10px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -902,7 +900,7 @@ export default function Competition(){
                   <div
                     onClick={overviewShortcut}
                     className={cn(
-                      "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -914,50 +912,50 @@ export default function Competition(){
                   </div>
                 </div>
 
-                <div className="flex items-center gap-[24px]">
+                <div className="flex items-center desktop:gap-[24px] mobile:gap-[70px]">
                   <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300">
                     <a href="mailto:mage.ce.its@gmail.com" target="_blank" rel="noopener noreferrer">
                     {isOrange?(
-                      <img src={mail2} className="w-[36px] h-[36px]"alt="Email"/>
+                      <img src={mail2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]"alt="Email"/>
                     ):(
-                      <img src={purpleMail2} className="w-[36px] h-[36px]" alt="Email"/>
+                      <img src={purpleMail2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Email"/>
                     )}
                     </a>
                   </div>
 
                   <div className={cn(
-                    "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                    "desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                     {"bg-orange-primary-5" : x?.theme == "orange"},
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
                       <a href="https://www.tiktok.com/@magex_its" target="_blank" rel="noopener noreferrer">
                       {isOrange?(
-                        <img src={tiktok} className="px-[3px] py-[3px]" alt="TikTok"/>
+                        <img src={tiktok} className="desktop:px-[3px] desktop:py-[3px]" alt="TikTok"/>
                       ):(
-                        <img src={purpleTiktok2} className="px-[3px] py-[3px]" alt="TikTok"/>
+                        <img src={purpleTiktok2} className="desktop:px-[3px] desktop:py-[3px]" alt="TikTok"/>
                       )}
                       </a>
                   </div>
 
                   <div className={cn(
-                    "w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                    "desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                     {"bg-orange-primary-5" : x?.theme == "orange"},
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                   )}>
                     <a href="https://www.instagram.com/mage_its" target="_blank" rel="noopener noreferrer">
                     {isOrange?(
-                      <img src={instagram} className="px-[3px] py-[3px]" alt="Instagram"/>
+                      <img src={instagram} className="desktop:px-[3px] desktop:py-[3px]" alt="Instagram"/>
                     ):(
-                      <img src={purpleInsta2} className="mx-[3px] my-[3px]" alt="Instagram"/>
+                      <img src={purpleInsta2} className="desktop:mx-[3px] desktop:my-[3px]" alt="Instagram"/>
                     )}
                     </a>
                   </div>
 
                   <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px]  ease-out duration-300">
                     {isOrange?(
-                      <img src={scline2} className="w-[36px] h-[36px]" alt="Line"/>
+                      <img src={scline2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
                     ):(
-                      <img src={purpleScLine2} className="w-[36px] h-[36px]" alt="Line"/>
+                      <img src={purpleScLine2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
                     )}
                   </div>  
                 </div>
