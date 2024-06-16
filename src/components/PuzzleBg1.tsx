@@ -4,7 +4,7 @@ import puzzle from '../assets/workshop/puzzles-1/puzzle.svg'
 const PuzzleBg1: React.FC = () => {
   return (
     <div>
-        <div className="relative w-full mobile:mt-[-10%] ipad:mt-[-15%] desktop:mt-[-20%]">
+        <div className="relative w-full mobile:mt-[-17.5%] ipad:mt-[-30%] desktop:mt-[-25%]">
             <div className="absolute inset-0 -z-10">
                 <img 
                     src={puzzle}

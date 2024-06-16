@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, wrap, AnimatePresence } from "framer-motion";
 import left from '../assets/workshop/leftButton.svg';
 import right from '../assets/workshop/rightButton.svg';
 import timeIcon1 from '../assets/workshop/timeIcon1.svg';
@@ -8,10 +9,10 @@ import locationIcon2 from '../assets/workshop/locationIcon2.svg';
 
 const slides = [
   {
-    header: "INTERNET OF THINGS",
-    content: "Workshop IoT (Internet Of Things) merupakan salah satu pelaksanaan pelatihan yang diadakan oleh Teknik Komputer. Workshop ini dinaungi oleh salah satu lab Teknik Komputer yaitu B300. Workshop IoT berfokus kepada topik-topik pengolahan sinyal digital dan pengembangan teknologi berbasis digital. Seperti namanya, inovasi-inovasi yang diciptakan memiliki unsur internet yang berperan penting dalam proses kerjanya.",
+    header: "MULTIMEDIA",
+    content: "Workshop ini adalah workshop yang mempelajari mengenai dasar dari pemrograman dalam Bahasa pemrograman seperti python dan dasar dasar multimedia. Workshop dilakukan selama 2 hari. Hari pertama mempelajari dasar dasar pemrograman dan hari kedua adalah project dan review project",
     tempat: "To be announced",
-    waktu: "21 September 2024",
+    waktu: "20 & 28 Juli 2024",
     pemateri1: "To be announced",
     pemateri2: "To be announced",
     color1: "#F77F5A",
@@ -36,10 +37,10 @@ const slides = [
     locationIcon: locationIcon2,
   },
   {
-    header: "MULTIMEDIA",
-    content: "Workshop ini adalah workshop yang mempelajari mengenai dasar dari pemrograman dalam Bahasa pemrograman seperti python dan dasar dasar multimedia. Workshop dilakukan selama 2 hari. Hari pertama mempelajari dasar dasar pemrograman dan hari kedua adalah project dan review project",
+    header: "INTERNET OF THINGS",
+    content: "Workshop IoT (Internet Of Things) merupakan salah satu pelaksanaan pelatihan yang diadakan oleh Teknik Komputer. Workshop ini dinaungi oleh salah satu lab Teknik Komputer yaitu B300. Workshop IoT berfokus kepada topik-topik pengolahan sinyal digital dan pengembangan teknologi berbasis digital. Seperti namanya, inovasi-inovasi yang diciptakan memiliki unsur internet yang berperan penting dalam proses kerjanya.",
     tempat: "To be announced",
-    waktu: "20 & 28 Juli 2024",
+    waktu: "21 September 2024",
     pemateri1: "To be announced",
     pemateri2: "To be announced",
     color1: "#F77F5A",
@@ -52,17 +53,29 @@ const slides = [
 ];
 
 const WorkshopSlide = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [[currentIndex, direction], setCurrentIndex] = useState([0, 0]);
 
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
   };
 
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-  };
+  const nextSlide = () => setCurrentIndex(([index]) => [index + 1, 1]);
+  const prevSlide = () => setCurrentIndex(([index]) => [index - 1, -1]);
 
-  // Card
+  const index = wrap(0, slides.length, currentIndex);
+
+  // Mobile content
   const mobileContent = [];
   for(let i = 0; i < 3; i++)
   {
@@ -172,148 +185,153 @@ const WorkshopSlide = () => {
       );
   }
 
+  function getSlideIndex()
+  {
+    if(slides.length === 0)
+        return 0;
+    else
+      return (currentIndex % slides.length + slides.length) % slides.length;
+  }
+
   return (
     <div>
       {/* For Ipad and Desktop */}
       <div className="relative items-center hidden select-none ipad:block desktop:block">
-        <div className="flex-col drop-shadow-lg transition-colors duration-500 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[48vh] desktop:h-[88vh]"
-            style={{ background: slides[currentIndex].color2, borderColor: slides[currentIndex].color4 }}>
-          <div className="flex h-[90%] transition-transform duration-500 w-full"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-            {slides.map((slide, index) => (
-              <div className="w-full flex-shrink-0 box-border flex" key={index}>
-                <div className="w-[60%] mt-[2rem] mb-[2.5rem] flex flex-col justify-center">
-                  {/* Title */}
-                  <div className="h-[5rem] mb-[3rem] ml-[2rem] left-0 flex break-words items-center justify-center rounded font-bold">
-                    <span
-                      style={{
-                        textShadow: `
-                          0 0 0 ${slide.color1}, 
-                          1px 1px 0 ${slide.color1}, 
-                          -1px -1px 0 ${slide.color1}, 
-                          1px -1px 0 ${slide.color1}, 
-                          -1px 1px 0 ${slide.color1},
-                          2px 2px 0 ${slide.color1},
-                          -2px -2px 0 ${slide.color1},
-                          2px -2px 0 ${slide.color1},
-                          -2px 2px 0 ${slide.color1},
-                          3px 3px 0 ${slide.color1},
-                          -3px -3px 0 ${slide.color1},
-                          3px -3px 0 ${slide.color1},
-                          -3px 3px 0 ${slide.color1},
-                          3px 3px 2px rgba(0,0,0,0.3)
-                        `,
-                        pointerEvents: 'none',
-                        zIndex: -1,
-                      }}
-                      className="font-airstrike text-white mt-[3rem] font-italic text-left w-full inline-block ipad:text-[4.5vw] ipad:leading-[3rem] desktop:text-[5vw] desktop:leading-[4.5rem]"
-                    >
-                      {slide.header}
-                    </span>
-                  </div>
-                  
-                  <div className="ml-[1rem] text-gray font-fredoka p-5 rounded mb-[4rem] w-full">
-                    {/* Content */}
-                    <div className="text-gray-800 mb-2 ipad:text-[12px] ipad:leading-[1rem] desktop:text-[1rem] desktop:leading-[1.5rem]">
-                      {slide.content}
-                    </div>
-                    {/* Location and time */}
-                    <div className="flex">
-                      <div className="flex items-center w-[50%]">
-                        <img
-                          src={ slide.locationIcon }
-                        />
+        <div
+          className="flex-col drop-shadow-lg transition-colors duration-500 ease-in items-center w-full overflow-hidden rounded-2xl border-8 relative min-h-[550px] ipad:h-[43vh] desktop:h-[88vh]"
+          style={{
+            background: slides[index].color2,
+            borderColor: slides[index].color4,
+          }}
+        >
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={currentIndex}
+              className="absolute w-full h-full flex-shrink-0 box-border flex"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 1, ease: "easeInOut" }}
+            >
+              {slides.map((_, slideIndex) => {
+                const offsetIndex = (slideIndex - index + slides.length) % slides.length;
+                if (offsetIndex > 1 && offsetIndex < slides.length - 1) {
+                  return null;
+                }
+                return (
+                  <div key={slideIndex} className="w-full flex-shrink-0 box-border flex">
+                    <div className="w-[60%] mt-[2rem] mb-[2.5rem] flex flex-col justify-center">
+                      {/* Title */}
+                      <div className="h-[5rem] mb-[3rem] ml-[2rem] left-0 flex break-words items-center justify-center rounded font-bold">
                         <span
-                          className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
-                          style = {{ color: slide.color1 }}
+                          style={{
+                            textShadow: `
+                              0 0 0 ${slides[getSlideIndex()].color1},
+                              1px 1px 0 ${slides[getSlideIndex()].color1},
+                              -1px -1px 0 ${slides[getSlideIndex()].color1},
+                              1px -1px 0 ${slides[getSlideIndex()].color1},
+                              -1px 1px 0 ${slides[getSlideIndex()].color1},
+                              2px 2px 0 ${slides[getSlideIndex()].color1},
+                              -2px -2px 0 ${slides[getSlideIndex()].color1},
+                              2px -2px 0 ${slides[getSlideIndex()].color1},
+                              -2px 2px 0 ${slides[getSlideIndex()].color1},
+                              3px 3px 0 ${slides[getSlideIndex()].color1},
+                              -3px -3px 0 ${slides[getSlideIndex()].color1},
+                              3px -3px 0 ${slides[getSlideIndex()].color1},
+                              -3px 3px 0 ${slides[getSlideIndex()].color1},
+                              3px 3px 2px rgba(0,0,0,0.3)
+                            `,
+                            pointerEvents: "none",
+                            zIndex: -1,
+                          }}
+                          className="font-airstrike text-white mt-[3rem] font-italic text-left w-full inline-block ipad:text-[4.5vw] ipad:leading-[3rem] desktop:text-[5vw] desktop:leading-[4.5rem]"
                         >
-                          {slide.tempat}
+                          {slides[getSlideIndex()].header}
                         </span>
                       </div>
-                      <div className="flex items-center w-[50%]">
-                        <img
-                          src={ slide.timeIcon }
-                        />
-                        <span
-                          className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]"
-                          style = {{ color: slide.color1 }}
-                        >
-                          {slide.waktu}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="w-[40%] h-[75%] flex items-center justify-center ipad:mt-[10%] desktop:mt-[5%]">
-                  {/* Placeholder for image*/}
-                  <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem]">
-                    <span
-                      className="text-9xl"
-                      style={{ color: slide.color1 }}
-                    >
-                      ?
-                    </span>
+                      <div className="ml-[1rem] text-gray font-fredoka p-5 rounded mb-[4rem] w-full">
+                        {/* Content */}
+                        <div className="text-gray-800 mb-2 ipad:text-[12px] ipad:leading-[1rem] desktop:text-[1rem] desktop:leading-[1.5rem]">
+                          {slides[getSlideIndex()].content}
+                        </div>
+                        {/* Location and time */}
+                        <div className="flex">
+                          <div className="flex items-center w-[50%]">
+                            <img src={slides[getSlideIndex()].locationIcon} alt="Location Icon" />
+                            <span className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]" style={{ color: slides[getSlideIndex()].color1 }}>
+                              {slides[getSlideIndex()].tempat}
+                            </span>
+                          </div>
+                          <div className="flex items-center w-[50%]">
+                            <img src={slides[getSlideIndex()].timeIcon} alt="Time Icon" />
+                            <span className="ml-2 ipad:text-[1rem] desktop:text-[1.5rem]" style={{ color: slides[getSlideIndex()].color1 }}>
+                              {slides[getSlideIndex()].waktu}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="w-[40%] h-[75%] flex items-center justify-center ipad:mt-[10%] desktop:mt-[5%]">
+                      {/* Placeholder for image*/}
+                      <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem]">
+                        <span className="text-9xl" style={{ color: slides[getSlideIndex()].color1 }}>
+                          ?
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex absolute top-[85%] w-full">
+                      <div className="inset-0 p-1 rounded-[0.5rem] mx-[10%] w-[40%] h-[4rem]" style={{ background: slides[getSlideIndex()].color3 }}>
+                        <button
+                          className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
+                          style={{ color: slides[getSlideIndex()].color1, borderColor: slides[getSlideIndex()].color2 }}
+                        >
+                          Daftar sekarang!
+                        </button>
+                      </div>
+                      <div
+                        className="relative transition-colors duration-1000 ease-in text-white font-bold py-2  px-4 rounded-[1.5rem] text-center mx-[2.5%] w-[35%] h-[4rem]"
+                        style={{ background: slides[getSlideIndex()].color1 }}
+                      >
+                        {slides[getSlideIndex()].pemateri1}
+                        <br />
+                        {slides[getSlideIndex()].pemateri2}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex absolute top-[85%] w-full">
-                  <div
-                    className="inset-0 p-1 rounded-[0.5rem] mx-[10%] w-[40%] h-[4rem]"
-                    style = {{ background: slide.color3 }}
-                  >
-                    <button
-                      className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
-                      style={{ color: slide.color1, borderColor: slide.color2 }}
-                    >
-                      Daftar sekarang!
-                    </button>
-                  </div>
-                  <div
-                    className="relative transition-colors duration-1000 ease-in text-white font-bold py-2  px-4 rounded-[1.5rem] text-center mx-[2.5%] w-[35%] h-[4rem]"
-                    style={{ background: slide.color1 }}
-                    >
-                    {slide.pemateri1}
-                    <br />
-                    {slide.pemateri2}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
         </div>
-        
+
         {/* Slider */}
-        <div className="absolute left-1/2 transform rounded-[2rem] -translate-x-1/2 flex bg-dark p-[0.5rem] ipad:bottom-[-6rem] ipad:h-[5%] ipad:w-[20%] desktop:bottom-[-4rem] desktop:h-[5%] desktop:w-[14%]">
-          {slides.map((_, index) => (
+        <div className="absolute left-1/2 transform rounded-[2rem] -translate-x-1/2 flex bg-dark p-[0.5rem] ipad:bottom-[-4rem] ipad:h-[5%] ipad:w-[20%] desktop:bottom-[-4rem] desktop:h-[5%] desktop:w-[14%]">
+          {slides.map((_, idx) => (
             <div
-              key={index}
+              key={idx}
               className={`w-3 h-3 m-auto rounded-full cursor-pointer transition-all duration-500 ${
-                currentIndex === index ? 'bg-orange-purple-2 transform scale-125' : 'bg-white'
+                index === idx ? "bg-orange-purple-2 transform scale-125" : "bg-white"
               }`}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => setCurrentIndex([idx, idx > currentIndex ? 1 : -1])}
             ></div>
           ))}
         </div>
         {/* Left and right button */}
-        <button
-          className="left-[-3rem] absolute top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 cursor-pointer"
-          onClick={goToPrevious}
-        >
-          <img src={left} alt="Previous"/>
+        <button className="left-[-3rem] absolute top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 cursor-pointer" onClick={prevSlide}>
+          <img src={left} alt="Previous" />
         </button>
-        <button
-          className="right-[-3rem] absolute top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 cursor-pointer"
-          onClick={goToNext}
-        >
-          <img src={right} alt="Next"/>
+        <button className="right-[-3rem] absolute top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 cursor-pointer" onClick={nextSlide}>
+          <img src={right} alt="Next" />
         </button>
       </div>
 
       {/* For mobile */}
-      <div className="relative items-center hidden mobile:block ipad:hidden desktop:hidden">
-          {mobileContent}
-      </div>
+      <div className="relative items-center hidden mobile:block ipad:hidden desktop:hidden">{mobileContent}</div>
     </div>
   );
 };

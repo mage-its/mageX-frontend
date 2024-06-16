@@ -4,7 +4,7 @@ import pcbRight from "../assets/workshop/pcb/right.svg";
 
 const PCBBg: React.FC = () => {
   return (
-    <div className="relative mt-12">
+    <div className="relative mt-8">
       <div className="absolute inset-0 -z-10 w-full">
         <img 
             src={pcbLeft}
