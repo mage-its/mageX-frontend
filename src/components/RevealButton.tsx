@@ -42,13 +42,14 @@ export function RevealButton({
       <motion.div
         ref={buttonRef}
         className={cn(
-          "h-14 rounded-full flex items-center justify-center",
+          "sm:h-14 h-9 rounded-full flex items-center justify-center px-5 overflow-hidden",
           bgcolor[color]
         )}
         variants={{
           reveal: {
-            width: 150,
-            marginRight: 0,
+            maxWidth: 200,
+            // marginRight: 0,
+            padding: "0 20px",
             transition: {
               duration: 0.5,
               ease: "easeInOut",
@@ -56,8 +57,9 @@ export function RevealButton({
             },
           },
           close: {
-            width: 0,
-            marginRight: -15,
+            maxWidth: 0,
+            // marginRight: -15,
+            padding: "0",
             transition: {
               duration: 0.1,
               ease: "easeInOut",
@@ -69,10 +71,9 @@ export function RevealButton({
       >
         <motion.p
           ref={buttonRef}
-          className="font-fredoka text-light font-medium text-[16px]"
+          className="font-fredoka text-light font-medium sm:text-base text-[10px]"
           variants={{
             reveal: {
-              display: "block",
               opacity: 1,
               transition: {
                 duration: 0.5,
@@ -81,7 +82,6 @@ export function RevealButton({
               },
             },
             close: {
-              display: "none",
               opacity: 0,
               transition: {
                 duration: 0.1,
@@ -98,13 +98,13 @@ export function RevealButton({
       <motion.div
         ref={buttonRef}
         className={cn(
-          "w-14 h-14 rounded-full flex items-center justify-center",
+          "sm:w-14 sm:h-14 w-9 h-9 rounded-full flex items-center justify-center",
           bgcolor[color]
         )}
         variants={{
           reveal: {
-            x: 30,
-            marginLeft: 0,
+            x: 15,
+            // marginLeft: 0,
             transition: {
               duration: 0.5,
               ease: "easeInOut",
@@ -113,7 +113,7 @@ export function RevealButton({
           },
           close: {
             x: 0,
-            marginLeft: -15,
+            // marginLeft: -15,
             transition: {
               duration: 0.1,
               ease: "easeInOut",
@@ -147,7 +147,7 @@ export function RevealButton({
           initial="close"
           animate={buttonControls}
         >
-          <Icon className="text-light w-[30px] h-[30px]" />
+          <Icon className="text-light sm:text-3xl text-lg" />
         </motion.div>
       </motion.div>
     </div>

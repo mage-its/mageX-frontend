@@ -23,7 +23,9 @@ export function JustifyPuzzle({
     <motion.img
       ref={ref}
       onHoverStart={() => mainControls.start("gray")}
+      onTouchStart={() => mainControls.start("gray")}
       onHoverEnd={() => mainControls.start("colorNoDelay")}
+      onTouchEnd={() => mainControls.start("colorNoDelay")}
       variants={{
         init: { rotate: rotate, x: x, y: y, filter: "grayscale(100%)" },
         gray: { filter: "grayscale(100%)" },
