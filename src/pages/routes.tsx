@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import Home from "./Home";
 import Workshop from "./Workshop";
+import Competition from "./Competition";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         path: 'workshop',
         element: <Workshop />,
       },
+      {
+        path: 'competition',
+        element: <Competition />,
+      }
     ],
   },
 ]);
