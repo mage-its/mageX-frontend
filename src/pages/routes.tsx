@@ -3,6 +3,7 @@ import Root from "./Root";
 import Home from "./Home";
 import Workshop from "./Workshop";
 import Competition from "./Competition";
+import DashboardHome from "./Dashboard-Home"
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <DashboardHome />,
       },
       {
         path: 'workshop',
