@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {           // Custom screen size
+      mobile: '300px',   // sm
+      ipad: '650px',     // md
+      desktop: '1280px', // lg
+    },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
@@ -49,7 +54,11 @@ export default {
         1: "#FF4646",
       },
       dark: "#1E1E1E",
+      gray: {
+        1: "#383838",
+      },
       light: "#FFFFFF",
+      black: "#000000",
     },
     extend: {
       backgroundImage: () => ({
@@ -95,6 +104,10 @@ export default {
           "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
         "blue-purple-orange":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "blue-purple-orange-1":
+          "linear-gradient(90deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
+        "blue-purple-orange-2":
+          "linear-gradient(180deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
       }),
       dropShadow: {
         "glow-white-2": [
@@ -130,5 +143,20 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        // To remove scroll bar
+        ".no-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };
