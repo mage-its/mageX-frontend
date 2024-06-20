@@ -369,11 +369,11 @@ const About: React.FC = () =>{
               {"desktop:w-[200px]": x?.title=="UIUX"},
               {"desktop:w-[335px]":x?.title == "COMPETITIVE PROGRAMMING"}
               )}>
-              <motion.img
+              <img
                 src={x?.icon}
                 alt="homeicon"
                 className="drop-shadow-glow-white-1">
-              </motion.img>
+              </img>
             </div>
 
             <div className="relative desktop:h-fit desktop:w-[480px] desktop:my-[12px] mobile:mt-[40px] mobile:w-[300px] ipad:mt-[80px]">
