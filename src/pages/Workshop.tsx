@@ -45,6 +45,7 @@ const Workshop: React.FC = () => {
           <WorkshopFooter />
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

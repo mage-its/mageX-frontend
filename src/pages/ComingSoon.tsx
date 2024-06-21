@@ -117,7 +117,7 @@ export default function ComingSoon() {
         options={options}
       />
       <div className="relative z-20">
-        <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1/2 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
+        <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
           <p
             className="font-fredoka font-light md:text-2xl sm:text-lg text-sm text-light md:tracking-[0.5em] tracking-[0.4em] text-center select-none"
             style={{ textShadow: "0px 4px rgba(255,255,255,0.5)" }}
@@ -168,7 +168,7 @@ export default function ComingSoon() {
           </a>
         </div>
       </div>
-      <div className="absolute md:top-[555px] top-[500px] left-[50%] -translate-x-1/2 rounded-[50%] md:h-[1840px] h-[700px] md:w-[2630px] w-[1000px] bg-vertical-gta z-10 drop-shadow-[0_0_45px_#E14CB3]" />
+      <div className="absolute md:top-[555px] top-[500px] left-[50%] -translate-x-1/2 rounded-[50%] md:h-[1840px] h-[700px] md:w-[2630px] w-[1000px] bg-blue-purple-orange z-10 drop-shadow-[0_0_45px_#E14CB3]" />
     </main>
   );
 }

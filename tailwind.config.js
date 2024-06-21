@@ -14,6 +14,12 @@ export default {
     },
     colors: {
       transparent: "transparent",
+      black: "#000",
+      gray: {
+        1: "#141414",
+        2: "#3E3E3E",
+        3: "#AFAFAF",
+      },
       white: "#ffffff",
       mage: {
         orange: "#FF9437",
@@ -54,15 +60,18 @@ export default {
       },
       red: {
         1: "#FF4646",
+        2: "#FF4F4F",
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
       gray: "#828282"
     },
     extend: {
-      backgroundImage: () => ({
+      backgroundImage: {
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "vertical-gta-reverse":
+          "linear-gradient(270deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "horizontal-gta":
           "linear-gradient(180deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "transparent-white-1/2":
@@ -71,24 +80,20 @@ export default {
           "linear-gradient(rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%)",
         "transparent-white-2":
           "linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 75%)",
-        "grayscale":
-          "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
-        "purple-grad-1":
-          "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
-        "purple-grad-2":
-          "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
-        "purple-grad-3":
-          "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
+        grayscale: "linear-gradient(#1E1E1E 0%, #9E9E9E 100%)",
+        "purple-gradient":
+          "linear-gradient(180deg, #483187 0%, #6F56B4 50%, #A38EDB 100%)",
+        "purple-grad-1": "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
+        "purple-grad-2": "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
+        "purple-grad-3": "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
         "purple-white":
           "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
         "purple-orange":
           "linear-gradient(180deg, #4F0430 -2.08%, #E553A8 5.84%, #F77F5A 19.04%, #F77F5A 61.28%, #E553A8 103.52%)",
         "orange-white":
           "linear-gradient(#FB8A4A 0%, #FFC290 50%, #FFE1CA 100%)",
-        "brown-grad":
-          "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
-        "orange-grad":
-          "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
+        "brown-grad": "linear-gradient(180deg, #FFC291 0%, #D79273 100%)",
+        "orange-grad": "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
         "orange-grad-2":
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
@@ -107,7 +112,7 @@ export default {
           "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
         "blue-purple-orange":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
-      }),
+      },
       dropShadow: {
         "glow-white-2": [
           "0 0px 20px rgba(255,255, 255, 1)",
@@ -123,22 +128,22 @@ export default {
       },
       keyframes: {
         rotate: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' }
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
         },
         slideIn: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0)' }
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
         },
         slideOut: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(100%)' }
-        }
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
-        rotate: 'rotate 1s linear',
-        slideIn: 'slideIn 0.5s forwards',
-        slideOut: 'slideOut 0.5s forwards'
+        rotate: "rotate 1s linear",
+        slideIn: "slideIn 0.5s forwards",
+        slideOut: "slideOut 0.5s forwards",
       },
     },
   },
