@@ -1,16 +1,17 @@
-import React from 'react';
-import Navbar from '../components/Navbar.tsx';
-import WorkshopText from '@/components/WorkshopText.tsx';
-import GuideAndRegistButtons from '@/components/GuideAndRegistButtons.tsx';
-import PCBBg from '@/components/PCBBg.tsx';
-import PuzzleBg1 from '@/components/PuzzleBg1.tsx';
-import PuzzleBg2 from '@/components/PuzzleBg2.tsx';
-import InformationText from '@/components/InformationText.tsx';
-import WorkshopSlide from '@/components/WorkshopSlide.tsx';
-import WorkshopFooter from '@/components/Footer.tsx';
-import workshopLogo from '../assets/workshop/workshopLogo.svg'
-import pz_top_l from '../assets/workshop/puzzle-top/top-left.svg' 
-import pz_top_r from '../assets/workshop/puzzle-top/top-right.svg'
+import React from "react";
+import Navbar from "../components/Navbar.tsx";
+import WorkshopText from "@/components/WorkshopText.tsx";
+import GuideAndRegistButtons from "@/components/GuideAndRegistButtons.tsx";
+import PCBBg from "@/components/PCBBg.tsx";
+import PuzzleBg1 from "@/components/PuzzleBg1.tsx";
+import PuzzleBg2 from "@/components/PuzzleBg2.tsx";
+import InformationText from "@/components/InformationText.tsx";
+import WorkshopSlide from "@/components/WorkshopSlide.tsx";
+import WorkshopFooter from "@/components/Footer.tsx";
+import workshopLogo from "../assets/workshop/workshopLogo.svg";
+import pz_top_l from "../assets/workshop/puzzle-top/top-left.svg";
+import pz_top_r from "../assets/workshop/puzzle-top/top-right.svg";
+import Footer from "@/components/Footer.tsx";
 
 const Workshop: React.FC = () => {
   return (
@@ -27,9 +28,14 @@ const Workshop: React.FC = () => {
         <Navbar />
         <PCBBg />
         <WorkshopText />
-        <img src={workshopLogo} className="mx-auto select-none mobile:mt-[-2rem] mobile:scale-[0.5] ipad:mt-[0rem] ipad:scale-[0.75] desktop:mt-[1rem] desktop:scale-[1]"/>
+        <img
+          src={workshopLogo}
+          className="mx-auto select-none mobile:mt-[-2rem] mobile:scale-[0.5] ipad:mt-[0rem] ipad:scale-[0.75] desktop:mt-[1rem] desktop:scale-[1]"
+        />
         <p className="text-center font-fredoka text-orange-primary-5 mx-auto select-none mobile:text-[0.6rem] mobile:w-[70%] mobile:mt-[-2.5rem] ipad:text-[0.8rem] ipad:w-[35%] ipad:mt-[0rem] desktop:text-[1rem] desktop:w-[40%] desktop:mt-[1rem]">
-          MAGE mengadakan workshop di bidang multimedia, IoT, dan robotik. Kegiatan ini dipandu oleh ahli untuk melatih keterampilan serta untuk mempromosikan penjurusan Teknik Komputer ITS.
+          MAGE mengadakan workshop di bidang multimedia, IoT, dan robotik.
+          Kegiatan ini dipandu oleh ahli untuk melatih keterampilan serta untuk
+          mempromosikan penjurusan Teknik Komputer ITS.
         </p>
         <GuideAndRegistButtons />
         <PuzzleBg1 />
@@ -48,6 +54,6 @@ const Workshop: React.FC = () => {
       <Footer />
     </main>
   );
-}
+};
 
 export default Workshop;
