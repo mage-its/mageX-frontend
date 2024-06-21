@@ -6,7 +6,6 @@ import { FaXmark, FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import DottedLine from "@/assets/DottedLine.svg";
 import { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { BiLabel } from "react-icons/bi";
 
 export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps {

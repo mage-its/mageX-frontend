@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import { motion } from "framer-motion";
 
 interface AboutCardProps extends React.ComponentPropsWithRef<"div"> {
   title: string;
