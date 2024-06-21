@@ -1,4 +1,3 @@
-/*
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
 import router from "./pages/routes";
@@ -16,15 +15,5 @@ function App() {
 }
 
 export default App;
-*/
-import Competition from "./pages/Competition";
 
-function App() {
-  return(
-    <>
-       <Competition/>
-    </>
-  );
-}
 
-export default App
