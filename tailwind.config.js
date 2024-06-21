@@ -2,11 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {           // Custom screen size
-      mobile: '300px',   // sm
-      ipad: '650px',     // md
-      desktop: '1280px', // lg
-    },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
@@ -19,6 +14,7 @@ export default {
         1: "#141414",
         2: "#3E3E3E",
         3: "#AFAFAF",
+        4: "#828282",
       },
       white: "#ffffff",
       mage: {
@@ -64,9 +60,14 @@ export default {
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
-      gray: "#828282"
     },
     extend: {
+      screens: {
+        // Custom screen size
+        mobile: "300px", // sm
+        ipad: "650px", // md
+        desktop: "1280px", // lg
+      },
       backgroundImage: {
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
@@ -102,8 +103,7 @@ export default {
           "linear-gradient(169.21deg, #FFFFFF 19.1%, #EFA264 121.73%)",
         "white-purple":
           "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #410327 108.78%)",
-        "skin-grad":
-          "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
+        "skin-grad": "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
           "linear-gradient(181.25deg, #E553A8 -43.94%, #F77F5A 8.83%, #F77F5A 51.94%, #E553A8 99.51%)",
         "orange-purple-2":
