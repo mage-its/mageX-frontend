@@ -1,14 +1,14 @@
-import React from 'react';
-import Navbar from '../components/Navbar.tsx';
-import WorkshopText from '@/components/WorkshopText.tsx';
-import GuideAndRegistButtons from '@/components/GuideAndRegistButtons.tsx';
-import PCBBg from '@/components/PCBBg.tsx';
-import PuzzleBg1 from '@/components/PuzzleBg1.tsx';
-import InformationText from '@/components/InformationText.tsx';
-import WorkshopSlide from '@/components/WorkshopSlide.tsx';
-import WorkshopFooter from '@/components/WorkshopFooter.tsx';
-import x from '../assets/brand/logo.svg';
-import Footer from '@/components/Footer.tsx';
+import React from "react";
+import Navbar from "../components/Navbar.tsx";
+import WorkshopText from "@/components/WorkshopText.tsx";
+import GuideAndRegistButtons from "@/components/GuideAndRegistButtons.tsx";
+import PCBBg from "@/components/PCBBg.tsx";
+import PuzzleBg1 from "@/components/PuzzleBg1.tsx";
+import InformationText from "@/components/InformationText.tsx";
+import WorkshopSlide from "@/components/WorkshopSlide.tsx";
+import WorkshopFooter from "@/components/WorkshopFooter.tsx";
+import x from "../assets/brand/logo.svg";
+import Footer from "@/components/Footer.tsx";
 
 const Workshop: React.FC = () => {
   return (
@@ -31,6 +31,6 @@ const Workshop: React.FC = () => {
       <Footer />
     </main>
   );
-}
+};
 
 export default Workshop;
