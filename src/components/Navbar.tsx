@@ -2,38 +2,37 @@ import logo from "@/assets/brand/logo.svg";
 import cn from "@/utils/cn";
 import { Link } from "react-router-dom";
 import { CgMenuLeft } from "react-icons/cg";
-import { FaXmark, FaChevronDown } from "react-icons/fa6";
+import { FaXmark, FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import DottedLine from "@/assets/DottedLine.svg";
 import { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { BiLabel } from "react-icons/bi";
 
+export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps {
   children: string;
   active?: boolean;
-  theme: string;
+  theme: theme;
 }
 
 interface NavbarProps {
-  theme?: string;
+  theme?: theme;
 }
 
 function NavItem({ children, active = false, theme }: NavItemProps) {
   return (
     <button
-      className={cn(
-        "px-[23px] py-[9px] text-center rounded-[47px]",
-        { "bg-transparent-white-1": active && theme == "black" },
-        { "bg-orange-white": active && theme == "orange" },
-        { "bg-purple-white": active && theme == "purple" }
-      )}
+      className={cn("px-[23px] py-[9px] text-center rounded-[47px]", {
+        "bg-vertical-gta": active,
+      })}
     >
       <p
         className={cn(
           "font-roboto font-light text-[18px] text-light/30",
           { "font-medium": active },
-          { "text-light": active && theme == "black" },
-          { "text-orange-hover-2": active && theme == "orange" },
-          { "text-purple-1": active && theme == "purple" }
+          { "text-light": active },
+          { "text-light": innerWidth <= 640 && theme != "black" },
+          { "font-fredoka": innerWidth <= 640 }
         )}
       >
         {children}
@@ -46,12 +45,14 @@ interface NavCollapsibleItemProps
   extends React.ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
   title?: string;
+  theme: theme;
 }
 
 function NavCollapsibleItem({
   children,
   title = "Competition",
   className,
+  theme,
   // active = false,
 }: NavCollapsibleItemProps) {
   const [active, setActive] = useState(false);
@@ -69,14 +70,20 @@ function NavCollapsibleItem({
       <div
         onClick={handleActive}
         className={cn(
-          "flex justify-center items-center gap-2.5 cursor-pointer transition-all",
-          { "mb-[15px]": active }
+          "flex justify-center mb-[15px] rounded-xl items-center gap-2.5 cursor-pointer transition-all",
+          { "bg-none": theme == "black" },
+          { "bg-light/10": theme != "black" }
         )}
       >
         <NavItem active={false} theme="black">
           {title}
         </NavItem>
-        <FaChevronDown className="text-2xl text-light/30" />
+        <FaChevronDown
+          className={cn("text-2xl text-light/30", { hidden: active })}
+        />
+        <FaChevronUp
+          className={cn("text-2xl text-light/30", { hidden: !active })}
+        />
       </div>
       <motion.div
         initial="collapse"
@@ -92,11 +99,15 @@ function NavCollapsibleItem({
             maxHeight: "0px",
             paddingTop: "0px",
             paddingBottom: "0px",
+            marginBottom: "0px",
             opacity: 0.3,
           },
         }}
         animate={collapseControl}
-        className="bg-gray-2 rounded-xl flex flex-col justify-center items-center gap-[10px] py-[15px] overflow-hidden"
+        className={cn(
+          " bg-light/10 rounded-xl flex flex-col justify-center items-center gap-[10px] py-[15px] overflow-hidden",
+          { "bg-gray-2": theme == "black" }
+        )}
       >
         {children}
       </motion.div>
@@ -120,7 +131,12 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
     }
   };
   return (
-    <nav className="sticky top-0 z-20 rounded-b-[20px] bg-light/10 backdrop-blur-sm ">
+    <nav
+      className={cn(
+        "sticky top-0 z-20 rounded-b-[20px] bg-light/10 backdrop-blur-sm",
+        { "bg-dark/10": theme == "orange" }
+      )}
+    >
       {window.innerWidth > 768 ? (
         <div className="flex justify-between items-center py-3 px-[51px]">
           <img src={logo} className="h-[51px]" alt="logo" />
@@ -141,20 +157,10 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavItem>
             </Link>
           </div>
-          <button
-            className={cn(
-              "px-5 py-2 rounded-2xl",
-              { "bg-vertical-gta": theme == "black" },
-              { "bg-skin-grad": theme == "orange" },
-              { "bg-purple-grad-3": theme == "purple" }
-            )}
-          >
+          <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
             <p
               className={cn(
-                "font-roboto font-medium tracking-wide text-base",
-                { "text-light": theme == "black" },
-                { "text-orange-hover-2": theme == "orange" },
-                { "text-purple-1": theme == "purple" }
+                "font-roboto font-medium tracking-wide text-base text-light"
               )}
             >
               Login
@@ -178,7 +184,13 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
             }}
             animate={sideBarControl}
             initial="hidden"
-            className="fixed bg-black z-20 h-screen top-0 left-0 w-[329px] py-[30px] px-8 mb-6 overflow-auto"
+            className={cn(
+              "fixed z-20 h-screen top-0 left-0 w-[329px] py-[30px] px-8 mb-6 overflow-auto",
+              { "bg-black": theme == "black" },
+              { "bg-[#2E2052]": theme == "purple" },
+              { "bg-[#794626]": theme == "orange" },
+              { "bg-[#812D5E]": theme == "pink" }
+            )}
           >
             <FaXmark
               onClick={handleActive}
@@ -195,10 +207,18 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               className="flex flex-col items-center mb-6 "
               style={{ minHeight: `${window.innerHeight - 260}px` }}
             >
-              <button className="px-[30px] py-2 rounded-full bg-vertical-gta font-roboto font-medium tracking-wide text-base text-light mb-6">
+              <button
+                className={cn(
+                  "px-[30px] py-2 font-fredoka font-light text-[18px] text-light/30 mb-6",
+                  {
+                    "rounded-full bg-vertical-gta font-medium tracking-wide text-base text-light":
+                      theme == "black",
+                  }
+                )}
+              >
                 Home
               </button>
-              <NavCollapsibleItem>
+              <NavCollapsibleItem theme={theme}>
                 <NavItem theme={theme}>App Dev</NavItem>
                 <NavItem theme={theme}>Game Dev</NavItem>
                 <NavItem theme={theme}>IoT</NavItem>
@@ -206,7 +226,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
                 <NavItem theme={theme}>UI/UX</NavItem>
                 <NavItem theme={theme}>Competitive Programing</NavItem>
               </NavCollapsibleItem>
-              <NavCollapsibleItem title="Workshop">
+              <NavCollapsibleItem title="Workshop" theme={theme}>
                 <NavItem theme={theme}>App Dev</NavItem>
                 <NavItem theme={theme}>Game Dev</NavItem>
                 <NavItem theme={theme}>Robotic</NavItem>

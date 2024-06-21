@@ -149,7 +149,7 @@ export default function Home() {
           </linearGradient>
         </defs>
       </svg>
-      <Navbar theme="black" />
+      <Navbar theme="purple" />
 
       {/* start landing section */}
       <div className="bg-gradient-to-r from-dark to-black h-screen text-center relative overflow-clip -mt-[75px]">
@@ -590,7 +590,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-6 lg:gap-28 mb-56 md:mb-80 lg:mb-40 xl:mb-0 w-full">
+          <div className="flex flex-col items-center justify-center gap-6 lg:gap-28 mb-56 sm:mb-80 lg:mb-40 xl:mb-0 w-full">
             <div className="grid lg:flex flex-row lg:justify-between w-full gap-6">
               <div className="relative">
                 <SocialMediaCard
@@ -725,8 +725,8 @@ export default function Home() {
             <p className="font-fredoka text-[8px] sm:text-sm lg:text-xl text-light mb-[21px] sm:mb-[77px]">
               Challenge yourself and compete with the best!
             </p>
-            <button className="flex gap-2 sm:gap-3.5 mx-auto rounded-full py-[5px] sm:py-[13px] px-2 sm:px-5 bg-dark">
-              <p className="font-fredoka text-[8px] lg:text-xl text-light">
+            <button className="flex items-center gap-2 sm:gap-3.5 mx-auto rounded-full py-[5px] sm:py-[13px] px-2 sm:px-5 bg-dark">
+              <p className="font-fredoka text-[8px] sm:text-base lg:text-xl text-light">
                 {" "}
                 Register Now!
               </p>
