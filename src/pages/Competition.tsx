@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
 import { useState } from "react"
 import cn from "@/utils/cn"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, easeInOut } from "framer-motion"
+import { wrap } from "framer-motion"
 
 import Title from "@/components/CompetitionTitle"
 import Navbar from "@/components/Navbar"
@@ -276,7 +276,7 @@ const x = currentContest()
 const existPoint = x?.point === true
 const existExtraBox = x?.extraBox === true
 
-const Home: React.FC = () =>{
+const Home = () =>{
   return (
     <>
       <div className="w-full h-full">
@@ -357,11 +357,11 @@ const Home: React.FC = () =>{
   )
 }
 
-const About: React.FC = () =>{
+const About = () =>{
   return(
     <>
-      <div className="desktop:w-fit desktop:h-[610px] desktop:ml-[180px] desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[22px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto ipad:ml-auto ipad:mx-auto">
-          <div className="desktop:w-fit desktop:h-fit desktop:grid mobile:grid desktop:gap-0 mobile:gap-[25px] desktop:mt-[60px]">
+      <div className="desktop:w-fit desktop:h-[610px] desktop:ml-0 desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[22px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto ipad:ml-auto ipad:mx-auto">
+          <div className="desktop:w-fit desktop:h-fit desktop:grid mobile:grid desktop:gap-0 mobile:gap-[25px] desktop:mt-[110px]">
             <div className={cn(
               "desktop:w-[200px] desktop:h-fit desktop:ml-[30px]",
               "mobile:w-[100px] mobile:h-[57px]",
@@ -412,7 +412,7 @@ const About: React.FC = () =>{
               </div>
             </div>
           </div>
-          <div className="desktop:w-[545px] desktop:h-[382px] ipad:w-[260px] ipad:h-[180px] desktop:mt-[60px] ipad:mt-auto dekstop:mb-0 ipad:mb-auto ipad:mt-0 rounded-[20px] z-10 mobile:hidden desktop:block ipad:block">
+          <div className="desktop:w-[545px] desktop:h-[382px] ipad:w-[260px] ipad:h-[180px] desktop:mt-[110px] ipad:mt-auto dekstop:mb-0 ipad:mb-auto ipad:mt-0 rounded-[20px] z-10 mobile:hidden desktop:block ipad:block">
             <img src={x?.aboutImage}
               alt={x?.title}
               className="w-full h-full rounded-[20px]"></img>
@@ -422,10 +422,10 @@ const About: React.FC = () =>{
   )
 }
 
-const Timeline: React.FC = () =>{
+const Timeline = () =>{
     return(
         <>
-          <div className="grid desktop:w-full ipad:w-[610px] desktop:h-fit mobile:w-fit desktop:gap-0 ipad:gap-0 mobile:gap-[100px] desktop:mr-auto desktop:ml-0 ipad:ml-auto ipad:mr-auto mobile:mr-auto mobile:ml-auto desktop:pl-0 mobile:pl-10 ipad:pl-0">
+          <div className="grid desktop:w-fit ipad:w-[610px] desktop:h-fit mobile:w-fit desktop:gap-0 ipad:gap-0 mobile:gap-[100px] desktop:mr-auto desktop:ml-auto ipad:ml-auto ipad:mr-auto mobile:mr-auto mobile:ml-auto desktop:pl-0 mobile:pl-10 ipad:pl-0">
             <div className="w-fit mt-4 desktop:ml-0 desktop:mr-0 mobile:ml-auto mobile:mr-auto ipad:ml-0">
               <Timebox 
                 date={x?.timeline[0][0]}
@@ -501,7 +501,7 @@ const Timeline: React.FC = () =>{
                 <img 
                   src={ToLeft}
                   alt="line"
-                  className="desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
+                  className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
                 ></img>
               </div>
             ):(
@@ -512,13 +512,13 @@ const Timeline: React.FC = () =>{
     )
 }
 
-const Overview: React.FC = () =>{
+const Overview = () =>{
   const isOrange = x?.theme === "orange"
 
     return(
         <>
         <div className={cn(
-          "relative desktop:w-fit desktop:h-fit mobile:w-[300px] ipad:w-fit ipad:h-fit mobile:h-fit border-[3px] rounded-[30px] mx-auto desktop:mt-0 desktop:ml-[80px] desktop:mb-0 mobile:mb-10",
+          "z-10 relative desktop:w-fit desktop:h-fit mobile:w-[300px] ipad:w-fit ipad:h-fit mobile:h-fit border-[3px] rounded-[30px] mx-auto desktop:mt-0 desktop:ml-0 desktop:my-0 desktop:mb-0 mobile:mb-10",
           {"bg-skin-grad border-[#FD874E]": x?.theme == "orange"},
           {"bg-[#493187] border-[#C8BDE6]": x?.theme == "purple"}
           )}>
@@ -766,45 +766,60 @@ const Overview: React.FC = () =>{
     )
 }
 
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  }
+};
+
 export default function Competition(){
-  const pages: React.FC[] = [About,Timeline,Overview]
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const pages = [
+    <About key='1'/>,
+    <Timeline key='2'/>,
+    <Overview key='3'/>
+  ]
+  const [[page, direction], setPage] = useState([0, 0]);
   const isOrange = x?.theme === "orange"
-  const slideWidth = 125
+  const pageIndex = wrap(0, pages.length, page)
+
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
 
   const prevPage = () => {
-    const newIndex = currentIndex + slideWidth
-    setCurrentIndex(newIndex)
+    paginate(-1)
   }
 
   const nextPage = () => {
-    const newIndex = currentIndex - slideWidth
-    setCurrentIndex(newIndex)
+    paginate(1)
   }
 
   const aboutShortcut = () => {
-    setCurrentIndex(0)
+    paginate(-page)
   }
 
   const timelineShortcut = () => {
-    setCurrentIndex(-slideWidth*1)
+    paginate(-page+1)
   }
 
   const overviewShortcut = () => {
-    setCurrentIndex(-slideWidth*2)
+    paginate(-page+2)
   }
-
-  useEffect(() => {
-    if (currentIndex == -slideWidth*3){
-      setCurrentIndex(0)
-    }
-  },[currentIndex])
-
-  useEffect(() => {
-    if (currentIndex == slideWidth){
-      setCurrentIndex(-slideWidth*2)
-    }
-  },[currentIndex])
 
   return(
     <>
@@ -816,24 +831,31 @@ export default function Competition(){
         <Navbar theme={x?.theme}/>
         <Home/>
 
-        <AnimatePresence>
-          <motion.div 
-            className="w-full h-full z-10 mt-[200px] desktop:flex desktop:flex-nowrap desktop:gap-[760px] mobile:grid mobile:gap-[130px] "
-            initial={{x: 0}}
-            animate={{x:`${currentIndex}%` }}
-            transition={{
-              type: "tween",
-              duration: 0.5, 
-              ease: "easeOut"
-            }}>
-              {React.createElement(pages[0])}
-              {React.createElement(pages[1])}
-              {React.createElement(pages[2])}
-          </motion.div>
-        </AnimatePresence>
+        {window.innerWidth >= 768 ? (
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={page}
+              className="w-fit h-[690px] z-10 mt-[200px] ipad:mx-auto desktop:mx-auto"
+              initial="enter"
+              animate="center"
+              exit="exit"
+              custom={direction}
+              variants={variants}
+              transition={{ type:"tween",ease: easeInOut, stiffness:300, damping:30}}
+              >
+                {pages[pageIndex]}
+            </motion.div>
+          </AnimatePresence>
+        ):(
+          <div className="mobile:mt-[200px] mobile:grid mobile:gap-[130px] mobile:mx-auto">
+            <About/>
+            <Timeline/>
+            <Overview/>
+          </div>
+        )}
 
         {isOrange?(
-              <div className="desktop:block mobile:hidden">
+              <div className="desktop:block ipad:block mobile:hidden">
                 <img 
                   src={NextArrow}
                   alt="Next Page"
@@ -846,7 +868,7 @@ export default function Competition(){
                   onClick={prevPage}></img>
               </div>
             ):(
-            <div className="desktop:block mobile:hidden">
+            <div className="desktop:block ipad:block mobile:hidden">
               <img 
                 src={NextArrow2}
                 alt="Next Page"
@@ -861,15 +883,15 @@ export default function Competition(){
             )}
 
         <div className={cn(
-          "z-0 desktop:mt-0 mobile:mt-0 desktop:block mobile:hidden",
-          {"mt-0":x?.theme=="orange"}
+          "relative z-0 desktop:mt-0 mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
+          {"desktop:mt-0 ipad:block ipad:mt-0":x?.theme=="orange"}
           )}>
           <div className={cn(
-            "w-full h-full relative",
+            "w-full h-full relative ipad:block",
             {"z-0" : x?.theme == "orange"},
             {"z-0" : x?.theme == "purple"}
             )}>
-              <div className="desktop:block mobile:hidden">
+              <div className="desktop:block ipad:block mobile:hidden">
                 <Wave theme={x?.theme}></Wave>
               </div>
             <div className={cn(
@@ -877,9 +899,9 @@ export default function Competition(){
               {"desktop:mt-[185px] desktop:mx-auto mobile:mb-[6px] mobile:mr-0":x?.theme=="orange"},
               {"desktop:mt-[245px] desktop:mx-auto mobile:mb-[6px] mobile:mr-0":x?.theme=="purple"},
             )}>
-              <div className="desktop:absolute desktop:bottom-5 desktop:w-full mobile:w-[300px] mx-auto flex justify-between items-center px-[79px]">
+              <div className="desktop:absolute desktop:bottom-5 ipad:absolute ipad:bottom-[30px] desktop:w-full ipad:bottom-5 ipad:w-full mobile:w-[300px] mx-auto flex justify-between items-center px-[79px]">
                 <div className="flex items-center gap-[24px] z-30">
-                  <div className="cursor-not-allowed desktop:block mobile:hidden">
+                  <div className="cursor-not-allowed desktop:block ipad:block mobile:hidden">
                     {isOrange?(
                       <img src={pc2} alt="PC"/>
                     ):(
@@ -890,7 +912,7 @@ export default function Competition(){
                   <div
                     onClick={aboutShortcut}
                     className={cn(
-                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block ipad:block mobile:hidden w-[36px] h-[36px] rounded-full p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -904,7 +926,7 @@ export default function Competition(){
                   <div
                     onClick={timelineShortcut}
                     className={cn(
-                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full px-[4px] py-[10px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block ipad:block mobile:hidden w-[36px] h-[36px] rounded-full px-[4px] py-[10px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -918,7 +940,7 @@ export default function Competition(){
                   <div
                     onClick={overviewShortcut}
                     className={cn(
-                      "desktop:block mobile:hidden w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                      "desktop:block ipad:block mobile:hidden w-[36px] h-[36px] rounded-full bg-orange-primary-5 p-[8px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                       {"bg-orange-primary-5" : x?.theme == "orange"},
                       {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
@@ -930,50 +952,50 @@ export default function Competition(){
                   </div>
                 </div>
 
-                <div className="flex items-center desktop:gap-[24px] mobile:gap-[70px]">
+                <div className="flex items-center desktop:gap-[24px] ipad:gap-[24px] mobile:gap-[70px]">
                   <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300">
                     <a href="mailto:mage.ce.its@gmail.com" target="_blank" rel="noopener noreferrer">
                     {isOrange?(
-                      <img src={mail2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]"alt="Email"/>
+                      <img src={mail2} className="desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:w-[36px] ipad:h-[36px] mobile:w-[24px] mobile:h-[24px]"alt="Email"/>
                     ):(
-                      <img src={purpleMail2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Email"/>
+                      <img src={purpleMail2} className="desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:h-[36px]  mobile:w-[24px] mobile:h-[24px]" alt="Email"/>
                     )}
                     </a>
                   </div>
 
                   <div className={cn(
-                    "desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                    "desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:h-[36px] mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                     {"bg-orange-primary-5" : x?.theme == "orange"},
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                     )}>
                       <a href="https://www.tiktok.com/@magex_its" target="_blank" rel="noopener noreferrer">
                       {isOrange?(
-                        <img src={tiktok} className="desktop:px-[3px] desktop:py-[3px]" alt="TikTok"/>
+                        <img src={tiktok} className="desktop:px-[3px] desktop:py-[3px] ipad:px-[3px] ipad:py-[3px]" alt="TikTok"/>
                       ):(
-                        <img src={purpleTiktok2} className="desktop:px-[3px] desktop:py-[3px]" alt="TikTok"/>
+                        <img src={purpleTiktok2} className="desktop:px-[3px] desktop:py-[3px] ipad:px-[3px] ipad:py-[3px]" alt="TikTok"/>
                       )}
                       </a>
                   </div>
 
                   <div className={cn(
-                    "desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
+                    "desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:h-[36px]  mobile:w-[24px] mobile:h-[24px] rounded-full bg-orange-primary-5 p-[6px] cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px] ease-out duration-300",
                     {"bg-orange-primary-5" : x?.theme == "orange"},
                     {"bg-[#F9E3FD]" : x?.theme == "purple"}
                   )}>
                     <a href="https://www.instagram.com/mage_its" target="_blank" rel="noopener noreferrer">
                     {isOrange?(
-                      <img src={instagram} className="desktop:px-[3px] desktop:py-[3px]" alt="Instagram"/>
+                      <img src={instagram} className="desktop:px-[3px] desktop:py-[3px] ipad:px-[3px] ipad:py-[3px]" alt="Instagram"/>
                     ):(
-                      <img src={purpleInsta2} className="desktop:mx-[3px] desktop:my-[3px]" alt="Instagram"/>
+                      <img src={purpleInsta2} className="desktop:mx-[3px] desktop:my-[3px] ipad:px-[3mx] ipad:my-[3px]" alt="Instagram"/>
                     )}
                     </a>
                   </div>
 
                   <div className="cursor-pointer hover:scale-[1.3] hover:-translate-y-[5px]  ease-out duration-300">
                     {isOrange?(
-                      <img src={scline2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
+                      <img src={scline2} className="desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:h-[36px]  mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
                     ):(
-                      <img src={purpleScLine2} className="desktop:w-[36px] desktop:h-[36px] mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
+                      <img src={purpleScLine2} className="desktop:w-[36px] desktop:h-[36px] ipad:w-[36px] ipad:h-[36px]  mobile:w-[24px] mobile:h-[24px]" alt="Line"/>
                     )}
                   </div>  
                 </div>
