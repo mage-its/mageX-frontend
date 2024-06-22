@@ -361,7 +361,7 @@ const About = () =>{
   return(
     <>
       <div className="desktop:w-fit desktop:h-[610px] desktop:ml-0 desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[22px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto ipad:ml-auto ipad:mx-auto">
-          <div className="desktop:w-fit desktop:h-fit desktop:grid mobile:grid desktop:gap-0 mobile:gap-[25px] desktop:mt-[110px]">
+          <div className="desktop:w-fit desktop:h-fit desktop:grid mobile:grid desktop:gap-0 mobile:gap-[25px] desktop:mt-0">
             <div className={cn(
               "desktop:w-[200px] desktop:h-fit desktop:ml-[30px]",
               "mobile:w-[100px] mobile:h-[57px]",
@@ -412,7 +412,7 @@ const About = () =>{
               </div>
             </div>
           </div>
-          <div className="desktop:w-[545px] desktop:h-[382px] ipad:w-[260px] ipad:h-[180px] desktop:mt-[110px] ipad:mt-auto dekstop:mb-0 ipad:mb-auto ipad:mt-0 rounded-[20px] z-10 mobile:hidden desktop:block ipad:block">
+          <div className="desktop:w-[545px] desktop:h-[382px] ipad:w-[260px] ipad:h-[180px] desktop:mt-0 ipad:mt-auto dekstop:mb-0 ipad:mb-auto ipad:mt-0 rounded-[20px] z-10 mobile:hidden desktop:block ipad:block">
             <img src={x?.aboutImage}
               alt={x?.title}
               className="w-full h-full rounded-[20px]"></img>
@@ -425,8 +425,8 @@ const About = () =>{
 const Timeline = () =>{
     return(
         <>
-          <div className="grid desktop:w-fit ipad:w-[610px] desktop:h-fit mobile:w-fit desktop:gap-0 ipad:gap-0 mobile:gap-[100px] desktop:mr-auto desktop:ml-auto ipad:ml-auto ipad:mr-auto mobile:mr-auto mobile:ml-auto desktop:pl-0 mobile:pl-10 ipad:pl-0">
-            <div className="w-fit mt-4 desktop:ml-0 desktop:mr-0 mobile:ml-auto mobile:mr-auto ipad:ml-0">
+          <div className="grid desktop:w-fit ipad:w-[610px] desktop:h-fit mobile:w-fit desktop:gap-0 ipad:gap-0 mobile:gap-[100px] desktop:mr-auto desktop:ml-auto ipad:ml-auto ipad:mr-auto  mobile:mr-auto mobile:ml-auto desktop:pl-0 mobile:pl-10 ipad:pl-0">
+            <div className="w-fit desktop:ml-0 desktop:mr-0 mobile:ml-auto mobile:mr-auto ipad:ml-0">
               <Timebox 
                 date={x?.timeline[0][0]}
                 event={x?.timeline[0][1]}
@@ -518,7 +518,7 @@ const Overview = () =>{
     return(
         <>
         <div className={cn(
-          "z-10 relative desktop:w-fit desktop:h-fit mobile:w-[300px] ipad:w-fit ipad:h-fit mobile:h-fit border-[3px] rounded-[30px] mx-auto desktop:mt-0 desktop:ml-0 desktop:my-0 desktop:mb-0 mobile:mb-10",
+          "z-10 relative desktop:w-fit desktop:h-fit mobile:w-[300px] ipad:w-fit ipad:h-fit mobile:h-fit border-[3px] rounded-[30px] mx-auto desktop:my-auto mobile:mt-0 ipad:mt-0 desktop:ml-0 mobile:mb-10",
           {"bg-skin-grad border-[#FD874E]": x?.theme == "orange"},
           {"bg-[#493187] border-[#C8BDE6]": x?.theme == "purple"}
           )}>
@@ -835,7 +835,7 @@ export default function Competition(){
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
-              className="w-fit h-[690px] z-10 mt-[200px] ipad:mx-auto desktop:mx-auto"
+              className="w-fit h-[690px] z-10 mt-[200px] ipad:mx-auto desktop:mx-auto pt-[110px]"
               initial="enter"
               animate="center"
               exit="exit"
@@ -859,12 +859,12 @@ export default function Competition(){
                 <img 
                   src={NextArrow}
                   alt="Next Page"
-                  className="absolute top-[1050px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                  className="absolute top-[1150px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
                   onClick={nextPage}></img>
                 <img 
                   src={PrevArrow}
                   alt="Previous Page"
-                  className="absolute top-[1050px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                  className="absolute top-[1150px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
                   onClick={prevPage}></img>
               </div>
             ):(
@@ -872,12 +872,12 @@ export default function Competition(){
               <img 
                 src={NextArrow2}
                 alt="Next Page"
-                className="absolute top-[1050px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                className="absolute top-[1150px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
                 onClick={nextPage}></img>
               <img 
                 src={PrevArrow2}
                 alt="Previous Page"
-                className="absolute top-[1050px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                className="absolute top-[1150px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
                 onClick={prevPage}></img>
             </div>
             )}
