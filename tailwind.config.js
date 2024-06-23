@@ -2,11 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      'mobile': '375px',
-      'ipad': '650px',
-      'desktop': '1280px',
-    },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
@@ -57,6 +52,12 @@ export default {
       light: "#FFFFFF",
     },
     extend: {
+      screens: {
+        // Custom screen size
+        mobile: "300px", // sm
+        ipad: "650px", // md
+        desktop: "1280px", // lg
+      },
       backgroundImage: () => ({
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
