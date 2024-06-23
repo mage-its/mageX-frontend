@@ -24,7 +24,7 @@ const Workshop: React.FC = () => {
           src={pz_top_r}
           className="absolute select-none mobile:mt-[-6rem] mobile:right-[-8.5rem] mobile:scale-[0.5] ipad:mt-[-6rem] ipad:right-[-8.5rem] ipad:scale-[1] desktop:right-[-5rem] desktop:scale-[1.2] desktop:mt-[-7rem]"
         />
-        <Navbar />
+        <Navbar theme="pink" />
         <PCBBg />
         <WorkshopText />
         <img

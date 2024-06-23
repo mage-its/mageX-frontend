@@ -48,6 +48,7 @@ import { competition } from "@/constant/Competition";
 import SocialMediaCard from "@/components/SocialMediaCard";
 import NeonSquare from "@/components/NeonSquare";
 import GallerySlider from "@/components/GallerySlider";
+import { Link } from "react-router-dom";
 
 const RunningText = () => {
   return (
@@ -87,7 +88,15 @@ export default function Home() {
   const dragCompetitionControl = useDragControls();
   const [isCompetitionMore, setIsCompetitionMore] = useState(false);
   const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
-  console.log(competitionCardWidth);
+  const [isFLip, setIsFLip] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const isAboutHandle = () => {
     setIsAbout(!isAbout);
@@ -130,6 +139,19 @@ export default function Home() {
     }
   };
 
+  const handleFLip = (index: number) => {
+    if (isCompetitionMore) {
+      console.log("flip");
+      setIsFLip((prev) => {
+        const newFLip = [...prev];
+        newFLip[index] = !newFLip[index];
+        return newFLip;
+      });
+      competitionCardControl.start(index.toString());
+      console.log(isFLip);
+    }
+  };
+
   const willChange = useWillChange();
 
   return (
@@ -149,7 +171,7 @@ export default function Home() {
           </linearGradient>
         </defs>
       </svg>
-      <Navbar theme="purple" />
+      <Navbar theme="black" />
 
       {/* start landing section */}
       <div className="bg-gradient-to-r from-dark to-black h-screen text-center relative overflow-clip -mt-[75px]">
@@ -435,15 +457,21 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col lg:flex-row flex-wrap justify-center items-center gap-3 sm:gap-[30px] mt-[27px] sm:mt-[56px]">
-            <WorkshopCard title="Multimedia">
-              Master coding skills in many language
-            </WorkshopCard>
-            <WorkshopCard title="Internet of Things (IoT)">
-              Discover IoT and hands-on learning
-            </WorkshopCard>
-            <WorkshopCard title="Robotics">
-              Explore robotics basics for innovation
-            </WorkshopCard>
+            <Link className="w-full" to="/workshop">
+              <WorkshopCard title="Multimedia">
+                Master coding skills in many language
+              </WorkshopCard>
+            </Link>
+            <Link className="w-full" to="/workshop">
+              <WorkshopCard title="Internet of Things (IoT)">
+                Discover IoT and hands-on learning
+              </WorkshopCard>
+            </Link>
+            <Link className="w-full" to="/workshop">
+              <WorkshopCard title="Robotics">
+                Explore robotics basics for innovation
+              </WorkshopCard>
+            </Link>
           </div>
         </div>
         {/* end workshop section */}
@@ -531,10 +559,10 @@ export default function Home() {
                 <div className="w-fit h-fit">
                   <CompetitionCard
                     ref={competitionCardRef}
-                    title={item.title}
-                    description={item.description}
+                    {...item}
+                    onClick={() => handleFLip(index)}
+                    isFlipped={isFLip[index]}
                     theme={index % 2 == 0 ? "orange" : "purple"}
-                    image={item.image}
                     initial="init"
                     variants={{
                       more: {
@@ -557,6 +585,13 @@ export default function Home() {
                         scale: 1.15,
                         rotate: 4 * (index - 3) + "deg",
                         zIndex: -2 * Math.abs(index - 3) + 10,
+                      },
+                      [index]: {
+                        rotateY: isFLip[index] ? 0 : 180,
+                        transition: {
+                          duration: 0.7,
+                          ease: "easeInOut",
+                        },
                       },
                     }}
                     animate={competitionCardControl}
@@ -726,10 +761,12 @@ export default function Home() {
               Challenge yourself and compete with the best!
             </p>
             <button className="flex items-center gap-2 sm:gap-3.5 mx-auto rounded-full py-[5px] sm:py-[13px] px-2 sm:px-5 bg-dark">
-              <p className="font-fredoka text-[8px] sm:text-base lg:text-xl text-light">
-                {" "}
-                Register Now!
-              </p>
+              <Link to="/coming-soon">
+                <p className="font-fredoka text-[8px] sm:text-base lg:text-xl text-light">
+                  {" "}
+                  Register Now!
+                </p>
+              </Link>
               <IoArrowForwardCircleOutline className="text-xs sm:text-3xl text-light" />
             </button>
           </div>

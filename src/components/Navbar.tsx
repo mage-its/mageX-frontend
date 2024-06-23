@@ -8,7 +8,7 @@ import { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 export type theme = "orange" | "purple" | "black" | "pink";
-interface NavItemProps {
+interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
   children: string;
   active?: boolean;
   theme: theme;
@@ -18,7 +18,7 @@ interface NavbarProps {
   theme?: theme;
 }
 
-function NavItem({ children, active = false, theme }: NavItemProps) {
+function NavItem({ children, active = false, theme, className }: NavItemProps) {
   return (
     <button
       className={cn("px-[23px] py-[9px] text-center rounded-[47px]", {
@@ -30,8 +30,9 @@ function NavItem({ children, active = false, theme }: NavItemProps) {
           "font-roboto font-light text-[18px] text-light/30",
           { "font-medium": active },
           { "text-light": active },
-          { "text-light": innerWidth <= 640 && theme != "black" },
-          { "font-fredoka": innerWidth <= 640 }
+          { "text-light": innerWidth <= 768 && theme != "black" },
+          { "font-fredoka": innerWidth <= 768 },
+          className
         )}
       >
         {children}
@@ -55,34 +56,55 @@ function NavCollapsibleItem({
   // active = false,
 }: NavCollapsibleItemProps) {
   const [active, setActive] = useState(false);
-  const handleActive = () => {
-    if (active) {
-      collapseControl.start("collapse");
-    } else {
-      collapseControl.start("active");
+  const handleActiveOnClick = () => {
+    if (innerWidth <= 768) {
+      if (active) {
+        collapseControl.start("collapse");
+      } else {
+        collapseControl.start("active");
+      }
+      setActive(!active);
     }
-    setActive(!active);
+  };
+  const handleActiveHover = () => {
+    if (innerWidth > 768) {
+      if (active) {
+        collapseControl.start("collapse");
+      } else {
+        collapseControl.start("active");
+      }
+      setActive(!active);
+    }
   };
   const collapseControl = useAnimation();
   return (
-    <div className={cn("w-[248px] h-fit", className)}>
+    <div
+      onMouseEnter={handleActiveHover}
+      onMouseLeave={handleActiveHover}
+      className={cn("w-[248px] h-fit relative", className)}
+    >
       <div
-        onClick={handleActive}
+        onClick={handleActiveOnClick}
         className={cn(
-          "flex justify-center mb-[15px] rounded-xl items-center gap-2.5 cursor-pointer transition-all",
+          "flex justify-center rounded-xl items-center gap-2.5 cursor-pointer transition-all",
           { "bg-none": theme == "black" },
-          { "bg-light/10": theme != "black" }
+          { "bg-light/10": theme != "black" && innerWidth <= 768 },
+          { " mb-[15px]": innerWidth <= 768 }
         )}
       >
         <NavItem active={false} theme="black">
           {title}
         </NavItem>
-        <FaChevronDown
-          className={cn("text-2xl text-light/30", { hidden: active })}
-        />
-        <FaChevronUp
-          className={cn("text-2xl text-light/30", { hidden: !active })}
-        />
+        {innerWidth <= 768 && (
+          <div>
+            <FaChevronDown
+              className={cn("text-2xl text-light/30", { hidden: active })}
+            />
+            <FaChevronUp
+              className={cn("text-2xl text-light/30", { hidden: !active })}
+            />
+          </div>
+        )}
       </div>
       <motion.div
         initial="collapse"
@@ -105,7 +127,11 @@ function NavCollapsibleItem({
         animate={collapseControl}
         className={cn(
           " bg-light/10 rounded-xl flex flex-col justify-center items-center gap-[10px] py-[15px] overflow-hidden",
-          { "bg-gray-2": theme == "black" }
+          { "bg-gray-2": theme == "black" || innerWidth > 768 },
+          { "absolute top-[70px]": innerWidth > 768 },
+          { "bg-[#812D5E]": theme == "pink" && innerWidth > 768 },
+          { "bg-[#2E2052]": theme == "purple" && innerWidth > 768 },
+          { "bg-[#794626]": theme == "orange" && innerWidth > 768 }
         )}
       >
         {children}
@@ -116,12 +142,9 @@ function NavCollapsibleItem({
 
 export function Navbar({ theme = "orange" }: NavbarProps) {
   const currentRoute = window.location.pathname.split("/")[1];
-  console.log(currentRoute);
   const [active, setActive] = useState(false);
   const sideBarControl = useAnimation();
-  console.log(active);
   const handleActive = () => {
-    console.log(active);
     setActive(!active);
     if (active) {
       sideBarControl.start("hidden");
@@ -138,39 +161,98 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
     >
       {window.innerWidth > 768 ? (
         <div className="flex justify-between items-center py-3 px-[51px]">
-          <img src={logo} className="h-[51px]" alt="logo" />
+          <a href="/">
+            <img src={logo} className="h-[51px]" alt="logo" />
+          </a>
           <div className="flex gap-5">
             <Link to="/">
               <NavItem active={currentRoute == ""} theme={theme}>
                 Home
               </NavItem>
             </Link>
-            <Link to="/competition">
-              <NavItem active={currentRoute == "competition"} theme={theme}>
-                Competition
-              </NavItem>
-            </Link>
+            <NavCollapsibleItem theme={theme}>
+              <Link to="/competition/robotics">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  App Dev
+                </NavItem>
+              </Link>
+              <Link to="/competition/game-dev">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Game Dev
+                </NavItem>
+              </Link>
+              <Link to="/competition/iot">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  IoT
+                </NavItem>
+              </Link>
+              <Link to="/competition/robotics">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Robotic
+                </NavItem>
+              </Link>
+              <Link to="/competition/ui-ux">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  UI/UX
+                </NavItem>
+              </Link>
+              <Link to="/competition/competitive-programming">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Competitive Programing
+                </NavItem>
+              </Link>
+              <Link to="/competition/esport">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  E-Sport
+                </NavItem>
+              </Link>
+            </NavCollapsibleItem>
             <Link to="/workshop">
               <NavItem active={currentRoute == "workshop"} theme={theme}>
                 Workshop
               </NavItem>
             </Link>
           </div>
-          <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
-            <p
-              className={cn(
-                "font-roboto font-medium tracking-wide text-base text-light"
-              )}
-            >
-              Login
-            </p>
-          </button>
+          <Link to="/coming-soon">
+            <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+              <p
+                className={cn(
+                  "font-roboto font-medium tracking-wide text-base text-light"
+                )}
+              >
+                Login
+              </p>
+            </button>
+          </Link>
         </div>
       ) : (
         <div className="flex items-center p-5 relative">
           <CgMenuLeft onClick={handleActive} className="text-light text-3xl" />
           <div className="w-full flex justify-center">
-            <img src={logo} className="h-[51px] mr-8" alt="logo" />
+            <a href="/">
+              <img src={logo} className="h-[51px] mr-8" alt="logo" />
+            </a>
           </div>
           <motion.div
             variants={{
@@ -196,7 +278,9 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               className="text-light text-3xl mx-auto mb-3"
             />
             <div className="flex justify-center items-center gap-2.5">
-              <img src={logo} className="h-[51px]" alt="logo" />
+              <a href="/">
+                <img src={logo} className="h-[51px]" alt="logo" />
+              </a>
               <h1 className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-[40px] pr-2">
                 MAGE X
               </h1>
@@ -206,35 +290,98 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               className="flex flex-col items-center mb-6 "
               style={{ minHeight: `${window.innerHeight - 260}px` }}
             >
-              <button
-                className={cn(
-                  "px-[30px] py-2 font-fredoka font-light text-[18px] text-light/30 mb-6",
-                  {
-                    "rounded-full bg-vertical-gta font-medium tracking-wide text-base text-light":
-                      theme == "black",
-                  }
-                )}
-              >
-                Home
-              </button>
+              <Link to="/">
+                <button
+                  className={cn(
+                    "px-[30px] py-2 font-fredoka font-light text-[18px] text-light/30 mb-6",
+                    {
+                      "rounded-full bg-vertical-gta font-medium tracking-wide text-base text-light":
+                        theme == "black",
+                    }
+                  )}
+                >
+                  Home
+                </button>
+              </Link>
               <NavCollapsibleItem theme={theme}>
-                <NavItem theme={theme}>App Dev</NavItem>
-                <NavItem theme={theme}>Game Dev</NavItem>
-                <NavItem theme={theme}>IoT</NavItem>
-                <NavItem theme={theme}>Robotic</NavItem>
-                <NavItem theme={theme}>UI/UX</NavItem>
-                <NavItem theme={theme}>Competitive Programing</NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  App Dev
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Game Dev
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  IoT
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Robotic
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  UI/UX
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Competitive Programing
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  E-Sport
+                </NavItem>
               </NavCollapsibleItem>
               <NavCollapsibleItem title="Workshop" theme={theme}>
-                <NavItem theme={theme}>App Dev</NavItem>
-                <NavItem theme={theme}>Game Dev</NavItem>
-                <NavItem theme={theme}>Robotic</NavItem>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    App Dev
+                  </NavItem>
+                </Link>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    Game Dev
+                  </NavItem>
+                </Link>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    Robotic
+                  </NavItem>
+                </Link>
               </NavCollapsibleItem>
             </div>
             <div className="flex gap-[10px] justify-center items-center">
-              <NavItem theme={theme}>Sign Up</NavItem>
+              <Link to="./coming-soon">
+                <NavItem theme={theme}>Sign Up</NavItem>
+              </Link>
               <div className="h-5 w-[2px] bg-light rounded-3xl" />
-              <NavItem theme={theme}>Login</NavItem>
+              <Link to="./coming-soon">
+                <NavItem theme={theme}>Login</NavItem>
+              </Link>
             </div>
           </motion.div>
           <motion.div

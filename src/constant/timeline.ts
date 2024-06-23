@@ -4,11 +4,12 @@ export const timeline = [
     date: "1 Juni 2024",
   },
   {
-    title: "Open Registration - Development Competition (App Dev, Game Dev, dan IoT)",
+    title:
+      "Open Registration - Development Competition (App Dev, Game Dev, dan IoT)",
     date: "16 Juni 2024",
   },
   {
-    title: "JPendaftaran Workshop Multimedia",
+    title: "Pendaftaran Workshop Multimedia",
     date: "1 Juli s.d. 19 Juli 2024",
   },
   {
@@ -37,7 +38,8 @@ export const timeline = [
     date: "1 September 2024 s.d. 20 September 2024",
   },
   {
-    title: "Close Registration - Development Competition (App Dev, Game Dev, dan IoT)",
+    title:
+      "Close Registration - Development Competition (App Dev, Game Dev, dan IoT)",
     date: "14 September 2024",
   },
   {
@@ -49,11 +51,13 @@ export const timeline = [
     date: "21 September 2024",
   },
   {
-    title: "Pengumpulan Video & Realisasi Karya - Development Competition (App Dev, Game Dev, dan IoT)",
+    title:
+      "Pengumpulan Video & Realisasi Karya - Development Competition (App Dev, Game Dev, dan IoT)",
     date: "5 November 2024",
   },
   {
-    title: "Pengumuman Seleksi Tahap II - Development Competition (App Dev, Game Dev, dan IoT)",
+    title:
+      "Pengumuman Seleksi Tahap II - Development Competition (App Dev, Game Dev, dan IoT)",
     date: "8 November 2024",
   },
   {
@@ -68,6 +72,4 @@ export const timeline = [
     title: "Grand Final MAGE X",
     date: "17 November 2024",
   },
-]
-
-  
+];

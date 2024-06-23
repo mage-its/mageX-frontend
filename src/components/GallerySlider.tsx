@@ -62,7 +62,15 @@ export default function GallerySlider() {
           {about.map((_, index) => (
             <motion.div
               className={cn(
-                "sm:h-4 h-2 sm:w-4 w-2 bg-gray-2 rounded-full transition-all duration-300 ease-in-out",
+                "sm:h-4 h-2 rounded-full transition-all duration-300 ease-in-out",
+                {
+                  "bg-gray-2 w-4":
+                    currentSlide != index && window.innerWidth > 640,
+                },
+                {
+                  "bg-gray-2 w-2":
+                    currentSlide != index && window.innerWidth < 640,
+                },
                 {
                   "bg-light w-[180px]":
                     currentSlide == index && window.innerWidth > 640,

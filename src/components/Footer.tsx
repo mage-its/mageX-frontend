@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillPhoneFill } from "react-icons/bs";
+import { motion, useAnimation } from "framer-motion";
 import {
   FaEnvelope,
   FaFax,
@@ -8,11 +9,13 @@ import {
   FaLinkedin,
   FaTiktok,
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 interface FooterItemProps {
   children?: string;
   href?: string;
   icon?: JSX.Element;
+  collapsibleItems?: FooterItemProps[];
 }
 
 interface FooterSectionProps {
@@ -59,21 +62,48 @@ function MapsItem() {
   );
 }
 
-function MenuItem({ children, href, icon }: FooterItemProps) {
+function MenuItem({ children, href, icon, collapsibleItems }: FooterItemProps) {
+  const collapseControl = useAnimation();
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+    collapseControl.start(isCollapsed ? "active" : "collapse");
+  };
   return (
-    <div className="mb-2 flex items-center justify-center md:justify-start text-white opacity-30 font-fredoka font-normal">
+    <div
+      onClick={handleCollapse}
+      className="mb-2 flex flex-col items-center md:items-start justify-center md:justify-start text-white opacity-40 font-fredoka font-normal"
+    >
       {icon && <span className="mr-2">{icon}</span>}
-      {href ? (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-orange-primary-2"
-        >
+      {href && !collapsibleItems ? (
+        <Link to={href} className="hover:text-orange-primary-2">
           {children}
-        </a>
+        </Link>
       ) : (
-        <span>{children}</span>
+        <span className="cursor-pointer">{children}</span>
+      )}
+      {collapsibleItems && (
+        <motion.div
+          initial="collapse"
+          variants={{
+            active: {
+              maxHeight: "500px",
+              marginBottom: "10px",
+              opacity: 1,
+            },
+            collapse: {
+              maxHeight: "0px",
+              marginBottom: "0px",
+              opacity: 0.3,
+            },
+          }}
+          animate={collapseControl}
+          className="mt-2"
+        >
+          {collapsibleItems.map((item, index) => (
+            <MenuItem key={index} {...item} />
+          ))}
+        </motion.div>
       )}
     </div>
   );
@@ -207,7 +237,40 @@ function Contacts() {
 function Footer() {
   const menuItems: FooterItemProps[] = [
     { children: "Home", href: "/" },
-    { children: "Competition", href: "/competition" },
+    {
+      children: "Competition",
+      href: "/competition",
+      collapsibleItems: [
+        {
+          children: "Robotics",
+          href: "/competition/robotics",
+        },
+        {
+          children: "Game Dev",
+          href: "/competition/game-dev",
+        },
+        {
+          children: "IoT",
+          href: "/competition/iot",
+        },
+        {
+          children: "App Dev",
+          href: "/competition/app-dev",
+        },
+        {
+          children: "UI/UX",
+          href: "/competition/ui-ux",
+        },
+        {
+          children: "Competitive Programming",
+          href: "/competition/competitive-programming",
+        },
+        {
+          children: "Esport",
+          href: "/competition/esport",
+        },
+      ],
+    },
     { children: "Workshop", href: "/workshop" },
   ];
 
