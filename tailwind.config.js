@@ -87,6 +87,8 @@ export default {
         "purple-grad-1": "linear-gradient(180deg, #6F56B4 0%, #493187 100%)",
         "purple-grad-2": "linear-gradient(180deg, #6F56B4 0%, #713E79 100%)",
         "purple-grad-3": "linear-gradient(180deg, #6F56B4 0%, #6F56B4 100%)",
+        "purple-grad-4":
+          "linear-gradient(180deg, #16083D -4.01%, #210F53 45.03%, #463477 79.39%, #A38EDB 143.42%)",
         "purple-white":
           "linear-gradient(#483187 0%, #6F56B4 50%, #A38EDB 100%)",
         "purple-orange":
@@ -99,6 +101,8 @@ export default {
           "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "orange-grad-3":
           "linear-gradient(246.26deg, #FF4646 16.72%, #FFE1C9 172.26%)",
+        "orange-grad-4":
+          "linear-gradient(180deg, #FB8A4A -42.77%, #FDA66D 28.61%, #FFE1CA 100%)",
         "white-orange":
           "linear-gradient(169.21deg, #FFFFFF 19.1%, #EFA264 121.73%)",
         "white-purple":
@@ -124,6 +128,28 @@ export default {
           "0 0px 30px rgba(255, 255,255, 0.9)",
           "0 0px 40px rgba(255, 255,255, 0.8)",
           "0 0px 50px rgba(255, 255,255, 0.7)",
+        ],
+        "orange-outline": [
+          "0px 0px 0px rgba(199,97,66,1)",
+          "1px 1px 0px rgba(199,97,66,1)",
+          "1px -1px 0px rgba(199,97,66,1)",
+          "-1px 1px 0px rgba(199,97,66,1)",
+          "1.5px 1.5px 0px rgba(199,97,66,1)",
+          "1.5px -1.5px 0px rgba(199,97,66,1)",
+          "-1px 1px 0px rgba(199,97,66,1)",
+          "-1px -1px 0px rgba(199,97,66,1)",
+          "0px 0px 2px rgba(199,97,66,1)",
+        ],
+        "purple-outline": [
+          "0px 0px 0px rgba(58, 13, 73, 1)",
+          "1px 1px 0px rgba(58, 13, 73, 1)",
+          "1px -1px 0px rgba(58, 13, 73, 1)",
+          "-1px 1px 0px rgba(58, 13, 73, 1)",
+          "1.5px 1.5px 0px rgba(58, 13, 73, 1)",
+          "1.5px -1.5px 0px rgba(58, 13, 73, 1)",
+          "-1px 1px 0px rgba(58, 13, 73, 1)",
+          "-1px -1px 0px rgba(58, 13, 73, 1)",
+          "0px 0px 2px rgba(58, 13, 73, 1)",
         ],
       },
       keyframes: {
