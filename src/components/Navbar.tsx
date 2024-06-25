@@ -1,81 +1,408 @@
-import  logo  from "@/assets/brand/logo.svg";
+import logo from "@/assets/brand/logo.svg";
 import cn from "@/utils/cn";
 import { Link } from "react-router-dom";
+import { CgMenuLeft } from "react-icons/cg";
+import { FaXmark, FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import DottedLine from "@/assets/DottedLine.svg";
+import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
-interface NavItemProps {
+export type theme = "orange" | "purple" | "black" | "pink";
+interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
   children: string;
   active?: boolean;
-  theme: string;
+  theme: theme;
 }
 
 interface NavbarProps {
-  theme?: string;
+  theme?: theme;
 }
 
-function NavItem({ children, active=false, theme }: NavItemProps) {
+function NavItem({ children, active = false, theme, className }: NavItemProps) {
   return (
-    <button className={cn(
-      "px-[23px] py-[9px] text-center rounded-[47px]",
-      { "bg-transparent-white-1" : active && theme == "black" },
-      { "bg-orange-white" : active && theme == "orange" },
-      { "bg-purple-white" : active && theme == "purple" },
-      )}>
-      <p className={cn(
-        "font-roboto font-light text-[18px] text-light/30",
-        { "font-medium": active},
-        { "text-light": active && theme == "black" },
-        { "text-orange-hover-2": active && theme == "orange" },
-        { "text-purple-1": active && theme == "purple" },
-        )}>
+    <button
+      className={cn("px-[23px] py-[9px] text-center rounded-[47px]", {
+        "bg-vertical-gta": active,
+      })}
+    >
+      <p
+        className={cn(
+          "font-roboto font-light text-[18px] text-light/30",
+          { "font-medium": active },
+          { "text-light": active },
+          { "text-light": innerWidth <= 768 && theme != "black" },
+          { "font-fredoka": innerWidth <= 768 },
+          className
+        )}
+      >
         {children}
       </p>
     </button>
   );
 }
 
-export function Navbar({ theme="orange" }: NavbarProps) {
-  const currentRoute = window.location.pathname.split('/')[1];
-  console.log(currentRoute);
-  
+interface NavCollapsibleItemProps
+  extends React.ComponentPropsWithoutRef<"div"> {
+  children: React.ReactNode;
+  title?: string;
+  theme: theme;
+}
+
+function NavCollapsibleItem({
+  children,
+  title = "Competition",
+  className,
+  theme,
+  // active = false,
+}: NavCollapsibleItemProps) {
+  const [active, setActive] = useState(false);
+  const handleActiveOnClick = () => {
+    if (innerWidth <= 768) {
+      if (active) {
+        collapseControl.start("collapse");
+      } else {
+        collapseControl.start("active");
+      }
+      setActive(!active);
+    }
+  };
+  const handleActiveHover = () => {
+    if (innerWidth > 768) {
+      if (active) {
+        collapseControl.start("collapse");
+      } else {
+        collapseControl.start("active");
+      }
+      setActive(!active);
+    }
+  };
+  const collapseControl = useAnimation();
   return (
-    <nav className="sticky top-0 flex justify-between items-center rounded-b-[20px] bg-light/10 py-3 px-[51px]">
-      <img src={logo} className="h-[51px]" alt="logo" />
-      <div className="flex gap-5">
-        <Link to="/">
-          <NavItem active={currentRoute == ''} theme={theme}>
-            Home
-          </NavItem>
-        </Link>
-        <Link to="/app">
-          <NavItem active={currentRoute == 'app_development'} theme={theme}>
-            Competition
-
-          </NavItem>
-        </Link>
-        <Link to="/workshop">
-          <NavItem active={currentRoute == 'workshop'} theme={theme}>
-            Workshop
-
-          </NavItem>
-        </Link>
+    <div
+      onMouseEnter={handleActiveHover}
+      onMouseLeave={handleActiveHover}
+      className={cn("w-[248px] h-fit relative", className)}
+    >
+      <div
+        onClick={handleActiveOnClick}
+        className={cn(
+          "flex justify-center rounded-xl items-center gap-2.5 cursor-pointer transition-all",
+          { "bg-none": theme == "black" },
+          { "bg-light/10": theme != "black" && innerWidth <= 768 },
+          { " mb-[15px]": innerWidth <= 768 }
+        )}
+      >
+        <NavItem active={false} theme="black">
+          {title}
+        </NavItem>
+        {innerWidth <= 768 && (
+          <div>
+            <FaChevronDown
+              className={cn("text-2xl text-light/30", { hidden: active })}
+            />
+            <FaChevronUp
+              className={cn("text-2xl text-light/30", { hidden: !active })}
+            />
+          </div>
+        )}
       </div>
-      <button className={cn(
-          "px-5 py-2 rounded-2xl",
-          {"bg-vertical-gta": theme == "black"},
-          {"bg-skin-grad": theme == "orange"},
-          {"bg-purple-grad-3": theme == "purple"},
-        )}>
-        <p className={cn(
-            "font-roboto font-medium tracking-wide text-[16px]",
-            {"text-light": theme == "black"},
-            {"text-orange-hover-2": theme == "orange"},
-            {"text-purple-1": theme == "purple"},
-          )}>
-          Login
-        </p>
-      </button>
+      <motion.div
+        initial="collapse"
+        variants={{
+          active: {
+            maxHeight: "500px",
+            paddingTop: "15px",
+            paddingBottom: "15px",
+            opacity: 1,
+            marginBottom: "20px",
+          },
+          collapse: {
+            maxHeight: "0px",
+            paddingTop: "0px",
+            paddingBottom: "0px",
+            marginBottom: "0px",
+            opacity: 0.3,
+          },
+        }}
+        animate={collapseControl}
+        className={cn(
+          " bg-light/10 rounded-xl flex flex-col justify-center items-center gap-[10px] py-[15px] overflow-hidden",
+          { "bg-gray-2": theme == "black" || innerWidth > 768 },
+          { "absolute top-[70px]": innerWidth > 768 },
+          { "bg-[#812D5E]": theme == "pink" && innerWidth > 768 },
+          { "bg-[#2E2052]": theme == "purple" && innerWidth > 768 },
+          { "bg-[#794626]": theme == "orange" && innerWidth > 768 }
+        )}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+export function Navbar({ theme = "orange" }: NavbarProps) {
+  const currentRoute = window.location.pathname.split("/")[1];
+  const [active, setActive] = useState(false);
+  const sideBarControl = useAnimation();
+  const handleActive = () => {
+    setActive(!active);
+    if (active) {
+      sideBarControl.start("hidden");
+    } else {
+      sideBarControl.start("appear");
+    }
+  };
+  return (
+    <nav
+      className={cn(
+        "sticky top-0 z-20 rounded-b-[20px] bg-light/10 backdrop-blur-sm",
+        { "bg-dark/10": theme == "orange" }
+      )}
+    >
+      {window.innerWidth > 768 ? (
+        <div className="flex justify-between items-center py-3 px-[51px]">
+          <a href="/">
+            <img src={logo} className="h-[51px]" alt="logo" />
+          </a>
+          <div className="flex gap-5">
+            <Link to="/">
+              <NavItem active={currentRoute == ""} theme={theme}>
+                Home
+              </NavItem>
+            </Link>
+            <NavCollapsibleItem theme={theme}>
+              <Link to="/competition/robotics">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  App Dev
+                </NavItem>
+              </Link>
+              <Link to="/competition/game-dev">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Game Dev
+                </NavItem>
+              </Link>
+              <Link to="/competition/iot">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  IoT
+                </NavItem>
+              </Link>
+              <Link to="/competition/robotics">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Robotic
+                </NavItem>
+              </Link>
+              <Link to="/competition/ui-ux">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  UI/UX
+                </NavItem>
+              </Link>
+              <Link to="/competition/competitive-programming">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Competitive Programing
+                </NavItem>
+              </Link>
+              <Link to="/competition/esport">
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  E-Sport
+                </NavItem>
+              </Link>
+            </NavCollapsibleItem>
+            <Link to="/workshop">
+              <NavItem active={currentRoute == "workshop"} theme={theme}>
+                Workshop
+              </NavItem>
+            </Link>
+          </div>
+          <Link to="/coming-soon">
+            <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+              <p
+                className={cn(
+                  "font-roboto font-medium tracking-wide text-base text-light"
+                )}
+              >
+                Login
+              </p>
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="flex items-center p-5 relative">
+          <CgMenuLeft onClick={handleActive} className="text-light text-3xl" />
+          <div className="w-full flex justify-center">
+            <a href="/">
+              <img src={logo} className="h-[51px] mr-8" alt="logo" />
+            </a>
+          </div>
+          <motion.div
+            variants={{
+              hidden: {
+                left: -329,
+              },
+              appear: {
+                left: 0,
+              },
+            }}
+            animate={sideBarControl}
+            initial="hidden"
+            className={cn(
+              "fixed z-20 h-screen top-0 left-0 w-[329px] py-[30px] px-8 mb-6 overflow-auto",
+              { "bg-black": theme == "black" },
+              { "bg-[#2E2052]": theme == "purple" },
+              { "bg-[#794626]": theme == "orange" },
+              { "bg-[#812D5E]": theme == "pink" }
+            )}
+          >
+            <FaXmark
+              onClick={handleActive}
+              className="text-light text-3xl mx-auto mb-3"
+            />
+            <div className="flex justify-center items-center gap-2.5">
+              <a href="/">
+                <img src={logo} className="h-[51px]" alt="logo" />
+              </a>
+              <h1 className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-[40px] pr-2">
+                MAGE X
+              </h1>
+            </div>
+            <img src={DottedLine} alt={DottedLine} className="mb-6" />
+            <div
+              className="flex flex-col items-center mb-6 "
+              style={{ minHeight: `${window.innerHeight - 260}px` }}
+            >
+              <Link to="/">
+                <button
+                  className={cn(
+                    "px-[30px] py-2 font-fredoka font-light text-[18px] text-light/30 mb-6",
+                    {
+                      "rounded-full bg-vertical-gta font-medium tracking-wide text-base text-light":
+                        theme == "black",
+                    }
+                  )}
+                >
+                  Home
+                </button>
+              </Link>
+              <NavCollapsibleItem theme={theme}>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  App Dev
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Game Dev
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  IoT
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Robotic
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  UI/UX
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  Competitive Programing
+                </NavItem>
+                <NavItem
+                  className="hover:text-orange-primary-2/40"
+                  theme={theme}
+                >
+                  E-Sport
+                </NavItem>
+              </NavCollapsibleItem>
+              <NavCollapsibleItem title="Workshop" theme={theme}>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    App Dev
+                  </NavItem>
+                </Link>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    Game Dev
+                  </NavItem>
+                </Link>
+                <Link to="/workshop">
+                  <NavItem
+                    className="hover:text-orange-primary-2/40"
+                    theme={theme}
+                  >
+                    Robotic
+                  </NavItem>
+                </Link>
+              </NavCollapsibleItem>
+            </div>
+            <div className="flex gap-[10px] justify-center items-center">
+              <Link to="./coming-soon">
+                <NavItem theme={theme}>Sign Up</NavItem>
+              </Link>
+              <div className="h-5 w-[2px] bg-light rounded-3xl" />
+              <Link to="./coming-soon">
+                <NavItem theme={theme}>Login</NavItem>
+              </Link>
+            </div>
+          </motion.div>
+          <motion.div
+            animate={sideBarControl}
+            initial="hidden"
+            variants={{
+              hidden: {
+                opacity: 0,
+                display: "none",
+              },
+              appear: {
+                opacity: 1,
+                display: "block",
+              },
+            }}
+            className="absolute z-10 top-0 left-0 w-screen h-screen bg-black/50 blur-2xl"
+          />
+        </div>
+      )}
     </nav>
-  )
+  );
 }
 
 export default Navbar;
