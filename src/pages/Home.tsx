@@ -457,21 +457,15 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col lg:flex-row flex-wrap justify-center items-center gap-3 sm:gap-[30px] mt-[27px] sm:mt-[56px]">
-            <Link className="w-full" to="/workshop">
-              <WorkshopCard title="Multimedia">
-                Master coding skills in many language
-              </WorkshopCard>
-            </Link>
-            <Link className="w-full" to="/workshop">
-              <WorkshopCard title="Internet of Things (IoT)">
-                Discover IoT and hands-on learning
-              </WorkshopCard>
-            </Link>
-            <Link className="w-full" to="/workshop">
-              <WorkshopCard title="Robotics">
-                Explore robotics basics for innovation
-              </WorkshopCard>
-            </Link>
+            <WorkshopCard title="Multimedia" to="/workshop">
+              Master coding skills in many language
+            </WorkshopCard>
+            <WorkshopCard title="Internet of Things (IoT)">
+              Discover IoT and hands-on learning
+            </WorkshopCard>
+            <WorkshopCard title="Robotics">
+              Explore robotics basics for innovation
+            </WorkshopCard>
           </div>
         </div>
         {/* end workshop section */}
