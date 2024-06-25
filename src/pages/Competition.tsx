@@ -248,26 +248,27 @@ const competitiveProgramming : Contest = {
 }
 
 const currentContest = () =>{
-  const currentRoute = window.location.pathname.split('/')[1];
-    if(currentRoute == "game_development"){
+  const currentRoute = window.location.pathname;
+  console.log(currentRoute)
+    if(currentRoute == "/competition/game-development"){
       return gameDev
     }
-    else if(currentRoute == "app_development"){
+    else if(currentRoute == "/competition/app-development"){
       return appDev
     }
-    else if(currentRoute == "robotic"){
+    else if(currentRoute == "/competition/robotic"){
       return robotic
     }
-    else if(currentRoute == "iot"){
+    else if(currentRoute == "/competition/iot"){
       return iot
     }
-    else if(currentRoute == "esport"){
+    else if(currentRoute == "/competition/esport"){
       return eSport
     }
-    else if(currentRoute == "ui_ux"){
+    else if(currentRoute == "/competition/ui-ux"){
       return uiUx
     }
-    else if(currentRoute == "competitive_programming"){
+    else if(currentRoute == "/competition/competitive-programming"){
       return competitiveProgramming
     }
 }
@@ -279,29 +280,29 @@ const existExtraBox = x?.extraBox === true
 const Home = () =>{
   return (
     <>
-      <div className="w-full h-full">
+      <div className="w-full h-screen">
         <div className="absolute top-[105px] w-full h-[564px]">
           <div className={cn(
-            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-20px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px] ipad:mt-0",
+            "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-45px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px] ipad:mt-0",
             {"w-[520px] h-[534px] ml-[-15px]" : x?.theme == "purple"},
             )}>
               <img
                 src={x?.leftVector}
                 alt="left"
                 className={cn(
-                  "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
+                  "desktop:w-[582px] desktop:h-[480px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
                   {"mix-blend-plus-darker" : x?.theme == "orange"},
                   {"mix-blend-hard-light opacity-1" : x?.theme == "purple"},
                  )}
               ></img>
           </div>
 
-          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-0 desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-220px] mobile:mt-[45px] ipad:mt-0">
+          <div className="absolute top-0 right-0 desktop:w-[582px] desktop:h-[534px] desktop:mr-[-45px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:mr-[-220px] mobile:mt-[45px] ipad:mt-0">
             <img
               src={x?.rightVector}
               alt="Right"
               className={cn(
-                "desktop:w-[582px] desktop:h-[534px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
+                "desktop:w-[582px] desktop:h-[480px] mobile:w-[500px] mobile:h-[200px] ipad:w-[582px] ipad:h-[534px]",
                 {"mix-blend-plus-darker" : x?.theme == "orange"},
                 {"mix-blend-hard-light opacity-1" : x?.theme == "purple"},
               )}>
@@ -310,7 +311,7 @@ const Home = () =>{
         </div>
 
         <div className="w-full h-full">
-          <div className="desktop:mt-[75px] mobile:mt-[108px]">
+          <div className="desktop:mt-[50px] mobile:mt-[108px]">
             <img
               src={x?.icon}
               alt="homeicon"
@@ -769,6 +770,7 @@ const Overview = () =>{
 const variants = {
   enter: (direction: number) => {
     return {
+      zIndex : 1,
       x: direction > 0 ? 1000 : -1000,
       opacity: 0
     };
@@ -780,7 +782,7 @@ const variants = {
   },
   exit: (direction: number) => {
     return {
-      zIndex: 0,
+      zIndex : 1,
       x: direction < 0 ? 1000 : -1000,
       opacity: 0
     };
@@ -829,23 +831,56 @@ export default function Competition(){
         {"bg-purple-grad-4":x?.theme=="purple"}
       )}>
         <Navbar theme={x?.theme}/>
+
         <Home/>
 
         {window.innerWidth >= 768 ? (
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={page}
-              className="w-fit h-[690px] z-10 mt-[200px] ipad:mx-auto desktop:mx-auto pt-[110px]"
-              initial="enter"
-              animate="center"
-              exit="exit"
-              custom={direction}
-              variants={variants}
-              transition={{ type:"tween",ease: easeInOut, stiffness:300, damping:30}}
-              >
-                {pages[pageIndex]}
-            </motion.div>
-          </AnimatePresence>
+          <div className="flex">
+            <div className="my-auto">
+              {isOrange ? (
+                <img 
+                src={PrevArrow}
+                alt="Previous Page"
+                className="mt-1/2 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                onClick={prevPage}></img>
+              ):(
+                <img 
+                src={PrevArrow2}
+                alt="Previous Page"
+                className="mt-1/2 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                onClick={prevPage}></img>
+              )}
+            </div>
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={page}
+                className="w-fit h-[690px] mt-[-60px] ipad:mx-auto desktop:mx-auto pt-[110px]"
+                initial="enter"
+                animate="center"
+                exit="exit"
+                custom={direction}
+                variants={variants}
+                transition={{ type:"tween",ease: easeInOut, stiffness:300, damping:30}}
+                >
+                  {pages[pageIndex]}
+              </motion.div>
+            </AnimatePresence>
+            <div className="my-auto">
+              {isOrange ? (
+                <img 
+                src={NextArrow}
+                alt="Next Page"
+                className="mt-1/2 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                onClick={nextPage}></img>
+              ):(
+                <img 
+                src={NextArrow2}
+                alt="Next Page"
+                className="mt-1/2 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
+                onClick={nextPage}></img>
+              )}
+            </div>
+          </div>
         ):(
           <div className="mobile:mt-[200px] mobile:grid mobile:gap-[130px] mobile:mx-auto">
             <About/>
@@ -854,36 +889,8 @@ export default function Competition(){
           </div>
         )}
 
-        {isOrange?(
-              <div className="desktop:block ipad:block mobile:hidden">
-                <img 
-                  src={NextArrow}
-                  alt="Next Page"
-                  className="absolute top-[1150px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
-                  onClick={nextPage}></img>
-                <img 
-                  src={PrevArrow}
-                  alt="Previous Page"
-                  className="absolute top-[1150px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
-                  onClick={prevPage}></img>
-              </div>
-            ):(
-            <div className="desktop:block ipad:block mobile:hidden">
-              <img 
-                src={NextArrow2}
-                alt="Next Page"
-                className="absolute top-[1150px] right-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
-                onClick={nextPage}></img>
-              <img 
-                src={PrevArrow2}
-                alt="Previous Page"
-                className="absolute top-[1150px] left-0 cursor-pointer hover:scale-[0.6] ease-out duration-200 z-50"
-                onClick={prevPage}></img>
-            </div>
-            )}
-
         <div className={cn(
-          "relative z-0 desktop:mt-0 mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
+          "relative z-0 desktop:mt-[-60px] mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
           {"desktop:mt-0 ipad:block ipad:mt-0":x?.theme=="orange"}
           )}>
           <div className={cn(
