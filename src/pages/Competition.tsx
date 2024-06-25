@@ -1,42 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cn from "@/utils/cn";
 import { motion, AnimatePresence, easeInOut } from "framer-motion";
 import { wrap } from "framer-motion";
 
 import Title from "@/components/CompetitionTitle";
-import Navbar, { theme } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import NextArrow from "@/assets/competition/NextButton.svg";
 import PrevArrow from "@/assets/competition/PrevButton.svg";
 import NextArrow2 from "@/assets/competition/nextArrow2.svg";
 import PrevArrow2 from "@/assets/competition/prevArrow2.svg";
 import Wave from "@/components/Wave";
 import CButton from "@/components/Button";
-import Placeholder from "@/assets/img/picture1.png";
-import Placeholder2 from "@/assets/img/picture2.png";
-
-//HOME & ABOUT ASSET
-import GameDevIcon from "@/assets/competition/gamedev_icon.svg";
-import AppDevIcon from "@/assets/competition/homeicon.svg";
-import RoboticIcon from "@/assets/competition/robotic_icon.svg";
-import IotIcon from "@/assets/competition/iot_icon.svg";
-import EsportIcon from "@/assets/competition/esport_largeIcon.svg";
-import UiUxIcon from "@/assets/competition/ui-ux_icon.svg";
-import CpIcon from "@/assets/competition/cp_icon.svg";
-import OrangeLeftDecor from "@/assets/competition/left.svg";
-import OrangeRightDecor from "@/assets/competition/right.svg";
-import PurpleLeftDecor from "@/assets/competition/purpleLeftVector.svg";
-import PurpleRightDecor from "@/assets/competition/purpleRightVector.svg";
 
 //TIMELINE ASSET
 import Timebox from "@/components/Timebox";
 import ToRight from "@/assets/competition/line2right.svg";
 import ToLeft from "@/assets/competition/line2left.svg";
-import keypad from "@/assets/competition/pad.svg";
-import announce from "@/assets/competition/announce.svg";
-import timepen from "@/assets/competition/bx_pen.svg";
-import techmeet from "@/assets/competition/people.svg";
-import truck from "@/assets/competition/truck.svg";
-import robot from "@/assets/competition/robot.svg";
 
 //OVERVIEW ASSET
 import prizeIconOrange from "@/assets/competition/orangePrizeIcon.svg";
@@ -70,231 +49,29 @@ import purpleMail2 from "@/assets/competition/purpleMail2.svg";
 import purpleTiktok2 from "@/assets/competition/purpleTiktok2.svg";
 import purpleInsta2 from "@/assets/competition/purpleInsta2.svg";
 import purpleScLine2 from "@/assets/competition/purpleSCLine2.svg";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Contest,
+  appDev,
+  competitiveProgramming,
+  eSport,
+  gameDev,
+  iot,
+  robotic,
+  uiUx,
+} from "@/constant/competitionPage";
 
-type Contest = {
-  icon: any;
-  homeCaption: string;
-  title: string;
-  theme: theme;
-  leftVector: any;
-  rightVector: any;
-  aboutCaption: string;
-  aboutImage: any;
-  timeline: any;
-  extraBox?: boolean;
-  overviewDesc: string;
-  overviewImage: any;
-  point?: boolean;
-  participant: string;
-  prize: string;
-};
+interface CompetitionProps {
+  x: Contest;
+  existPoint?: boolean;
+  existExtraBox?: boolean;
+}
 
-const gameDev: Contest = {
-  icon: GameDevIcon,
-  homeCaption: "Expand your creativity, bring us to the other world of yours!",
-  title: "GAME DEVELOPMENT",
-  theme: "orange",
-  leftVector: OrangeLeftDecor,
-  rightVector: OrangeRightDecor,
-  aboutCaption:
-    "Game Competition adalah cabang perlombaan dari event MAGE X  dimana peserta akan berkompetisi dalam pembuatan video game.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 mei - 4 oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 november 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 november 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-  ],
-  extraBox: true,
-  overviewDesc:
-    "Peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Tema dari perlombaan App Dev ini yaitu:",
-  overviewImage: Placeholder2,
-  point: true,
-  participant: "1 - 3 Orang",
-  prize: "5 jt ++ dan e-certif",
-};
-
-const appDev: Contest = {
-  icon: AppDevIcon,
-  homeCaption:
-    "Show off your skill as an application developer, explore widely with us!",
-  title: "APP DEVELOPMENT",
-  theme: "orange",
-  leftVector: OrangeLeftDecor,
-  rightVector: OrangeRightDecor,
-  aboutCaption:
-    "Application Competition adalah cabang dari salah satu perlombaan MAGE X yang dimana peserta akan berlomba-lomba untuk membuat suatu aplikasi. Peserta akan ditantang untuk membuat aplikasi yang memiliki dapat membantu pekerjaan atau bisa menyelesaikan suatu permasalahan yang ada disekitar.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei - 4 Oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 Oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "Pengumuman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
-  ],
-  extraBox: true,
-  overviewDesc:
-    "Pada tahap pertama, peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Untuk tema dari perlombaan IoT adalah:",
-  overviewImage: Placeholder2,
-  point: true,
-  participant: "1 - 3 Orang",
-  prize: "3 jt ++ dan e-certif",
-};
-
-const robotic: Contest = {
-  icon: RoboticIcon,
-  homeCaption:
-    "Show off your robots, we’re calling all the best robots team out there!",
-  title: "ROBOTIK",
-  theme: "orange",
-  leftVector: OrangeLeftDecor,
-  rightVector: OrangeRightDecor,
-  aboutCaption:
-    "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["Final Dan Exhibition", "17 November 2024", robot],
-  ],
-  overviewDesc:
-    "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada. Peserta dinilai dari robot yang dibuat untuk melewati setiap tantangan yang ada serta bisa mengalahkan peserta yang lain. Tujuan dari perlombaan ini yaitu untuk memperkenalkan teknik komputer itu sendiri yang dimana sangat relevan dengan hal robotik dan peserta lomba dapat mengasah skill dari bidang elektrikal, mekanik, dan programming. Perlombaan ini akan dilombakan secara langsung atau offline di Institut Teknologi Sepuluh Nopember.",
-  overviewImage: Placeholder2,
-  participant: "1 - 3 Orang",
-  prize: "3 jt ++ dan e-certif",
-};
-
-const iot: Contest = {
-  icon: IotIcon,
-  homeCaption:
-    "Show off your skill as an application developer, explore widely with us!",
-  title: "INTERNET OF THINGS",
-  theme: "orange",
-  leftVector: OrangeLeftDecor,
-  rightVector: OrangeRightDecor,
-  aboutCaption:
-    "Internet of Things adalah cabang perlombaan dari event MAGE X dimana peserta akan dituntut dalam membuat perangkat berbasis IoT sekreatif mungkin. Dari perlombaan ini, peserta diharapkan bisa membuat perangkat IoT yang memiliki fungsi dalam membantu menyelesaikan suatu permasalahan dan perangkat IoT ini sesuai dengan tema yang diberikan.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei - 4 Oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 Oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
-  ],
-  extraBox: true,
-  overviewDesc:
-    "Pada tahap pertama, peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Untuk tema dari perlombaan IoT adalah:",
-  overviewImage: Placeholder2,
-  point: true,
-  participant: "1 - 3 Orang",
-  prize: "3 jt ++ dan e-certif",
-};
-
-const eSport: Contest = {
-  icon: EsportIcon,
-  homeCaption: "Show off your skill as a gamer, explore widely with us!",
-  title: "E-SPORT COMPETITION",
-  theme: "purple",
-  leftVector: PurpleLeftDecor,
-  rightVector: PurpleRightDecor,
-  aboutCaption:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget vulputate enim. Mauris viverra semper lectus, vel porta ante luctus in. Praesent eget faucibus lectus. ",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei 2024 - 5 November 2024", "PENDAFTARAN", keypad],
-    ["12 November 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
-  ],
-  extraBox: true,
-  overviewDesc:
-    "Perlombaan ini terdiri dari 2 cabang yaitu adalah turnamen game Valorant dan Turnamen game Mobile legend. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Tujuan dari perlombaan ini yaitu menciptakan nilai kompeten dari peserta lomba dan meramaikan acara MAGE X ini.",
-  overviewImage: Placeholder2,
-  participant: "5 Orang/tim",
-  prize: "2 jt++ dan e-certif",
-};
-
-const uiUx: Contest = {
-  icon: UiUxIcon,
-  homeCaption:
-    "Show off your skill as an application developer, explore widely with us!",
-  title: "UIUX",
-  theme: "purple",
-  leftVector: PurpleLeftDecor,
-  rightVector: PurpleRightDecor,
-  aboutCaption:
-    "UI/UX adalah cabang perlombaan dari event MAGE X dimana peserta akan berkompetisi dalam mendesain UI/UX tentang pembuatan aplikasi dan web.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["17 November 2024", "FINAL DAN EXHIBITION", robot],
-  ],
-  overviewDesc:
-    "Pada perlombaan ini, peserta lomba akan dituntut untuk berkompetisi dalam pembuatan desain tentang tampilan web dan aplikasi yang dapat berfungsi dengan baik dan memiliki kemudahan akses dari sudut pengguna serta memiliki desain gambar yang menarik. Kriteria penilaian dari perlombaan ini yaitu dari fungsi, kemudahan akses serta desain gambar yang menarik.",
-  overviewImage: Placeholder2,
-  participant: "5 Orang/tim",
-  prize: "2 jt++ dan e-certif",
-};
-
-const competitiveProgramming: Contest = {
-  icon: CpIcon,
-  homeCaption:
-    "Show off your skill as an application developer, explore widely with us!",
-  title: "COMPETITIVE PROGRAMMING",
-  theme: "purple",
-  leftVector: PurpleLeftDecor,
-  rightVector: PurpleRightDecor,
-  aboutCaption:
-    "Competitive Programming adalah cabang perlombaan dari event MAGE X dimana peserta akan bersaing satu sama lain untuk menyelesaikan soal-soal logika dan pemrograman dalam waktu yang terbatas.",
-  aboutImage: Placeholder,
-  timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["Final Dan Exhibition", "17 November 2024", robot],
-  ],
-  overviewDesc:
-    "Peserta akan ditantang untuk memberikan program serta algoritma terbaik mereka dalam menyelesaikan masalah yang diberikan. Perlombaan ini dilaksanakan secara online sepenuhnya di platform Kaggle yang terdiri  dua babak yaitu penyisihan dan final. Tujuan dilaksanakannya kompetisi ini adalah untuk memperkenalkan bagaimana Departemen Teknik Komputer ITS akan banyak berkutat terkait pemecahan masalah melalui pemrograman.",
-  overviewImage: Placeholder2,
-  participant: "5 Orang/tim",
-  prize: "2 jt++ dan e-certif",
-};
-
-const currentContest = () => {
-  const currentRoute = window.location.pathname;
-  console.log(currentRoute);
-  if (currentRoute == "/competition/game-development") {
-    return gameDev;
-  } else if (currentRoute == "/competition/app-development") {
-    return appDev;
-  } else if (currentRoute == "/competition/robotic") {
-    return robotic;
-  } else if (currentRoute == "/competition/iot") {
-    return iot;
-  } else if (currentRoute == "/competition/esport") {
-    return eSport;
-  } else if (currentRoute == "/competition/ui-ux") {
-    return uiUx;
-  } else if (currentRoute == "/competition/competitive-programming") {
-    return competitiveProgramming;
-  }
-};
-
-const x = currentContest();
-const existPoint = x?.point === true;
-const existExtraBox = x?.extraBox === true;
-
-const Home = () => {
+const Home = ({ x }: CompetitionProps) => {
   return (
     <>
-      <div className="w-full h-screen">
-        <div className="absolute top-[105px] w-full h-[564px]">
+      <div className="w-full h-screen relative">
+        <div className="absolute top-[50%] -translate-y-1/2 w-full h-[564px]">
           <div
             className={cn(
               "absolute top-0 left-0 desktop:w-[582px] desktop:h-[534px] desktop:ml-[-45px] desktop:mt-0 mobile:w-[500px] mobile:h-[200px] mobile:ml-[-220px] mobile:mt-[45px] ipad:mt-0",
@@ -325,8 +102,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="w-full h-full">
-          <div className="desktop:mt-[50px] mobile:mt-[108px]">
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <div className="mt-[-200px] sm:mt-0">
             <img
               src={x?.icon}
               alt="homeicon"
@@ -361,11 +138,23 @@ const Home = () => {
             </div>
 
             <div className="flex mt-[25px] gap-[10px] place-content-center">
+              {x?.guidebook ? (
+                <div className="z-10">
+                  <a href={x?.guidebook} target="_blank">
+                    <CButton theme={x?.theme}>Guide Book</CButton>
+                  </a>
+                </div>
+              ) : (
+                <div className="z-10">
+                  <Link to="/coming-soon">
+                    <CButton theme={x?.theme}>Guide Book</CButton>
+                  </Link>
+                </div>
+              )}
               <div className="z-10">
-                <CButton theme={x?.theme}>Guide Book</CButton>
-              </div>
-              <div className="z-10">
-                <CButton theme={x?.theme}>Log In</CButton>
+                <Link to="/coming-soon">
+                  <CButton theme={x?.theme}>Log In</CButton>
+                </Link>
               </div>
             </div>
           </div>
@@ -375,7 +164,7 @@ const Home = () => {
   );
 };
 
-const About = () => {
+const About = ({ x }: CompetitionProps) => {
   return (
     <>
       <div className="desktop:w-fit desktop:h-[610px] desktop:ml-0 desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[22px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto ipad:ml-auto ipad:mx-auto">
@@ -420,12 +209,23 @@ const About = () => {
             </p>
 
             <div className="mt-[22px] flex gap-[29px]">
+              {x?.guidebook ? (
+                <div className="z-10">
+                  <a href={x?.guidebook} target="_blank">
+                    <CButton theme={x?.theme}>Guide Book</CButton>
+                  </a>
+                </div>
+              ) : (
+                <div className="z-10">
+                  <Link to="/coming-soon">
+                    <CButton theme={x?.theme}>Guide Book</CButton>
+                  </Link>
+                </div>
+              )}
               <div className="z-10">
-                <CButton theme={x?.theme}>Guide Book</CButton>
-              </div>
-
-              <div className="z-10">
-                <CButton theme={x?.theme}>Log In</CButton>
+                <Link to="/coming-soon">
+                  <CButton theme={x?.theme}>Log In</CButton>
+                </Link>
               </div>
             </div>
           </div>
@@ -442,7 +242,7 @@ const About = () => {
   );
 };
 
-const Timeline = () => {
+const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
   return (
     <>
       <div className="grid desktop:w-fit ipad:w-[610px] desktop:h-fit mobile:w-fit desktop:gap-0 ipad:gap-0 mobile:gap-[100px] desktop:mr-auto desktop:ml-auto ipad:ml-auto ipad:mr-auto  mobile:mr-auto mobile:ml-auto desktop:pl-0 mobile:pl-10 ipad:pl-0">
@@ -530,7 +330,7 @@ const Timeline = () => {
   );
 };
 
-const Overview = () => {
+const Overview = ({ x, existPoint }: CompetitionProps) => {
   const isOrange = x?.theme === "orange";
 
   return (
@@ -571,9 +371,11 @@ const Overview = () => {
                   <img src={purpleSUB} className="p-[5px]"></img>
                 )}
               </div>
-              <p className="text-light text-[14px] mt-[4px] font-bold">
-                Daftar disini!
-              </p>
+              <Link to="/coming-soon">
+                <p className="text-light text-[14px] mt-[4px] font-bold">
+                  Daftar disini!
+                </p>
+              </Link>
             </div>
           </div>
         </div>
@@ -861,14 +663,29 @@ const Overview = () => {
                 <div className="desktop:w-[27px] desktop:h-[27px] mobile:w-[14px] mobile:h-[14px] mx-auto my-auto rounded-full bg-[#C8BDE6] hover:bg-light/10 transition-colors ease-in duration-300"></div>
               </div>
             )}
-            <p
-              className={cn(
-                "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
-                { "text-[#3A0D49]": x?.theme == "purple" }
-              )}
-            >
-              GUIDEBOOK
-            </p>
+            {x?.guidebook ? (
+              <a href={x?.guidebook} target="_blank">
+                <p
+                  className={cn(
+                    "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
+                    { "text-[#3A0D49]": x?.theme == "purple" }
+                  )}
+                >
+                  GUIDEBOOK
+                </p>
+              </a>
+            ) : (
+              <Link to="/coming-soon">
+                <p
+                  className={cn(
+                    "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
+                    { "text-[#3A0D49]": x?.theme == "purple" }
+                  )}
+                >
+                  GUIDEBOOK
+                </p>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -899,10 +716,36 @@ const variants = {
 };
 
 export default function Competition() {
-  const pages = [<About key="1" />, <Timeline key="2" />, <Overview key="3" />];
+  const location = useLocation();
+  const currentRoute = location.pathname;
+
+  const competitionPath: { [key: string]: Contest } = {
+    "/competition/ui-ux": uiUx,
+    "/competition/competitive-programming": competitiveProgramming,
+    "/competition/app-development": appDev,
+    "/competition/esport": eSport,
+    "/competition/iot": iot,
+    "/competition/robotic": robotic,
+    "/competition/game-development": gameDev,
+  };
+
+  const x: Contest = competitionPath[currentRoute];
+
+  const existPoint = x?.point === true;
+  const existExtraBox = x?.extraBox === true;
+
+  const pages = [
+    <About x={x} key="1" />,
+    <Timeline x={x} existExtraBox={existExtraBox} key="2" />,
+    <Overview x={x} existPoint={existPoint} key="3" />,
+  ];
   const [[page, direction], setPage] = useState([0, 0]);
   const isOrange = x?.theme === "orange";
   const pageIndex = wrap(0, pages.length, page);
+
+  useEffect(() => {
+    console.log(currentRoute);
+  }, [currentRoute]);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -932,14 +775,13 @@ export default function Competition() {
     <>
       <main
         className={cn(
-          "w-full h-full relative overflow-hidden",
+          "w-full h-full relative overflow-clip",
           { "bg-orange-grad-4": x?.theme == "orange" },
           { "bg-purple-grad-4": x?.theme == "purple" }
         )}
       >
         <Navbar theme={x?.theme} />
-
-        <Home />
+        <Home x={x} />
 
         {window.innerWidth >= 768 ? (
           <div className="flex">
@@ -999,9 +841,9 @@ export default function Competition() {
           </div>
         ) : (
           <div className="mobile:mt-[200px] mobile:grid mobile:gap-[130px] mobile:mx-auto">
-            <About />
-            <Timeline />
-            <Overview />
+            <About x={x} />
+            <Timeline x={x} existExtraBox={existExtraBox} />
+            <Overview x={x} existPoint={existPoint} />
           </div>
         )}
 

@@ -6,6 +6,7 @@ import timeIcon1 from "../assets/workshop/timeIcon1.svg";
 import locationIcon1 from "../assets/workshop/locationIcon1.svg";
 import timeIcon2 from "../assets/workshop/timeIcon2.svg";
 import locationIcon2 from "../assets/workshop/locationIcon2.svg";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -165,17 +166,19 @@ const WorkshopSlide = () => {
                   className="inset-0 p-0.5 rounded-[0.5rem] mx-[10%] w-[30%] h-[2.3rem] flex items-center justify-center"
                   style={{ background: slides[i].color3 }}
                 >
-                  <button
-                    className="bg-light text-center font-bold py-1 px-2 rounded-[0.4rem]"
-                    style={{
-                      color: slides[i].color1,
-                      fontSize: "1vh",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    Daftar sekarang!
-                  </button>
+                  <Link to="/coming-soon">
+                    <button
+                      className="bg-light text-center font-bold py-1 px-2 rounded-[0.4rem]"
+                      style={{
+                        color: slides[i].color1,
+                        fontSize: "1vh",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      Daftar sekarang!
+                    </button>
+                  </Link>
                 </div>
                 <div
                   className="relative transition-colors duration-1000 ease-in text-white font-bold py-1 px-2 rounded-[1.5rem] text-[1vh] text-center mx-[2.5%] w-[45%] h-[2.3rem] flex items-center justify-center"
@@ -314,15 +317,17 @@ const WorkshopSlide = () => {
                         className="inset-0 p-1 rounded-[0.5rem] mx-[10%] w-[40%] h-[4rem]"
                         style={{ background: slides[getSlideIndex()].color3 }}
                       >
-                        <button
-                          className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
-                          style={{
-                            color: slides[getSlideIndex()].color1,
-                            borderColor: slides[getSlideIndex()].color2,
-                          }}
-                        >
-                          Daftar sekarang!
-                        </button>
+                        <Link to="/coming-soon">
+                          <button
+                            className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
+                            style={{
+                              color: slides[getSlideIndex()].color1,
+                              borderColor: slides[getSlideIndex()].color2,
+                            }}
+                          >
+                            Daftar sekarang!
+                          </button>
+                        </Link>
                       </div>
                       <div
                         className="relative transition-colors duration-1000 ease-in text-white font-bold py-2  px-4 rounded-[1.5rem] text-center mx-[2.5%] w-[35%] h-[4rem]"

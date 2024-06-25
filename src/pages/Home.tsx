@@ -44,7 +44,7 @@ import { timeline } from "@/constant/timeline";
 import WorkshopCard from "@/components/WorkshopCard";
 import Footer from "@/components/Footer";
 import CompetitionCard from "@/components/CompetitionCard";
-import { competition } from "@/constant/Competition";
+import { competition } from "@/constant/competitionCard";
 import SocialMediaCard from "@/components/SocialMediaCard";
 import NeonSquare from "@/components/NeonSquare";
 import GallerySlider from "@/components/GallerySlider";
