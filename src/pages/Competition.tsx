@@ -4,7 +4,7 @@ import { motion, AnimatePresence, easeInOut } from "framer-motion";
 import { wrap } from "framer-motion";
 
 import Title from "@/components/CompetitionTitle";
-import Navbar from "@/components/Navbar";
+import Navbar, { theme } from "@/components/Navbar";
 import NextArrow from "@/assets/competition/NextButton.svg";
 import PrevArrow from "@/assets/competition/PrevButton.svg";
 import NextArrow2 from "@/assets/competition/nextArrow2.svg";
@@ -75,7 +75,7 @@ type Contest = {
   icon: any;
   homeCaption: string;
   title: string;
-  theme: string;
+  theme: theme;
   leftVector: any;
   rightVector: any;
   aboutCaption: string;
