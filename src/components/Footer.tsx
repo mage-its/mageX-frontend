@@ -98,7 +98,7 @@ function MenuItem({ children, href, icon, collapsibleItems }: FooterItemProps) {
             },
           }}
           animate={collapseControl}
-          className="mt-2"
+          className="mt-2 overflow-hidden"
         >
           {collapsibleItems.map((item, index) => (
             <MenuItem key={index} {...item} />
@@ -243,11 +243,11 @@ function Footer() {
       collapsibleItems: [
         {
           children: "Robotics",
-          href: "/competition/robotics",
+          href: "/competition/robotic",
         },
         {
           children: "Game Dev",
-          href: "/competition/game-dev",
+          href: "/competition/game-development",
         },
         {
           children: "IoT",
@@ -255,7 +255,7 @@ function Footer() {
         },
         {
           children: "App Dev",
-          href: "/competition/app-dev",
+          href: "/competition/app-development",
         },
         {
           children: "UI/UX",

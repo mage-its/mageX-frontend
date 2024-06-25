@@ -162,24 +162,23 @@ const WorkshopSlide = () => {
               </div>
 
               <div className="flex absolute top-[85%] w-full">
-                <div
+                <Link
+                  to="/coming-soon"
                   className="inset-0 p-0.5 rounded-[0.5rem] mx-[10%] w-[30%] h-[2.3rem] flex items-center justify-center"
                   style={{ background: slides[i].color3 }}
                 >
-                  <Link to="/coming-soon">
-                    <button
-                      className="bg-light text-center font-bold py-1 px-2 rounded-[0.4rem]"
-                      style={{
-                        color: slides[i].color1,
-                        fontSize: "1vh",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      Daftar sekarang!
-                    </button>
-                  </Link>
-                </div>
+                  <button
+                    className="bg-light text-center font-bold py-1 px-2 rounded-[0.4rem]"
+                    style={{
+                      color: slides[i].color1,
+                      fontSize: "1vh",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    Daftar sekarang!
+                  </button>
+                </Link>
                 <div
                   className="relative transition-colors duration-1000 ease-in text-white font-bold py-1 px-2 rounded-[1.5rem] text-[1vh] text-center mx-[2.5%] w-[45%] h-[2.3rem] flex items-center justify-center"
                   style={{ background: slides[i].color1 }}

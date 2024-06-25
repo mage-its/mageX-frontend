@@ -9,6 +9,7 @@ interface CompetitionCardProps extends HTMLMotionProps<"div"> {
   description: string;
   image: string;
   to: string;
+  guidebook?: string;
   isFlipped?: boolean;
   theme?: "orange" | "purple";
 }
@@ -22,6 +23,7 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
       to,
       isFlipped = false,
       theme = "orange",
+      guidebook,
       ...props
     },
     ref
@@ -71,7 +73,7 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
             transition: { duration: 0.7, ease: "easeInOut" },
           }}
         >
-          <Link to="/">
+          <a target="_blank" href={guidebook}>
             <button
               className={cn(
                 "rounded-xl border-4 font-fredoka px-5 py-1 sm:px-10 sm:py-2.5 text-[8px] md:text-base xl:text-xl",
@@ -87,11 +89,11 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
             >
               Guide Book
             </button>
-          </Link>
+          </a>
           <Link to={to}>
             <button
               className={cn(
-                "rounded-xl border-4 font-fredoka px-10 py-2.5 px-5 py-1 sm:px-10 sm:py-2.5 text-[8px] md:text-base xl:text-xl",
+                "rounded-xl border-4 font-fredoka px-5 py-1 sm:px-10 sm:py-2.5 text-[8px] md:text-base xl:text-xl",
                 {
                   "border-orange-primary-5 bg-orange-grad text-orange-primary-5":
                     theme == "orange",

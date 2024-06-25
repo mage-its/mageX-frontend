@@ -60,6 +60,7 @@ import {
   robotic,
   uiUx,
 } from "@/constant/competitionPage";
+import Footer from "@/components/Footer";
 
 interface CompetitionProps {
   x: Contest;
@@ -345,7 +346,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
         <div className="desktop:flex mobile:grid ipad:flex desktop:gap-0 mobile:gap-0 ipad:gap-5">
           <div
             className={cn(
-              "desktop:w-[731px]  mobile:w-[268px] desktop:h-[55px] mobile:h-[105px] desktop:p-0 mobile:p-1 mt-[25px] desktop:ml-[28px] mobile:ml-[14px] rounded-[20px] text-center",
+              "desktop:w-[731px]  mobile:w-[268px] desktop:h-[55px] mobile:h-[105px] desktop:p-0 mobile:p-1 mt-[25px] desktop:ml-[28px] mobile:ml-[14px] rounded-[20px] text-center flex items-center justify-center",
               {
                 "bg-gradient-to-b from-[#FFA567] to-[#F1798A]":
                   x?.theme == "orange",
@@ -584,23 +585,19 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                   </div>
                   <div
                     className={cn(
-                      "p-[16px] text-[9px] font-fredoka font-medium gap-[7px]"
+                      "p-[16px] text-[9px] font-fredoka font-medium flex flex-col gap-[7px]"
                     )}
                   >
-                    <div>
-                      <p>Hasan</p>
-                      <p>085394410418 (WA)</p>
-                    </div>
-
-                    <div className="mt-[4px]">
-                      <p>Gilang</p>
-                      <p>081390294320 (WA)</p>
-                    </div>
-
-                    <div className="mt-[4px]">
-                      <p>Christ</p>
-                      <p>085815046162 (WA)</p>
-                    </div>
+                    {x?.contact ? (
+                      x?.contact.map((item) => (
+                        <div>
+                          <p>{item.name}</p>
+                          <p>{item.phone}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>To be announced</p>
+                    )}
                   </div>
                 </div>
 
@@ -840,7 +837,7 @@ export default function Competition() {
             </div>
           </div>
         ) : (
-          <div className="mobile:mt-[200px] mobile:grid mobile:gap-[130px] mobile:mx-auto">
+          <div className="mobile:grid mobile:gap-[130px] mobile:mx-auto">
             <About x={x} />
             <Timeline x={x} existExtraBox={existExtraBox} />
             <Overview x={x} existPoint={existPoint} />
@@ -1031,6 +1028,7 @@ export default function Competition() {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
     </>
   );

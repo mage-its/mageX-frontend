@@ -17,18 +17,24 @@ export const competition = [
     title: "Game Dev",
     to: "/competition/game-development",
     description: "Create, Compete, Dominate!",
+    guidebook:
+      "https://drive.google.com/file/d/1fUYN_KoP2VN6w3Sbdbb_qHjKSSYH-cfZ/view?usp=sharing",
     image: game,
   },
   {
     title: "IoT",
     to: "/competition/iot",
     description: "Innovate, Connect, Win!",
+    guidebook:
+      "https://drive.google.com/file/d/1WVmC3Nz0t0nvwonCrYMiLyDoKQyHlAFW/view?usp=sharing",
     image: iot,
   },
   {
     title: "App Dev",
     to: "/competition/app-development",
     description: "Code, Compete, Conquer!",
+    guidebook:
+      "https://drive.google.com/file/d/1gVZWLBbBkE0HNgR-WMSclMD_z8zZ2tBZ/view?usp=sharing",
     image: app,
   },
   {

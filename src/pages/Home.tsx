@@ -23,7 +23,7 @@ import puzzle11 from "@/assets/puzzle/puzzle11.svg";
 import puzzle12 from "@/assets/puzzle/puzzle12.svg";
 import puzzle13 from "@/assets/puzzle/puzzle13.svg";
 import puzzleGta from "@/assets/puzzle/puzzleGta.svg";
-import mascot from "@/assets/brand/mascot.svg";
+import mascot from "@/assets/brand/mascot.png";
 
 import ig from "@/assets/sosialMedia/ig.svg";
 import mail from "@/assets/sosialMedia/mail.svg";
@@ -338,13 +338,13 @@ export default function Home() {
       >
         <div className="w-screen h-screen flex flex-col justify-center items-center pt-6 px-6">
           <div className="sm:rounded-[50px] rounded-[25px] max-w-[1370px] border-4 border-[#323232] bg-dark mb-5 px-6 sm:px-20 py-8">
-            <h1 className="font-roboto text-2xl sm:text-4xl md:text-5xl text-light font-bold text-center mb-4">
+            <h1 className="font-roboto text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-light font-bold text-center mb-4">
               Discover the Depths of
               <span className="ml-4 bg-vertical-gta bg-clip-text text-transparent font-roboto font-black">
                 MAGE
               </span>
             </h1>
-            <p className="font-fredoka font-medium text-xs sm:text-lg md:text-xl text-center text-light mb-[30px]">
+            <p className="font-fredoka font-medium text-xs sm:text-base md:text-lg lg:text-xl text-center text-light mb-[30px]">
               MAGE ( Multimedia dan Game Event ) adalah suatu serangkaian acara
               yang diadakan oleh Departemen Teknik Komputer Fakultas dari FTEIC
               Institut Teknologi Sepuluh Nopember Surabaya yang meliputi
@@ -432,6 +432,13 @@ export default function Home() {
             className="absolute top-[10vw] lg:top-[8vw] h-[20px] sm:h-[40px] md:h-[50px] lg:h-[66px] right-[30%] lg:right-[32%] rotate-[90deg]"
             alt=""
           />
+          <div className="bg-light/10 rounded-lg sm:rounded-[20px] w-full h-fit py-2 sm:py-5 px-3 sm:px-[30px] flex justify-center items-center gap-4 mx-auto mb-6">
+            <HiCursorClick className="text-xs sm:text-3xl text-light" />
+
+            <p className="font-fredoka text-[10px] sm:text-2xl text-light">
+              Swipe Left to See More Events
+            </p>
+          </div>
           <div className="h-[300px] sm:h-[450px] border-[5px] border-gray-2 rounded-[17px] sm:rounded-[35px] p-4 sm:p-10 overflow-hidden">
             <Timeline items={timeline} />
           </div>
@@ -460,10 +467,10 @@ export default function Home() {
             <WorkshopCard title="Multimedia" to="/workshop">
               Master coding skills in many language
             </WorkshopCard>
-            <WorkshopCard title="Internet of Things (IoT)">
+            <WorkshopCard title="Internet of Things (IoT)" to="/workshop">
               Discover IoT and hands-on learning
             </WorkshopCard>
-            <WorkshopCard title="Robotics">
+            <WorkshopCard title="Robotics" to="/workshop">
               Explore robotics basics for innovation
             </WorkshopCard>
           </div>
@@ -521,9 +528,8 @@ export default function Home() {
               competitions for all skill levels and interests. Contribute to the
               future of technology with MAGE X!
             </p>
-            <div className="bg-light/50 rounded-lg sm:rounded-[20px] w-fit h-fit py-2 sm:py-5 px-3 sm:px-[30px] flex justify-center items-center gap-2">
+            <div className="bg-light/50 rounded-lg sm:rounded-[20px] w-fit h-fit py-2 sm:py-5 px-3 sm:px-[30px] flex justify-center items-center gap-4">
               <HiCursorClick className="text-xs sm:text-3xl text-light" />
-              <HiCursorClick className="text-[4px] sm:text-sm text-light" />
 
               <p className="font-fredoka text-[10px] sm:text-2xl text-light">
                 Click or Touch the Cards to View All Competitions

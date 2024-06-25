@@ -19,7 +19,7 @@ export const TimelineCard = ({
   ...props
 }: TimelineCardProps) => {
   const [ref, { width }] = useMeasure();
-  const timelineCardCenterYPos = window.innerWidth > 640 ? "42%" : "46%";
+  const timelineCardCenterYPos = window.innerWidth > 640 ? "44.4%" : "46.5%";
   const timelineCardXpos = window.innerWidth > 640 ? 300 : 150;
   return (
     <div

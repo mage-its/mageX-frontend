@@ -40,6 +40,10 @@ export type Contest = {
   participant: string;
   prize: string;
   guidebook?: string;
+  contact?: {
+    name: string;
+    phone: string;
+  }[];
 };
 
 export const gameDev: Contest = {
@@ -68,6 +72,16 @@ export const gameDev: Contest = {
   prize: "5 jt ++ dan e-certif",
   guidebook:
     "https://drive.google.com/file/d/1fUYN_KoP2VN6w3Sbdbb_qHjKSSYH-cfZ/view?usp=sharing",
+  contact: [
+    {
+      name: "Aqbil",
+      phone: "0895342900188 (WA)",
+    },
+    {
+      name: "Susilo",
+      phone: "082210979566 (WA)",
+    },
+  ],
 };
 
 export const appDev: Contest = {
@@ -97,6 +111,20 @@ export const appDev: Contest = {
   prize: "3 jt ++ dan e-certif",
   guidebook:
     "https://drive.google.com/file/d/1gVZWLBbBkE0HNgR-WMSclMD_z8zZ2tBZ/view?usp=sharing",
+  contact: [
+    {
+      name: "Hasan",
+      phone: "085394410418 (WA)",
+    },
+    {
+      name: "Gilang",
+      phone: "081390294320 (WA)",
+    },
+    {
+      name: "Christ",
+      phone: "085815046162 (WA)",
+    },
+  ],
 };
 
 export const robotic: Contest = {
@@ -121,6 +149,12 @@ export const robotic: Contest = {
   overviewImage: Placeholder2,
   participant: "1 - 3 Orang",
   prize: "3 jt ++ dan e-certif",
+  contact: [
+    {
+      name: "Ernita",
+      phone: "083873974622 (WA)",
+    },
+  ],
 };
 
 export const iot: Contest = {
@@ -150,6 +184,16 @@ export const iot: Contest = {
   prize: "3 jt ++ dan e-certif",
   guidebook:
     "https://drive.google.com/file/d/1WVmC3Nz0t0nvwonCrYMiLyDoKQyHlAFW/view?usp=sharing",
+  contact: [
+    {
+      name: "Candra",
+      phone: "081943376024 (WA)",
+    },
+    {
+      name: "Daniel",
+      phone: "082228857396 (WA)",
+    },
+  ],
 };
 
 export const eSport: Contest = {
