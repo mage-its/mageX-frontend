@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Logo from '@/assets/dashboardHome/summaryLogo.svg';
-import TeamLogo from '@/assets/dashboardHome/teamLogo.svg'
-import CalendarLogo from '@/assets/dashboardHome/calendarLogo.svg'
-import TrophyLogo from '@/assets/dashboardHome/trophyLogo.svg'
-import RollButton from '@/assets/dashboardHome/summaryRollButton.svg';
+import TrophyLogo from '@/assets/dashboardHome/trophyLogo.svg';
 import useDragScroll from './useDragScroll';  // Import the custom hook
 
-interface CompetitionProps {
+interface SummaryProps {
     id: number;
     title: string;
     content: string[];
@@ -17,13 +12,9 @@ interface CompetitionProps {
     logo: string;
 }
 
-interface WorkshopProps {
-    id: number;
-    title: string;
-    content: string[];
-    date: string;
-    logo: string;
-}
+interface CompetitionProps extends SummaryProps {}
+
+interface WorkshopProps extends SummaryProps {}
 
 const Competition: React.FC<{ competition: CompetitionProps }> = ({ competition }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +59,7 @@ const Competition: React.FC<{ competition: CompetitionProps }> = ({ competition 
                         </span>
                     </div>
                     <div className="flex">
-                        <img src={competition.logo}></img>
+                        <img src={competition.logo} alt="Competition Logo" className="w-8 h-8 mr-2"/>
                     </div>
                 </div>
 
@@ -142,7 +133,7 @@ const Workshop: React.FC<{ workshop: WorkshopProps }> = ({ workshop }) => {
                         </span>
                     </div>
                     <div className="flex">
-                        <img src={workshop.logo}></img>
+                        <img src={workshop.logo} alt="Workshop Logo" className="w-8 h-8 mr-2"/>
                     </div>
                 </div>
 
@@ -184,73 +175,22 @@ const SummaryList: React.FC<{ competitions: CompetitionProps[], workshops: Works
             </div>
             <div ref={scrollRef} className="p-4 bg-black opacity-[80%] overflow-auto custom-scroll no-scrollbar" style={{ maxHeight: '35rem', cursor: 'grab' }}>
                 <div className="flex font-fredoka">
-                    <img src={TrophyLogo} className="mr-2 select-none"></img>
+                    <img src={TrophyLogo} className="mr-2 select-none" alt="Competitions Logo"/>
                     <p className="text-light font-fredoka text-xl ml-[1rem] select-none">Competitions</p>
                 </div>
                 {competitions.map((competition) => (
                     <Competition key={competition.id} competition={competition} />
                 ))}
-                <div className="flex font-fredoka">
-                    <img src={TrophyLogo} className="mr-2 select-none"></img>
-                    <p className="text-light font-fredoka text-xl ml-[1rem] select-none">Workshop</p>
+                <div className="flex font-fredoka mt-4">
+                    <img src={TrophyLogo} className="mr-2 select-none" alt="Workshops Logo"/>
+                    <p className="text-light font-fredoka text-xl ml-[1rem] select-none">Workshops</p>
                 </div>
                 {workshops.map((workshop) => (
-                    <Competition key={workshop.id} competition={workshop} />
+                    <Workshop key={workshop.id} workshop={workshop} />
                 ))}
             </div>
         </div>
     );
 };
 
-const App: React.FC = () => {
-    const competition: CompetitionProps[] = [
-        {
-            id: 1,
-            title: 'E-SPORTS',
-            content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
-            date: '2024-06-25',
-            logo: TeamLogo
-        },
-        {
-            id: 2,
-            title: 'COMP. PROGRAMMING',
-            content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
-            date: '2024-06-25',
-            logo: TeamLogo
-        },
-    ];
-
-    const workshop: WorkshopProps[] = [
-        {
-            id: 1,
-            title: 'MULTIMEDIA',
-            content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
-            date: '2024-06-25',
-            logo: CalendarLogo
-        },
-        {
-            id: 2,
-            title: 'IOT',
-            content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
-            date: '2024-06-25',
-            logo: CalendarLogo
-        },
-        {
-            id: 3,
-            title: 'ROBOTICS',
-            content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
-            date: '2024-06-25',
-            logo: CalendarLogo
-        },
-    ]
-
-    return (
-        <DndProvider backend={HTML5Backend}>
-            <div className="flex mx-auto justify-center select-none">
-                <SummaryList competitions={competition} workshops={workshop} />
-            </div>
-        </DndProvider>
-    );
-};
-
-export default App;
+export default SummaryList;

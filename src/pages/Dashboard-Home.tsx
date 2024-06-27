@@ -4,6 +4,7 @@ import Announcements from '../components/dashboardHome/Announcements'
 import HomeAndProfile from '../components/dashboardHome/HomeAndProfile'
 import Calendar from '../components/dashboardHome/Calendar'
 import Summary from '../components/dashboardHome/Summary'
+import Countdown from '../components/dashboardHome/Countdown'
 
 const dashboardHome: React.FC = () => {
   return (
@@ -16,10 +17,12 @@ const dashboardHome: React.FC = () => {
                  dekstop:bg-blue-purple-orange-1
       ">
         <div className="bg-white row-span-full col-span-2">Navbar</div>
-        <div className="bg-black col-span-11">
+        <div className="col-span-11 justify-center my-auto">
           <HomeAndProfile />
         </div>
-        <div className="bg-white row-span-3 col-span-8">Countdown</div>
+        <div className="bg-white row-span-3 col-span-8">
+          <Countdown />
+        </div>
         <div className="bg-white row-span-9 col-span-3 overflow-hidden">
           <Announcements />
         </div>

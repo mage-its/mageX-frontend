@@ -13,7 +13,7 @@ interface AnnouncementProps {
 
 const Announcement: React.FC<{ announcement: AnnouncementProps }> = ({ announcement }) => {
     return (
-        <div className="p-4">
+        <div className="p-4 font-fredoka">
             <div className="text-light font-bold">{announcement.title}</div>
             <div className="text-light">{announcement.content}</div>
             <div className="text-light text-sm">{announcement.date}</div>
@@ -28,7 +28,7 @@ const AnnouncementsList: React.FC<{ announcements: AnnouncementProps[] }> = ({ a
         <div className="overflow-hidden flex-col w-full h-full rounded-[2rem] shadow-lg select-none">
             <div className="flex p-4 items-center select-none bg-gray-1">
                 <img src={Logo} className="mr-2 w-6 h-6 ml-[1rem] select-none" alt="Announcements Logo" />
-                <h2 className="text-light text-xl font-semibold ml-[1rem] select-none">Announcements</h2>
+                <h2 className="text-light font-fredoka text-xl ml-[1rem] select-none">Announcements</h2>
             </div>
             <div ref={scrollRef} className="p-4 flex-1 h-[40vh] bg-dark opacity-[80%] overflow-auto custom-scroll no-scrollbar" style={{ cursor: 'grab' }}>
                 {announcements.map((announcement) => (
