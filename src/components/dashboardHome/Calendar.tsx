@@ -9,7 +9,7 @@ export default function DateCalendarFormProps() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
         <DemoItem>
-          <div className="bg-black opacity-[80%] w-[22vw] min-w-[21rem] h-[22vw] min-h-[21rem] max-h-[21rem] text-light rounded-[3rem] flex items-center justify-center">
+          <div className="h-full text-light rounded-[3rem] flex items-center justify-center">
             <DateCalendar
               defaultValue={dayjs(new Date())}
               readOnly
@@ -25,7 +25,7 @@ export default function DateCalendarFormProps() {
                   color: 'white', // Day text color
                 },
                 '& .MuiPickersDay-root.Mui-selected': {
-                  backgroundColor: '#1976d2', // Selected day background color
+                  // backgroundColor: '#1976d2', // Selected day background color
                   color: 'white', // Selected day text color
                 },
                 '& .MuiPickersDay-root.Mui-disabled': {

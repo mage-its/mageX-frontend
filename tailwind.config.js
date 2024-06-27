@@ -2,11 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {           // Custom screen size
-      mobile: '300px',   // sm
-      ipad: '650px',     // md
-      desktop: '1280px', // lg
-    },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
@@ -61,6 +56,11 @@ export default {
       black: "#000000",
     },
     extend: {
+      screens: {           // Custom screen size
+        mobile: '300px',   // sm
+        ipad: '650px',     // md
+        desktop: '1280px', // lg
+      },
       backgroundImage: () => ({
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
@@ -140,6 +140,30 @@ export default {
         rotate: 'rotate 1s linear',
         slideIn: 'slideIn 0.5s forwards',
         slideOut: 'slideOut 0.5s forwards'
+      },
+      gridTemplateColumns: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+        '13': 'repeat(13, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-13': 'span 13 / span 13',
+        'span-14': 'span 14 / span 14',
+        'span-15': 'span 15 / span 15',
+        'span-16': 'span 16 / span 16',
+      },
+      gridTemplateRows: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+        '13': 'repeat(13, minmax(0, 1fr))',
+        '14': 'repeat(14, minmax(0, 1fr))',
+        '15': 'repeat(15, minmax(0, 1fr))',
+        '16': 'repeat(16, minmax(0, 1fr))',
+        '17': 'repeat(17, minmax(0, 1fr))',
+      },
+      gridRow: {
+        'span-13': 'span 13 / span 13',
+        'span-14': 'span 14 / span 14',
+        'span-15': 'span 15 / span 15',
+        'span-16': 'span 16 / span 16',
       },
     },
   },

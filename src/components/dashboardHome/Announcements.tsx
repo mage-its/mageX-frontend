@@ -25,12 +25,12 @@ const AnnouncementsList: React.FC<{ announcements: AnnouncementProps[] }> = ({ a
     const scrollRef = useDragScroll();
 
     return (
-        <div className="overflow-hidden rounded-[2rem] w-[22vw] min-w-[21rem] h-[35vw] min-h-[35rem] max-h-[35rem] shadow-lg select-none">
+        <div className="overflow-hidden flex-col w-full h-full rounded-[2rem] shadow-lg select-none">
             <div className="flex p-4 items-center select-none bg-gray-1">
                 <img src={Logo} className="mr-2 w-6 h-6 ml-[1rem] select-none" alt="Announcements Logo" />
                 <h2 className="text-light text-xl font-semibold ml-[1rem] select-none">Announcements</h2>
             </div>
-            <div ref={scrollRef} className="p-4 bg-dark opacity-[80%] overflow-auto custom-scroll no-scrollbar" style={{ maxHeight: '35rem', cursor: 'grab' }}>
+            <div ref={scrollRef} className="p-4 flex-1 h-[40vh] bg-dark opacity-[80%] overflow-auto custom-scroll no-scrollbar" style={{ cursor: 'grab' }}>
                 {announcements.map((announcement) => (
                     <Announcement key={announcement.id} announcement={announcement} />
                 ))}
@@ -51,8 +51,6 @@ const App: React.FC = () => {
         { id: 8, title: 'Lorem Ipsum 8', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:30 PM' },
         { id: 9, title: 'Lorem Ipsum 9', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:31 PM' },
         // Placeholder in the bottom to increase slide height
-        { id: 0, title: '', content: '', date: ''},
-        { id: 0, title: '', content: '', date: ''},
         // Add more announcements as needed
     ];
 
