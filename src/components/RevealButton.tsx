@@ -53,7 +53,7 @@ export function RevealButton({
             transition: {
               duration: 0.5,
               ease: "easeInOut",
-              delay: 1,
+              delay: 1.5,
             },
           },
           close: {
@@ -78,7 +78,7 @@ export function RevealButton({
               transition: {
                 duration: 0.5,
                 ease: "easeInOut",
-                delay: 1.3,
+                delay: 1.7,
               },
             },
             close: {
@@ -104,6 +104,7 @@ export function RevealButton({
         variants={{
           reveal: {
             x: 15,
+            scale: 1,
             // marginLeft: 0,
             transition: {
               duration: 0.5,
@@ -112,7 +113,8 @@ export function RevealButton({
             },
           },
           close: {
-            x: 0,
+            x: -30,
+            scale: 0,
             // marginLeft: -15,
             transition: {
               duration: 0.1,
