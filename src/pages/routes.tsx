@@ -15,39 +15,39 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "workshop",
+        path: "/workshop",
         element: <Workshop />,
       },
       {
-        path: "competition/app-development",
+        path: "/competition/app-development",
         element: <Competition />,
       },
       {
-        path: "competition/game-development",
+        path: "/competition/game-development",
         element: <Competition />,
       },
       {
-        path: "competition/iot",
+        path: "/competition/iot",
         element: <Competition />,
       },
       {
-        path: "competition/robotic",
+        path: "/competition/robotic",
         element: <Competition />,
       },
       {
-        path: "competition/ui-ux",
+        path: "/competition/ui-ux",
         element: <Competition />,
       },
       {
-        path: "competition/esport",
+        path: "/competition/esport",
         element: <Competition />,
       },
       {
-        path: "competition/competitive-programming",
+        path: "/competition/competitive-programming",
         element: <Competition />,
       },
       {
-        path: "coming-soon",
+        path: "/coming-soon",
         element: <ComingSoon />,
       },
     ],
