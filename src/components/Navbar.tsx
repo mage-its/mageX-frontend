@@ -7,6 +7,7 @@ import DottedLine from "@/assets/DottedLine.svg";
 import { motion, useAnimation } from "framer-motion";
 import { competition } from "@/constant/competitionCard";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -158,6 +159,10 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       sideBarControl.start("appear");
     }
   };
+  const { loginWithRedirect,logout,isAuthenticated,user} = useAuth0();
+  //Check Authentication Status
+  const status = [isAuthenticated, user]
+  console.log(status)
   return (
     <nav
       className={cn(
@@ -197,8 +202,22 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavItem>
             </Link>
           </div>
-          <Link to="/coming-soon">
-            <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+          {isAuthenticated ? (
+            <button
+            onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}
+            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+              <p
+                className={cn(
+                  "font-roboto font-medium tracking-wide text-base text-light"
+                )}
+              >
+                Log Out
+              </p>
+          </button>
+          ):(
+            <button
+            onClick={() => loginWithRedirect()}
+            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
               <p
                 className={cn(
                   "font-roboto font-medium tracking-wide text-base text-light"
@@ -206,8 +225,8 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               >
                 Login
               </p>
-            </button>
-          </Link>
+          </button>
+          )}
         </div>
       ) : (
         <div className="flex items-center p-5 relative">
