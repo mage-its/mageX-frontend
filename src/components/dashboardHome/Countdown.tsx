@@ -10,16 +10,14 @@ const slides = [
     content: <UseCountdown targetDate="2024-07-10T00:00:00" />
   },
   {
-    header: "B",
+    header: "Ludi Harpastum",
     content: <UseCountdown targetDate="2024-09-23T00:00:00" />
   },
   {
-    header: "C",
-    content: <UseCountdown targetDate="2024-10-03T00:00:00" />
+    header: "Furina Birthday",
+    content: <UseCountdown targetDate="2024-10-13T00:00:00" />
   },
 ];
-
-
 
 const CountdownSlide: React.FC = () => {
   const [[currentIndex, direction], setCurrentIndex] = useState([0, 0]);
@@ -52,12 +50,10 @@ const CountdownSlide: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="relative select-none block justify-center
-                      ipad:h-[20vh] ipad:h-w-[55vw]
-                      desktop:h-[20vh] desktop:w-[55vw]">
+    <div className="w-full h-full">
+      <div className="relative select-none block justify-center w-full h-full">
         <div
-          className="bg-black opacity-[80%] w-full h-full transition-colors duration-500 ease-in items-center overflow-hidden rounded-[2rem] relative"
+          className="bg-transparent_black w-full h-full transition-colors duration-500 ease-in items-center overflow-hidden rounded-[2rem] relative"
         >
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -76,21 +72,18 @@ const CountdownSlide: React.FC = () => {
                   return null;
                 }
                 return (
-                  <div key={slideIndex} className="w-full font-fredoka flex-shrink-0 box-border flex justify-center my-auto">
-                    <div className="text-[20px] ml-[4rem] w-[50%] text-light justify-cente my-auto">
-                      <div>
+                  <div key={slideIndex} className="w-full px-[3rem] py-[2rem] font-fredoka flex-shrink-0 box-border flex justify-center">
+                    <div className="text-[20px] w-[50%] h-full text-light justify-center">
+                      <div className="h-[50%]">
                         Waktu Pendaftaran
                       </div>
-                      <div className="mt-[0.5rem] rounded-[1rem] p-[0.5rem] w-fit bg-blue-purple-orange-1">
+                      <div className="h-[50%] rounded-[1rem] p-[0.5rem] w-fit bg-blue-purple-orange-1">
                         {slides[getSlideIndex()].header}
                       </div>
                     </div>
-                    <div className="w-[50%] text-light my-auto">
-                      <div className="text-[70px]">
+                    <div className="w-[50%] h-full text-light">
+                      <div className="">
                         {slides[getSlideIndex()].content}
-                      </div>
-                      <div className="mt-[-1rem] text-[15px]">
-                        Hari Jam Menit
                       </div>
                     </div>
                   </div>

@@ -54,6 +54,7 @@ export default {
       },
       light: "#FFFFFF",
       black: "#000000",
+      transparent_black: "rgba(0, 0, 0, 0.8)",
     },
     extend: {
       screens: {           // Custom screen size
@@ -144,6 +145,7 @@ export default {
       gridTemplateColumns: {
         '12': 'repeat(12, minmax(0, 1fr))',
         '13': 'repeat(13, minmax(0, 1fr))',
+        '14': 'repeat(14, minmax(0, 1fr))',
       },
       gridColumn: {
         'span-13': 'span 13 / span 13',

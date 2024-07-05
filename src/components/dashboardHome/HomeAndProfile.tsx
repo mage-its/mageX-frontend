@@ -3,7 +3,7 @@ import Furina from "@/assets/dashboardHome/Furina_3.jpg"
 
 const HomeAndProfile: React.FC = () => {
     return (
-        <div className="justify-center items-center flex select-none">
+        <div className="w-full h-full justify-center items-center flex select-none">
             {/* <div className="mr-auto ml-[2rem] items-center flex"> */}
             <div className="mr-auto my-auto items-center flex">
                 <img src={Logo} className="mr-[8px]"></img>

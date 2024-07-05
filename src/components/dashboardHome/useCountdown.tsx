@@ -44,8 +44,37 @@ const UseCountdown: React.FC<CountdownProps> = ({ targetDate }) => {
   }, [targetDate, timeLeft]);
 
   return (
-    <div>
-      <div>{timeLeft.days} : {timeLeft.hours} : {timeLeft.minutes}</div>
+    <div className="flex text-[60px] items-center justify-center text-center">
+      <div className="w-[20%] h-full">
+        <div className="text-[60px] text-left h-[50%]">
+          {timeLeft.days}
+        </div>
+        <div className="text-[15px]">
+          Hari
+        </div>
+      </div>
+      <div className="w-[20%] h-[50%]"> 
+        :
+      </div>
+      <div className="w-[20%] h-full">
+        <div className="text-[60px] text-left h-[50%]">
+          {timeLeft.hours}
+        </div>
+        <div className="text-[15px] h-[50%]">
+          Jam
+        </div>
+      </div>
+      <div className="w-[20%] h-[50%]"> 
+        :
+      </div>
+      <div className="w-[20%] h-full">
+        <div className="text-[60px] text-left h-[50%]">
+          {timeLeft.minutes} 
+        </div>
+        <div className="text-[15px] h-[50%]">
+          Menit
+        </div>
+      </div>
     </div>
   );
 };
