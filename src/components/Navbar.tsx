@@ -159,7 +159,8 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       sideBarControl.start("appear");
     }
   };
-  const { loginWithRedirect,logout,isAuthenticated,user} = useAuth0();
+  const { logout,isAuthenticated,user} = useAuth0();
+  const loginRedirectURL = "https://api.mage-its.id/users/login"
   //Check Authentication Status
   const status = [isAuthenticated, user]
   console.log(status)
@@ -216,7 +217,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
           </button>
           ):(
             <button
-            onClick={() => loginWithRedirect()}
+            onClick={() => window.location.href = loginRedirectURL}
             className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
               <p
                 className={cn(
