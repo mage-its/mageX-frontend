@@ -57,11 +57,11 @@ export const gameDev: Contest = {
     "Game Competition adalah cabang perlombaan dari event MAGE X  dimana peserta akan berkompetisi dalam pembuatan video game.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 mei - 4 oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 november 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 november 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 november 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
+    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
+    ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
   ],
   extraBox: true,
   overviewDesc:
@@ -96,11 +96,11 @@ export const appDev: Contest = {
     "Application Competition adalah cabang dari salah satu perlombaan MAGE X yang dimana peserta akan berlomba-lomba untuk membuat suatu aplikasi. Peserta akan ditantang untuk membuat aplikasi yang memiliki dapat membantu pekerjaan atau bisa menyelesaikan suatu permasalahan yang ada disekitar.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei - 4 Oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 Oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "Pengumuman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
+    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
+    ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
   ],
   extraBox: true,
   overviewDesc:
@@ -139,10 +139,10 @@ export const robotic: Contest = {
     "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["Final Dan Exhibition", "17 November 2024", robot],
+    ["11 Juli - 10 November 2024", "Pendaftaran", keypad],
+    ["15 November 2024", "Technical Meeting Perlombaan", announce],
+    ["24 November 2024", "Penyisihan", truck],
+    ["25 November 2024", "Awarding, Talkshow, Exhibition", robot],
   ],
   overviewDesc:
     "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada. Peserta dinilai dari robot yang dibuat untuk melewati setiap tantangan yang ada serta bisa mengalahkan peserta yang lain. Tujuan dari perlombaan ini yaitu untuk memperkenalkan teknik komputer itu sendiri yang dimana sangat relevan dengan hal robotik dan peserta lomba dapat mengasah skill dari bidang elektrikal, mekanik, dan programming. Perlombaan ini akan dilombakan secara langsung atau offline di Institut Teknologi Sepuluh Nopember.",
@@ -169,11 +169,11 @@ export const iot: Contest = {
     "Internet of Things adalah cabang perlombaan dari event MAGE X dimana peserta akan dituntut dalam membuat perangkat berbasis IoT sekreatif mungkin. Dari perlombaan ini, peserta diharapkan bisa membuat perangkat IoT yang memiliki fungsi dalam membantu menyelesaikan suatu permasalahan dan perangkat IoT ini sesuai dengan tema yang diberikan.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei - 4 Oktober 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
-    ["7 Oktober 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
+    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
+    ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
   ],
   extraBox: true,
   overviewDesc:
@@ -207,7 +207,7 @@ export const eSport: Contest = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget vulputate enim. Mauris viverra semper lectus, vel porta ante luctus in. Praesent eget faucibus lectus. ",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei 2024 - 5 November 2024", "PENDAFTARAN", keypad],
+    ["20 Mei - 5 November 2024", "PENDAFTARAN", keypad],
     ["12 November 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
     ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
     ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
@@ -233,7 +233,7 @@ export const uiUx: Contest = {
     "UI/UX adalah cabang perlombaan dari event MAGE X dimana peserta akan berkompetisi dalam mendesain UI/UX tentang pembuatan aplikasi dan web.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
+    ["20 Mei - 5 November 2024", "Pendaftaran", keypad],
     ["12 November 2024", "Technical Meeting Perlombaan", announce],
     ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
     ["17 November 2024", "FINAL DAN EXHIBITION", robot],
@@ -257,7 +257,7 @@ export const competitiveProgramming: Contest = {
     "Competitive Programming adalah cabang perlombaan dari event MAGE X dimana peserta akan bersaing satu sama lain untuk menyelesaikan soal-soal logika dan pemrograman dalam waktu yang terbatas.",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei 2024 - 5 November 2024", "Pendaftaran", keypad],
+    ["20 Mei - 5 November 2024", "Pendaftaran", keypad],
     ["12 November 2024", "Technical Meeting Perlombaan", announce],
     ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
     ["Final Dan Exhibition", "17 November 2024", robot],
