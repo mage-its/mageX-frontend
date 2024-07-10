@@ -8,12 +8,14 @@ import game from "@/assets/brand/game.svg";
 
 export const competition = [
   {
+    id: '1',
     title: "Robotics",
     to: "/competition/robotic",
     description: "Innovate, Build, Triumph!",
     image: robotic,
   },
   {
+    id: '2',
     title: "Game Dev",
     to: "/competition/game-development",
     description: "Create, Compete, Dominate!",
@@ -22,6 +24,7 @@ export const competition = [
     image: game,
   },
   {
+    id: '3',
     title: "IoT",
     to: "/competition/iot",
     description: "Innovate, Connect, Win!",
@@ -30,6 +33,7 @@ export const competition = [
     image: iot,
   },
   {
+    id: '4',
     title: "App Dev",
     to: "/competition/app-development",
     description: "Code, Compete, Conquer!",
@@ -38,18 +42,21 @@ export const competition = [
     image: app,
   },
   {
+    id: '5',
     title: "UI/UX",
     to: "/competition/ui-ux",
     description: "Design, Impress, Win!",
     image: ui,
   },
   {
+    id: '6',
     title: "Competitive Programming",
     to: "/competition/competitive-programming",
     description: "Code, Conquer, Triumph!",
     image: cp,
   },
   {
+    id: '7',
     title: "Esport",
     to: "/competition/esport",
     description: "Game On, Win Big!",
