@@ -11,17 +11,25 @@
     "format": "prettier --write ./src"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.21",
+    "@mui/x-date-pickers": "^7.8.0",
     "@tanstack/react-query": "^5.29.0",
     "@tsparticles/engine": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.3.0",
     "clsx": "^2.1.0",
-    "framer-motion": "^11.2.10",
+    "dayjs": "^1.11.11",
+    "framer-motion": "^11.2.11",
+    "mui": "^0.0.1",
     "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-responsive": "^10.0.0",
     "react-router-dom": "^6.22.3",
+    "react-use-measure": "^2.1.1",
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {

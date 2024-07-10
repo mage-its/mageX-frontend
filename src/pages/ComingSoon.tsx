@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import x from "@/assets/brand/x.svg";
 import cn from "@/utils/cn";
 import { AiFillInstagram } from "react-icons/ai";
+import Navbar from "@/components/Navbar";
 
 export default function ComingSoon() {
   const [, setInit] = useState(false);
@@ -89,16 +90,16 @@ export default function ComingSoon() {
           type: "star",
           stroke: {
             width: 0,
-            color: "#000000"
+            color: "#000000",
           },
           polygon: {
-            nb_sides: 5
+            nb_sides: 5,
           },
           image: {
             src: "img/github.svg",
             width: 100,
-            height: 100
-          }
+            height: 100,
+          },
         },
         size: {
           value: { min: 0.5, max: 2 },
@@ -110,14 +111,15 @@ export default function ComingSoon() {
   );
 
   return (
-    <main className="bg-purple-4 relative overflow-hidden px-5 md:px-[50px] pb-14 min-h-screen">
+    <main className="bg-purple-4 relative overflow-clip pb-14 min-h-screen">
+      <Navbar theme="black" />
       <Particles
         id="tsparticles"
         particlesLoaded={particlesLoaded}
         options={options}
       />
-      <div className="relative z-20">
-        <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1/2 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
+      <div className="relative z-[15] px-5 md:px-[50px]">
+        <div className="md:h-[831px] h-[650px]  mt-[45px] bg-transparent-white-1 drop-shadow-lg rounded-[40px] text-center md:px-10 px-4">
           <p
             className="font-fredoka font-light md:text-2xl sm:text-lg text-sm text-light md:tracking-[0.5em] tracking-[0.4em] text-center select-none"
             style={{ textShadow: "0px 4px rgba(255,255,255,0.5)" }}
@@ -142,25 +144,37 @@ export default function ComingSoon() {
           </h3>
         </div>
         <div className="flex flex-row flex-wrap h-38 max-w-[1070px] mt-[52px] justify-center gap-5 md:gap-y-7 md:gap-x-10 lg:gap-x-36 lg  mx-auto">
-          <a href="https://www.youtube.com/@mageits4169" className="flex md:gap-5 gap-2 items-center cursor-pointer">
+          <a
+            href="https://www.youtube.com/@mageits4169"
+            className="flex md:gap-5 gap-2 items-center cursor-pointer"
+          >
             <FaYoutube className="text-light md:text-[50px] text-[35px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage.ce.its
             </p>
           </a>
-          <a href="https://www.instagram.com/mage_its/" className="flex md:gap-5 gap-2 items-center cursor-pointer">
+          <a
+            href="https://www.instagram.com/mage_its/"
+            className="flex md:gap-5 gap-2 items-center cursor-pointer"
+          >
             <AiFillInstagram className="text-light md:text-[50px] text-[35px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage_its
             </p>
           </a>
-          <a href="https://www.linkedin.com/company/mage-x" className="flex md:gap-5 gap-2 items-center cursor-pointer">
-            <FaLinkedin  className="text-light md:text-[45px] text-[30px]" />
+          <a
+            href="https://www.linkedin.com/company/mage-x"
+            className="flex md:gap-5 gap-2 items-center cursor-pointer"
+          >
+            <FaLinkedin className="text-light md:text-[45px] text-[30px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               mage_its
             </p>
           </a>
-          <a href="https://line.me/R/ti/p/rio5948f" className="flex md:gap-5 gap-2 items-center cursor-pointer">
+          <a
+            href="https://line.me/R/ti/p/rio5948f"
+            className="flex md:gap-5 gap-2 items-center cursor-pointer"
+          >
             <FaLine className="text-light md:text-[45px] text-[30px]" />
             <p className="font-fredoka font-medium md:text-xl text-base text-light">
               @rio5948f
@@ -168,7 +182,7 @@ export default function ComingSoon() {
           </a>
         </div>
       </div>
-      <div className="absolute md:top-[555px] top-[500px] left-[50%] -translate-x-1/2 rounded-[50%] md:h-[1840px] h-[700px] md:w-[2630px] w-[1000px] bg-vertical-gta z-10 drop-shadow-[0_0_45px_#E14CB3]" />
+      <div className="absolute md:top-[555px] top-[500px] left-[50%] -translate-x-1/2 rounded-[50%] md:h-[1840px] h-[700px] md:w-[2630px] w-[1000px] bg-blue-purple-orange z-10 drop-shadow-[0_0_45px_#E14CB3]" />
     </main>
   );
 }
