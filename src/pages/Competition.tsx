@@ -309,21 +309,58 @@ const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
         </div>
 
         {existExtraBox ? (
-          <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
-            <div className="desktop:mt-[22px] ipad:mt-[24px]">
-              <Timebox
-                date={x?.timeline[4][0]}
-                event={x?.timeline[4][1]}
-                img={x?.timeline[4][2]}
-                side="left"
-                theme={x?.theme}
-              ></Timebox>
+          <div className="grid desktop:gap-0 mobile:gap-[100px]">
+            <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
+              <div className="desktop:mt-[22px] ipad:mt-[24px]">
+                <Timebox
+                  date={x?.timeline[4][0]}
+                  event={x?.timeline[4][1]}
+                  img={x?.timeline[4][2]}
+                  side="left"
+                  theme={x?.theme}
+                ></Timebox>
+              </div>
+              <img
+                src={ToLeft}
+                alt="line"
+                className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
+              ></img>
             </div>
-            <img
-              src={ToLeft}
-              alt="line"
-              className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
-            ></img>
+
+            <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
+              <img
+                src={ToRight}
+                alt="line"
+                className="desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-[252px] ipad:ml-[130px]"
+              ></img>
+              <div className="desktop:mt-[22px] ipad:mt-[24px]">
+                <Timebox
+                  date={x?.timeline[5][0]}
+                  event={x?.timeline[5][1]}
+                  img={x?.timeline[5][2]}
+                  side="right"
+                  theme={x?.theme}
+                ></Timebox>
+              </div>
+            </div>
+
+            <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
+              <div className="desktop:mt-[22px] ipad:mt-[24px]">
+                <Timebox
+                  date={x?.timeline[6][0]}
+                  event={x?.timeline[6][1]}
+                  img={x?.timeline[6][2]}
+                  side="left"
+                  theme={x?.theme}
+                ></Timebox>
+              </div>
+              <img
+                src={ToLeft}
+                alt="line"
+                className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
+              ></img>
+            </div>
+
           </div>
         ) : null}
       </div>
@@ -398,14 +435,17 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
             >
               {x?.overviewDesc}
               {existPoint ? (
-                <ul className="list-disc pl-6 space-y-[1px]">
-                  <li>Kesehatan</li>
-                  <li>Ekonomi</li>
-                  <li>Edukasi</li>
-                  <li>Transportasi</li>
-                  <li>Pelayanan Publik</li>
-                  <li>Keamanan</li>
-                </ul>
+                <div>
+                  <ul className="list-disc pl-6 space-y-[1px]">
+                    <li>Kesehatan</li>
+                    <li>Ekonomi</li>
+                    <li>Edukasi</li>
+                    <li>Transportasi</li>
+                    <li>Pelayanan Publik</li>
+                    <li>Keamanan</li>
+                  </ul>
+                  {x.extraOverviewDesc}
+                </div>
               ) : null}
             </p>
 
@@ -453,13 +493,21 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                       )}
                     </div>
                   </div>
-                  <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
-                    <p>Phase 1</p>
-                    <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
-                    <p className="indent-1">Mahasiswa : Rp125.000,00</p>
-                    <p>Phase 2</p>
-                    <p className="indent-1">SMA/SMK/sederajat : Rp125.000,00</p>
-                  </div>
+                  {x.secondPhase?(
+                    <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
+                      <p>Phase 1</p>
+                        <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
+                        <p className="indent-1">Mahasiswa : Rp125.000,00</p>
+                      <p>Phase 2</p>
+                        <p className="indent-1">SMA/SMK/sederajat : Rp125.000,00</p>
+                        <p className="indent-1">Mahasiswa : Rp150.000,00</p>
+                    </div>
+                  ):(
+                    <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
+                      <p>Phase 1</p>
+                        <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* KATEGORI */}
@@ -506,7 +554,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                     </div>
                   </div>
                   <div className="w-[172px] mt-[13px] ml-[10px] text-[9px] font-fredoka font-medium">
-                    <p>SMA/SMK/sederajat dan Mahasiswa</p>
+                    <p>{x.category}</p>
                   </div>
                 </div>
 
@@ -802,7 +850,7 @@ export default function Competition() {
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={page}
-                className="w-fit h-[690px] mt-[-60px] ipad:mx-auto desktop:mx-auto pt-[110px]"
+                className="w-fit h-[930px] mt-[-60px] ipad:mx-auto desktop:mx-auto pt-[110px]"
                 initial="enter"
                 animate="center"
                 exit="exit"
