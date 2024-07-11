@@ -4,6 +4,7 @@ import Home from "./Home";
 import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
+import Profile from "./Profile";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         path: "/coming-soon",
         element: <ComingSoon />,
       },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
+      }
     ],
   },
 ]);
