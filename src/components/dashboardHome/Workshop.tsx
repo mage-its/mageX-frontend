@@ -5,6 +5,7 @@ import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard
 import useMeasure from "react-use-measure";
 import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
 import Three from "@/assets/dashboardHome/three.svg";
+import Popup from '@/components/dashboardHome/PopUp';
 
 const App: React.FC = () => {
   const competitionCardControl = useAnimation();
@@ -14,13 +15,16 @@ const App: React.FC = () => {
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [popupDestination, setPopupDestination] = useState('');
+
   const [dragConstraints, setDragConstraints] = useState({
     left: 0,
     right: 0,
   });
 
   useEffect(() => {
-    competitionCardControl.start("more");
+    competitionCardControl.start('more');
   }, [competitionCardControl]);
 
   const handleDragEnd = (event: any, info: any) => {
@@ -28,10 +32,10 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    if (containerRef.current) {
-      const updateContainerWidth = () => {
-        const width = containerRef.current?.offsetWidth || 0;
-        setContainerWidth(width); // Set container width in state
+    const updateContainerWidth = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        setContainerWidth(width);
         const cardWidthWithMargin = competitionCardWidth + 16;
         const totalWidth = cardWidthWithMargin * competition.length;
         const rightConstraint = totalWidth - width;
@@ -39,18 +43,25 @@ const App: React.FC = () => {
           left: -rightConstraint,
           right: 0,
         });
-      };
+      }
+    };
 
-      updateContainerWidth();
+    updateContainerWidth();
+    window.addEventListener('resize', updateContainerWidth);
 
-      // Add event listener for window resize to recalculate widths
-      window.addEventListener("resize", updateContainerWidth);
-
-      return () => {
-        window.removeEventListener("resize", updateContainerWidth);
-      };
-    }
+    return () => {
+      window.removeEventListener('resize', updateContainerWidth);
+    };
   }, [competition.length, competitionCardWidth]);
+
+  const handleCardClick = (destination: string) => {
+    setPopupDestination(destination);
+    setIsPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
 
   return (
     <div className="h-full
@@ -77,7 +88,7 @@ const App: React.FC = () => {
             style={{ x: -dragOffset }}
           >
             {competition.map((item, index) => (
-              <div className="mr-4" key={index}>
+              <div className="mr-4" key={index} onClick={() => handleCardClick(item.to)}>
                 <CompetitionCard
                   ref={competitionCardRef}
                   {...item}
@@ -112,6 +123,7 @@ const App: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+      <Popup isVisible={isPopupVisible} onClose={handleClosePopup} destination={popupDestination} />
     </div>
   );
 };

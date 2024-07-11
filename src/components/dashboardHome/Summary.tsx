@@ -128,7 +128,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                     <img src={DashedLine1} className="my-2 w-full"></img>
                     {summary.type === 'C' ? (
                         <div className="text-dark font-fredoka font-medium justify-center items-center
-                                        mobile:text-[12px] ipad:text-[18px] desktop-[12px]">
+                                        mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]">
                             {summary.content.map((item, index) => (
                                 <div key={index} className="my-2 flex gap-2">
                                     <img src = {PersonLogo} className="my-auto"></img>
@@ -138,7 +138,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                         </div>
                     ) : summary.type === 'W' ? (
                         <div className="text-dark font-fredoka font-medium justify-center items-center
-                                        mobile:text-[12px] ipad:text-[18px] desktop-[12px]">
+                                        mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]">
                             <div>
                                 <div className="flex">
                                     <div className="flex w-[50%] gap-2 text-light_blue">

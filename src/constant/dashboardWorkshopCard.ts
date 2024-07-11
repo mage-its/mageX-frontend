@@ -4,25 +4,24 @@ import robotic from "@/assets/brand/robotic.svg";
 
 export const competition = [
   {
+    id: '1',
     title: "Multimedia",
-    to: "/competition/robotic",
+    to: "/home",
     description: "Innovate, Build, Triumph!",
     image: multimedia,
   },
   {
+    id: '2',
     title: "IoT",
-    to: "/competition/game-development",
+    to: "/home",
     description: "Create, Compete, Dominate!",
-    guidebook:
-      "https://drive.google.com/file/d/1fUYN_KoP2VN6w3Sbdbb_qHjKSSYH-cfZ/view?usp=sharing",
     image: iot,
   },
   {
+    id: '3',
     title: "Robotic",
-    to: "/competition/iot",
+    to: "/home",
     description: "Innovate, Connect, Win!",
-    guidebook:
-      "https://drive.google.com/file/d/1WVmC3Nz0t0nvwonCrYMiLyDoKQyHlAFW/view?usp=sharing",
     image: robotic,
   }
 ];
