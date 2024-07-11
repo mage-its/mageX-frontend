@@ -212,11 +212,12 @@ export default function DashboardSideBar() {
         }}
         animate={expansionControl}
         initial="hidden"
-        className="fixed h-screen w-screen bg-black/70 blur-md"
+        className="fixed h-screen w-screen bg-black/70 "
       />
       <motion.div
         variants={{
           notExpanded: {
+            position: "relative",
             marginLeft: "27px",
             marginTop: "31px",
             marginBottom: "31px",
@@ -229,6 +230,7 @@ export default function DashboardSideBar() {
             paddingBottom: "30px",
           },
           expanded: {
+            position: "relative",
             marginLeft: "0px",
             marginTop: "0px",
             marginBottom: "0px",
@@ -241,10 +243,12 @@ export default function DashboardSideBar() {
             paddingBottom: `${window.innerWidth <= 768 ? 25 : 35}px`,
           },
           hidden: {
-            x: "-110%",
+            position: "absolute",
+            left: "-110%",
           },
           visible: {
-            x: "0%",
+            position: "absolute",
+            left: "0%",
           },
         }}
         animate={expansionControl}
@@ -253,12 +257,12 @@ export default function DashboardSideBar() {
           type: "tween",
           ease: "easeInOut",
         }}
-        className="relative bg-black flex flex-col items-center justify-between"
+        className="bg-black flex flex-col items-center justify-between"
       >
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <div
             onClick={toggleExpansion}
-            className="flex flex-col justify-center items-center absolute -right-4 top-20 w-8 h-8 bg-gray-5 rounded-[9px] cursor-pointer"
+            className="flex flex-col justify-center items-center absolute -right-10 top-12 w-8 h-8 bg-gray-5 rounded-[9px] cursor-pointer"
           >
             {isExpanded ? (
               <FaAngleRight className="text-white text-[14px]" />
