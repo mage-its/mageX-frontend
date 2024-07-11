@@ -15,6 +15,7 @@ export default {
         2: "#3E3E3E",
         3: "#AFAFAF",
         4: "#828282",
+        5: "#494949",
       },
       white: "#ffffff",
       mage: {
@@ -69,6 +70,8 @@ export default {
         desktop: "1280px", // lg
       },
       backgroundImage: {
+        "diagonal-gta":
+          "linear-gradient(135deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta-reverse":
