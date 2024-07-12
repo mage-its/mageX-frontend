@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import cn from "@/utils/cn";
 import { FaCaretDown } from "react-icons/fa6";
+import { useUserTeams } from "@/services/team";
+import { Link } from "react-router-dom";
 
 interface DashboardSideBarItemProps {
   title: string;
@@ -137,6 +139,8 @@ const DashboardSideBarItem = ({
 };
 
 export default function DashboardSideBar() {
+  const { data: teams } = useUserTeams();
+  console.log(teams);
   const [isExpanded, setIsExpanded] = useState(
     window.innerWidth > 1024 ? false : true
   );
@@ -291,12 +295,14 @@ export default function DashboardSideBar() {
             </motion.h1>
           </div>
           <div className="flex flex-col gap-[10px] md:gap-[30px]">
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Home"
-              Icon={GoHomeFill}
-              isActive={currentRoute === "home"}
-            />
+            <Link to="/dashboard/home">
+              <DashboardSideBarItem
+                isExpanded={isExpanded}
+                title="Home"
+                Icon={GoHomeFill}
+                isActive={currentRoute === "home"}
+              />
+            </Link>
             <div onClick={setTrueExpansion}>
               <DashboardSideBarItem
                 isExpanded={isExpanded}
@@ -317,12 +323,14 @@ export default function DashboardSideBar() {
               Icon={PiChalkboardTeacherFill}
               isActive={currentRoute === "workshop"}
             />
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Profile"
-              Icon={FaUser}
-              isActive={currentRoute === "profile"}
-            />
+            <Link to="/dashboard/profile">
+              <DashboardSideBarItem
+                isExpanded={isExpanded}
+                title="Profile"
+                Icon={FaUser}
+                isActive={currentRoute === "profile"}
+              />
+            </Link>
           </div>
         </div>
         <motion.div
