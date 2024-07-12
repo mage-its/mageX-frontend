@@ -5,6 +5,7 @@ import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
 import DashboardHome from "./Dashboard-Home"
+import DashboardWorkshop from "./Dashboard-Workshop"
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboardHome",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboardWorkshop",
+        element: <DashboardWorkshop />,
       },
       {
         path: "/home",
