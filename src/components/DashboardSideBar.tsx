@@ -137,13 +137,15 @@ const DashboardSideBarItem = ({
 };
 
 export default function DashboardSideBar() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(
+    window.innerWidth > 1024 ? false : true
+  );
   const [isVisible, setIsVisible] = useState(false);
   const expansionControl = useAnimation();
   const currentRoute = window.location.pathname.split("/")[2];
 
   const toggleExpansion = () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       setIsVisible(!isVisible);
     } else {
       setIsExpanded(!isExpanded);
@@ -155,7 +157,7 @@ export default function DashboardSideBar() {
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       if (isVisible) {
         expansionControl.start("visible");
       } else {
@@ -172,16 +174,10 @@ export default function DashboardSideBar() {
     }
   }, [isExpanded, expansionControl]);
 
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setIsExpanded(true);
-    }
-  }, []);
-
   return (
-    <nav>
-      {window.innerWidth <= 768 && (
-        <div className="flex justify-between items-center fixed h-[67px] w-screen bg-black py-[15px] px-[25px]">
+    <>
+      {window.innerWidth <= 1024 && (
+        <div className="flex justify-between items-center fixed z-20 h-[67px] w-screen bg-black py-[15px] px-[25px]">
           <div
             onClick={toggleExpansion}
             className="flex gap-3 justify-center items-center rounded-[9px] bg-gray-5 px-3 py-[9px]"
@@ -230,34 +226,36 @@ export default function DashboardSideBar() {
             paddingBottom: "30px",
           },
           expanded: {
-            position: "relative",
+            position: `${window.innerWidth <= 1024 ? "fixed" : "relative"}`,
             marginLeft: "0px",
             marginTop: "0px",
             marginBottom: "0px",
             minHeight: "100vh",
-            width: `${window.innerWidth <= 768 ? 250 : 260}px`,
+            width: `${window.innerWidth <= 1024 ? 250 : 260}px`,
             borderRadius: "0px",
-            paddingLeft: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingRight: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingTop: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingBottom: `${window.innerWidth <= 768 ? 25 : 35}px`,
+            paddingLeft: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingRight: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingTop: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingBottom: `${window.innerWidth <= 1024 ? 25 : 35}px`,
           },
           hidden: {
-            position: "absolute",
+            position: "fixed",
             left: "-110%",
           },
           visible: {
-            position: "absolute",
+            position: "fixed",
             left: "0%",
+            zIndex: 20,
           },
         }}
         animate={expansionControl}
+        initial={window.innerWidth <= 1024 ? "visible" : "notExpanded"}
         transition={{
           duration: 0.5,
           type: "tween",
           ease: "easeInOut",
         }}
-        className="bg-black flex flex-col items-center justify-between"
+        className=" bg-black flex flex-col items-center justify-between"
       >
         <div className="mb-4 relative">
           <div
@@ -286,6 +284,7 @@ export default function DashboardSideBar() {
                 },
               }}
               animate={expansionControl}
+              initial="notExpanded"
               className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-3xl pr-2"
             >
               MAGE X
@@ -336,6 +335,7 @@ export default function DashboardSideBar() {
             },
           }}
           animate={expansionControl}
+          initial="notExpanded"
           className="w-[190px] h-fit"
         >
           <motion.div
@@ -403,6 +403,7 @@ export default function DashboardSideBar() {
                   },
                 }}
                 animate={expansionControl}
+                initial="notExpanded"
                 className="text-white font-fredoka font-medium text-base"
               >
                 Logout
@@ -411,6 +412,6 @@ export default function DashboardSideBar() {
           </div>
         </motion.div>
       </motion.div>
-    </nav>
+    </>
   );
 }
