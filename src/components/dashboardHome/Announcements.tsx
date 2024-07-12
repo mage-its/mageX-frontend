@@ -48,15 +48,7 @@ const AnnouncementsList: React.FC<{ announcements: AnnouncementProps[] }> = ({ a
 
 const App: React.FC = () => {
     const announcements: AnnouncementProps[] = [
-        { id: 1, title: 'Furina 1', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:29 PM' },
-        { id: 2, title: 'Furina 2', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:30 PM' },
-        { id: 3, title: 'Furina 3', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:31 PM' },
-        { id: 4, title: 'Furina 4', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:29 PM' },
-        { id: 5, title: 'Furina 5', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:30 PM' },
-        { id: 6, title: 'Furina 6', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:31 PM' },
-        { id: 7, title: 'Furina 7', content: 'Furina dolor sit amet, consectetur adipiscing elit, Furina best girl uwu  incididunt ut labore et dolore magna', date: '04 April 2024 7:29 PM' },
-        { id: 8, title: 'Furina 8', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:30 PM' },
-        { id: 9, title: 'Furina 9', content: 'Furina dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', date: '04 April 2024 7:31 PM' },
+        
     ];
 
     return (

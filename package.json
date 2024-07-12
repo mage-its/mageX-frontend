@@ -19,6 +19,7 @@
     "@tsparticles/engine": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.3.0",
+    "axios": "^1.7.2",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",

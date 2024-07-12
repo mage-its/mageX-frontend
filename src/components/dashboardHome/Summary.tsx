@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { motion } from 'framer-motion';
+import { useUserData } from '@/services/users'; // API
 import SummaryLogo from '@/assets/dashboardHome/summaryLogo.svg';
 import TeamLogo from '@/assets/dashboardHome/teamLogo.svg'
 import CalendarLogo from '@/assets/dashboardHome/calendarLogo.svg'
@@ -48,6 +49,10 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
     const toggleOpen = () => {
         setIsOpen(!isOpen);
     };
+
+    if (summary.type === 'X') {
+        return null; // Return nothing for type X
+    }
 
     return (
         <div className="my-2">
@@ -167,6 +172,11 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
 const SummaryList: React.FC<{ competitions: SummaryProps[], workshops: SummaryProps[] }> = ({ competitions, workshops }) => {
     const scrollRef = useDragScroll();
 
+    const { data, error, isLoading } = useUserData();
+
+    if (isLoading) return <div className="font-fredoka text-light">Loading...</div>;
+    if (error) return <div className="font-fredoka text-light">Error loading user data</div>;
+
     return (
         <div className="overflow-hidden bg-transparent_black w-full h-full shadow-lg select-none
                         mobile:mt-6 mobile:mx-6 mobile:rounded-[1rem]
@@ -187,10 +197,10 @@ const SummaryList: React.FC<{ competitions: SummaryProps[], workshops: SummaryPr
                 <div className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center
                                 mobile:h-[7rem] mobile:my-4 ipad:h-[7rem] ipad:my-4 desktop:h-[6rem] desktop:my-4">
                     <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
-                        Furina de Fontaine
+                        {data?.data.nama}
                     </div>
                     <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
-                        furinadefontaine@gmail.com
+                        {data?.data.email}
                     </div>
                     <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
                         <div className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
@@ -238,7 +248,7 @@ const App: React.FC = () => {
         {
             id: 1,
             title: 'Robotics',
-            type: 'C', // C = Competitions
+            type: 'X', // C = Competitions, W = Workshop, X = none
             content: ['Jean', 'Diluc', 'Klee'],
             date: '-',
             time: '-',
@@ -249,7 +259,7 @@ const App: React.FC = () => {
         {
             id: 2,
             title: 'Game Dev',
-            type: 'C',
+            type: 'X',
             content: ['Hu Tao', 'Xingqiu', 'Chongyun'],
             date: '-',
             time: '-',
@@ -260,7 +270,7 @@ const App: React.FC = () => {
         {
             id: 3,
             title: 'IoT',
-            type: 'C',
+            type: 'X',
             content: ['Kamisato Ayato', 'Kamisato Ayaka', 'Yoimiya'],
             date: '-',
             time: '-',
@@ -271,7 +281,7 @@ const App: React.FC = () => {
         {
             id: 4,
             title: 'App Dev',
-            type: 'C',
+            type: 'X',
             content: ['Alhaitham', 'Nahida', 'Nilou'],
             date: '-',
             time: '-',
@@ -282,7 +292,7 @@ const App: React.FC = () => {
         {
             id: 5,
             title: 'UI/UX',
-            type: 'C',
+            type: 'X',
             content: ['Furina', 'Neuvillette', 'Focalor'],
             date: '-',
             time: '-',
@@ -293,7 +303,7 @@ const App: React.FC = () => {
         {
             id: 6,
             title: 'Comp. Programming',
-            type: 'C',
+            type: 'X',
             content: ['Nicole Demara', 'Anby Demara', 'Billy Kid'],
             date: '-',
             time: '-',
@@ -304,7 +314,7 @@ const App: React.FC = () => {
         {
             id: 7,
             title: 'E-sports',
-            type: 'C',
+            type: 'X',
             content: ['Kafka', 'Silver Wolf', 'Firefly'],
             date: '-',
             time: '-',
@@ -316,9 +326,9 @@ const App: React.FC = () => {
 
     const workshop: SummaryProps[] = [
         {
-            id: 3,
+            id: 1,
             title: 'MULTIMEDIA',
-            type: 'W', // W = Workshop
+            type: 'X', // W = Workshop
             content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
             date: 'Wednesday, July 21th, 2024',
             time: '01:00 PM - 04:00 PM',
@@ -327,9 +337,9 @@ const App: React.FC = () => {
             logo: CalendarLogo
         },
         {
-            id: 4,
+            id: 2,
             title: 'IOT',
-            type: 'W',
+            type: 'X',
             content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
             date: 'Sunday, August 30th, 2077',
             time: '09:00 AM - 09:00 PM',
@@ -338,9 +348,9 @@ const App: React.FC = () => {
             logo: CalendarLogo
         },
         {
-            id: 5,
+            id: 3,
             title: 'ROBOTICS',
-            type: 'W',
+            type: 'X',
             content: ['Lorem Ipsum Lorem', 'Lorem Ipsum Lorem', 'Lorem Ipsum Lorem'],
             date: 'Friday, January 31th, 2099',
             time: '21:00 PM - 00:00 AM',

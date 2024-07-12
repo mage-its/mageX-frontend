@@ -54,7 +54,7 @@ const DashboardSideBarItem = ({
     <div onClick={toggleCollapse}>
       <div
         className={cn(
-          "flex gap-[23px] items-center justify-start p-2 md:p-[15px] cursor-pointer rounded-2xl",
+          "flex gap-[23px] items-center justify-start p-2 xl:p-[15px] cursor-pointer rounded-2xl",
           { "bg-vertical-gta": isActive }
         )}
       >
@@ -122,7 +122,7 @@ const DashboardSideBarItem = ({
         {collapseItem?.map((item) => (
           <div
             className={cn(
-              "border-gray-2 border-[1px] rounded-xl px-2 md:px-[15px] py-1.5"
+              "border-gray-2 border-[1px] rounded-xl px-2 xl:px-[15px] py-1.5"
               // { "mt-2": !isCollapsed }
             )}
           >
@@ -270,7 +270,7 @@ export default function DashboardSideBar() {
               <FaAngleLeft className="text-white text-[14px]" />
             )}
           </div>
-          <div className="flex gap-[15px] justify-center items-center mb-[30px] md:mb-[60px]">
+          <div className="flex gap-[15px] justify-center items-center mb-[30px] xl:mb-[60px]">
             <img className="h-[54px]" src={logo} alt="logo" />
             <motion.h1
               variants={{
@@ -291,7 +291,7 @@ export default function DashboardSideBar() {
               MAGE X
             </motion.h1>
           </div>
-          <div className="flex flex-col gap-[10px] md:gap-[30px]">
+          <div className="flex flex-col gap-[10px] xl:gap-[30px]">
             <DashboardSideBarItem
               isExpanded={isExpanded}
               title="Home"
@@ -357,7 +357,7 @@ export default function DashboardSideBar() {
             initial="notExpanded"
             className="bg-diagonal-gta h-fit w-full rounded-xl mb-[11px]"
           >
-            <div className="flex flex-col gap-[5px] p-2 md:p-3 w-full h-full bg-black/50 rounded-xl">
+            <div className="flex flex-col gap-[5px] p-2 xl:p-3 w-full h-full bg-black/50 rounded-xl">
               <DashboardSummaryItem
                 key={1}
                 competition="MAGE X"
@@ -376,7 +376,7 @@ export default function DashboardSideBar() {
                 teamName="Team 1"
                 teamMembers={["A", "B", "C"]}
               />
-              <div className="p-1 md:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px] mt-2 md:mt-3">
+              <div className="p-1 xl:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px] mt-2 xl:mt-3">
                 <div className="flex justify-center items-center gap-[6px] cursor-pointer">
                   <div className="flex flex-col items-center justify-center w-3.5 h-3.5 border-[1px] border-white rounded-md">
                     <FaPlus className="text-white text-[10px]" />
@@ -389,7 +389,7 @@ export default function DashboardSideBar() {
             </div>
           </motion.div>
           <div>
-            <div className="flex justify-center items-center gap-[6px] p-1.5 md:p-3 bg-red-1 rounded-xl cursor-pointer">
+            <div className="flex justify-center items-center gap-[6px] p-1.5 xl:p-3 bg-red-1 rounded-xl cursor-pointer">
               <IoExit className="text-white text-[32px] rotate-180" />
               <motion.p
                 variants={{
