@@ -7,6 +7,7 @@ import DottedLine from "@/assets/DottedLine.svg";
 import { motion, useAnimation } from "framer-motion";
 import { competition } from "@/constant/competitionCard";
 import { useState } from "react";
+import { useUserData } from "@/services/users";
 
 export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -158,9 +159,11 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       sideBarControl.start("appear");
     }
   };
+  const {data : user} = useUserData()
+  console.log(user)
   const loginRedirectURL = "https://api.mage-its.id/users/login"
   const logoutURL = "https://api.mage-its.id/users/logout"
-  const isAuthenticated = 0
+  const isAuthenticated = user?.status === "success"
   return (
     <nav
       className={cn(
