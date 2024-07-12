@@ -284,7 +284,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
                     className="hover:text-orange-primary-2/40"
                     theme={theme}
                   >
-                    App Dev
+                    Multimedia
                   </NavItem>
                 </Link>
                 <Link to="/workshop">
@@ -292,7 +292,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
                     className="hover:text-orange-primary-2/40"
                     theme={theme}
                   >
-                    Game Dev
+                    IoT
                   </NavItem>
                 </Link>
                 <Link to="/workshop">
