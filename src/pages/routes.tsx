@@ -15,15 +15,11 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/dashboardHome",
-        element: <DashboardHome />,
-      },
-      {
-        path: "/dashboardWorkshop",
+        path: "/dashboard/workshop",
         element: <DashboardWorkshop />,
       },
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {
@@ -67,7 +63,7 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/dashboard-Home",
+        path: "/dashboard/home",
         element: <DashboardHome />,
       },
       {
