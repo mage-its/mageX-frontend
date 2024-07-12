@@ -5,6 +5,9 @@ import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
 import Profile from "./Dashboard/User/Profile";
+import DashboardHome from "./Dashboard-Home";
+import DashboardWorkshop from "./Dashboard-Workshop";
+import DashboardCompetition from "./DashboardCompetition";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +15,15 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        index: true,
+        path: "/dashboardHome",
+        element: <DashboardHome />,
+      },
+      {
+        path: "/dashboardWorkshop",
+        element: <DashboardWorkshop />,
+      },
+      {
+        path: "/home",
         element: <Home />,
       },
       {
@@ -54,6 +65,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard-Home",
+        element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/competition",
+        element: <DashboardCompetition />,
       },
     ],
   },

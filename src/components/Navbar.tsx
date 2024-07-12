@@ -7,6 +7,7 @@ import DottedLine from "@/assets/DottedLine.svg";
 import { motion, useAnimation } from "framer-motion";
 import { competition } from "@/constant/competitionCard";
 import { useState } from "react";
+import { useUserData } from "@/services/users";
 
 export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -158,6 +159,11 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       sideBarControl.start("appear");
     }
   };
+  const {data : user} = useUserData()
+  console.log(user)
+  const loginRedirectURL = "https://api.mage-its.id/users/login"
+  const logoutURL = "https://api.mage-its.id/users/logout"
+  const isAuthenticated = user?.status === "success"
   return (
     <nav
       className={cn(
@@ -197,8 +203,22 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavItem>
             </Link>
           </div>
-          <Link to="/coming-soon">
-            <button className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+          {isAuthenticated ? (
+            <button
+            onClick={() => window.location.href = logoutURL}
+            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
+              <p
+                className={cn(
+                  "font-roboto font-medium tracking-wide text-base text-light"
+                )}
+              >
+                Log Out
+              </p>
+          </button>
+          ):(
+            <button
+            onClick={() => window.location.href = loginRedirectURL}
+            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
               <p
                 className={cn(
                   "font-roboto font-medium tracking-wide text-base text-light"
@@ -206,8 +226,8 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               >
                 Login
               </p>
-            </button>
-          </Link>
+          </button>
+          )}
         </div>
       ) : (
         <div className="flex items-center p-5 relative">
@@ -306,13 +326,31 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavCollapsibleItem>
             </div>
             <div className="flex gap-[10px] justify-center items-center">
-              <Link to="/coming-soon">
-                <NavItem theme={theme}>Sign Up</NavItem>
-              </Link>
-              <div className="h-5 w-[2px] bg-light rounded-3xl" />
-              <Link to="/coming-soon">
-                <NavItem theme={theme}>Login</NavItem>
-              </Link>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => window.location.href = logoutURL}
+                  >
+                    <p
+                      className={cn(
+                        "font-roboto font-medium tracking-wide text-base text-light"
+                      )}
+                    >
+                      Log Out
+                    </p>
+                </button>
+              ):(
+                <button
+                  onClick={() => window.location.href = loginRedirectURL}
+                  >
+                    <p
+                      className={cn(
+                        "font-roboto font-light text-[18px] text-light/30"
+                      )}
+                    >
+                      Login
+                    </p>
+                </button>
+              )}
             </div>
           </motion.div>
           <motion.div
