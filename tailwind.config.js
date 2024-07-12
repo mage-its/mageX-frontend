@@ -68,9 +68,9 @@ export default {
     extend: {
       screens: {
         // Custom screen size
-        mobile: "300px", // sm
-        ipad: "650px", // md
-        desktop: "1280px", // lg
+        mobile: "300px",   // extra sm
+        ipad: "768px",     // md
+        desktop: "1280px", // xl
       },
       backgroundImage: {
         "vertical-gta":

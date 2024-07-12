@@ -6,21 +6,21 @@ export const competition = [
   {
     id: '1',
     title: "Multimedia",
-    to: "/home",
+    to: "workshop/registration",
     description: "Innovate, Build, Triumph!",
     image: multimedia,
   },
   {
     id: '2',
     title: "IoT",
-    to: "/home",
+    to: "workshop/registration",
     description: "Create, Compete, Dominate!",
     image: iot,
   },
   {
     id: '3',
     title: "Robotic",
-    to: "/home",
+    to: "workshop/registration",
     description: "Innovate, Connect, Win!",
     image: robotic,
   }

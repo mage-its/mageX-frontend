@@ -131,7 +131,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                                         mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]">
                             {summary.content.map((item, index) => (
                                 <div key={index} className="my-2 flex gap-2">
-                                    <img src = {PersonLogo} className="my-auto"></img>
+                                    <img src = {PersonLogo} className="my-auto mobile:w-[12px] ipad:w-[1rem] desktop:w-[12px]"></img>
                                     {item}
                                 </div>
                             ))}

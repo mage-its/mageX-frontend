@@ -12,7 +12,7 @@ const HomeAndProfile: React.FC = () => {
             {/* <div className="ml-auto mr-[2rem] flex items-center"> */}
             <div className="ml-auto my-auto flex items-center">
                 <div className="font-fredoka text-light">Furina de Fontaine</div>
-                <img src={Furina} className="ml-[8px] w-[3rem] h-[3rem] rounded-[1rem] border-white border-[2px]"></img>
+                <img src={Furina} className="ml-[8px] w-[2.5rem] rounded-[1rem] border-white border-[2px]"></img>
             </div>
         </div>
     );
