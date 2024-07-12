@@ -35,15 +35,18 @@ export type Contest = {
   timeline: any;
   extraBox?: boolean;
   overviewDesc: string;
+  extraOverviewDesc?: string;
   overviewImage: any;
   point?: boolean;
   participant: string;
+  category: string;
   prize: string;
   guidebook?: string;
   contact?: {
     name: string;
     phone: string;
   }[];
+  secondPhase?: boolean;
 };
 
 export const gameDev: Contest = {
@@ -54,7 +57,7 @@ export const gameDev: Contest = {
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
   aboutCaption:
-    "Game Competition adalah cabang perlombaan dari event MAGE X  dimana peserta akan berkompetisi dalam pembuatan video game.",
+    "Game Development Competition merupakan cabang perlombaan MAGE X yang berfokus pada pembuatan game. Kompetisi ini memberikan kesempatan emas bagi para peserta untuk menjelajahi dunia kreativitas, inovasi, dan pemrograman dalam industri game.",
   aboutImage: Placeholder,
   timeline: [
     ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
@@ -62,16 +65,21 @@ export const gameDev: Contest = {
     ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["24 November 2024", "Presentasi Final", announce],
+    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
-    "Peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Tema dari perlombaan App Dev ini yaitu:",
+    "Pada tahun ini MAGE X berfokus pada “Digital Transformation : A Journey in Encouraging Social Inclusion Towards Society 5.0” dengan mengangkat beberapa sub-tema, yakni sebagai berikut. ",
+  extraOverviewDesc:
+    "Dengan beberapa sub-tema tersebut, peserta diharapkan dapat mengimplementasikannya pada pembuatan game sebagai premise, game mechanics, story, ataupun aspek lainnya.",
   overviewImage: Placeholder2,
   point: true,
   participant: "1 - 3 Orang",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "5 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1fUYN_KoP2VN6w3Sbdbb_qHjKSSYH-cfZ/view?usp=sharing",
+    "https://drive.google.com/file/d/1XMsarkpfMwrCHYQqNtVt3HAIEYIuXA5Y/view?usp=drive_link",
   contact: [
     {
       name: "Aqbil",
@@ -82,6 +90,7 @@ export const gameDev: Contest = {
       phone: "082210979566 (WA)",
     },
   ],
+  secondPhase: true,
 };
 
 export const appDev: Contest = {
@@ -93,7 +102,7 @@ export const appDev: Contest = {
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
   aboutCaption:
-    "Application Competition adalah cabang dari salah satu perlombaan MAGE X yang dimana peserta akan berlomba-lomba untuk membuat suatu aplikasi. Peserta akan ditantang untuk membuat aplikasi yang memiliki dapat membantu pekerjaan atau bisa menyelesaikan suatu permasalahan yang ada disekitar.",
+    "Application Development Competition merupakan cabang perlombaan MAGE X yang berfokus pada pengembangan aplikasi. Peserta diberikan kebebasan dalam memilih platform pengembangan aplikasi, seperti mobile application, web application, atau dekstop application, dengan penekanan pada aplikasi yang mudah digunakan dan dapat diakses oleh berbagai kalangan.",
   aboutImage: Placeholder,
   timeline: [
     ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
@@ -101,16 +110,21 @@ export const appDev: Contest = {
     ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["24 November 2024", "Presentasi Final", announce],
+    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
-    "Pada tahap pertama, peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Untuk tema dari perlombaan IoT adalah:",
+    "Pada tahun ini MAGE X berfokus pada “Digital Transformation : A Journey in Encouraging Social Inclusion Towards Society 5.0” dengan mengangkat beberapa sub-tema, yakni sebagai berikut.",
+  extraOverviewDesc:
+    "Melalui Application Development Competition diharapkan peserta dapat termotivasi untuk berinovasi dan menghasilkan aplikasi cerdas yang memiliki dampak positif dalam transformasi digital untuk meningkatkan pemerataan teknologi.",
   overviewImage: Placeholder2,
   point: true,
   participant: "1 - 3 Orang",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1gVZWLBbBkE0HNgR-WMSclMD_z8zZ2tBZ/view?usp=sharing",
+    "https://drive.google.com/file/d/1c61kifZ9_P8EYAK35wgB34HP91BXcaFJ/view?usp=drive_link",
   contact: [
     {
       name: "Hasan",
@@ -125,6 +139,7 @@ export const appDev: Contest = {
       phone: "085815046162 (WA)",
     },
   ],
+  secondPhase: true,
 };
 
 export const robotic: Contest = {
@@ -136,7 +151,7 @@ export const robotic: Contest = {
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
   aboutCaption:
-    "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada.",
+    "Robotic Competition merupakan cabang perlombaan MAGE X yang berfokus pada pertandingan robot line tracer yang bergerak mengikuti garis sebagai lintasan dari start hingga finish.",
   aboutImage: Placeholder,
   timeline: [
     ["11 Juli - 10 November 2024", "Pendaftaran", keypad],
@@ -145,10 +160,12 @@ export const robotic: Contest = {
     ["25 November 2024", "Awarding, Talkshow, Exhibition", robot],
   ],
   overviewDesc:
-    "Robotics adalah cabang perlombaan dari event MAGE X dimana peserta akan melakukan berkompetisi dibidang robot. Pada perlombaan ini, peserta ditantang untuk membuat robot yang dimana robot ini diharuskan untuk melewati beberapa tantangan yang ada. Peserta dinilai dari robot yang dibuat untuk melewati setiap tantangan yang ada serta bisa mengalahkan peserta yang lain. Tujuan dari perlombaan ini yaitu untuk memperkenalkan teknik komputer itu sendiri yang dimana sangat relevan dengan hal robotik dan peserta lomba dapat mengasah skill dari bidang elektrikal, mekanik, dan programming. Perlombaan ini akan dilombakan secara langsung atau offline di Institut Teknologi Sepuluh Nopember.",
+    "Robotic Competition merupakan cabang perlombaan MAGE X yang berfokus pada pertandingan robot line tracer yang bergerak mengikuti garis sebagai lintasan dari start hingga finish. Kompetisi ini menawarkan panggung bagi para peserta untuk menunjukkan kemampuan kecepatan robot line tracer mereka.Tujuan dari perlombaan ini yaitu untuk memperkenalkan teknik komputer itu sendiri yang dimana sangat relevan dengan hal robotik dan peserta lomba dapat mengasah skill dari bidang elektrikal, mekanik, dan programming. Perlombaan ini akan dilombakan secara langsung atau offline di Institut Teknologi Sepuluh Nopember.",
   overviewImage: Placeholder2,
-  participant: "1 - 3 Orang",
+  participant: "1 - 2 Orang",
+  category: "SMA/SMK/sederajat",
   prize: "3 jt ++ dan e-certif",
+  guidebook: "https://drive.google.com/file/d/1suBBgpz9XmcWFxPR9y5F4ora5HNqlNCk/view?usp=drive_link",
   contact: [
     {
       name: "Ernita",
@@ -166,7 +183,7 @@ export const iot: Contest = {
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
   aboutCaption:
-    "Internet of Things adalah cabang perlombaan dari event MAGE X dimana peserta akan dituntut dalam membuat perangkat berbasis IoT sekreatif mungkin. Dari perlombaan ini, peserta diharapkan bisa membuat perangkat IoT yang memiliki fungsi dalam membantu menyelesaikan suatu permasalahan dan perangkat IoT ini sesuai dengan tema yang diberikan.",
+    "Internet of Things (IoT) Competition merupakan cabang perlombaan MAGE X yang berfokus pada pembuatan alat yang dapat terintegrasi dengan koneksi nirkabel untuk terhubung dengan alat lain yang dapat dikendalikan.",
   aboutImage: Placeholder,
   timeline: [
     ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
@@ -174,16 +191,21 @@ export const iot: Contest = {
     ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
+    ["24 November 2024", "Presentasi Final", announce],
+    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
-    "Pada tahap pertama, peserta akan diminta untuk mengirimkan rancangan dan desain karya yang akan mereka buat. Pada tahapan kedua, peserta akan mengirimkan karya berupa soft file atau video demo dari karya mereka. Pada tahapan ketiga atau tahap final, peserta akan memamerkan karya mereka dan akan melakukan presentasi di depan juri secara offline di Institut Teknologi Sepuluh Nopember. Untuk tema dari perlombaan IoT adalah:",
+    "Pada tahun ini MAGE X berfokus pada “Digital Transformation : A Journey in Encouraging Social Inclusion Towards Society 5.0” dengan mengangkat beberapa sub-tema, yakni sebagai berikut.",
+  extraOverviewDesc:
+    "Tujuan dari kompetisi ini adalah mendorong inovasi dan kolaborasi dalam pengembangan solusi berbasis Internet of Things (IoT) yang berfokus pada digital transformation guna mengatasi kurangnya pemerataan pembangunan yang ada di Indonesia.",
   overviewImage: Placeholder2,
   point: true,
   participant: "1 - 3 Orang",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1WVmC3Nz0t0nvwonCrYMiLyDoKQyHlAFW/view?usp=sharing",
+    "https://drive.google.com/file/d/1NUY_eHrDIGC2uxDMAmXQsIdvVLIJ76pq/view?usp=drive_link",
   contact: [
     {
       name: "Candra",
@@ -194,6 +216,7 @@ export const iot: Contest = {
       phone: "082228857396 (WA)",
     },
   ],
+  secondPhase: true,
 };
 
 export const eSport: Contest = {
@@ -211,13 +234,12 @@ export const eSport: Contest = {
     ["12 November 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
     ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
     ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["12 November 2024", "TECHNICAL MEETING FINAL", techmeet],
   ],
-  extraBox: true,
   overviewDesc:
     "Perlombaan ini terdiri dari 2 cabang yaitu adalah turnamen game Valorant dan Turnamen game Mobile legend. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Tujuan dari perlombaan ini yaitu menciptakan nilai kompeten dari peserta lomba dan meramaikan acara MAGE X ini.",
   overviewImage: Placeholder2,
   participant: "5 Orang/tim",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
 };
 
@@ -242,6 +264,7 @@ export const uiUx: Contest = {
     "Pada perlombaan ini, peserta lomba akan dituntut untuk berkompetisi dalam pembuatan desain tentang tampilan web dan aplikasi yang dapat berfungsi dengan baik dan memiliki kemudahan akses dari sudut pengguna serta memiliki desain gambar yang menarik. Kriteria penilaian dari perlombaan ini yaitu dari fungsi, kemudahan akses serta desain gambar yang menarik.",
   overviewImage: Placeholder2,
   participant: "5 Orang/tim",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
 };
 
@@ -266,5 +289,6 @@ export const competitiveProgramming: Contest = {
     "Peserta akan ditantang untuk memberikan program serta algoritma terbaik mereka dalam menyelesaikan masalah yang diberikan. Perlombaan ini dilaksanakan secara online sepenuhnya di platform Kaggle yang terdiri  dua babak yaitu penyisihan dan final. Tujuan dilaksanakannya kompetisi ini adalah untuk memperkenalkan bagaimana Departemen Teknik Komputer ITS akan banyak berkutat terkait pemecahan masalah melalui pemrograman.",
   overviewImage: Placeholder2,
   participant: "5 Orang/tim",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
 };
