@@ -1,24 +1,24 @@
-import VerifiedIcon from '../../../../assets/icons/verified.svg'
-import ProfPic from '../../../../assets/img/profpic.png'
+import VerifiedIcon from '../../../../assets/icons/verified.svg';
+import ProfPic from '../../../../assets/img/profpic.png';
 
 export default function ProfileMain() {
 	return (
-		<div className="p-[40px] rounded-[30px] bg-black bg-opacity-80 backdrop-blur-md flex flex-row gap-[30px]">
+		<div className="p-6 md:p-10 rounded-2xl bg-black bg-opacity-80 backdrop-blur-md flex flex-row items-center gap-6 md:gap-8">
 			<img
 				src={ProfPic}
 				alt="icon"
-				className="rounded-full size-[170px] bg-white"
+				className="rounded-full w-24 h-24 md:w-40 md:h-40 bg-white"
 			/>
-			<div className="flex flex-col gap-[10px]">
-				<h1 className="text-white text-[64px] font-medium">
+			<div className="flex flex-col gap-2">
+				<h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-medium">
 					Rigel Ramadhani W
 				</h1>
-				<span className="flex flex-row gap-[10px] items-center justify-start">
-					<img src={VerifiedIcon} alt="verified" className="size-[35px] mx-1" />
-					<p className="text-white text-[24px]">Verified</p>
+				<span className="flex flex-row gap-2 items-center">
+					<img src={VerifiedIcon} alt="verified" className="w-6 h-6 md:w-8 md:h-8" />
+					<p className="text-white text-lg md:text-2xl">Verified</p>
 				</span>
 			</div>
-			<div className="w-[303px] h-[40px] bg-vertical-gta absolute bottom-0 right-0 rounded-tl-[27px] rounded-br-[27px]" />
+			<div className="w-48 h-10 bg-vertical-gta absolute bottom-0 right-0 rounded-tl-xl rounded-br-xl hidden md:block" />
 		</div>
-	)
+	);
 }
