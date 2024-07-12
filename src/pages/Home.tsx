@@ -396,7 +396,7 @@ export default function Home() {
         {/* start infographic section */}
         <div className="flex flex-wrap gap-y-4 sm:gap-y-8 justify-evenly mt-[70px] sm:mt-[140px] mb-0 sm:mb-16">
           <InfoCard title="Event Terlaksana" value="10" />
-          <InfoCard title="Peserta Terdaftar Setiap Tahun" value="50+" />
+          <InfoCard title="Total peserta" value="10000+" />
           <InfoCard title="Panitia berkontribusi setiap tahun" value="80+" />
           <InfoCard title="Sponsor & media partner terlibat" value="50+" />
         </div>
@@ -536,7 +536,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <motion.div className="w-full  h-[39vw] lg:h-[32vw] overflow-hidden relative">
+          <motion.div className="w-full h-[39vw] lg:h-[32vw] overflow-hidden relative">
             <motion.div
               onClick={handleComepetitionMore}
               drag="x"

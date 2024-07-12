@@ -15,6 +15,8 @@ export default {
         2: "#3E3E3E",
         3: "#AFAFAF",
         4: "#828282",
+        5: "#383838",
+        6: "#494949",
       },
       white: "#ffffff",
       mage: {
@@ -60,15 +62,20 @@ export default {
       },
       dark: "#1E1E1E",
       light: "#FFFFFF",
+      black: "#000000",
+      transparent_black: "rgba(0, 0, 0, 0.8)",
+      light_blue: "#2d8cfe",
     },
     extend: {
       screens: {
         // Custom screen size
-        mobile: "300px", // sm
-        ipad: "650px", // md
-        desktop: "1280px", // lg
+        mobile: "300px",   // extra sm
+        ipad: "768px",     // md
+        desktop: "1280px", // xl
       },
       backgroundImage: {
+        "diagonal-gta":
+          "linear-gradient(135deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta-reverse":
@@ -116,6 +123,12 @@ export default {
           "linear-gradient(180deg, #FBAD67 -17.65%, #FFFFFF 300%)",
         "blue-purple-orange":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
+        "blue-purple-orange-1":
+          "linear-gradient(90deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
+        "blue-purple-orange-2":
+          "linear-gradient(180deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
+        "transparent_white":
+          "linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0))",
       },
       dropShadow: {
         "glow-white-2": [
@@ -171,7 +184,47 @@ export default {
         slideIn: "slideIn 0.5s forwards",
         slideOut: "slideOut 0.5s forwards",
       },
+      gridTemplateColumns: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+        '13': 'repeat(13, minmax(0, 1fr))',
+        '14': 'repeat(14, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-13': 'span 13 / span 13',
+        'span-14': 'span 14 / span 14',
+        'span-15': 'span 15 / span 15',
+        'span-16': 'span 16 / span 16',
+      },
+      gridTemplateRows: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+        '13': 'repeat(13, minmax(0, 1fr))',
+        '14': 'repeat(14, minmax(0, 1fr))',
+        '15': 'repeat(15, minmax(0, 1fr))',
+        '16': 'repeat(16, minmax(0, 1fr))',
+        '17': 'repeat(17, minmax(0, 1fr))',
+      },
+      gridRow: {
+        'span-13': 'span 13 / span 13',
+        'span-14': 'span 14 / span 14',
+        'span-15': 'span 15 / span 15',
+        'span-16': 'span 16 / span 16',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        // To remove scroll bar
+        ".no-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };

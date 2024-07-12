@@ -20,18 +20,19 @@ export interface Data {
   no_hp: string;
 }
 
-export const getUserData = async () :Promise<Details> => {
-  return apiClient.get("/users/details")
-  .then(res => res.data)
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  })
-}
+export const getUserData = async (): Promise<Details> => {
+  return apiClient
+    .get("/users/details")
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+};
 
-export function useUserData(){
+export function useUserData() {
   return useQuery({
     queryKey: ["user"],
     queryFn: () => getUserData(),
     staleTime: 86400000,
-  })
+  });
 }

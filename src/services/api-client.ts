@@ -5,6 +5,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
   baseURL: "https://api.mage-its.id",
+  // baseURL: "https://dummyjson.com/c/73bf-d653-4153-a517",
 });
 
-export default apiClient
+export default apiClient;
