@@ -18,7 +18,7 @@ const dashboardHome: React.FC = () => {
     <main className="bg-black">
       <QueryClientProvider client={queryClient}>
         {/* Desktop Display */}
-        <div className="flex rounded-[2rem] mx-[10vw] overflow-hidden min-w-screen min-h-screen max-h-screen
+        <div className="flex overflow-hidden min-w-screen min-h-screen max-h-screen
                         mobile:bg-blue-purple-orange-2 mobile:hidden 
                         ipad:bg-blue-purple-orange-1 ipad:hidden
                         dekstop:bg-blue-purple-orange-1 desktop:flex">
