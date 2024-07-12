@@ -536,7 +536,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <motion.div className="w-full  h-[39vw] lg:h-[32vw] overflow-hidden relative">
+          <motion.div className="w-full h-[39vw] lg:h-[32vw] overflow-hidden relative">
             <motion.div
               onClick={handleComepetitionMore}
               drag="x"

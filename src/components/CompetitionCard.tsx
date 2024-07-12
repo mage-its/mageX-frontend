@@ -36,9 +36,9 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "w-[30vw] lg:w-[26vw]  h-[39vw] lg:h-[32vw] relative select-none rounded-[14px] md:rounded-3xl xl:rounded-[48px] bg-purple-grad-1 cursor-pointer border-[3px] md:border-[10px]  px-5 lg:px-[25px] 2xl:px-[69px] py-3 lg:py-[25px] 2xl:py-[50px] border-light/50 shrink-0 will-change-auto",
+          "w-[30vw] lg:w-[26vw] h-[39vw] lg:h-[32vw] relative select-none rounded-[14px] md:rounded-3xl xl:rounded-[48px] bg-purple-grad-1 cursor-pointer border-[3px] md:border-[10px]  px-5 lg:px-[25px] 2xl:px-[69px] py-3 lg:py-[25px] 2xl:py-[50px] border-light/50 shrink-0 will-change-auto",
           { "bg-purple-grad-1": theme == "purple" },
-          { "bg-orange-grad": theme == "orange" }
+          { "bg-orange-grad": theme == "orange" },
         )}
         animate
         {...props}
