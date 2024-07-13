@@ -194,8 +194,8 @@ const SummaryList: React.FC<{ competitions: SummaryProps[], workshops: SummaryPr
                             ipad:h-[80%] ipad:px-4
                             desktop:h-[85%] desktop:px-4"
                  style={{ cursor: 'grab' }}>
-                <div className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center
-                                mobile:h-[7rem] mobile:my-4 ipad:h-[7rem] ipad:my-4 desktop:h-[6rem] desktop:my-4">
+                <div className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center h-fit
+                                 mobile:my-4  ipad:my-4  desktop:my-4">
                     <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
                         {data?.data.nama}
                     </div>
@@ -228,7 +228,7 @@ const SummaryList: React.FC<{ competitions: SummaryProps[], workshops: SummaryPr
                 {competitions.map((competition) => (
                     <SummaryContent key={competition.id} summary={competition} />
                 ))}
-                <img src={DashedLine2} className="my-4"></img>
+                <img src={DashedLine2} className="my-4 w-full"></img>
                 <div className="flex font-fredoka">
                     <img src={TrophyLogo} className="select-none mmobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"></img>
                     <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
