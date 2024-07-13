@@ -1,9 +1,25 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import apiClient from "./api-client";
 
+export interface teams{
+  id: string,
+  anggota: string,
+  nama: string,
+  ketua: string,
+  divisi: string,
+  kategori: string,
+  Bukti_pembayaran: string,
+  status: string,
+  Bukti_twibbon: string,
+  invitation_code: string,
+  link_video: string,
+  link_proposal: string,
+  link_karya: string,
+}
+
 const getUserTeams = async () => {
   return apiClient
-    .get(`teams/details`)
+    .get(`teams`)
     .then((res) => res)
     .catch((error) => {
       console.error("Error fetching data:", error);

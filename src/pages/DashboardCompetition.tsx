@@ -20,6 +20,7 @@ import cn from "@/utils/cn";
 import { useState } from "react";
 import { IconType } from "react-icons";
 import Select, { Option } from "@/components/Select";
+import { useCreateTeam, useUserTeams } from "@/services/team";
 
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
@@ -200,6 +201,9 @@ export default function DashboardCompetition() {
     console.log(data);
   };
 
+  const {data: team} = useUserTeams();
+  const {mutateAsync: createTeam} = useCreateTeam();
+
   const {
     control: registStepOneControl,
     handleSubmit: registStepOneHandleSubmit,
@@ -266,6 +270,7 @@ export default function DashboardCompetition() {
 
   const increaseStep = () => setStep((prev) => prev + 1);
   const decreaseStep = () => setStep((prev) => prev - 1);
+
   return (
     <div className="flex bg-vertical-gta h-fit">
       <DashboardSideBar />
