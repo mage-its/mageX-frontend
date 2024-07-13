@@ -20,7 +20,8 @@ import cn from "@/utils/cn";
 import { useState } from "react";
 import { IconType } from "react-icons";
 import Select, { Option } from "@/components/Select";
-import { useCreateTeam, useUserTeams } from "@/services/team";
+import { useUpdateTeamInformation, useUserTeams} from "@/services/team";
+import { useUserData } from "@/services/users";
 
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
@@ -172,6 +173,7 @@ type TeamInformation = {
   teamName: string;
   teamMembersOne: string;
   teamMembersTwo: string;
+  teamMembersThree: string;
 };
 
 type RegistStepOne = {
@@ -191,18 +193,27 @@ type RegistStepThree = {
 
 export default function DashboardCompetition() {
   const [step, setStep] = useState<number>(1);
+  const {data: user} = useUserData();
+  const {data: team} = useUserTeams();
+  console.log(team?.nama)
+  const {mutateAsync: updateTeamInformation} = useUpdateTeamInformation();
 
   const [isEditTeamInformation, setIsEditTeamInformation] = useState(false);
 
   const { control: teamControl, handleSubmit: teamHandleSubmit } =
     useForm<TeamInformation>();
 
-  const onSubmit: SubmitHandler<TeamInformation> = (data) => {
+  const onSubmit: SubmitHandler<TeamInformation> = async (
+    data : TeamInformation
+  ) => {
     console.log(data);
+    if (isEditTeamInformation) {
+      console.log("Updating Team Data");
+      await updateTeamInformation({
+        nama: data.teamName
+      });
+    }
   };
-
-  const {data: team} = useUserTeams();
-  const {mutateAsync: createTeam} = useCreateTeam();
 
   const {
     control: registStepOneControl,
@@ -288,7 +299,7 @@ export default function DashboardCompetition() {
           </div>
           <div className="flex items-center gap-2.5">
             <h1 className="text-white font-fredoka font-medium text-base md:text-lg lg:text-xl">
-              Rigel Ramadhani W
+              {user?.nama}
             </h1>
             <img src={profilePIcture} alt="" />
           </div>
@@ -343,11 +354,11 @@ export default function DashboardCompetition() {
                 <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                   Members
                 </p>
-                <div className="rounded-xl bg-white py-2 px-2.5">
+                {/* <div className="rounded-xl bg-white py-2 px-2.5">
                   <p className="text-dark font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Rigel Ramadhani W
+                    pp
                   </p>
-                </div>
+                </div> */}
                 <Controller
                   disabled={!isEditTeamInformation}
                   name="teamMembersOne"
@@ -359,6 +370,14 @@ export default function DashboardCompetition() {
                 <Controller
                   disabled={!isEditTeamInformation}
                   name="teamMembersTwo"
+                  control={teamControl}
+                  render={({ field }) => (
+                    <InputField {...field} placeholder="Enter your team name" />
+                  )}
+                />
+                <Controller
+                  disabled={!isEditTeamInformation}
+                  name="teamMembersThree"
                   control={teamControl}
                   render={({ field }) => (
                     <InputField {...field} placeholder="Enter your team name" />
