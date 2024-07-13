@@ -160,7 +160,11 @@ export default function AdditionalInformation() {
 
             <span className="w-full flex flex-col gap-3">
               <p className="text-white text-lg font-light">Card</p>
-              <img src={`data:image/jpeg;base64,${user?.image_kartu}`} alt="" />
+              <img
+                className="w-10"
+                src={`data:image/jpeg;base64,${user?.image_kartu}`}
+                alt=""
+              />
             </span>
           </div>
         </div>

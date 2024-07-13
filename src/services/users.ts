@@ -58,7 +58,7 @@ export const updateUser = async (
   data.institusi && form.append("institusi", data.institusi);
   data.asal_provinsi && form.append("asal_provinsi", data.asal_provinsi);
   data.alamat && form.append("alamat", data.alamat);
-  data.image_kartu && form.append("image_kartu", data.image_kartu);
+  data.image_kartu && form.append("img_kartu", data.image_kartu);
 
   return apiClient
     .put("users/details", form, {

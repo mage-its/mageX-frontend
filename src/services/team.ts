@@ -19,14 +19,11 @@ export function useUserTeams() {
 }
 
 export const createTeam = async (divisi: string) => {
-  const form = new FormData();
-  form.append("divisi", divisi);
+  console.log("Creating team with divisi:", divisi);
+  // const form = new FormData();
+  // form.append("divisi", divisi);
   return apiClient
-    .post(`teams`, form, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    .post(`teams`, { divisi })
     .then((res) => res)
     .catch((error) => {
       console.error("Error fetching data:", error);
