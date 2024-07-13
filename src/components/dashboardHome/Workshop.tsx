@@ -40,7 +40,7 @@ const App: React.FC = () => {
         const totalWidth = cardWidthWithMargin * competition.length;
         const rightConstraint = totalWidth - width;
         setDragConstraints({
-          left: -rightConstraint,
+          left: -Math.max(rightConstraint, 0),
           right: 0,
         });
       }
