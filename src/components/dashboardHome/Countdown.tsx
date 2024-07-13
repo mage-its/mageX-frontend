@@ -7,16 +7,20 @@ import right from '@/assets/dashboardHome/rightButton.svg';
 
 const slides = [
   {
-    header: "Competition & Workshop",
-    content: <UseCountdown targetDate="2024-07-10T00:00:00" />
+    header: "Robotik Competition",
+    content: <UseCountdown targetDate="2024-11-10T23:59:00" />
   },
   {
-    header: "Ludi Harpastum",
-    content: <UseCountdown targetDate="2024-09-23T00:00:00" />
+    header: "IoT Competition",
+    content: <UseCountdown targetDate="2024-08-31T00:00:00" />
   },
   {
-    header: "Furina Birthday",
-    content: <UseCountdown targetDate="2024-10-13T00:00:00" />
+    header: "Game Development Competition",
+    content: <UseCountdown targetDate="2024-08-31T00:00:00" />
+  },
+  {
+    header: "App Development Competition",
+    content: <UseCountdown targetDate="2024-08-31T00:00:00" />
   },
 ];
 

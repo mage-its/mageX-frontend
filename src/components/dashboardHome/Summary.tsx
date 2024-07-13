@@ -222,21 +222,17 @@ const SummaryList: React.FC<{
                             mobile:h-[80%] mobile:px-4
                             ipad:h-[80%] ipad:px-4
                             desktop:h-[85%] desktop:px-4"
-        style={{ cursor: "grab" }}
-      >
-        <div
-          className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center
-                                mobile:h-[7rem] mobile:my-4 ipad:h-[7rem] ipad:my-4 desktop:h-[6rem] desktop:my-4"
-        >
-          <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
-            {user?.nama}
-          </div>
-          <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
-            {user?.email}
-          </div>
-          <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
-            <div
-              className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
+                 style={{ cursor: 'grab' }}>
+                <div className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center h-fit
+                                 mobile:my-4  ipad:my-4  desktop:my-4">
+                    <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
+                        {data?.data.nama}
+                    </div>
+                    <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
+                        {data?.data.email}
+                    </div>
+                    <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
+                        <div className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
                                         desktop:w-[50%]"
@@ -248,14 +244,31 @@ const SummaryList: React.FC<{
               className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
-                                        desktop:w-[50%]"
-            >
-              {user?.status === "verified" ? (
-                <img src={CheckLogo} className=""></img>
-              ) : (
-                <FaX className="" />
-              )}
-              Kelengkapan Profil
+                                        desktop:w-[50%]">
+                            <img src={CheckLogo} className=""></img>
+                            Kelengkapan Profil
+                        </div>
+                    </div>
+                </div>
+                <div className="flex font-fredoka">
+                    <img src={TrophyLogo} className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"></img>
+                    <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
+                        Competitions
+                    </p>
+                </div>
+                {competitions.map((competition) => (
+                    <SummaryContent key={competition.id} summary={competition} />
+                ))}
+                <img src={DashedLine2} className="my-4 w-full"></img>
+                <div className="flex font-fredoka">
+                    <img src={TrophyLogo} className="select-none mmobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"></img>
+                    <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
+                        Workshop
+                    </p>
+                </div>
+                {workshops.map((workshop) => (
+                    <SummaryContent key={workshop.id} summary={workshop} />
+                ))}
             </div>
           </div>
         </div>
