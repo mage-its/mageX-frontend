@@ -9,9 +9,8 @@ type AdditionalSchema = {
 };
 
 export default function AdditionalInformation() {
-  const { mutateAsync: updateUser, data: response } = useUpdateUser();
+  const { mutateAsync: updateUser } = useUpdateUser();
   const { data: user } = useUserData();
-  console.log(user);
   const { control, handleSubmit, setValue } = useForm<AdditionalSchema>();
   const onSubmit: SubmitHandler<AdditionalSchema> = async (
     data: AdditionalSchema
@@ -32,14 +31,14 @@ export default function AdditionalInformation() {
   const [isEditingAdditional, setIsEditingAdditional] = useState(false);
 
   const handleEditAdditional = () => {
-    setIsEditingAdditional(true);
+    setIsEditingAdditional(!isEditingAdditional);
   };
 
-  useEffect(() => {
-    if (response) {
-      setIsEditingAdditional(false);
-    }
-  }, [response]);
+  // useEffect(() => {
+  //   if (response) {
+  //     setIsEditingAdditional(false);
+  //   }
+  // }, [response]);
 
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
@@ -96,7 +95,7 @@ export default function AdditionalInformation() {
       onSubmit={handleSubmit(onSubmit)}
       className="p-10 rounded-2xl bg-black bg-opacity-80 backdrop-blur-md flex flex-col gap-6 w-full md:w-fit h-fit md:h-full"
     >
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row gap-4 justify-between items-center">
         <h2 className="text-white text-2xl md:text-3xl font-medium">
           Additional
         </h2>
