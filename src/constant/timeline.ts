@@ -5,8 +5,13 @@ export const timeline = [
   },
   {
     title:
-      "Open Registration - Development Competition (App Dev, Game Dev, dan IoT)",
-    date: "16 Juni 2024",
+      "Tahap 1 Pendaftaran & Pengumpulan Proposal Gelombang 1 - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "11 Juli s.d. 31 Agustus 2024",
+  },
+  {
+    title:
+      "Pendaftaran Robotics Competition",
+    date: "11 Juli 2024 s.d. 10 November 2024",
   },
   {
     title: "Pendaftaran Workshop Multimedia",
@@ -32,44 +37,44 @@ export const timeline = [
     title: "Workshop Robotik - Day 2",
     date: "25 Agustus 2024",
   },
-
+  {
+    title: "Tahap 1 Pendaftaran & Pengumpulan Proposal Gelombang 2 - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "1 September s.d. 14 September 2024",
+  },
   {
     title: "Pendaftaran Workshop IoT",
     date: "1 September 2024 s.d. 20 September 2024",
   },
   {
-    title:
-      "Close Registration - Development Competition (App Dev, Game Dev, dan IoT)",
-    date: "14 September 2024",
+    title: "Pengumuman Tahap 1 - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "16 September 2024",
   },
   {
-    title: "Pengumuman Seleksi Tahap I - Development Competition",
-    date: "16 September 2024",
+    title: "Tahap 2 Pengumpulan Realisasi Karya & Video - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "16 September s.d. 10 November 2024",
   },
   {
     title: "Workshop IoT",
     date: "21 September 2024",
   },
   {
-    title:
-      "Pengumpulan Video & Realisasi Karya - Development Competition (App Dev, Game Dev, dan IoT)",
-    date: "5 November 2024",
-  },
-  {
-    title:
-      "Pengumuman Seleksi Tahap II - Development Competition (App Dev, Game Dev, dan IoT)",
-    date: "8 November 2024",
+    title: "Pengumuman Tahap 2 - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "13 November 2024",
   },
   {
     title: "Technical Meeting",
-    date: "9 November 2024",
+    date: "15 November 2024",
   },
   {
     title: "Penyisihan Robotik",
-    date: "16 November 2024",
+    date: "24 November 2024",
   },
   {
-    title: "Grand Final MAGE X",
-    date: "17 November 2024",
+    title: "Presentasi Final - Development Competition (App Dev, Game Dev, dan IoT)",
+    date: "24 November 2024",
+  },
+  {
+    title: "Awarding, Talkshow, Exhibition",
+    date: "25 November 2024",
   },
 ];

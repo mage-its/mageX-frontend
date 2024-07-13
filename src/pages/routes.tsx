@@ -7,6 +7,7 @@ import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
 import DashboardHome from "./Dashboard-Home"
 import DashboardWorkshop from "./Dashboard-Workshop"
+import DashboardCompetition from "./DashboardCompetition";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard-Home",
         element: <DashboardHome />,
-      }
+      },
+        path: "/dashboard/competition",
+        element: <DashboardCompetition />,
+      },
     ],
   },
 ]);
