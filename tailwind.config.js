@@ -9,13 +9,13 @@ export default {
     },
     colors: {
       transparent: "transparent",
-      black: "#000",
       gray: {
         1: "#141414",
         2: "#3E3E3E",
         3: "#AFAFAF",
         4: "#828282",
         5: "#383838",
+        6: "#494949",
       },
       white: "#ffffff",
       mage: {
@@ -68,11 +68,13 @@ export default {
     extend: {
       screens: {
         // Custom screen size
-        mobile: "300px",   // extra sm
-        ipad: "768px",     // md
+        mobile: "300px", // extra sm
+        ipad: "768px", // md
         desktop: "1280px", // xl
       },
       backgroundImage: {
+        "diagonal-gta":
+          "linear-gradient(135deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta":
           "linear-gradient(90deg, #435ECF 0%, #E24BB3 35%, #FF9433 100%)",
         "vertical-gta-reverse":
@@ -124,7 +126,7 @@ export default {
           "linear-gradient(90deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
         "blue-purple-orange-2":
           "linear-gradient(180deg, #435ECF, 10%, #E24BB3, 50%, #FF9433 100%)",
-        "transparent_white":
+        transparent_white:
           "linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0))",
       },
       dropShadow: {
@@ -182,29 +184,29 @@ export default {
         slideOut: "slideOut 0.5s forwards",
       },
       gridTemplateColumns: {
-        '12': 'repeat(12, minmax(0, 1fr))',
-        '13': 'repeat(13, minmax(0, 1fr))',
-        '14': 'repeat(14, minmax(0, 1fr))',
+        12: "repeat(12, minmax(0, 1fr))",
+        13: "repeat(13, minmax(0, 1fr))",
+        14: "repeat(14, minmax(0, 1fr))",
       },
       gridColumn: {
-        'span-13': 'span 13 / span 13',
-        'span-14': 'span 14 / span 14',
-        'span-15': 'span 15 / span 15',
-        'span-16': 'span 16 / span 16',
+        "span-13": "span 13 / span 13",
+        "span-14": "span 14 / span 14",
+        "span-15": "span 15 / span 15",
+        "span-16": "span 16 / span 16",
       },
       gridTemplateRows: {
-        '12': 'repeat(12, minmax(0, 1fr))',
-        '13': 'repeat(13, minmax(0, 1fr))',
-        '14': 'repeat(14, minmax(0, 1fr))',
-        '15': 'repeat(15, minmax(0, 1fr))',
-        '16': 'repeat(16, minmax(0, 1fr))',
-        '17': 'repeat(17, minmax(0, 1fr))',
+        12: "repeat(12, minmax(0, 1fr))",
+        13: "repeat(13, minmax(0, 1fr))",
+        14: "repeat(14, minmax(0, 1fr))",
+        15: "repeat(15, minmax(0, 1fr))",
+        16: "repeat(16, minmax(0, 1fr))",
+        17: "repeat(17, minmax(0, 1fr))",
       },
       gridRow: {
-        'span-13': 'span 13 / span 13',
-        'span-14': 'span 14 / span 14',
-        'span-15': 'span 15 / span 15',
-        'span-16': 'span 16 / span 16',
+        "span-13": "span 13 / span 13",
+        "span-14": "span 14 / span 14",
+        "span-15": "span 15 / span 15",
+        "span-16": "span 16 / span 16",
       },
     },
   },

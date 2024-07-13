@@ -4,7 +4,10 @@ import Home from "./Home";
 import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
-import DashboardHome from "./Dashboard-Home"
+import Profile from "./Dashboard/User/Profile";
+import DashboardHome from "./Dashboard-Home";
+import DashboardWorkshop from "./Dashboard-Workshop";
+import DashboardCompetition from "./DashboardCompetition";
 
 const router = createBrowserRouter([
   {
@@ -12,11 +15,11 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/dashboardHome",
-        element: <DashboardHome />,
+        path: "/dashboard/workshop",
+        element: <DashboardWorkshop />,
       },
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {
@@ -56,9 +59,17 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: "/dashboard-Home",
+        path: "/dashboard/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/home",
         element: <DashboardHome />,
-      }
+      },
+      {
+        path: "/dashboard/competition",
+        element: <DashboardCompetition />,
+      },
     ],
   },
 ]);

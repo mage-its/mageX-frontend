@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import cn from "@/utils/cn";
 import { FaCaretDown } from "react-icons/fa6";
+import { useUserTeams } from "@/services/team";
+import { Link } from "react-router-dom";
 
 interface DashboardSideBarItemProps {
   title: string;
@@ -54,7 +56,7 @@ const DashboardSideBarItem = ({
     <div onClick={toggleCollapse}>
       <div
         className={cn(
-          "flex gap-[23px] items-center justify-start p-2 xl:p-[15px] cursor-pointer rounded-2xl",
+          "flex gap-[23px] items-center justify-start p-2 md:p-[15px] cursor-pointer rounded-2xl",
           { "bg-vertical-gta": isActive }
         )}
       >
@@ -122,7 +124,7 @@ const DashboardSideBarItem = ({
         {collapseItem?.map((item) => (
           <div
             className={cn(
-              "border-gray-2 border-[1px] rounded-xl px-2 xl:px-[15px] py-1.5"
+              "border-gray-2 border-[1px] rounded-xl px-2 md:px-[15px] py-1.5"
               // { "mt-2": !isCollapsed }
             )}
           >
@@ -137,13 +139,17 @@ const DashboardSideBarItem = ({
 };
 
 export default function DashboardSideBar() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { data: teams } = useUserTeams();
+  console.log(teams);
+  const [isExpanded, setIsExpanded] = useState(
+    window.innerWidth > 1024 ? false : true
+  );
   const [isVisible, setIsVisible] = useState(false);
   const expansionControl = useAnimation();
   const currentRoute = window.location.pathname.split("/")[2];
 
   const toggleExpansion = () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       setIsVisible(!isVisible);
     } else {
       setIsExpanded(!isExpanded);
@@ -155,7 +161,7 @@ export default function DashboardSideBar() {
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       if (isVisible) {
         expansionControl.start("visible");
       } else {
@@ -172,16 +178,10 @@ export default function DashboardSideBar() {
     }
   }, [isExpanded, expansionControl]);
 
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setIsExpanded(true);
-    }
-  }, []);
-
   return (
-    <nav>
-      {window.innerWidth <= 768 && (
-        <div className="flex justify-between items-center fixed h-[67px] w-screen bg-black py-[15px] px-[25px]">
+    <>
+      {window.innerWidth <= 1024 && (
+        <div className="flex justify-between items-center fixed z-20 h-[67px] w-screen bg-black py-[15px] px-[25px]">
           <div
             onClick={toggleExpansion}
             className="flex gap-3 justify-center items-center rounded-[9px] bg-gray-5 px-3 py-[9px]"
@@ -230,34 +230,36 @@ export default function DashboardSideBar() {
             paddingBottom: "30px",
           },
           expanded: {
-            position: "relative",
+            position: `${window.innerWidth <= 1024 ? "fixed" : "relative"}`,
             marginLeft: "0px",
             marginTop: "0px",
             marginBottom: "0px",
             minHeight: "100vh",
-            width: `${window.innerWidth <= 768 ? 250 : 260}px`,
+            width: `${window.innerWidth <= 1024 ? 250 : 260}px`,
             borderRadius: "0px",
-            paddingLeft: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingRight: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingTop: `${window.innerWidth <= 768 ? 25 : 35}px`,
-            paddingBottom: `${window.innerWidth <= 768 ? 25 : 35}px`,
+            paddingLeft: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingRight: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingTop: `${window.innerWidth <= 1024 ? 25 : 35}px`,
+            paddingBottom: `${window.innerWidth <= 1024 ? 25 : 35}px`,
           },
           hidden: {
-            position: "absolute",
+            position: "fixed",
             left: "-110%",
           },
           visible: {
-            position: "absolute",
+            position: "fixed",
             left: "0%",
+            zIndex: 20,
           },
         }}
         animate={expansionControl}
+        initial={window.innerWidth <= 1024 ? "visible" : "notExpanded"}
         transition={{
           duration: 0.5,
           type: "tween",
           ease: "easeInOut",
         }}
-        className="bg-black flex flex-col items-center justify-between"
+        className=" bg-black flex flex-col items-center justify-between"
       >
         <div className="mb-4 relative">
           <div
@@ -270,7 +272,7 @@ export default function DashboardSideBar() {
               <FaAngleLeft className="text-white text-[14px]" />
             )}
           </div>
-          <div className="flex gap-[15px] justify-center items-center mb-[30px] xl:mb-[60px]">
+          <div className="flex gap-[15px] justify-center items-center mb-[30px] md:mb-[60px]">
             <img className="h-[54px]" src={logo} alt="logo" />
             <motion.h1
               variants={{
@@ -286,18 +288,21 @@ export default function DashboardSideBar() {
                 },
               }}
               animate={expansionControl}
+              initial="notExpanded"
               className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-3xl pr-2"
             >
               MAGE X
             </motion.h1>
           </div>
-          <div className="flex flex-col gap-[10px] xl:gap-[30px]">
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Home"
-              Icon={GoHomeFill}
-              isActive={currentRoute === "home"}
-            />
+          <div className="flex flex-col gap-[10px] md:gap-[30px]">
+            <Link to="/dashboard/home">
+              <DashboardSideBarItem
+                isExpanded={isExpanded}
+                title="Home"
+                Icon={GoHomeFill}
+                isActive={currentRoute === "home"}
+              />
+            </Link>
             <div onClick={setTrueExpansion}>
               <DashboardSideBarItem
                 isExpanded={isExpanded}
@@ -318,12 +323,14 @@ export default function DashboardSideBar() {
               Icon={PiChalkboardTeacherFill}
               isActive={currentRoute === "workshop"}
             />
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Profile"
-              Icon={FaUser}
-              isActive={currentRoute === "profile"}
-            />
+            <Link to="/dashboard/profile">
+              <DashboardSideBarItem
+                isExpanded={isExpanded}
+                title="Profile"
+                Icon={FaUser}
+                isActive={currentRoute === "profile"}
+              />
+            </Link>
           </div>
         </div>
         <motion.div
@@ -336,6 +343,7 @@ export default function DashboardSideBar() {
             },
           }}
           animate={expansionControl}
+          initial="notExpanded"
           className="w-[190px] h-fit"
         >
           <motion.div
@@ -357,7 +365,7 @@ export default function DashboardSideBar() {
             initial="notExpanded"
             className="bg-diagonal-gta h-fit w-full rounded-xl mb-[11px]"
           >
-            <div className="flex flex-col gap-[5px] p-2 xl:p-3 w-full h-full bg-black/50 rounded-xl">
+            <div className="flex flex-col gap-[5px] p-2 md:p-3 w-full h-full bg-black/50 rounded-xl">
               <DashboardSummaryItem
                 key={1}
                 competition="MAGE X"
@@ -376,7 +384,7 @@ export default function DashboardSideBar() {
                 teamName="Team 1"
                 teamMembers={["A", "B", "C"]}
               />
-              <div className="p-1 xl:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px] mt-2 xl:mt-3">
+              <div className="p-1 md:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px] mt-2 md:mt-3">
                 <div className="flex justify-center items-center gap-[6px] cursor-pointer">
                   <div className="flex flex-col items-center justify-center w-3.5 h-3.5 border-[1px] border-white rounded-md">
                     <FaPlus className="text-white text-[10px]" />
@@ -389,7 +397,7 @@ export default function DashboardSideBar() {
             </div>
           </motion.div>
           <div>
-            <div className="flex justify-center items-center gap-[6px] p-1.5 xl:p-3 bg-red-1 rounded-xl cursor-pointer">
+            <div className="flex justify-center items-center gap-[6px] p-1.5 md:p-3 bg-red-1 rounded-xl cursor-pointer">
               <IoExit className="text-white text-[32px] rotate-180" />
               <motion.p
                 variants={{
@@ -403,6 +411,7 @@ export default function DashboardSideBar() {
                   },
                 }}
                 animate={expansionControl}
+                initial="notExpanded"
                 className="text-white font-fredoka font-medium text-base"
               >
                 Logout
@@ -411,6 +420,6 @@ export default function DashboardSideBar() {
           </div>
         </motion.div>
       </motion.div>
-    </nav>
+    </>
   );
 }
