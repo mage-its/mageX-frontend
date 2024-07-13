@@ -1,7 +1,6 @@
 import { useUserData } from "@/services/users";
 import VerifiedIcon from "../../../../assets/icons/verified.svg";
 import ProfPic from "../../../../assets/img/profpic.png";
-import { FaX } from "react-icons/fa6";
 
 export default function ProfileMain() {
   const { data: user } = useUserData();

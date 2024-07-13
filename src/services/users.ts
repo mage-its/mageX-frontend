@@ -26,7 +26,7 @@ export interface UpdateUser {
   institusi?: string;
   asal_provinsi?: string;
   alamat?: string;
-  image_kartu?: string;
+  image_kartu?: File | null;
   tanggal_lahir?: string;
   no_hp?: string;
 }

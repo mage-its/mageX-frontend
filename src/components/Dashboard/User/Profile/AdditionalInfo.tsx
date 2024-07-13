@@ -5,13 +5,15 @@ import { FaUpload } from "react-icons/fa6";
 
 type AdditionalSchema = {
   institusi: string;
-  img_kartu: string | ArrayBuffer | null | undefined;
+  img_kartu: File | null;
 };
 
 export default function AdditionalInformation() {
   const { mutateAsync: updateUser } = useUpdateUser();
   const { data: user } = useUserData();
-  const { control, handleSubmit, setValue } = useForm<AdditionalSchema>();
+  console.log(user);
+  const { control, handleSubmit, setValue, resetField, setError } =
+    useForm<AdditionalSchema>();
   const onSubmit: SubmitHandler<AdditionalSchema> = async (
     data: AdditionalSchema
   ) => {
@@ -20,7 +22,7 @@ export default function AdditionalInformation() {
       console.log("Updating User Data");
       await updateUser({
         institusi: data.institusi,
-        // image_kartu: data.img_kartu,
+        image_kartu: data.img_kartu,
       });
     }
   };
@@ -40,55 +42,50 @@ export default function AdditionalInformation() {
   //   }
   // }, [response]);
 
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  // const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   resetField("img_kartu");
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    resetField("img_kartu");
 
-  //   if (event.target.files && event.target.files[0]) {
-  //     const extname = event.target.files[0].name.split(".").pop();
-  //     const IMG_EXTS = ["jpg", "jpeg", "png"];
+    const files = event.target.files;
+    if (files && files[0]) {
+      const extname = files[0].name.split(".").pop();
+      const IMG_EXTS = ["jpg", "jpeg", "png"];
 
-  //     if (
-  //       IMG_EXTS.includes(extname || "") &&
-  //       event.target.files[0].size > 2 * 1024 * 1024
-  //     ) {
-  //       setError("img_kartu", {
-  //         type: "manual",
-  //         message: "Ukuran maksimal gambar adalah 2MB",
-  //       });
-  //     } else if (
-  //       extname === "pdf" &&
-  //       event.target.files[0].size > 20 * 1024 * 1024
-  //     ) {
-  //       setError("img_kartu", {
-  //         type: "manual",
-  //         message: "Ukuran maksimal PDF adalah 20MB",
-  //       });
-  //     } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
-  //       setError("img_kartu", {
-  //         type: "manual",
-  //         message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
-  //       });
-  //     }
-  //   }
+      if (IMG_EXTS.includes(extname || "") && files[0].size > 2 * 1024 * 1024) {
+        setError("img_kartu", {
+          type: "manual",
+          message: "Ukuran maksimal gambar adalah 2MB",
+        });
+      } else if (extname === "pdf" && files[0].size > 20 * 1024 * 1024) {
+        setError("img_kartu", {
+          type: "manual",
+          message: "Ukuran maksimal PDF adalah 20MB",
+        });
+      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
+        setError("img_kartu", {
+          type: "manual",
+          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+        });
+      }
+    }
 
-  //   setValue("img_kartu", event.target.files);
-  // };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    const files = e.target.files;
-    const reader = new FileReader();
-    reader.readAsText(files[0]);
-    reader.onload = (e) => {
-      console.log("image data: ", e.target?.result);
-      setValue("img_kartu", e.target?.result);
-    };
-    setSelectedFile(e.target?.value);
-    // setSelectedFile(e.target.value);
-    console.log(selectedFile);
+    setValue("img_kartu", files ? files[0] : null);
   };
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (!e.target.files) return;
+  //   const files = e.target.files;
+  //   const reader = new FileReader();
+  //   reader.readAsText(files[0]);
+  //   reader.onload = (e) => {
+  //     console.log("image data: ", e.target?.result);
+  //     setValue("img_kartu", e.target?.result);
+  //   };
+  //   setSelectedFile(e.target?.value);
+  //   // setSelectedFile(e.target.value);
+  //   console.log(selectedFile);
+  // };
 
   return (
     <form
