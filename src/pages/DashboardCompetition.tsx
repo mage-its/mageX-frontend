@@ -499,6 +499,13 @@ export default function DashboardCompetition() {
     "Game Dev": gameDev,
   };
 
+  const format: { [key: string]: string } = {
+    "App Dev": "AppDev",
+    IoT: "IoT",
+    Robotics: "Robotik",
+    "Game Dev": "GameDev",
+  };
+
   useEffect(() => {
     if (teams?.bukti_pembayaran !== "000000000000000000000000") {
       setLinkBuktiPembayaran(
@@ -708,9 +715,9 @@ export default function DashboardCompetition() {
                       {...field}
                       label="Payment Proof"
                       placeholder="Upload Here"
-                      formatName="MAGEX_Tahap 1_AppDev_[Nama Tim].pdf"
+                      formatName={`Pembayaran_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
                       formatFile=".png, .jpg, .pdf"
-                      maxFileSize="10MB"
+                      maxFileSize="5MB"
                       accept=".png, .jpg, .pdf"
                       value={undefined}
                       onRemove={onRemovePayment}
@@ -726,10 +733,19 @@ export default function DashboardCompetition() {
                   control={registStepOneControl}
                   render={({ field }) => (
                     <Select {...field} label="Category" id="category">
-                      <Option value="">Choose</Option>
-                      <Option value="sd">SD</Option>
-                      <Option value="smp">SMP</Option>
-                      <Option value="sma">SMA</Option>
+                      {teams?.divisi === "Robotics" && (
+                        <Option value="sma">SMA</Option>
+                      )}
+                      {(teams?.divisi === "App Dev" ||
+                        teams?.divisi === "Game Dev") && (
+                        <>
+                          <Option value="sd">Mahasiswa</Option>
+                          <Option value="smp">SMA</Option>
+                        </>
+                      )}
+                      {teams?.divisi == "IoT" && (
+                        <Option value="sma">Umum</Option>
+                      )}
                     </Select>
                   )}
                 />
@@ -741,9 +757,9 @@ export default function DashboardCompetition() {
                       {...field}
                       label="Follow Instagram + Twibbon Post"
                       placeholder="Upload Here"
-                      formatName="MAGEX_Tahap 1_AppDev_[Nama Tim].pdf"
+                      formatName={`IG_Twibbon_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
                       formatFile=".pdf"
-                      maxFileSize="10MB"
+                      maxFileSize="5MB"
                       accept=".pdf"
                       value={undefined}
                       onRemove={onRemoveFollowIgAndTwibbon}
@@ -809,9 +825,9 @@ export default function DashboardCompetition() {
                       {...field}
                       label="Proposal"
                       placeholder="Upload Here"
-                      formatName="MAGEX_Tahap 1_AppDev_[Nama Tim].pdf"
+                      formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
                       formatFile=".png, .jpg, .pdf"
-                      maxFileSize="10MB"
+                      maxFileSize="5MB"
                       accept=".png, .jpg, .pdf"
                       value={undefined}
                       onRemove={onRemoveProposal}

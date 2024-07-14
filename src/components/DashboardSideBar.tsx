@@ -182,10 +182,7 @@ export default function DashboardSideBar() {
   return (
     <>
       {window.innerWidth <= 1024 && (
-        <Link
-          to="/"
-          className="flex justify-between items-center fixed z-20 h-[67px] w-screen bg-black py-[15px] px-[25px]"
-        >
+        <div className="flex justify-between items-center fixed z-20 h-[67px] w-screen bg-black py-[15px] px-[25px]">
           <div
             onClick={toggleExpansion}
             className="flex gap-3 justify-center items-center rounded-[9px] bg-gray-5 px-3 py-[9px]"
@@ -195,13 +192,13 @@ export default function DashboardSideBar() {
             </p>
             <FaAngleRight className="text-white text-[14px]" />
           </div>
-          <div className="flex gap-[15px] justify-center items-center">
+          <Link to="/" className="flex gap-[15px] justify-center items-center">
             <img className="h-[54px]" src={logo} alt="logo" />
             <h1 className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-3xl pr-2">
               MAGE X
             </h1>
-          </div>
-        </Link>
+          </Link>
+        </div>
       )}
       <motion.div
         variants={{
@@ -253,7 +250,7 @@ export default function DashboardSideBar() {
           visible: {
             position: "fixed",
             left: "0%",
-            zIndex: 20,
+            zIndex: 60,
           },
         }}
         animate={expansionControl}
@@ -263,7 +260,7 @@ export default function DashboardSideBar() {
           type: "tween",
           ease: "easeInOut",
         }}
-        className=" bg-black flex flex-col items-center justify-between"
+        className=" bg-black flex flex-col items-center justify-between z-40"
       >
         <div className="mb-4 relative">
           <div

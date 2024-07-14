@@ -89,7 +89,7 @@ export const gameDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "5 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1XMsarkpfMwrCHYQqNtVt3HAIEYIuXA5Y/view",
+    "https://drive.google.com/file/d/1jV6mbg9MJzxfgU4lqIRELTqGFQ1Ra2VM/view",
   contact: [
     {
       name: "Aqbil",
@@ -143,7 +143,7 @@ export const appDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1c61kifZ9_P8EYAK35wgB34HP91BXcaFJ/view",
+    "https://drive.google.com/file/d/1dOkDsJ63ABk5P5HMZ2ksHWb6tNc7W49g/view",
   contact: [
     {
       name: "Hasan",
@@ -186,7 +186,7 @@ export const robotic: Contest = {
   category: "SMA/SMK/sederajat",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1suBBgpz9XmcWFxPR9y5F4ora5HNqlNCk/view",
+    "https://drive.google.com/file/d/1KuQPzmJk0rmdzW0fRW__kfIlQ9JkV74m/view",
   contact: [
     {
       name: "Ernita",
@@ -235,7 +235,7 @@ export const iot: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1NUY_eHrDIGC2uxDMAmXQsIdvVLIJ76pq/view",
+    "https://drive.google.com/file/d/1FzDjvo0dAXda6jkdZ4qy99sRMsnpf_NN/view",
   contact: [
     {
       name: "Candra",

@@ -176,26 +176,37 @@ const CompetitionComponent: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      {user?.verified === "true" ? (
-        teams == undefined ? (
-          <Popup
-            isVisible={isPopupVisible}
-            onClose={handleClosePopup}
-            handleYesClick={handleYesClick}
-            text="You will be registered as Team Leader Do you want to continue?"
-          />
+      {popupDestination == "App Dev" ||
+      popupDestination == "Game Dev" ||
+      popupDestination == "IoT" ||
+      popupDestination == "Robotics" ? (
+        user?.verified === "true" ? (
+          teams == undefined ? (
+            <Popup
+              isVisible={isPopupVisible}
+              onClose={handleClosePopup}
+              handleYesClick={handleYesClick}
+              text="You will be registered as Team Leader Do you want to continue?"
+            />
+          ) : (
+            <Popup
+              isVisible={isPopupVisible}
+              onClose={handleClosePopup}
+              text="You're already leader of a team. Cannot create another team"
+            />
+          )
         ) : (
           <Popup
             isVisible={isPopupVisible}
             onClose={handleClosePopup}
-            text="You're already leader of a team. Cannot create another team"
+            text="You are not verified. Please complete your data first"
           />
         )
       ) : (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
-          text="You are not verified. Please complete your data first"
+          text="Coming Soon"
         />
       )}
     </div>

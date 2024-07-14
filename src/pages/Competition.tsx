@@ -61,6 +61,7 @@ import {
   uiUx,
 } from "@/constant/competitionPage";
 import Footer from "@/components/Footer";
+import { useUserData } from "@/services/users";
 
 interface CompetitionProps {
   x: Contest;
@@ -69,6 +70,8 @@ interface CompetitionProps {
 }
 
 const Home = ({ x }: CompetitionProps) => {
+  const { data: user } = useUserData();
+  console.log(user);
   return (
     <>
       <div className="w-full h-screen relative">
@@ -152,11 +155,15 @@ const Home = ({ x }: CompetitionProps) => {
                   </Link>
                 </div>
               )}
-              <div className="z-10">
-                <a href="https://api.mage-its.id/users/login">
-                  <CButton theme={x?.theme}>Log In</CButton>
-                </a>
-              </div>
+              {
+                !user?.is_logged_in && (
+                  <div className="z-10">
+                    <a href="https://api.mage-its.id/users/login">
+                      <CButton theme={x?.theme}>Log In</CButton>
+                    </a>
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
@@ -224,9 +231,9 @@ const About = ({ x }: CompetitionProps) => {
                 </div>
               )}
               <div className="z-10">
-                <a href="https://api.mage-its.id/users/login">
-                  <CButton theme={x?.theme}>Log In</CButton>
-                </a>
+                <Link to="/dashboard/home">
+                  <CButton theme={x?.theme}>Daftar</CButton>
+                </Link>
               </div>
             </div>
           </div>
@@ -408,7 +415,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                   <img src={purpleSUB} className="p-[5px]"></img>
                 )}
               </div>
-              <Link to="/coming-soon">
+              <Link to="/dashboard/home">
                 <p className="text-light text-[14px] mt-[4px] font-bold">
                   Daftar disini!
                 </p>

@@ -6,23 +6,25 @@ import timeIcon1 from "../assets/workshop/timeIcon1.svg";
 import locationIcon1 from "../assets/workshop/locationIcon1.svg";
 import timeIcon2 from "../assets/workshop/timeIcon2.svg";
 import locationIcon2 from "../assets/workshop/locationIcon2.svg";
+import keanu from "@/assets/workshop/pemateri/keanu.png";
 import { Link } from "react-router-dom";
 
 const slides = [
   {
     header: "MULTIMEDIA",
     content:
-      "Workshop ini adalah workshop yang mempelajari mengenai dasar dari pemrograman dalam Bahasa pemrograman seperti python dan dasar dasar multimedia. Workshop dilakukan selama 2 hari. Hari pertama mempelajari dasar dasar pemrograman dan hari kedua adalah project dan review project",
+      'Workshop Multimedia adalah sebuah kegiatan yang diadakan sebagai bagian dari MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum tentang bidang multimedia. Tema tahun ini adalah "Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0." Workshop ini akan fokus pada "Mengembangkan Portofolio Website Anda Sendiri" dan mencakup topik-topik seperti: pengetahuan dasar tentang multimedia, pengembangan website, desain dan pengembangan front-end website untuk pemula, dan motivasi untuk terus belajar dan berinovasi di dunia digital. Workshop online selama 3 hari ini akan terdiri dari presentasi materi dan tugas pada hari pertama dan kedua, serta review tugas peserta oleh instruktur pada hari ketiga.',
     tempat: "To be announced",
     waktu: "20 & 28 Juli 2024",
-    pemateri1: "To be announced",
-    pemateri2: "To be announced",
+    pemateri1: "Keanu Fortuna Taufan",
+    pemateri2: "Software Engineer | Front End Web Developer Jagoteknik",
     color1: "#F77F5A",
     color2: "linear-gradient(169.21deg, #FFFFFF -9.1%, #EFA264 101.73%)",
     color3: "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
     color4: "#CA4F14",
     timeIcon: timeIcon1,
     locationIcon: locationIcon1,
+    imgPemateri: keanu,
   },
   {
     header: "ROBOTIK",
@@ -151,13 +153,18 @@ const WorkshopSlide = () => {
 
               <div className="w-[50%] mt-[5%] h-[75%] flex items-center justify-center">
                 {/* Placeholder for image*/}
-                <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[1rem]">
-                  <span
-                    className="text-5xl"
-                    style={{ color: slides[i].color1 }}
-                  >
-                    ?
-                  </span>
+                <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[1rem] overflow-hidden">
+                  {slide.imgPemateri ? (
+                    <img
+                      className="object-cover h-full"
+                      src={slide.imgPemateri}
+                      alt=""
+                    />
+                  ) : (
+                    <span className="text-5xl" style={{ color: slide.color1 }}>
+                      ?
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -301,13 +308,21 @@ const WorkshopSlide = () => {
 
                     <div className="w-[40%] h-[75%] flex items-center justify-center ipad:mt-[10%] desktop:mt-[5%]">
                       {/* Placeholder for image*/}
-                      <div className="w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem]">
-                        <span
-                          className="text-9xl"
-                          style={{ color: slides[getSlideIndex()].color1 }}
-                        >
-                          ?
-                        </span>
+                      <div className="bg-cover w-full h-full mx-[12%] mt-[20%] bg-white flex items-center justify-center rounded-[2rem] overflow-hidden">
+                        {slides[getSlideIndex()].imgPemateri ? (
+                          <img
+                            className="object-cover h-full"
+                            src={slides[getSlideIndex()].imgPemateri}
+                            alt=""
+                          />
+                        ) : (
+                          <span
+                            className="text-5xl"
+                            style={{ color: slides[getSlideIndex()].color1 }}
+                          >
+                            ?
+                          </span>
+                        )}
                       </div>
                     </div>
 
