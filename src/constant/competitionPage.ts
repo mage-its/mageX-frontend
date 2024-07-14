@@ -27,6 +27,7 @@ export type Contest = {
   icon: any;
   homeCaption: string;
   title: string;
+  key: string;
   theme: theme;
   leftVector: any;
   rightVector: any;
@@ -53,6 +54,7 @@ export const gameDev: Contest = {
   icon: GameDevIcon,
   homeCaption: "Expand your creativity, bring us to the other world of yours!",
   title: "GAME DEVELOPMENT",
+  key: "Game Dev",
   theme: "orange",
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
@@ -60,9 +62,17 @@ export const gameDev: Contest = {
     "Game Development Competition merupakan cabang perlombaan MAGE X yang berfokus pada pembuatan game. Kompetisi ini memberikan kesempatan emas bagi para peserta untuk menjelajahi dunia kreativitas, inovasi, dan pemrograman dalam industri game.",
   aboutImage: Placeholder,
   timeline: [
-    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    [
+      "11 Juli - 31 Agustus 2024",
+      "PENDAFTARAN DAN PENGUMPULAN PROPOSAL",
+      keypad,
+    ],
     ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    [
+      "16 September - 10 November 2024",
+      "Pengumpulan Tahap Realisasi Karya & Video",
+      timepen,
+    ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
     ["24 November 2024", "Presentasi Final", announce],
@@ -79,7 +89,7 @@ export const gameDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "5 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1XMsarkpfMwrCHYQqNtVt3HAIEYIuXA5Y/view?usp=drive_link",
+    "https://drive.google.com/file/d/1XMsarkpfMwrCHYQqNtVt3HAIEYIuXA5Y/view",
   contact: [
     {
       name: "Aqbil",
@@ -98,6 +108,7 @@ export const appDev: Contest = {
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",
   title: "APP DEVELOPMENT",
+  key: "App Dev",
   theme: "orange",
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
@@ -105,9 +116,17 @@ export const appDev: Contest = {
     "Application Development Competition merupakan cabang perlombaan MAGE X yang berfokus pada pengembangan aplikasi. Peserta diberikan kebebasan dalam memilih platform pengembangan aplikasi, seperti mobile application, web application, atau dekstop application, dengan penekanan pada aplikasi yang mudah digunakan dan dapat diakses oleh berbagai kalangan.",
   aboutImage: Placeholder,
   timeline: [
-    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    [
+      "11 Juli - 31 Agustus 2024",
+      "PENDAFTARAN DAN PENGUMPULAN PROPOSAL",
+      keypad,
+    ],
     ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    [
+      "16 September - 10 November 2024",
+      "Pengumpulan Tahap Realisasi Karya & Video",
+      timepen,
+    ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
     ["24 November 2024", "Presentasi Final", announce],
@@ -124,7 +143,7 @@ export const appDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1c61kifZ9_P8EYAK35wgB34HP91BXcaFJ/view?usp=drive_link",
+    "https://drive.google.com/file/d/1c61kifZ9_P8EYAK35wgB34HP91BXcaFJ/view",
   contact: [
     {
       name: "Hasan",
@@ -146,7 +165,8 @@ export const robotic: Contest = {
   icon: RoboticIcon,
   homeCaption:
     "Show off your robots, we’re calling all the best robots team out there!",
-  title: "ROBOTIK",
+  title: "ROBOTICS",
+  key: "Robotics",
   theme: "orange",
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
@@ -165,7 +185,8 @@ export const robotic: Contest = {
   participant: "1 - 2 Orang",
   category: "SMA/SMK/sederajat",
   prize: "3 jt ++ dan e-certif",
-  guidebook: "https://drive.google.com/file/d/1suBBgpz9XmcWFxPR9y5F4ora5HNqlNCk/view?usp=drive_link",
+  guidebook:
+    "https://drive.google.com/file/d/1suBBgpz9XmcWFxPR9y5F4ora5HNqlNCk/view",
   contact: [
     {
       name: "Ernita",
@@ -179,6 +200,7 @@ export const iot: Contest = {
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",
   title: "INTERNET OF THINGS",
+  key: "IoT",
   theme: "orange",
   leftVector: OrangeLeftDecor,
   rightVector: OrangeRightDecor,
@@ -186,9 +208,17 @@ export const iot: Contest = {
     "Internet of Things (IoT) Competition merupakan cabang perlombaan MAGE X yang berfokus pada pembuatan alat yang dapat terintegrasi dengan koneksi nirkabel untuk terhubung dengan alat lain yang dapat dikendalikan.",
   aboutImage: Placeholder,
   timeline: [
-    ["11 Juli - 31 Agustus 2024", "PENDAFTARAN DAN PENGUMPULAN PROPOSAL", keypad],
+    [
+      "11 Juli - 31 Agustus 2024",
+      "PENDAFTARAN DAN PENGUMPULAN PROPOSAL",
+      keypad,
+    ],
     ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["16 September - 10 November 2024", "Pengumpulan Tahap Realisasi Karya & Video", timepen],
+    [
+      "16 September - 10 November 2024",
+      "Pengumpulan Tahap Realisasi Karya & Video",
+      timepen,
+    ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
     ["24 November 2024", "Presentasi Final", announce],
@@ -205,7 +235,7 @@ export const iot: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1NUY_eHrDIGC2uxDMAmXQsIdvVLIJ76pq/view?usp=drive_link",
+    "https://drive.google.com/file/d/1NUY_eHrDIGC2uxDMAmXQsIdvVLIJ76pq/view",
   contact: [
     {
       name: "Candra",
@@ -223,6 +253,7 @@ export const eSport: Contest = {
   icon: EsportIcon,
   homeCaption: "Show off your skill as a gamer, explore widely with us!",
   title: "E-SPORT COMPETITION",
+  key: "Esport",
   theme: "purple",
   leftVector: PurpleLeftDecor,
   rightVector: PurpleRightDecor,
@@ -248,6 +279,7 @@ export const uiUx: Contest = {
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",
   title: "UIUX",
+  key: "UI/UX",
   theme: "purple",
   leftVector: PurpleLeftDecor,
   rightVector: PurpleRightDecor,
@@ -273,6 +305,7 @@ export const competitiveProgramming: Contest = {
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",
   title: "COMPETITIVE PROGRAMMING",
+  key: "Competitive Programming",
   theme: "purple",
   leftVector: PurpleLeftDecor,
   rightVector: PurpleRightDecor,

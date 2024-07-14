@@ -9,8 +9,13 @@ import Summary from "@/components/dashboardHome/Summary";
 import Countdown from "@/components/dashboardHome/Countdown";
 import Competition from "@/components/dashboardHome/Competition";
 import Workshop from "@/components/dashboardHome/Workshop";
+import { useUserData } from "@/services/users";
 
 const DashboardHome: React.FC = () => {
+  const { data: user } = useUserData();
+  if (!user?.is_logged_in) {
+    window.location.href = "https://api.mage-its.id/users/login";
+  }
   return (
     <main className="bg-black">
       {/* Desktop Display */}

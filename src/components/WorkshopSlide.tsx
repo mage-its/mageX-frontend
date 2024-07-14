@@ -163,7 +163,7 @@ const WorkshopSlide = () => {
 
               <div className="flex absolute top-[85%] w-full">
                 <Link
-                  to="/coming-soon"
+                  to="/dashboard/home"
                   className="inset-0 p-0.5 rounded-[0.5rem] mx-[10%] w-[30%] h-[2.3rem] flex items-center justify-center"
                   style={{ background: slides[i].color3 }}
                 >
@@ -316,7 +316,7 @@ const WorkshopSlide = () => {
                         className="inset-0 p-1 rounded-[0.5rem] mx-[10%] w-[40%] h-[4rem]"
                         style={{ background: slides[getSlideIndex()].color3 }}
                       >
-                        <Link to="/coming-soon">
+                        <Link to="/dashboard/home">
                           <button
                             className="relative bg-light text-center w-full h-full font-bold py-2 px-4 rounded-[0.4rem] ipad:text-[1.25rem] desktop:text-[1.5rem]"
                             style={{

@@ -16,6 +16,7 @@ import DashedLine2 from "@/assets/dashboardHome/dashedLine2.svg";
 import RollButton from "@/assets/dashboardHome/summaryRollButton.svg";
 import useDragScroll from "./useDragScroll"; // Import the custom hook
 import { FaX } from "react-icons/fa6";
+import { Teams, useUserTeam } from "@/services/team";
 
 interface SummaryProps {
   id: number;
@@ -184,8 +185,72 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
   );
 };
 
+const SummaryCompetition: React.FC<{ summary: Teams }> = ({ summary }) => {
+  return (
+    <div className="my-2">
+      <div
+        className={`flex flex-col justify-between items-center p-2 rounded-[1rem] bg-light cursor-pointer transition-all duration-1000 ease-in-out`}
+      >
+        <div className="flex w-full">
+          <div className="w-full">
+            <div className="w-full relative flex text-justify select-none">
+              <span
+                style={{
+                  position: "absolute",
+                  color: "transparent",
+                  textShadow: `
+                                        0 0 0 #FFFFFF, 
+                                        1px 1px 0 #FFFFFF, 
+                                        -1px -1px 0 #FFFFFF, 
+                                        1px -1px 0 #FFFFFF, 
+                                        -1px 1px 0 #FFFFFF,
+                                        2px 2px 0 #FFFFFF,
+                                        -2px -2px 0 #FFFFFF,
+                                        2px -2px 0 #FFFFFF,
+                                        -2px 2px 0 #FFFFFF,
+                                        6px 6px 6px #cA4F14,
+                                        12px 12px 12px #cA4F14
+                                    `,
+                  pointerEvents: "none",
+                  zIndex: -1,
+                }}
+                className="font-airstrike font-italic font-bold inline-block
+                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+              >
+                Competition
+              </span>
+              <span
+                style={{
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+                className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
+                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+              >
+                Competition
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <img
+                src={TeamLogo}
+                className="my-auto mobile:w-[12px] ipad:w-[1rem] desktop:w-[12px]"
+              ></img>
+              <div
+                className="text-dark font-medium
+                                            mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]"
+              >
+                <div>{summary.nama}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const SummaryList: React.FC<{
-  competitions: SummaryProps[];
+  competitions: Teams[];
   workshops: SummaryProps[];
 }> = ({ competitions, workshops }) => {
   const scrollRef = useDragScroll();
@@ -222,17 +287,21 @@ const SummaryList: React.FC<{
                             mobile:h-[80%] mobile:px-4
                             ipad:h-[80%] ipad:px-4
                             desktop:h-[85%] desktop:px-4"
-                 style={{ cursor: 'grab' }}>
-                <div className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center h-fit
-                                 mobile:my-4  ipad:my-4  desktop:my-4">
-                    <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
-                        {data?.data.nama}
-                    </div>
-                    <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
-                        {data?.data.email}
-                    </div>
-                    <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
-                        <div className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
+        style={{ cursor: "grab" }}
+      >
+        <div
+          className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center h-fit
+                                 mobile:my-4  ipad:my-4  desktop:my-4"
+        >
+          <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
+            {user?.nama}
+          </div>
+          <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
+            {user?.email}
+          </div>
+          <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
+            <div
+              className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
                                         desktop:w-[50%]"
@@ -244,31 +313,14 @@ const SummaryList: React.FC<{
               className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
-                                        desktop:w-[50%]">
-                            <img src={CheckLogo} className=""></img>
-                            Kelengkapan Profil
-                        </div>
-                    </div>
-                </div>
-                <div className="flex font-fredoka">
-                    <img src={TrophyLogo} className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"></img>
-                    <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
-                        Competitions
-                    </p>
-                </div>
-                {competitions.map((competition) => (
-                    <SummaryContent key={competition.id} summary={competition} />
-                ))}
-                <img src={DashedLine2} className="my-4 w-full"></img>
-                <div className="flex font-fredoka">
-                    <img src={TrophyLogo} className="select-none mmobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"></img>
-                    <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
-                        Workshop
-                    </p>
-                </div>
-                {workshops.map((workshop) => (
-                    <SummaryContent key={workshop.id} summary={workshop} />
-                ))}
+                                        desktop:w-[50%]"
+            >
+              {user?.status === "veerified" ? (
+                <img src={CheckLogo} className=""></img>
+              ) : (
+                <FaX className="mr-2" />
+              )}
+              Kelengkapan Profil
             </div>
           </div>
         </div>
@@ -282,9 +334,9 @@ const SummaryList: React.FC<{
           </p>
         </div>
         {competitions.map((competition) => (
-          <SummaryContent key={competition.id} summary={competition} />
+          <SummaryCompetition key={competition.id} summary={competition} />
         ))}
-        <img src={DashedLine2} className="my-4"></img>
+        <img src={DashedLine2} className="my-4 w-full"></img>
         <div className="flex font-fredoka">
           <img
             src={TrophyLogo}
@@ -303,85 +355,87 @@ const SummaryList: React.FC<{
 };
 
 const App: React.FC = () => {
-  const competition: SummaryProps[] = [
-    {
-      id: 1,
-      title: "Robotics",
-      type: "X", // C = Competitions, W = Workshop, X = none
-      content: ["Jean", "Diluc", "Klee"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Mondstadt",
-      logo: TeamLogo,
-    },
-    {
-      id: 2,
-      title: "Game Dev",
-      type: "X",
-      content: ["Hu Tao", "Xingqiu", "Chongyun"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Liyue",
-      logo: TeamLogo,
-    },
-    {
-      id: 3,
-      title: "IoT",
-      type: "X",
-      content: ["Kamisato Ayato", "Kamisato Ayaka", "Yoimiya"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Inazuma",
-      logo: TeamLogo,
-    },
-    {
-      id: 4,
-      title: "App Dev",
-      type: "X",
-      content: ["Alhaitham", "Nahida", "Nilou"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Sumeru",
-      logo: TeamLogo,
-    },
-    {
-      id: 5,
-      title: "UI/UX",
-      type: "X",
-      content: ["Furina", "Neuvillette", "Focalor"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Fontaine",
-      logo: TeamLogo,
-    },
-    {
-      id: 6,
-      title: "Comp. Programming",
-      type: "X",
-      content: ["Nicole Demara", "Anby Demara", "Billy Kid"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Cunning Hares",
-      logo: TeamLogo,
-    },
-    {
-      id: 7,
-      title: "E-sports",
-      type: "X",
-      content: ["Kafka", "Silver Wolf", "Firefly"],
-      date: "-",
-      time: "-",
-      link: "-",
-      team: "Stellaron Hunters",
-      logo: TeamLogo,
-    },
-  ];
+  const { data: userTeams } = useUserTeam();
+  console.log(userTeams);
+  // const competition: SummaryProps[] = [
+  //   {
+  //     id: 1,
+  //     title: "Robotics",
+  //     type: "X", // C = Competitions, W = Workshop, X = none
+  //     content: ["Jean", "Diluc", "Klee"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Mondstadt",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Game Dev",
+  //     type: "X",
+  //     content: ["Hu Tao", "Xingqiu", "Chongyun"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Liyue",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "IoT",
+  //     type: "X",
+  //     content: ["Kamisato Ayato", "Kamisato Ayaka", "Yoimiya"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Inazuma",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "App Dev",
+  //     type: "X",
+  //     content: ["Alhaitham", "Nahida", "Nilou"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Sumeru",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "UI/UX",
+  //     type: "X",
+  //     content: ["Furina", "Neuvillette", "Focalor"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Fontaine",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Comp. Programming",
+  //     type: "X",
+  //     content: ["Nicole Demara", "Anby Demara", "Billy Kid"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Cunning Hares",
+  //     logo: TeamLogo,
+  //   },
+  //   {
+  //     id: 7,
+  //     title: "E-sports",
+  //     type: "X",
+  //     content: ["Kafka", "Silver Wolf", "Firefly"],
+  //     date: "-",
+  //     time: "-",
+  //     link: "-",
+  //     team: "Stellaron Hunters",
+  //     logo: TeamLogo,
+  //   },
+  // ];
 
   const workshop: SummaryProps[] = [
     {
@@ -422,7 +476,7 @@ const App: React.FC = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="flex mx-auto justify-center w-full h-full select-none">
-        <SummaryList competitions={competition} workshops={workshop} />
+        <SummaryList competitions={userTeams || []} workshops={workshop} />
       </div>
     </DndProvider>
   );

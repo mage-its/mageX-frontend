@@ -153,9 +153,9 @@ const Home = ({ x }: CompetitionProps) => {
                 </div>
               )}
               <div className="z-10">
-                <Link to="/coming-soon">
+                <a href="https://api.mage-its.id/users/login">
                   <CButton theme={x?.theme}>Log In</CButton>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -224,9 +224,9 @@ const About = ({ x }: CompetitionProps) => {
                 </div>
               )}
               <div className="z-10">
-                <Link to="/coming-soon">
+                <a href="https://api.mage-its.id/users/login">
                   <CButton theme={x?.theme}>Log In</CButton>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -360,7 +360,6 @@ const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
                 className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
               ></img>
             </div>
-
           </div>
         ) : null}
       </div>
@@ -493,19 +492,25 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                       )}
                     </div>
                   </div>
-                  {x.secondPhase?(
+                  {x.secondPhase ? (
                     <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
                       <p>Phase 1</p>
-                        <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
-                        <p className="indent-1">Mahasiswa : Rp125.000,00</p>
+                      <p className="indent-1">
+                        SMA/SMK/sederajat : Rp100.000,00
+                      </p>
+                      <p className="indent-1">Mahasiswa : Rp125.000,00</p>
                       <p>Phase 2</p>
-                        <p className="indent-1">SMA/SMK/sederajat : Rp125.000,00</p>
-                        <p className="indent-1">Mahasiswa : Rp150.000,00</p>
+                      <p className="indent-1">
+                        SMA/SMK/sederajat : Rp125.000,00
+                      </p>
+                      <p className="indent-1">Mahasiswa : Rp150.000,00</p>
                     </div>
-                  ):(
+                  ) : (
                     <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
                       <p>Phase 1</p>
-                        <p className="indent-1">SMA/SMK/sederajat : Rp100.000,00</p>
+                      <p className="indent-1">
+                        SMA/SMK/sederajat : Rp100.000,00
+                      </p>
                     </div>
                   )}
                 </div>

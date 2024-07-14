@@ -2,17 +2,39 @@ import { useAnimation, motion, useDragControls } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { competition } from "@/constant/dashboardCompetitionCard";
 import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard";
-import useMeasure from "react-use-measure";
 import TrophyLogo from "@/assets/dashboardHome/trophyLogo.svg";
 import Seven from "@/assets/dashboardHome/seven.svg";
 import Popup from "@/components/dashboardHome/PopUp";
+import { useNavigate } from "react-router-dom";
+import { useCreateTeam, useLeadTeams } from "@/services/team";
+import { useUserData } from "@/services/users";
 
 const CompetitionComponent: React.FC = () => {
+  const navigate = useNavigate();
+  const { mutateAsync: createTeam } = useCreateTeam();
+  const { data: teams } = useLeadTeams();
+  const { data: user } = useUserData();
+  console.log("User data:", user);
+  const handleYesClick = async () => {
+    await createTeam(popupDestination);
+    navigate(`/dashboard/competition`);
+  };
+
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
-  const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
+  const competitionCardRef = useRef<HTMLDivElement>(null);
+  const [competitionCardDimensions, setCompetitionCardDimensions] = useState({
+    width: 0,
+  });
+  useEffect(() => {
+    const { width } = competitionCardRef.current?.getBoundingClientRect() || {
+      width: 0,
+    };
+    setCompetitionCardDimensions({ width });
+  }, []);
+
+  const competitionCardWidth = competitionCardDimensions.width;
   const [dragOffset, setDragOffset] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -27,20 +49,23 @@ const CompetitionComponent: React.FC = () => {
     competitionCardControl.start("more");
   }, [competitionCardControl]);
 
-  const handleDragEnd = (event: any, info: any) => {
-    setDragOffset(
-      Math.max(
-        dragConstraints.left,
-        Math.min(dragOffset + info.offset.x, dragConstraints.right)
-      )
-    );
+  const handleDragEnd = (info: any) => {
+    if (info && info.offset && typeof info.offset.x === "number") {
+      setDragOffset(
+        Math.max(
+          dragConstraints.left,
+          Math.min(dragOffset + info.offset.x, dragConstraints.right)
+        )
+      );
+    } else {
+      console.error("Invalid drag information:", info);
+    }
   };
 
   useEffect(() => {
     const updateContainerWidth = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
-        setContainerWidth(width);
         const cardWidthWithMargin = competitionCardWidth + 16;
         const totalWidth = cardWidthWithMargin * competition.length;
         const rightConstraint = totalWidth - width;
@@ -57,7 +82,7 @@ const CompetitionComponent: React.FC = () => {
     return () => {
       window.removeEventListener("resize", updateContainerWidth);
     };
-  }, [competition.length, competitionCardWidth]);
+  }, [competitionCardWidth]);
 
   const handleCardClick = (destination: string) => {
     setPopupDestination(destination);
@@ -151,11 +176,28 @@ const CompetitionComponent: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      <Popup
-        isVisible={isPopupVisible}
-        onClose={handleClosePopup}
-        destination={popupDestination}
-      />
+      {user?.status === "verified" ? (
+        teams == undefined ? (
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            handleYesClick={handleYesClick}
+            text="You will be registered as Team Leader Do you want to continue?"
+          />
+        ) : (
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            text="You're already leader of a team. Cannot create another team"
+          />
+        )
+      ) : (
+        <Popup
+          isVisible={isPopupVisible}
+          onClose={handleClosePopup}
+          text="You are not verified. Please complete your data first"
+        />
+      )}
     </div>
   );
 };

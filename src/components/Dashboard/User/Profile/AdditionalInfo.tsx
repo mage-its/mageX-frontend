@@ -12,6 +12,7 @@ export default function AdditionalInformation() {
   const { mutateAsync: updateUser } = useUpdateUser();
   const { data: user } = useUserData();
   console.log(user);
+  const [fileName, setFileName] = useState<string | undefined>();
   const { control, handleSubmit, setValue, resetField, setError } =
     useForm<AdditionalSchema>();
   const onSubmit: SubmitHandler<AdditionalSchema> = async (
@@ -49,6 +50,7 @@ export default function AdditionalInformation() {
 
     const files = event.target.files;
     if (files && files[0]) {
+      setFileName(files[0].name);
       const extname = files[0].name.split(".").pop();
       const IMG_EXTS = ["jpg", "jpeg", "png"];
 
@@ -72,20 +74,6 @@ export default function AdditionalInformation() {
 
     setValue("img_kartu", files ? files[0] : null);
   };
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (!e.target.files) return;
-  //   const files = e.target.files;
-  //   const reader = new FileReader();
-  //   reader.readAsText(files[0]);
-  //   reader.onload = (e) => {
-  //     console.log("image data: ", e.target?.result);
-  //     setValue("img_kartu", e.target?.result);
-  //   };
-  //   setSelectedFile(e.target?.value);
-  //   // setSelectedFile(e.target.value);
-  //   console.log(selectedFile);
-  // };
 
   return (
     <form
@@ -133,8 +121,9 @@ export default function AdditionalInformation() {
               render={({ field }) => (
                 <span className="w-full flex flex-col gap-3">
                   <p className="text-white text-lg font-light">Card</p>
-                  <div className="relative w-[261px] h-[135px] border-2 border-dashed border-black bg-[#D9D9D9] rounded-[10px] flex items-center justify-center">
-                    <FaUpload className="w-10 h-10 text-gray-500" />
+                  <div className="relative w-[261px] h-[135px] border-2 border-dashed border-black bg-[#D9D9D9] rounded-[10px] flex flex-col items-center justify-center">
+                    <FaUpload className="w-10 h-10 text-gray-500 mb-2" />
+                    <p className="text-gray-500">{fileName}</p>
                     <input
                       type="file"
                       {...field}
@@ -161,8 +150,8 @@ export default function AdditionalInformation() {
             <span className="w-full flex flex-col gap-3">
               <p className="text-white text-lg font-light">Card</p>
               <img
-                className="w-10"
-                src={`data:image/jpeg;base64,${user?.image_kartu}`}
+                className="w-full"
+                src={`https://api.mage-its.id/images/` + user?.image_kartu}
                 alt=""
               />
             </span>

@@ -761,7 +761,7 @@ export default function Home() {
               Challenge yourself and compete with the best!
             </p>
             <button className="flex items-center gap-2 sm:gap-3.5 mx-auto rounded-full py-[5px] sm:py-[13px] px-2 sm:px-5 bg-dark">
-              <Link to="/coming-soon">
+              <Link to="dashboard/home">
                 <p className="font-fredoka text-[8px] sm:text-base lg:text-xl text-light">
                   {" "}
                   Register Now!

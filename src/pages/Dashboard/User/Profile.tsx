@@ -3,8 +3,13 @@ import AddressInformation from "@/components/Dashboard/User/Profile/AddressInfo"
 import PersonalInformation from "@/components/Dashboard/User/Profile/PersonalInfo";
 import ProfileMain from "@/components/Dashboard/User/Profile/ProfileMain";
 import DashboardSideBar from "@/components/DashboardSideBar";
+import { useUserData } from "@/services/users";
 
 export default function Profile() {
+  const { data: user } = useUserData();
+  if (!user?.is_logged_in) {
+    window.location.href = "https://api.mage-its.id/users/login";
+  }
   return (
     <div className="font-fredoka flex overflow-hidden">
       <DashboardSideBar />

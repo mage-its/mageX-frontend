@@ -8,6 +8,7 @@ import { motion, useAnimation } from "framer-motion";
 import { competition } from "@/constant/competitionCard";
 import { useState } from "react";
 import { useUserData } from "@/services/users";
+import { GoHomeFill } from "react-icons/go";
 
 export type theme = "orange" | "purple" | "black" | "pink";
 interface NavItemProps extends React.ComponentPropsWithoutRef<"button"> {
@@ -159,11 +160,11 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       sideBarControl.start("appear");
     }
   };
-  const {data : user} = useUserData()
-  console.log(user)
-  const loginRedirectURL = "https://api.mage-its.id/users/login"
-  const logoutURL = "https://api.mage-its.id/users/logout"
-  const isAuthenticated = user?.status === "success"
+  const { data: user } = useUserData();
+  console.log(user);
+  const logoutRedirectURL = "https://api.mage-its.id/users/logout";
+  const loginRedirectURL = "https://api.mage-its.id/users/login";
+
   return (
     <nav
       className={cn(
@@ -203,31 +204,48 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavItem>
             </Link>
           </div>
-          {isAuthenticated ? (
-            <button
-            onClick={() => window.location.href = logoutURL}
-            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
-              <p
-                className={cn(
-                  "font-roboto font-medium tracking-wide text-base text-light"
-                )}
+          <div className="flex justify-center items-center">
+            {user?.is_logged_in ? (
+              <div className="flex justify-center items-center">
+                <button
+                  onClick={() => (window.location.href = logoutRedirectURL)}
+                  className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}
+                >
+                  <p
+                    className={cn(
+                      "font-roboto font-medium tracking-wide text-base text-light"
+                    )}
+                  >
+                    Log Out
+                  </p>
+                </button>
+                <Link to="/dashboard/home">
+                  <button
+                    className={cn("px-5 py-2 rounded-2xl bg-vertical-gta ml-4")}
+                  >
+                    <GoHomeFill
+                      className={cn(
+                        "font-roboto font-medium tracking-wide text-2xl text-light"
+                      )}
+                    />
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <button
+                onClick={() => (window.location.href = loginRedirectURL)}
+                className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}
               >
-                Log Out
-              </p>
-          </button>
-          ):(
-            <button
-            onClick={() => window.location.href = loginRedirectURL}
-            className={cn("px-5 py-2 rounded-2xl bg-vertical-gta")}>
-              <p
-                className={cn(
-                  "font-roboto font-medium tracking-wide text-base text-light"
-                )}
-              >
-                Login
-              </p>
-          </button>
-          )}
+                <p
+                  className={cn(
+                    "font-roboto font-medium tracking-wide text-base text-light"
+                  )}
+                >
+                  Login
+                </p>
+              </button>
+            )}
+          </div>
         </div>
       ) : (
         <div className="flex items-center p-5 relative">
@@ -326,9 +344,10 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
               </NavCollapsibleItem>
             </div>
             <div className="flex gap-[10px] justify-center items-center">
-              {isAuthenticated ? (
-                <button
-                  onClick={() => window.location.href = logoutURL}
+              {user?.is_logged_in ? (
+                <div className="flex justify-center items-center">
+                  <button
+                    onClick={() => (window.location.href = logoutRedirectURL)}
                   >
                     <p
                       className={cn(
@@ -337,18 +356,28 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
                     >
                       Log Out
                     </p>
-                </button>
-              ):(
-                <button
-                  onClick={() => window.location.href = loginRedirectURL}
-                  >
+                  </button>
+                  <Link to="dashboard/home">
                     <p
                       className={cn(
-                        "font-roboto font-light text-[18px] text-light/30"
+                        "font-roboto font-medium tracking-wide text-base text-light ml-4"
                       )}
                     >
-                      Login
+                      <GoHomeFill className="text-xl" />
                     </p>
+                  </Link>
+                </div>
+              ) : (
+                <button
+                  onClick={() => (window.location.href = loginRedirectURL)}
+                >
+                  <p
+                    className={cn(
+                      "font-roboto font-light text-[18px] text-light/30"
+                    )}
+                  >
+                    Login
+                  </p>
                 </button>
               )}
             </div>

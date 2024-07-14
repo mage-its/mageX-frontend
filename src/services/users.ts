@@ -19,7 +19,12 @@ export interface User {
   tanggal_lahir: string;
   no_hp: string;
   status: string;
+  is_logged_in: true;
 }
+
+export type UserLoggedOut = {
+  is_logged_in: false;
+};
 
 export interface UpdateUser {
   nama?: string;
@@ -34,10 +39,8 @@ export interface UpdateUser {
 export const getUserData = async (): Promise<User> => {
   return apiClient
     .get("users/details")
-    .then((res) => res.data.data)
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+    .then((res) => ({ is_logged_in: true, ...res.data.data }))
+    .catch(() => ({ is_logged_in: false }));
 };
 
 export function useUserData() {
@@ -77,5 +80,26 @@ export const useUpdateUser = () => {
   return useMutation({
     mutationFn: updateUser,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["user"] }),
+  });
+};
+
+export const logout = async (): Promise<void> => {
+  return apiClient
+    .put("users/logout")
+    .then(() => {
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("Error logging out:", error);
+    });
+};
+
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
   });
 };

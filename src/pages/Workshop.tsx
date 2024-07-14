@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar.tsx";
 import WorkshopText from "@/components/WorkshopText.tsx";
-import GuideAndRegistButtons from "@/components/GuideAndRegistButtons.tsx";
 import PCBBg from "@/components/PCBBg.tsx";
 import PuzzleBg1 from "@/components/PuzzleBg1.tsx";
 import PuzzleBg2 from "@/components/PuzzleBg2.tsx";
@@ -36,7 +35,6 @@ const Workshop: React.FC = () => {
           Kegiatan ini dipandu oleh ahli untuk melatih keterampilan serta untuk
           mempromosikan penjurusan Teknik Komputer ITS.
         </p>
-        <GuideAndRegistButtons />
         <PuzzleBg1 />
         <div className="mobile:mt-[52.5%] ipad:mt-[52.5%] desktop:mt-[52.5%]">
           <PuzzleBg2 />

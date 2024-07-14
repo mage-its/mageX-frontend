@@ -17,11 +17,27 @@ import profilePIcture from "@/assets/brand/profilePicture.svg";
 import { HiUserGroup } from "react-icons/hi";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import cn from "@/utils/cn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconType } from "react-icons";
 import Select, { Option } from "@/components/Select";
-import { useUpdateTeamInformation, useUserTeams} from "@/services/team";
+import {
+  useAddMember,
+  useTeamMembers,
+  useUpdateTeamInformation,
+  useLeadTeams,
+} from "@/services/team";
 import { useUserData } from "@/services/users";
+import {
+  Contest,
+  appDev,
+  competitiveProgramming,
+  eSport,
+  gameDev,
+  iot,
+  robotic,
+  uiUx,
+} from "@/constant/competitionPage";
+import Popup from "@/components/dashboardHome/PopUp";
 
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
@@ -39,6 +55,7 @@ interface InputFileProps extends React.ComponentPropsWithoutRef<"input"> {
   formatFile?: string;
   maxFileSize?: string;
   onRemove?: () => void;
+  link_file?: string;
 }
 
 const CompetitionButton = ({
@@ -96,6 +113,7 @@ const InputFile = ({
   formatName,
   formatFile,
   maxFileSize,
+  link_file,
   onChange,
   onRemove,
   Icon = PiFileArrowUpFill,
@@ -126,21 +144,44 @@ const InputFile = ({
     <label className="flex flex-col text-white font-fredoka font-medium text-xs md:text-sm lg:text-base w-full h-full">
       {label}
       <div className="flex flex-col justify-center items-center bg-white/10 border-[2px] border-dashed border-white/50 w-full h-full mt-2 rounded-xl p-2 text-center lg:p-4">
-        <div className="flex items-center gap-2">
-          <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
-          <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-            {checked ? fileName : placeholder}
-          </p>
-          {checked && (
-            <FaX
-              className="text-white text-xs md:text-sm lg:text-base cursor-pointer"
-              onClick={(event) => {
-                event.stopPropagation();
-                handleClick();
-              }}
-            />
-          )}
-        </div>
+        {link_file ? (
+          <a
+            target="_blank"
+            href={link_file}
+            className="flex items-center gap-2"
+          >
+            <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
+            <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+              {checked ? fileName : link_file}
+            </p>
+            {checked && (
+              <FaX
+                className="text-white text-xs md:text-sm lg:text-base cursor-pointer"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleClick();
+                }}
+              />
+            )}
+          </a>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
+            <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+              {checked ? fileName : placeholder}
+            </p>
+            {checked && (
+              <FaX
+                className="text-white text-xs md:text-sm lg:text-base cursor-pointer"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleClick();
+                }}
+              />
+            )}
+          </div>
+        )}
+
         {formatName && (
           <p className="text-white/50 font-fredoka text-[10px] md:text-sm lg:text-base">
             Format:{" "}
@@ -178,41 +219,98 @@ type TeamInformation = {
 
 type RegistStepOne = {
   category: string;
-  paymentProof: string | null;
-  followIgAndTwibbon: string | null;
+  paymentProof: File | null;
+  followIgAndTwibbon: File | null;
 };
 
 type RegistStepTwo = {
-  proposal: string | null;
+  proposal: File | null;
 };
 
 type RegistStepThree = {
-  video: string;
-  workProduct: string;
+  link_video: string;
+  link_karya: string;
 };
 
 export default function DashboardCompetition() {
   const [step, setStep] = useState<number>(1);
-  const {data: user} = useUserData();
-  const {data: team} = useUserTeams();
-  console.log(team?.nama)
-  const {mutateAsync: updateTeamInformation} = useUpdateTeamInformation();
-
+  const { data: user } = useUserData();
+  if (!user?.is_logged_in) {
+    window.location.href = "https://api.mage-its.id/users/login";
+  }
+  const { data: teams } = useLeadTeams();
+  console.log(teams);
+  const { data: members } = useTeamMembers();
+  const { mutateAsync: updateTeamInformation, data: responseUpdateTeam } =
+    useUpdateTeamInformation();
+  const { mutateAsync: addMembers } = useAddMember();
   const [isEditTeamInformation, setIsEditTeamInformation] = useState(false);
+  const [linkBuktiPembayaran, setLinkBuktiPembayaran] = useState<
+    string | undefined
+  >(undefined);
+  const [linkTwibbonDanIG, setLinkTwibbonDanIG] = useState<string | undefined>(
+    undefined
+  );
+  const [linkProposal, setLinkProposal] = useState<string | undefined>(
+    undefined
+  );
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-  const { control: teamControl, handleSubmit: teamHandleSubmit } =
-    useForm<TeamInformation>();
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
+
+  useEffect(() => {
+    if (responseUpdateTeam) {
+      setIsPopupVisible(true);
+    }
+  }, [responseUpdateTeam]);
+
+  const {
+    control: teamControl,
+    handleSubmit: teamHandleSubmit,
+    setValue: setValueTeamControl,
+  } = useForm<TeamInformation>({
+    defaultValues: {
+      teamName: teams?.nama || "",
+      teamMembersOne: (members && members[0].nama) || "",
+      teamMembersTwo: (members && members[1].nama) || "",
+      teamMembersThree: (members && members[2].nama) || "",
+    },
+  });
+
+  useEffect(() => {
+    setValueTeamControl("teamName", teams?.nama || "");
+    if (teams?.anggota) {
+      setValueTeamControl("teamMembersOne", (members && members[0].nama) || "");
+      setValueTeamControl("teamMembersTwo", (members && members[1].nama) || "");
+      setValueTeamControl(
+        "teamMembersThree",
+        (members && members[2].nama) || ""
+      );
+    }
+  }, [teams, setValueTeamControl, members]);
 
   const onSubmit: SubmitHandler<TeamInformation> = async (
-    data : TeamInformation
+    data: TeamInformation
   ) => {
     console.log(data);
     if (isEditTeamInformation) {
       console.log("Updating Team Data");
       await updateTeamInformation({
-        nama: data.teamName
+        nama: data.teamName,
+      });
+      await addMembers({
+        email: data.teamMembersOne,
+      });
+      await addMembers({
+        email: data.teamMembersTwo,
+      });
+      await addMembers({
+        email: data.teamMembersThree,
       });
     }
+    toggleEditTeamInformation();
   };
 
   const {
@@ -220,45 +318,154 @@ export default function DashboardCompetition() {
     handleSubmit: registStepOneHandleSubmit,
     resetField: resetRegistStepOne,
     setValue: setValueRegistStepOne,
+    setError: serErrorRegistStepOne,
   } = useForm<RegistStepOne>({
     defaultValues: {
-      category: "",
-      paymentProof: null,
-      followIgAndTwibbon: null,
+      category: teams?.kategori || "",
     },
   });
+
+  useEffect(() => {
+    setValueRegistStepOne("category", teams?.kategori || "");
+  }, [teams, setValueRegistStepOne]);
+
+  const handleChangeBuktiPembayaran = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    resetRegistStepOne("paymentProof");
+
+    const files = event.target.files;
+    if (files && files[0]) {
+      const extname = files[0].name.split(".").pop();
+      const IMG_EXTS = ["jpg", "jpeg", "png"];
+
+      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
+        serErrorRegistStepOne("paymentProof", {
+          type: "manual",
+          message: "Ukuran maksimal gambar adalah 2MB",
+        });
+      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+        serErrorRegistStepOne("paymentProof", {
+          type: "manual",
+          message: "Ukuran maksimal PDF adalah 20MB",
+        });
+      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
+        serErrorRegistStepOne("paymentProof", {
+          type: "manual",
+          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+        });
+      }
+    }
+
+    setValueRegistStepOne("paymentProof", files ? files[0] : null);
+  };
+
+  const handleChangeTwibbonDanIG = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    resetRegistStepOne("followIgAndTwibbon");
+
+    const files = event.target.files;
+    if (files && files[0]) {
+      const extname = files[0].name.split(".").pop();
+      const IMG_EXTS = ["jpg", "jpeg", "png"];
+
+      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
+        serErrorRegistStepOne("followIgAndTwibbon", {
+          type: "manual",
+          message: "Ukuran maksimal gambar adalah 2MB",
+        });
+      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+        serErrorRegistStepOne("followIgAndTwibbon", {
+          type: "manual",
+          message: "Ukuran maksimal PDF adalah 20MB",
+        });
+      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
+        serErrorRegistStepOne("followIgAndTwibbon", {
+          type: "manual",
+          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+        });
+      }
+    }
+
+    setValueRegistStepOne("followIgAndTwibbon", files ? files[0] : null);
+  };
 
   const {
     control: registStepTwoControl,
     handleSubmit: registStepTwoHandleSubmit,
     resetField: resetRegistStepTwo,
     setValue: setValueRegistStepTwo,
-  } = useForm<RegistStepTwo>({
-    defaultValues: {
-      proposal: null,
-    },
-  });
+    setError: serErrorRegistStepTwo,
+  } = useForm<RegistStepTwo>();
+
+  const handleChangeProposal = (event: React.ChangeEvent<HTMLInputElement>) => {
+    resetRegistStepTwo("proposal");
+
+    const files = event.target.files;
+    if (files && files[0]) {
+      const extname = files[0].name.split(".").pop();
+      const IMG_EXTS = ["jpg", "jpeg", "png"];
+
+      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
+        serErrorRegistStepTwo("proposal", {
+          type: "manual",
+          message: "Ukuran maksimal gambar adalah 2MB",
+        });
+      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+        serErrorRegistStepTwo("proposal", {
+          type: "manual",
+          message: "Ukuran maksimal PDF adalah 20MB",
+        });
+      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
+        serErrorRegistStepTwo("proposal", {
+          type: "manual",
+          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+        });
+      }
+    }
+
+    setValueRegistStepTwo("proposal", files ? files[0] : null);
+  };
 
   const {
     control: registStepThreeControl,
     handleSubmit: registStepThreeHandleSubmit,
+    setValue: setValueRegistStepThree,
   } = useForm<RegistStepThree>({
     defaultValues: {
-      video: "",
-      workProduct: "",
+      link_video: teams?.link_video || "",
+      link_karya: teams?.link_karya || "",
     },
   });
 
-  const onSubmitRegistStepTwo: SubmitHandler<RegistStepTwo> = (data) => {
+  useEffect(() => {
+    setValueRegistStepThree("link_video", teams?.link_video || "");
+    setValueRegistStepThree("link_karya", teams?.link_karya || "");
+  }, [teams, setValueRegistStepThree]);
+
+  const onSubmitRegistStepTwo: SubmitHandler<RegistStepTwo> = async (data) => {
     console.log(data);
+    await updateTeamInformation({
+      proposal: data.proposal,
+    });
   };
 
-  const onSubmitRegistStepOne: SubmitHandler<RegistStepOne> = (data) => {
+  const onSubmitRegistStepOne: SubmitHandler<RegistStepOne> = async (data) => {
     console.log(data);
+    await updateTeamInformation({
+      kategori: data.category,
+      bukti_pembayaran: data.paymentProof,
+      bukti_twibbon_follow: data.followIgAndTwibbon,
+    });
   };
 
   const onSubmitRegistStepThree: SubmitHandler<RegistStepThree> = (data) => {
     console.log(data);
+    updateTeamInformation({
+      link_video: data.link_video,
+      link_karya: data.link_karya,
+    });
   };
 
   const onRemovePayment = () => {
@@ -281,6 +488,32 @@ export default function DashboardCompetition() {
 
   const increaseStep = () => setStep((prev) => prev + 1);
   const decreaseStep = () => setStep((prev) => prev - 1);
+
+  const competitionPath: { [key: string]: Contest } = {
+    "UI/UX": uiUx,
+    "Competitive Programming": competitiveProgramming,
+    "App Dev": appDev,
+    Esport: eSport,
+    IoT: iot,
+    Robotics: robotic,
+    "Game Dev": gameDev,
+  };
+
+  useEffect(() => {
+    if (teams?.bukti_pembayaran !== "000000000000000000000000") {
+      setLinkBuktiPembayaran(
+        `https://api.mage-its.id/images/${teams?.bukti_pembayaran}`
+      );
+    }
+    if (teams?.bukti_twibbon_follow !== "000000000000000000000000") {
+      setLinkTwibbonDanIG(
+        `https://api.mage-its.id/images/${teams?.bukti_twibbon_follow}`
+      );
+    }
+    if (teams?.proposal !== "000000000000000000000000") {
+      setLinkProposal(`https://api.mage-its.id/images/${teams?.proposal}`);
+    }
+  }, [teams]);
 
   return (
     <div className="flex bg-vertical-gta h-fit">
@@ -393,17 +626,29 @@ export default function DashboardCompetition() {
                 Contact Person
               </h1>
             </div>
-            <div className="grow flex flex-row lg:flex-col gap-[15px] px-4 py-3">
-              <div className="flex justify-center items-center bg-grayscale basis-1/2 w-full rounded-[15px]">
+            <div className="grow flex flex-row justify-center lg:flex-col gap-[15px] px-4 py-3">
+              <div className="flex flex-col justify-center items-center bg-grayscale basis-1/2 w-full rounded-[15px]">
                 <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Lorem Ipsum
+                  {competitionPath[teams?.divisi as string]?.contact?.[0]
+                    ?.name || "N/A"}
+                </p>
+                <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                  {competitionPath[teams?.divisi as string]?.contact?.[0]
+                    ?.phone || "N/A"}
                 </p>
               </div>
-              <div className="flex justify-center items-center bg-grayscale basis-1/2 w-full rounded-[15px]">
-                <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Lorem Ipsum
-                </p>
-              </div>
+              {competitionPath[teams?.divisi as string]?.contact?.[1] && (
+                <div className="flex flex-col justify-center items-center bg-grayscale basis-1/2 w-full rounded-[15px]">
+                  <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    {competitionPath[teams?.divisi as string]?.contact?.[1]
+                      ?.name || "N/A"}
+                  </p>
+                  <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    {competitionPath[teams?.divisi as string]?.contact?.[1]
+                      ?.phone || "N/A"}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -434,7 +679,10 @@ export default function DashboardCompetition() {
                     <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
                   </CompetitionButton>
                 )}
-                <CompetitionButton onClick={increaseStep}>
+                <CompetitionButton
+                  onClick={increaseStep}
+                  disabled={teams?.divisi == "Robotics"}
+                >
                   <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                     Next
                   </h1>
@@ -449,7 +697,7 @@ export default function DashboardCompetition() {
                 </h1>
                 <div className="bg-white/10 rounded-xl py-2 px-2.5 mb-2.5">
                   <p className="font-roboto font-medium text-xs md:text-sm lg:text-base text-white/20">
-                    App Dev
+                    {teams?.divisi}
                   </p>
                 </div>
                 <Controller
@@ -466,6 +714,8 @@ export default function DashboardCompetition() {
                       accept=".png, .jpg, .pdf"
                       value={undefined}
                       onRemove={onRemovePayment}
+                      onChange={handleChangeBuktiPembayaran}
+                      link_file={linkBuktiPembayaran}
                     />
                   )}
                 />
@@ -492,11 +742,13 @@ export default function DashboardCompetition() {
                       label="Follow Instagram + Twibbon Post"
                       placeholder="Upload Here"
                       formatName="MAGEX_Tahap 1_AppDev_[Nama Tim].pdf"
-                      formatFile=".png, .jpg, .pdf"
+                      formatFile=".pdf"
                       maxFileSize="10MB"
-                      accept=".png, .jpg, .pdf"
+                      accept=".pdf"
                       value={undefined}
                       onRemove={onRemoveFollowIgAndTwibbon}
+                      onChange={handleChangeTwibbonDanIG}
+                      link_file={linkTwibbonDanIG}
                     />
                   )}
                 />
@@ -512,7 +764,7 @@ export default function DashboardCompetition() {
             </div>
           </form>
         )}
-        {step === 2 && (
+        {step === 2 && teams?.divisi !== "Robotics" && (
           <form
             onSubmit={registStepTwoHandleSubmit(onSubmitRegistStepTwo)}
             className=" flex flex-col basis-[47%] bg-black/80 rounded-[20px] h-full overflow-hidden"
@@ -563,6 +815,8 @@ export default function DashboardCompetition() {
                       accept=".png, .jpg, .pdf"
                       value={undefined}
                       onRemove={onRemoveProposal}
+                      onChange={handleChangeProposal}
+                      link_file={linkProposal}
                     />
                   )}
                 />
@@ -570,7 +824,7 @@ export default function DashboardCompetition() {
             </div>
           </form>
         )}
-        {step === 3 && (
+        {step === 3 && teams?.divisi !== "Robotics" && (
           <form
             onSubmit={registStepThreeHandleSubmit(onSubmitRegistStepThree)}
             className=" flex flex-col basis-[47%] bg-black/80 rounded-[20px] h-full overflow-hidden"
@@ -608,7 +862,7 @@ export default function DashboardCompetition() {
             <div className="p-4 w-full h-full grow">
               <div className="flex flex-col justify-around w-full h-full">
                 <Controller
-                  name="video"
+                  name="link_video"
                   control={registStepThreeControl}
                   render={({ field }) => (
                     <InputField
@@ -620,7 +874,7 @@ export default function DashboardCompetition() {
                   )}
                 />
                 <Controller
-                  name="workProduct"
+                  name="link_karya"
                   control={registStepThreeControl}
                   render={({ field }) => (
                     <InputField
@@ -636,6 +890,11 @@ export default function DashboardCompetition() {
           </form>
         )}
       </div>
+      <Popup
+        isVisible={isPopupVisible}
+        onClose={handleClosePopup}
+        text={responseUpdateTeam?.message || ""}
+      />
     </div>
   );
 }
