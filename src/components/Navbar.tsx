@@ -173,7 +173,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
       )}
     >
       {window.innerWidth > 768 ? (
-        <div className="flex justify-between items-center py-3 px-[51px]">
+        <div className="flex justify-between items-center py-3 px-[19px] lg:px-[51px]">
           <a href="/">
             <img src={logo} className="h-[51px]" alt="logo" />
           </a>

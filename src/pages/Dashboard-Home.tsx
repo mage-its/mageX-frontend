@@ -18,17 +18,17 @@ const DashboardHome: React.FC = () => {
   }
   return (
     <main className="bg-black">
-      {/* Desktop Display */}
+      {/* lg Display */}
       <div
         className="flex overflow-hidden min-w-screen min-h-screen max-h-screen
                         mobile:bg-blue-purple-orange-2 mobile:hidden 
                         ipad:bg-blue-purple-orange-1 ipad:hidden
-                        dekstop:bg-blue-purple-orange-1 desktop:flex"
+                        dekstop:bg-blue-purple-orange-1 lg:flex"
       >
         <SideBar />
         <div
           className="relative py-4 px-6 grid grid-rows-12 grid-cols-13 gap-[1vw]
-                    mobile:hidden ipad:hidden desktop:grid"
+                    mobile:hidden ipad:hidden lg:grid"
         >
           <div className="col-span-13 row-span-1 justify-center my-auto">
             <HomeAndProfile />
@@ -63,7 +63,7 @@ const DashboardHome: React.FC = () => {
         className="relative min-w-screen min-h-screen max-w-screen overflow-hidden
                   mobile:bg-blue-purple-orange-2 mobile:block
                   ipad:bg-blue-purple-orange-2 ipad:block
-                  dekstop:bg-blue-purple-orange-1 desktop:hidden
+                  dekstop:bg-blue-purple-orange-1 lg:hidden
         "
       >
         <div className="z-[20] fixed top-0 left-0 w-full h-[4.2rem]">

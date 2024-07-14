@@ -22,7 +22,7 @@ const Popup: React.FC<PopupProps> = ({
         className="relative bg-transparent_black rounded-[2rem] font-fredoka text-light text-center drop-shadow-lg select-none
                       mobile:w-[20rem] mobile:text-[1rem]
                       ipad:w-[25rem] ipad:text-[20px]
-                      desktop:w-[25rem] desktop:text-[20px]"
+                      lg:w-[25rem] lg:text-[20px]"
       >
         <div className="flex w-full bg-gray-5 rounded-t-[2rem] h-[3rem] justify-center items-center">
           <img src={InformationLogo} alt="Information" />

@@ -18,7 +18,7 @@ export interface User {
   image_kartu: string;
   tanggal_lahir: string;
   no_hp: string;
-  status: string;
+  verified: string;
   is_logged_in: true;
 }
 

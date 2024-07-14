@@ -85,7 +85,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                   zIndex: -1,
                 }}
                 className="font-airstrike font-italic font-bold inline-block
-                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+                                           mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
                 {summary.title}
               </span>
@@ -95,7 +95,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                   color: "transparent",
                 }}
                 className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
-                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+                                           mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
                 {summary.title}
               </span>
@@ -103,11 +103,11 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
             <div className="flex gap-2">
               <img
                 src={summary.logo}
-                className="my-auto mobile:w-[12px] ipad:w-[1rem] desktop:w-[12px]"
+                className="my-auto mobile:w-[12px] ipad:w-[1rem] lg:w-[12px]"
               ></img>
               <div
                 className="text-dark font-medium
-                                            mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]"
+                                            mobile:text-[12px] ipad:text-[18px] lg:text-[12px]"
               >
                 {summary.type === "C" ? (
                   <div>{summary.team}</div>
@@ -122,7 +122,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
 
           <motion.img
             src={RollButton}
-            className="mobile:w-[20px] ipad:w-[30px] desktop:w-[20px]"
+            className="mobile:w-[20px] ipad:w-[30px] lg:w-[20px]"
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.5 }}
             onClick={toggleOpen}
@@ -139,13 +139,13 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
           {summary.type === "C" ? (
             <div
               className="text-dark font-fredoka font-medium justify-center items-center
-                                        mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]"
+                                        mobile:text-[12px] ipad:text-[18px] lg:text-[12px]"
             >
               {summary.content.map((item, index) => (
                 <div key={index} className="my-2 flex gap-2">
                   <img
                     src={PersonLogo}
-                    className="my-auto mobile:w-[12px] ipad:w-[1rem] desktop:w-[12px]"
+                    className="my-auto mobile:w-[12px] ipad:w-[1rem] lg:w-[12px]"
                   ></img>
                   {item}
                 </div>
@@ -154,7 +154,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
           ) : summary.type === "W" ? (
             <div
               className="text-dark font-fredoka font-medium justify-center items-center
-                                        mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]"
+                                        mobile:text-[12px] ipad:text-[18px] lg:text-[12px]"
             >
               <div>
                 <div className="flex">
@@ -215,7 +215,7 @@ const SummaryCompetition: React.FC<{ summary: Teams }> = ({ summary }) => {
                   zIndex: -1,
                 }}
                 className="font-airstrike font-italic font-bold inline-block
-                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+                                           mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
                 Competition
               </span>
@@ -225,7 +225,7 @@ const SummaryCompetition: React.FC<{ summary: Teams }> = ({ summary }) => {
                   color: "transparent",
                 }}
                 className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
-                                           mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+                                           mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
                 Competition
               </span>
@@ -233,11 +233,11 @@ const SummaryCompetition: React.FC<{ summary: Teams }> = ({ summary }) => {
             <div className="flex gap-2">
               <img
                 src={TeamLogo}
-                className="my-auto mobile:w-[12px] ipad:w-[1rem] desktop:w-[12px]"
+                className="my-auto mobile:w-[12px] ipad:w-[1rem] lg:w-[12px]"
               ></img>
               <div
                 className="text-dark font-medium
-                                            mobile:text-[12px] ipad:text-[18px] desktop:text-[12px]"
+                                            mobile:text-[12px] ipad:text-[18px] lg:text-[12px]"
               >
                 <div>{summary.nama}</div>
               </div>
@@ -269,15 +269,15 @@ const SummaryList: React.FC<{
       className="overflow-hidden bg-transparent_black w-full h-full shadow-lg select-none
                         mobile:mt-6 mobile:mx-6 mobile:rounded-[1rem]
                         ipad:mt-6 ipad:mx-[8rem] ipad:rounded-[2rem]
-                        desktop:mt-0 desktop:mx-0 desktop:rounded-[2rem]"
+                        lg:mt-0 lg:mx-0 lg:rounded-[2rem]"
     >
-      <div className="flex p-4 items-center select-none bg-gray-5 mobile:h-[5rem] ipad:h-[5rem] desktop:h-[3rem]">
+      <div className="flex p-4 items-center select-none bg-gray-5 mobile:h-[5rem] ipad:h-[5rem] lg:h-[3rem]">
         <img
           src={SummaryLogo}
-          className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"
+          className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
           alt="Summary Logo"
         />
-        <h2 className="text-light font-fredoka ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem]">
+        <h2 className="text-light font-fredoka ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] lg:text-[1rem]">
           Summary
         </h2>
       </div>
@@ -286,25 +286,25 @@ const SummaryList: React.FC<{
         className="overflow-auto font-fredoka text-light custom-scroll no-scrollbar
                             mobile:h-[80%] mobile:px-4
                             ipad:h-[80%] ipad:px-4
-                            desktop:h-[85%] desktop:px-4"
+                            lg:h-[85%] lg:px-4"
         style={{ cursor: "grab" }}
       >
         <div
           className="p-2 bg-gray-5 rounded-[24px] w-full justify-center items-center h-fit
-                                 mobile:my-4  ipad:my-4  desktop:my-4"
+                                 mobile:my-4  ipad:my-4  lg:my-4"
         >
-          <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] desktop:text-[20px]">
+          <div className="font-medium text-center mobile:text-[23px] ipad:text-[23px] lg:text-[20px]">
             {user?.nama}
           </div>
-          <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] desktop:text-[10px]">
+          <div className="opacity-[70%] text-center mobile:text-[18px] ipad:text-[20px] lg:text-[10px]">
             {user?.email}
           </div>
-          <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] desktop:text-[10px]">
+          <div className="flex my-2 gap-2 text-gray-1 mobile:text-[10px] ipad:text-[18px] lg:text-[10px]">
             <div
               className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
-                                        desktop:w-[50%]"
+                                        lg:w-[50%]"
             >
               <img src={CheckLogo} className=""></img>
               Verifikasi E-mail
@@ -313,9 +313,9 @@ const SummaryList: React.FC<{
               className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
                                         mobile:w-fit mobile:px-4 mobile:mx-auto
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
-                                        desktop:w-[50%]"
+                                        lg:w-[50%]"
             >
-              {user?.status === "veerified" ? (
+              {user?.verified === "true" ? (
                 <img src={CheckLogo} className=""></img>
               ) : (
                 <FaX className="mr-2" />
@@ -327,9 +327,9 @@ const SummaryList: React.FC<{
         <div className="flex font-fredoka">
           <img
             src={TrophyLogo}
-            className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"
+            className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
           ></img>
-          <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
+          <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] lg:text-[1rem] justify-center">
             Competitions
           </p>
         </div>
@@ -340,9 +340,9 @@ const SummaryList: React.FC<{
         <div className="flex font-fredoka">
           <img
             src={TrophyLogo}
-            className="select-none mmobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] desktop:w-5 desktop:h-5"
+            className="select-none mmobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
           ></img>
-          <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] desktop:text-[1rem] justify-center">
+          <p className="ml-[1rem] select-none mobile:text-[23px] ipad:text-[23px] lg:text-[1rem] justify-center">
             Workshop
           </p>
         </div>

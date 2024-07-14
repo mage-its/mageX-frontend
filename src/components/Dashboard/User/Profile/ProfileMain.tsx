@@ -17,7 +17,7 @@ export default function ProfileMain() {
           {user?.nama || ""}
         </h1>
         <span className="flex flex-row gap-2 items-center">
-          {user?.status === "verified" ? (
+          {user?.verified === "true" ? (
             <>
               <img
                 src={VerifiedIcon}
