@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import Home from "./Home";
@@ -66,6 +66,7 @@ const router = createBrowserRouter([
         path: "/dashboard-Home",
         element: <DashboardHome />,
       },
+      {
         path: "/dashboard/competition",
         element: <DashboardCompetition />,
       },

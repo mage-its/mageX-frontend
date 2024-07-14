@@ -11,8 +11,6 @@ interface WorkshopInformationProps {
   title: string;
   content: string;
   materi: string;
-  tempat: string;
-  tanggal: string;
   pembicara: string;
   price: string;
   contact: string;
@@ -22,30 +20,24 @@ const HomeAndProfile: React.FC<HomeAndProfileProps> = ({ selectedCategory }) => 
   const workshopInformation: WorkshopInformationProps[] = [
     {
       title: 'Multimedia',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      materi: 'Coming Soon',
-      tempat: 'Coming Soon',
-      tanggal: 'Coming Soon',
+      content: 'Workshop Multimedia adalah sebuah kegiatan yang diadakan sebagai bagian dari MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum tentang bidang multimedia. Tema tahun ini adalah "Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0." Workshop ini akan fokus pada "Mengembangkan Portofolio Website Anda Sendiri" dan mencakup topik-topik seperti: pengetahuan dasar tentang multimedia, pengembangan website, desain dan pengembangan front-end website untuk pemula, dan motivasi untuk terus belajar dan berinovasi di dunia digital. Workshop online selama 3 hari ini akan terdiri dari presentasi materi dan tugas pada hari pertama dan kedua, serta review tugas peserta oleh instruktur pada hari ketiga.',
+      materi: "Develop Your Own Portfolio Website",
       pembicara: 'Keanu Fortuna Taufan',
-      price: 'Coming Soon',
+      price: 'GRATIS',
       contact: 'Coming Soon',
     },
     {
       title: 'Robotika',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      content: 'Coming Soon',
       materi: 'Coming Soon',
-      tempat: 'Coming Soon',
-      tanggal: 'Coming Soon',
       pembicara: 'Coming Soon',
       price: 'Coming Soon',
       contact: 'Coming Soon',
     },
     {
       title: 'Internet of Things',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      content: 'Coming Soon',
       materi: 'Coming Soon',
-      tempat: 'Coming Soon',
-      tanggal: 'Coming Soon',
       pembicara: 'Coming Soon',
       price: 'Coming Soon',
       contact: 'Coming Soon',
@@ -59,20 +51,24 @@ const HomeAndProfile: React.FC<HomeAndProfileProps> = ({ selectedCategory }) => 
     const scrollRef = useDragScroll();
     
     return (
-      <div className="text-light w-full h-full">
+      <div className="text-light h-full
+                      mobile:mx-6 mobile:mt-6
+                      ipad:mx-[8rem] ipad:mt-6
+                      desktop:mx-[0] desktop:mt-0">
         <div 
           ref={scrollRef}
-          className="w-full bg-gray-5 h-[85%] overflow-hidden custom-scroll no-scrollbar rounded-[1rem] justify-center px-6 py-6 items-center" 
+          className="w-full bg-gray-5 h-[85%] overflow-auto custom-scroll no-scrollbar rounded-[1rem] justify-center px-10 py-6 items-center" 
           style={{ cursor: 'grab' }}>
-          <div className="text-justify font-airstrike text-[26px]">{info.title}</div>
-          <img src={GradientLine} className="w-full" alt="Gradient Line" />
-          <div className="text-[13px] text-justify">
+          <div className="text-justify font-airstrike
+                          mobile:text-[26px] ipad:text-[36px] desktop:text-[26px]">{info.title}</div>
+          <img src={GradientLine} className="w-[90%]" alt="Gradient Line" />
+          <div className="mobile:text-[13px] ipad:text-[20px] desktop:text-[13px] text-justify">
             <div className="mt-2">{info.content}</div>
-            <div className="mt-4">Materi: {info.materi}</div>
-            <div>Tempat: {info.tempat}</div>
-            <div>Tanggal: {info.tanggal}</div>
-            <div>Pembicara: {info.pembicara}</div>
-            <div>Price: {info.price}</div>
+            <div className="mt-4">Materi : {info.materi}</div>
+            <div>Pembicara : {info.pembicara}</div>
+            <div className='flex'>Price : &nbsp;
+              <p className="font-medium">{info.price}</p>
+            </div>
           </div>
         </div>
         <div className="h-[2%]"></div>

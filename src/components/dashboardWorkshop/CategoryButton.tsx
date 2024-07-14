@@ -19,10 +19,13 @@ const Dropdown: React.FC<DropdownProps> = ({ selectedCategory, setSelectedCatego
   };
 
   return (
-    <div className="relative w-full h-fit font-fredoka text-light select-none">
+    <div className="relative flex h-fit font-fredoka text-light select-none 
+                    mobile:mx-6 mobile:mt-6 mobile:text-[1rem]
+                    ipad:mx-[8rem] ipad:mt-6 ipad:mobile:text-[1.5rem]
+                    desktop:mx-[0] desktop:mt-0 desktop:text-[1rem]">
       <button
-        onClick={toggleDropdown} 
-        className="bg-gray-5 w-full h-full px-8 py-3 rounded-[0.5rem] flex justify-between items-center"
+        onClick={toggleDropdown}
+        className="bg-gray-5 h-full px-8 py-3 rounded-[0.5rem] flex justify-between items-center w-full"
       >
         {selectedCategory}
         <img src={DropButton}></img>
@@ -33,7 +36,7 @@ const Dropdown: React.FC<DropdownProps> = ({ selectedCategory, setSelectedCatego
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute w-full rounded-[0.5rem] shadow-lg bg-transparent_black z-10"
+            className="absolute top-full w-full rounded-[0.5rem] shadow-lg bg-transparent_black z-10"
           >
             {categories.map((category) => (
               <button

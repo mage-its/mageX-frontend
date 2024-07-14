@@ -23,7 +23,7 @@ const App = () => {
   const mdy = format(today, 'MMMM do, yyyy');
 
   return (
-  <div className="bg-transparent_black h-full  text-light font-fredoka flex p-[1rem]
+  <div className="bg-transparent_black h-full text-light font-fredoka flex p-[1rem]
                   mobile:mx-6 mobile:mt-6 mobile:rounded-[1rem]
                   ipad:mx-[8rem] ipad:mt-6 ipad:rounded-[2rem]">
     <div className="w-[50%]">

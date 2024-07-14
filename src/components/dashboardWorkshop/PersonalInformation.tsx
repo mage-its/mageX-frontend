@@ -29,9 +29,9 @@ const HomeAndProfile: React.FC<HomeAndProfileProps> = ({ selectedCategory }) => 
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
       background: 'Coming Soon',
       spesialis: 'Coming Soon',
-      tanggal: 'Coming Soon',
+      tanggal: '3 - 4 Agustus 2024 & 10 Agustus 2024',
       jam: 'Coming Soon',
-      tempat: 'Coming Soon',
+      tempat: 'Zoom Meeting',
       pembicara: 'Keanu Fortuna Taufan',
       foto: PemateriMultimedia,
     },
@@ -66,81 +66,165 @@ const HomeAndProfile: React.FC<HomeAndProfileProps> = ({ selectedCategory }) => 
     const scrollRef = useDragScroll();
     
     return (
-      <div className="text-light font-fredoka bg-transparent_black rounded-[1rem] w-full h-full overflow-hidden">
-        <div className="bg-gray-5 px-8 py-2 h-fit flex rounded-t-[1rem] items-center">
-            <img src={PersonalLogo}></img>
-            <div className="text-medium text-[20px] ml-4">
-                Personal Information
-            </div>
-        </div>
-        <div
-            ref={scrollRef}
-            className="flex overflow-hidden no-scrollbar h-[80%] custom-scroll"
-            style={{ cursor: 'grab' }}>
-            
-            <div className="flex-col w-[50%] h-full pl-16 pr-2 py-8 text-[13px]">
+      <div className='w-full h-full'>
+        {/* Desktop Display */}
+        <div className="text-light font-fredoka bg-transparent_black rounded-[1rem] w-full h-full overflow-hidden mobile:hidden ipad:hidden desktop:block">
+          <div className="bg-gray-5 px-8 py-2 h-fit flex rounded-t-[1rem] items-center">
+              <img src={PersonalLogo}></img>
+              <div className="text-medium text-[20px] ml-4">
+                  Personal Information
+              </div>
+          </div>
+          <div
+              ref={scrollRef}
+              className="flex overflow-auto no-scrollbar h-[90%] custom-scroll"
+              style={{ cursor: 'grab' }}>
+              
+              <div className="flex flex-col w-[50%] h-full pl-16 pr-2 text-[13px] justify-center">
                 {info.content}
                 <div className="mt-4"> Tanggal : {info.tanggal} </div>
                 <div> Jam : {info.jam} </div>
                 <div> Tempat : {info.tempat} </div>
-            </div>
-            <div className="flex-col w-[50%] h-full pl-4 py-8 text-[13px]">
-                <div className="flex-col justify-center items-center h-full">
-                    <div className="relative w-full h-fit flex flex-col items-center">
-                        <div className="bg-blue-purple-orange-1 rounded-[100%] w-[10rem] h-[10rem] flex items-center overflow-hidden justify-center">
-                            <img src={info.foto} className='w-full h-full'></img>
-                            <div className="text-[13px] font-light h-[3rem] text-white text-center absolute right-20 bottom-12">
-                                <div className="flex h-full">
-                                    <img src={WhiteLine2} className="h-full"></img>
-                                    <div className="ml-[4px] flex-col my-auto">  
-                                            {info.background} <br/>
-                                            {info.spesialis}              
-                                    </div>
-                                </div>
-                            </div>
+              </div>
+              <div className="flex flex-col w-[50%] h-full pl-4 text-[13px] justify-center">
+                <div className="relative w-full h-fit flex flex-col items-center">
+                  <div className="bg-blue-purple-orange-1 rounded-[100%] w-[15rem] h-[15rem] flex items-center overflow-hidden justify-center">
+                    <img src={info.foto} className='w-full h-full'></img>
+                    <div className="text-[13px] font-light h-[3rem] text-white text-center absolute right-20 bottom-12">
+                      <div className="flex h-full">
+                        <img src={WhiteLine2} className="h-full"></img>
+                        <div className="ml-[4px] flex-col my-auto">  
+                          {info.background} <br/>
+                          {info.spesialis}              
                         </div>
-                        <div className="mt-[-1rem] p-2 bg-white rounded-md text-center shadow-md">
-                            <div className="w-full relative flex text-justify select-none">
-                                <span
-                                    style={{
-                                        position: 'absolute',
-                                        color: 'transparent',
-                                        textShadow: `
-                                            0 0 0 #FFFFFF, 
-                                            1px 1px 0 #FFFFFF, 
-                                            -1px -1px 0 #FFFFFF, 
-                                            1px -1px 0 #FFFFFF, 
-                                            -1px 1px 0 #FFFFFF,
-                                            2px 2px 0 #FFFFFF,
-                                            -2px -2px 0 #FFFFFF,
-                                            2px -2px 0 #FFFFFF,
-                                            -2px 2px 0 #FFFFFF,
-                                            6px 6px 6px #cA4F14,
-                                            12px 12px 12px #cA4F14
-                                        `,
-                                        pointerEvents: 'none',
-                                        zIndex: -1
-                                    }}
-                                    className="font-airstrike font-italic font-bold inline-block
-                                            mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]" 
-                                >
-                                    {info.pembicara}
-                                </span>
-                                <span
-                                    style={{
-                                        WebkitBackgroundClip: 'text',
-                                        color: 'transparent',
-                                    }}
-                                    className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
-                                            mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
-                                >
-                                    {info.pembicara}
-                                </span>
-                            </div>
-                        </div>
+                      </div>
                     </div>
+                  </div>
+                  <div className="mt-[-1rem] p-2 bg-white rounded-md text-center shadow-md">
+                    <div className="w-full relative flex text-justify select-none">
+                      <span
+                        style={{
+                          position: 'absolute',
+                          color: 'transparent',
+                          textShadow: `
+                            0 0 0 #FFFFFF, 
+                            1px 1px 0 #FFFFFF, 
+                            -1px -1px 0 #FFFFFF, 
+                            1px -1px 0 #FFFFFF, 
+                            -1px 1px 0 #FFFFFF,
+                            2px 2px 0 #FFFFFF,
+                            -2px -2px 0 #FFFFFF,
+                            2px -2px 0 #FFFFFF,
+                            -2px 2px 0 #FFFFFF,
+                            6px 6px 6px #cA4F14,
+                            12px 12px 12px #cA4F14
+                          `,
+                          pointerEvents: 'none',
+                          zIndex: -1
+                        }}
+                        className="font-airstrike font-italic font-bold inline-block
+                                  mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]" 
+                      >
+                        {info.pembicara}
+                      </span>
+                      <span
+                        style={{
+                          WebkitBackgroundClip: 'text',
+                          color: 'transparent',
+                        }}
+                        className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
+                                  mobile:text-[1rem] ipad:text-[23px] desktop:text-[1rem]"
+                      >
+                        {info.pembicara}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+          </div>
+        </div>
+
+        {/* Mobile and iPad Display */}
+        <div className="text-light font-fredoka bg-transparent_black rounded-[1rem] h-full overflow-hidden 
+                        mobile:mx-6 mobile:mt-6 mobile:block
+                        ipad:mx-[8rem] ipad:mt-6 ipad:block 
+                        desktop:mx-[0] desktop:mt-0 desktop:hidden">
+          <div className="bg-gray-5 px-8 py-2 flex rounded-t-[1rem] items-center
+                          mobile:h-[3rem] ipad:h-[5rem]">
+              <img src={PersonalLogo}></img>
+              <div className="text-medium mobile:text-[20px] mobile:ml-4 ipad:text-[30px] ipad:ml-8">
+                  Personal Information
+              </div>
+          </div>
+          <div
+              ref={scrollRef}
+              className="flex-col overflow-auto no-scrollbar custom-scroll
+                         mobile:px-4 mobile:h-[85%] ipad:px-16 ipad:h-[80%]"
+              style={{ cursor: 'grab' }}>
+              <div className="flex flex-col text-[13px] justify-center">
+                <div className="relative w-full h-fit flex flex-col items-center mobile:mt-4 ipad:mt-16">
+                  <div className="bg-blue-purple-orange-1 rounded-[100%] flex items-center overflow-hidden justify-center
+                                  mobile:w-[10rem] mobile:h-[10rem] ipad:w-[20rem] ipad:h-[20rem]">
+                    <img src={info.foto} className='w-full h-full'></img>
+                    <div className="text-[13px] font-light h-[3rem] text-white text-center absolute
+                                    mobile:right-[10%] mobile:bottom-[20%] ipad:right-[20%] ipad:bottom-[20%]">
+                      <div className="flex h-full">
+                        <img src={WhiteLine2} className="h-full"></img>
+                        <div className="ml-[4px] flex-col my-auto">  
+                          {info.background} <br/>
+                          {info.spesialis}              
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-[-1rem] p-2 bg-white rounded-md text-center shadow-md">
+                    <div className="w-full relative flex text-justify select-none">
+                      <span
+                        style={{
+                          position: 'absolute',
+                          color: 'transparent',
+                          textShadow: `
+                            0 0 0 #FFFFFF, 
+                            1px 1px 0 #FFFFFF, 
+                            -1px -1px 0 #FFFFFF, 
+                            1px -1px 0 #FFFFFF, 
+                            -1px 1px 0 #FFFFFF,
+                            2px 2px 0 #FFFFFF,
+                            -2px -2px 0 #FFFFFF,
+                            2px -2px 0 #FFFFFF,
+                            -2px 2px 0 #FFFFFF,
+                            6px 6px 6px #cA4F14,
+                            12px 12px 12px #cA4F14
+                          `,
+                          pointerEvents: 'none',
+                          zIndex: -1
+                        }}
+                        className="font-airstrike font-italic font-bold inline-block
+                                  mobile:text-[1rem] ipad:text-[25px] desktop:text-[1rem]" 
+                      >
+                        {info.pembicara}
+                      </span>
+                      <span
+                        style={{
+                          WebkitBackgroundClip: 'text',
+                          color: 'transparent',
+                        }}
+                        className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
+                                  mobile:text-[1rem] ipad:text-[25px] desktop:text-[1rem]"
+                      >
+                        {info.pembicara}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col h-full justify-center mobile:mt-[0.5rem] mobile:text-[13px] ipad:mt-[4rem] ipad:text-[20px]">
+                {info.content}
+                <div className="mt-4"> Tanggal : {info.tanggal} </div>
+                <div> Jam : {info.jam} </div>
+                <div> Tempat : {info.tempat} </div>
+              </div>
+          </div>
         </div>
       </div>
     );
