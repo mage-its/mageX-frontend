@@ -32,6 +32,8 @@ import line from "@/assets/sosialMedia/line.svg";
 import linkedin from "@/assets/sosialMedia/linkedin.svg";
 import puzzleFooter from "@/assets/puzzle/puzzleFooter.svg";
 
+import jagoTeknik from "@/assets/medparAndSponsor/jagoteknik.png"
+
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
 import { JustifyPuzzle } from "@/components/JustifyPuzzle";
@@ -781,6 +783,24 @@ export default function Home() {
             className="absolute top-0 -right-10 sm:-right-32 lg:-right-20 xl:right-0 rotate-180 h-full"
           />
         </div>
+
+        <div className="lg:w-[444px] md:w-[444px] sm:w-fit lg:h-[180px] sm:w-[120px] bg-gray-1 mx-auto mt-[107px] z-10">
+          <div className="font-roboto lg:text-[80px] sm:text-[60px] font-bold">
+            <span className="bg-clip-text text-transparent bg-vertical-gta">
+              Thank You
+            </span>
+          </div>
+          <div className="font-fredoka text-center lg:text-[24px] sm:text-[10px] text-white z-10">
+            <span>To All Sponsors and Media Partner!</span>
+          </div>
+        </div>
+        <div className="lg:h-[672px] sm:h-[372px] p-2 bg-vertical-gta place-items-center rounded-[10px] lg:mt-[-155px] sm:mt-0 z-0">
+          <div className="bg-gray-1 w-full h-full rounded-[10px]">
+            <img src={jagoTeknik}
+            className="lg:w-[600px] sm:w-[300px] lg:h-[600px] sm:w-[300px] mx-auto"></img>
+          </div>
+        </div>
+
       </div>
       <Footer />
     </main>
