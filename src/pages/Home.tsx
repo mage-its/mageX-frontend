@@ -709,7 +709,7 @@ export default function Home() {
                   rotate={innerWidth > 1024 ? 6.44 : 0}
                 />
                 <SocialMediaCard
-                  href="https://line.me/R/ti/p/rio5948f"
+                  href="https://line.me/R/ti/p/@rio5948f"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Line"

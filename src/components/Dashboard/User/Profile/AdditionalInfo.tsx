@@ -54,17 +54,12 @@ export default function AdditionalInformation() {
       const extname = files[0].name.split(".").pop();
       const IMG_EXTS = ["jpg", "jpeg", "png"];
 
-      if (IMG_EXTS.includes(extname || "") && files[0].size > 2 * 1024 * 1024) {
+      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
         setError("img_kartu", {
           type: "manual",
-          message: "Ukuran maksimal gambar adalah 2MB",
+          message: "Ukuran maksimal gambar adalah 1MB",
         });
-      } else if (extname === "pdf" && files[0].size > 20 * 1024 * 1024) {
-        setError("img_kartu", {
-          type: "manual",
-          message: "Ukuran maksimal PDF adalah 20MB",
-        });
-      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
+      } else if (!IMG_EXTS.includes(extname || "")) {
         setError("img_kartu", {
           type: "manual",
           message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
@@ -120,16 +115,20 @@ export default function AdditionalInformation() {
               control={control}
               render={({ field }) => (
                 <span className="w-full flex flex-col gap-3">
-                  <p className="text-white text-lg font-light">Card</p>
+                  <p className="text-white text-lg font-light">Identity Card</p>
                   <div className="relative w-[261px] h-[135px] border-2 border-dashed border-black bg-[#D9D9D9] rounded-[10px] flex flex-col items-center justify-center">
                     <FaUpload className="w-10 h-10 text-gray-500 mb-2" />
                     <p className="text-gray-500">{fileName}</p>
+                    <p className="text-gray-500">
+                      (.jpg, .jpeg, .png | Maks. 1MB)
+                    </p>
                     <input
                       type="file"
                       {...field}
                       onChange={handleChange}
                       value={undefined}
                       className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+                      accept=".jpg,.jpeg,.png"
                     />
                   </div>
                 </span>
@@ -143,17 +142,21 @@ export default function AdditionalInformation() {
             <span className="w-full">
               <p className="text-white text-lg font-light">Institution</p>
               <p className="text-white text-2xl font-medium">
-                {user?.institusi || ""}
+                {user?.institusi || "--"}
               </p>
             </span>
 
             <span className="w-full flex flex-col gap-3">
-              <p className="text-white text-lg font-light">Card</p>
-              <img
-                className="w-full"
-                src={`https://api.mage-its.id/images/` + user?.image_kartu}
-                alt=""
-              />
+              <p className="text-white text-lg font-light">Identity Card</p>
+              {user?.image_kartu === "000000000000000000000000" ? (
+                <p className="text-white text-2xl font-medium">--</p>
+              ) : (
+                <img
+                  className="w-full"
+                  src={`https://api.mage-its.id/images/` + user?.image_kartu}
+                  alt=""
+                />
+              )}
             </span>
           </div>
         </div>

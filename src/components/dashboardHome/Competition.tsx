@@ -199,7 +199,7 @@ const CompetitionComponent: React.FC = () => {
           <Popup
             isVisible={isPopupVisible}
             onClose={handleClosePopup}
-            text="You are not verified. Please complete your data first"
+            text="You are not verified. Please complete your data first and wait while we verify your data"
           />
         )
       ) : (

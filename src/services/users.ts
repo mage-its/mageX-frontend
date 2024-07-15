@@ -19,6 +19,7 @@ export interface User {
   tanggal_lahir: string;
   no_hp: string;
   verified: string;
+  username_ig: string;
   is_logged_in: true;
 }
 
