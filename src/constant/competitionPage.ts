@@ -48,9 +48,11 @@ export type Contest = {
     phone: string;
   }[];
   secondPhase?: boolean;
+  maxMember?: number;
 };
 
 export const gameDev: Contest = {
+  maxMember: 3,
   icon: GameDevIcon,
   homeCaption: "Expand your creativity, bring us to the other world of yours!",
   title: "GAME DEVELOPMENT",
@@ -104,6 +106,7 @@ export const gameDev: Contest = {
 };
 
 export const appDev: Contest = {
+  maxMember: 3,
   icon: AppDevIcon,
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",
@@ -162,6 +165,7 @@ export const appDev: Contest = {
 };
 
 export const robotic: Contest = {
+  maxMember: 2,
   icon: RoboticIcon,
   homeCaption:
     "Show off your robots, we’re calling all the best robots team out there!",
@@ -196,6 +200,7 @@ export const robotic: Contest = {
 };
 
 export const iot: Contest = {
+  maxMember: 3,
   icon: IotIcon,
   homeCaption:
     "Show off your skill as an application developer, explore widely with us!",

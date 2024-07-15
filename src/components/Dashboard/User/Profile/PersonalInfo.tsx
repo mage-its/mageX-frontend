@@ -7,6 +7,7 @@ type PersonalInformationSchema = {
   lastName: string;
   no_hp: string;
   tanggal_lahir: string;
+  username_ig: string;
 };
 
 export default function PersonalInformation() {
@@ -32,6 +33,7 @@ export default function PersonalInformation() {
     setValue("lastName", user?.nama.split(" ").splice(1).join(" ") || "");
     setValue("no_hp", user?.no_hp || "");
     setValue("tanggal_lahir", user?.tanggal_lahir.slice(0, 10) || "");
+    setValue("username_ig", user?.username_ig || "");
   }, [user, setValue]);
 
   const [isEditingPersonalInformation, setIsEditingPersonalInformation] =
@@ -121,7 +123,7 @@ export default function PersonalInformation() {
             </span>
           </div>
 
-          <div className="flex flex-col w-full gap-4">
+          <div className="flex flex-col md:flex-row w-full gap-4">
             <Controller
               name="tanggal_lahir"
               control={control}
@@ -138,6 +140,22 @@ export default function PersonalInformation() {
                 </span>
               )}
             />
+            <Controller
+              name="username_ig"
+              control={control}
+              render={({ field }) => (
+                <span className="flex flex-col gap-2 w-full">
+                  <label className="text-white text-lg font-light">
+                    Username Instagram
+                  </label>
+                  <input
+                    type="text"
+                    className="text-white text-2xl font-medium bg-transparent border-2 px-4 py-2 rounded-xl border-white"
+                    {...field}
+                  />
+                </span>
+              )}
+            />
           </div>
         </div>
       ) : (
@@ -147,14 +165,16 @@ export default function PersonalInformation() {
               <p className="text-white text-lg font-light">First Name</p>
               <p className="text-white text-2xl font-medium">
                 {" "}
-                {user?.nama.split(" ")[0]}
+                {user?.nama.split(" ")[0] ? user?.nama.split(" ")[0] : "--"}
               </p>
             </span>
 
             <span className="w-full">
               <p className="text-white text-lg font-light">Last Name</p>
               <p className="text-white text-2xl font-medium">
-                {user?.nama.split(" ").splice(1).join(" ")}
+                {user?.nama.split(" ").splice(1).join(" ")
+                  ? user?.nama.split(" ").splice(1).join(" ")
+                  : "--"}
               </p>
             </span>
           </div>
@@ -162,20 +182,34 @@ export default function PersonalInformation() {
           <div className="flex flex-col md:flex-row w-full gap-4">
             <span className="w-full">
               <p className="text-white text-lg font-light">Phone Number</p>
-              <p className="text-white text-2xl font-medium">{user?.no_hp}</p>
+              <p className="text-white text-2xl font-medium">
+                {user?.no_hp ? user?.no_hp : "--"}
+              </p>
             </span>
 
             <span className="w-full">
               <p className="text-white text-lg font-light">Email</p>
-              <p className="text-white text-2xl font-medium">{user?.email}</p>
+              <p className="text-white text-2xl font-medium">
+                {user?.email ? user?.email : "--"}
+              </p>
             </span>
           </div>
 
-          <div className="flex flex-col w-full gap-4">
+          <div className="flex flex-col md:flex-row w-full gap-4">
             <span className="w-full">
               <p className="text-white text-lg font-light">Birth Date</p>
               <p className="text-white text-2xl font-medium">
-                {user?.tanggal_lahir.slice(0, 10)}
+                {user?.tanggal_lahir.slice(0, 10)
+                  ? user?.tanggal_lahir.slice(0, 10)
+                  : "--"}
+              </p>
+            </span>
+            <span className="w-full">
+              <p className="text-white text-lg font-light">
+                Username Instagram
+              </p>
+              <p className="text-white text-2xl font-medium">
+                {user?.username_ig ? user?.username_ig : "--"}
               </p>
             </span>
           </div>

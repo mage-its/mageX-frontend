@@ -95,14 +95,14 @@ export default function AddressInformation() {
             <span className="w-full">
               <p className="text-white text-xl font-light">Address</p>
               <p className="text-white text-2xl font-medium">
-                {user?.alamat || ""}
+                {user?.alamat || "--"}
               </p>
             </span>
 
             <span className="w-full">
               <p className="text-white text-xl font-light">Province</p>
               <p className="text-white text-2xl font-medium">
-                {user?.asal_provinsi || ""}
+                {user?.asal_provinsi || "--"}
               </p>
             </span>
           </div>

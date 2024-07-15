@@ -120,6 +120,7 @@ const InputFile = ({
   ...props
 }: InputFileProps) => {
   const [fileName, setFileName] = useState<string | null>(null);
+  const [isEdit, setIsEdit] = useState(false);
   const checked = fileName !== null;
   const changeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
@@ -129,6 +130,7 @@ const InputFile = ({
           ? files[0].name.slice(0, 15) + "..."
           : files[0].name;
       setFileName(truncatedFileName);
+      setIsEdit(true);
     } else {
       setFileName(null);
     }
@@ -140,11 +142,19 @@ const InputFile = ({
     setFileName(null);
     onRemove && onRemove();
   };
+
+  useEffect(() => {
+    if (link_file && link_file?.split("/").pop() != "undefined") {
+      setFileName(link_file);
+      setIsEdit(false);
+    }
+  }, [link_file]);
+  console.log(link_file?.split("/").pop() == "undefined");
   return (
     <label className="flex flex-col text-white font-fredoka font-medium text-xs md:text-sm lg:text-base w-full h-full">
       {label}
       <div className="flex flex-col justify-center items-center bg-white/10 border-[2px] border-dashed border-white/50 w-full h-full mt-2 rounded-xl p-2 text-center lg:p-4">
-        {link_file ? (
+        {!isEdit && link_file?.split("/").pop() != "undefined" ? (
           <a
             target="_blank"
             href={link_file}
@@ -152,17 +162,8 @@ const InputFile = ({
           >
             <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
             <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-              {checked ? fileName : link_file}
+              {link_file}
             </p>
-            {checked && (
-              <FaX
-                className="text-white text-xs md:text-sm lg:text-base cursor-pointer"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  handleClick();
-                }}
-              />
-            )}
           </a>
         ) : (
           <div className="flex items-center gap-2">
@@ -212,9 +213,7 @@ const InputFile = ({
 
 type TeamInformation = {
   teamName: string;
-  teamMembersOne: string;
-  teamMembersTwo: string;
-  teamMembersThree: string;
+  teamMembers: string[];
 };
 
 type RegistStepOne = {
@@ -234,15 +233,19 @@ type RegistStepThree = {
 
 export default function DashboardCompetition() {
   const [step, setStep] = useState<number>(1);
-  const { data: user } = useUserData();
-  if (!user?.is_logged_in) {
+  const { data: user, isSuccess } = useUserData();
+  if (isSuccess && !user?.is_logged_in) {
+    console.log("Redirecting to login page");
     window.location.href = "https://api.mage-its.id/users/login";
   }
   const { data: teams } = useLeadTeams();
   console.log(teams);
   const { data: members } = useTeamMembers();
-  const { mutateAsync: updateTeamInformation, data: responseUpdateTeam } =
-    useUpdateTeamInformation();
+  const {
+    mutateAsync: updateTeamInformation,
+    data: responseUpdateTeam,
+    isError: isErrorUpdateTeam,
+  } = useUpdateTeamInformation();
   const { mutateAsync: addMembers } = useAddMember();
   const [isEditTeamInformation, setIsEditTeamInformation] = useState(false);
   const [linkBuktiPembayaran, setLinkBuktiPembayaran] = useState<
@@ -261,10 +264,10 @@ export default function DashboardCompetition() {
   };
 
   useEffect(() => {
-    if (responseUpdateTeam) {
+    if (responseUpdateTeam || isErrorUpdateTeam) {
       setIsPopupVisible(true);
     }
-  }, [responseUpdateTeam]);
+  }, [responseUpdateTeam, isErrorUpdateTeam]);
 
   const {
     control: teamControl,
@@ -273,20 +276,16 @@ export default function DashboardCompetition() {
   } = useForm<TeamInformation>({
     defaultValues: {
       teamName: teams?.nama || "",
-      teamMembersOne: (members && members[0].nama) || "",
-      teamMembersTwo: (members && members[1].nama) || "",
-      teamMembersThree: (members && members[2].nama) || "",
+      teamMembers: (members && members?.map((item) => item.nama)) || [""],
     },
   });
 
   useEffect(() => {
     setValueTeamControl("teamName", teams?.nama || "");
     if (teams?.anggota) {
-      setValueTeamControl("teamMembersOne", (members && members[0].nama) || "");
-      setValueTeamControl("teamMembersTwo", (members && members[1].nama) || "");
       setValueTeamControl(
-        "teamMembersThree",
-        (members && members[2].nama) || ""
+        "teamMembers",
+        (members && members?.map((item) => item.nama)) || [""]
       );
     }
   }, [teams, setValueTeamControl, members]);
@@ -300,15 +299,9 @@ export default function DashboardCompetition() {
       await updateTeamInformation({
         nama: data.teamName,
       });
-      await addMembers({
-        email: data.teamMembersOne,
-      });
-      await addMembers({
-        email: data.teamMembersTwo,
-      });
-      await addMembers({
-        email: data.teamMembersThree,
-      });
+      for (const member of data.teamMembers) {
+        await addMembers({ email: member });
+      }
     }
     toggleEditTeamInformation();
   };
@@ -342,17 +335,12 @@ export default function DashboardCompetition() {
       if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
         serErrorRegistStepOne("paymentProof", {
           type: "manual",
-          message: "Ukuran maksimal gambar adalah 2MB",
+          message: "Ukuran maksimal gambar adalah 1MB",
         });
-      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+      } else if (!IMG_EXTS.includes(extname || "")) {
         serErrorRegistStepOne("paymentProof", {
           type: "manual",
-          message: "Ukuran maksimal PDF adalah 20MB",
-        });
-      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
-        serErrorRegistStepOne("paymentProof", {
-          type: "manual",
-          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+          message: "Mohon upload file .jpg, .jpeg, atau .png ",
         });
       }
     }
@@ -368,22 +356,16 @@ export default function DashboardCompetition() {
     const files = event.target.files;
     if (files && files[0]) {
       const extname = files[0].name.split(".").pop();
-      const IMG_EXTS = ["jpg", "jpeg", "png"];
 
-      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
+      if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
         serErrorRegistStepOne("followIgAndTwibbon", {
           type: "manual",
-          message: "Ukuran maksimal gambar adalah 2MB",
+          message: "Ukuran maksimal PDF adalah 5MB",
         });
-      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+      } else if (extname !== "pdf") {
         serErrorRegistStepOne("followIgAndTwibbon", {
           type: "manual",
-          message: "Ukuran maksimal PDF adalah 20MB",
-        });
-      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
-        serErrorRegistStepOne("followIgAndTwibbon", {
-          type: "manual",
-          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+          message: "Mohon upload file .pdf",
         });
       }
     }
@@ -405,22 +387,16 @@ export default function DashboardCompetition() {
     const files = event.target.files;
     if (files && files[0]) {
       const extname = files[0].name.split(".").pop();
-      const IMG_EXTS = ["jpg", "jpeg", "png"];
 
-      if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
+      if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
         serErrorRegistStepTwo("proposal", {
           type: "manual",
-          message: "Ukuran maksimal gambar adalah 2MB",
+          message: "Ukuran maksimal PDF adalah 5MB",
         });
-      } else if (extname === "pdf" && files[0].size > 5 * 1024 * 1024) {
+      } else if (extname !== "pdf") {
         serErrorRegistStepTwo("proposal", {
           type: "manual",
-          message: "Ukuran maksimal PDF adalah 20MB",
-        });
-      } else if (extname !== "pdf" && !IMG_EXTS.includes(extname || "")) {
-        serErrorRegistStepTwo("proposal", {
-          type: "manual",
-          message: "Mohon upload file .jpg, .jpeg, .png, atau .pdf",
+          message: "Mohon upload file .pdf",
         });
       }
     }
@@ -508,19 +484,22 @@ export default function DashboardCompetition() {
 
   useEffect(() => {
     if (teams?.bukti_pembayaran !== "000000000000000000000000") {
+      resetRegistStepOne("paymentProof");
       setLinkBuktiPembayaran(
         `https://api.mage-its.id/images/${teams?.bukti_pembayaran}`
       );
     }
     if (teams?.bukti_twibbon_follow !== "000000000000000000000000") {
+      resetRegistStepOne("followIgAndTwibbon");
       setLinkTwibbonDanIG(
         `https://api.mage-its.id/images/${teams?.bukti_twibbon_follow}`
       );
     }
     if (teams?.proposal !== "000000000000000000000000") {
+      resetRegistStepTwo("proposal");
       setLinkProposal(`https://api.mage-its.id/images/${teams?.proposal}`);
     }
-  }, [teams]);
+  }, [teams, resetRegistStepOne, resetRegistStepTwo]);
 
   return (
     <div className="flex bg-vertical-gta h-fit">
@@ -594,35 +573,41 @@ export default function DashboardCompetition() {
                 <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                   Members
                 </p>
-                {/* <div className="rounded-xl bg-white py-2 px-2.5">
-                  <p className="text-dark font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    pp
+                <div className="bg-white rounded-xl py-2 px-2.5 mb-2.5">
+                  <p className="font-roboto font-medium text-xs md:text-sm lg:text-base text-dark">
+                    {user?.nama}
+                    <span className="text-dark"> (Leader)</span>
                   </p>
-                </div> */}
-                <Controller
-                  disabled={!isEditTeamInformation}
-                  name="teamMembersOne"
-                  control={teamControl}
-                  render={({ field }) => (
-                    <InputField {...field} placeholder="Enter your team name" />
-                  )}
-                />
-                <Controller
-                  disabled={!isEditTeamInformation}
-                  name="teamMembersTwo"
-                  control={teamControl}
-                  render={({ field }) => (
-                    <InputField {...field} placeholder="Enter your team name" />
-                  )}
-                />
-                <Controller
-                  disabled={!isEditTeamInformation}
-                  name="teamMembersThree"
-                  control={teamControl}
-                  render={({ field }) => (
-                    <InputField {...field} placeholder="Enter your team name" />
-                  )}
-                />
+                </div>
+
+                {Array.from(
+                  {
+                    length:
+                      (competitionPath[teams?.divisi as string]?.maxMember ||
+                        0) - 1,
+                  },
+                  (_, index) => (
+                    <Controller
+                      key={index}
+                      disabled={!isEditTeamInformation}
+                      name={`teamMembers.${index}`}
+                      control={teamControl}
+                      rules={{
+                        pattern: {
+                          value:
+                            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                          message: "Email harus valid",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <InputField
+                          {...field}
+                          placeholder="Enter member email"
+                        />
+                      )}
+                    />
+                  )
+                )}
               </div>
             </div>
           </form>
@@ -716,9 +701,9 @@ export default function DashboardCompetition() {
                       label="Payment Proof"
                       placeholder="Upload Here"
                       formatName={`Pembayaran_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
-                      formatFile=".png, .jpg, .pdf"
-                      maxFileSize="5MB"
-                      accept=".png, .jpg, .pdf"
+                      formatFile=".png, .jpg, .jpeg"
+                      maxFileSize="1MB"
+                      accept=".png, .jpg, .jpeg"
                       value={undefined}
                       onRemove={onRemovePayment}
                       onChange={handleChangeBuktiPembayaran}
@@ -826,9 +811,9 @@ export default function DashboardCompetition() {
                       label="Proposal"
                       placeholder="Upload Here"
                       formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
-                      formatFile=".png, .jpg, .pdf"
+                      formatFile=".pdf"
                       maxFileSize="5MB"
-                      accept=".png, .jpg, .pdf"
+                      accept=".pdf"
                       value={undefined}
                       onRemove={onRemoveProposal}
                       onChange={handleChangeProposal}
@@ -909,7 +894,9 @@ export default function DashboardCompetition() {
       <Popup
         isVisible={isPopupVisible}
         onClose={handleClosePopup}
-        text={responseUpdateTeam?.message || ""}
+        text={
+          responseUpdateTeam?.message || "Error. Unable to update team data"
+        }
       />
     </div>
   );

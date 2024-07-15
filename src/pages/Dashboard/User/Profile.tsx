@@ -6,8 +6,8 @@ import DashboardSideBar from "@/components/DashboardSideBar";
 import { useUserData } from "@/services/users";
 
 export default function Profile() {
-  const { data: user } = useUserData();
-  if (!user?.is_logged_in) {
+  const { data: user, isSuccess } = useUserData();
+  if (isSuccess && !user?.is_logged_in) {
     window.location.href = "https://api.mage-its.id/users/login";
   }
   return (

@@ -12,8 +12,9 @@ import Workshop from "@/components/dashboardHome/Workshop";
 import { useUserData } from "@/services/users";
 
 const DashboardHome: React.FC = () => {
-  const { data: user } = useUserData();
-  if (!user?.is_logged_in) {
+  const { data: user, isSuccess } = useUserData();
+
+  if (isSuccess && !user?.is_logged_in) {
     window.location.href = "https://api.mage-its.id/users/login";
   }
   return (

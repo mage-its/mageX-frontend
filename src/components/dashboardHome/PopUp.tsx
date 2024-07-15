@@ -28,7 +28,7 @@ const Popup: React.FC<PopupProps> = ({
           <img src={InformationLogo} alt="Information" />
           <span className="ml-2">Information</span>
         </div>
-        <p className="mt-4 mb-2">{text}</p>
+        <p className="mt-4 mb-3 mx-3">{text}</p>
         {handleYesClick && (
           <div className="flex-col px-6 mt-6">
             <button
