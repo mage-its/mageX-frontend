@@ -5,20 +5,14 @@ import {
   FaArrowRight,
   FaPhone,
   FaTableList,
-  FaX,
 } from "react-icons/fa6";
-import {
-  PiTrophyFill,
-  PiPaperPlaneRightFill,
-  PiFileArrowUpFill,
-} from "react-icons/pi";
+import { PiTrophyFill, PiPaperPlaneRightFill } from "react-icons/pi";
 import { BiSolidPencil } from "react-icons/bi";
 import profilePIcture from "@/assets/brand/profilePicture.svg";
 import { HiUserGroup } from "react-icons/hi";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import cn from "@/utils/cn";
 import { useEffect, useState } from "react";
-import { IconType } from "react-icons";
 import Select, { Option } from "@/components/Select";
 import {
   useAddMember,
@@ -38,25 +32,11 @@ import {
   uiUx,
 } from "@/constant/competitionPage";
 import Popup from "@/components/dashboardHome/PopUp";
+import InputFile from "@/components/InputFile";
+import InputField from "@/components/InputField";
 
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
-
-interface InputFieldProps extends React.ComponentPropsWithoutRef<"input"> {
-  label?: string;
-  placeholder: string;
-}
-
-interface InputFileProps extends React.ComponentPropsWithoutRef<"input"> {
-  label?: string;
-  placeholder: string;
-  Icon?: IconType;
-  formatName?: string;
-  formatFile?: string;
-  maxFileSize?: string;
-  onRemove?: () => void;
-  link_file?: string;
-}
 
 const CompetitionButton = ({
   children,
@@ -74,140 +54,6 @@ const CompetitionButton = ({
     >
       {children}
     </button>
-  );
-};
-
-const InputField = ({
-  label,
-  placeholder,
-  disabled,
-  className,
-  ...props
-}: InputFieldProps) => {
-  return (
-    <div className="flex flex-col gap-2">
-      {label && (
-        <label className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-          {label}
-        </label>
-      )}
-      <input
-        {...props}
-        disabled={disabled}
-        type="text"
-        placeholder={placeholder}
-        className={cn(
-          "bg-white/10 rounded-xl px-2.5 py-2 text-white/20 font-roboto font-medium text-xs md:text-sm lg:text-base border-[1px] border-white/80",
-          { "border-white/20": disabled },
-          className
-        )}
-      />
-    </div>
-  );
-};
-
-const InputFile = ({
-  label,
-  placeholder,
-  disabled,
-  formatName,
-  formatFile,
-  maxFileSize,
-  link_file,
-  onChange,
-  onRemove,
-  Icon = PiFileArrowUpFill,
-  ...props
-}: InputFileProps) => {
-  const [fileName, setFileName] = useState<string | null>(null);
-  const [isEdit, setIsEdit] = useState(false);
-  const checked = fileName !== null;
-  const changeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files) {
-      const truncatedFileName =
-        files[0].name.length > 15
-          ? files[0].name.slice(0, 15) + "..."
-          : files[0].name;
-      setFileName(truncatedFileName);
-      setIsEdit(true);
-    } else {
-      setFileName(null);
-    }
-
-    onChange && onChange(event);
-  };
-
-  const handleClick = () => {
-    setFileName(null);
-    onRemove && onRemove();
-  };
-
-  useEffect(() => {
-    if (link_file && link_file?.split("/").pop() != "undefined") {
-      setFileName(link_file);
-      setIsEdit(false);
-    }
-  }, [link_file]);
-  console.log(link_file?.split("/").pop() == "undefined");
-  return (
-    <label className="flex flex-col text-white font-fredoka font-medium text-xs md:text-sm lg:text-base w-full h-full">
-      {label}
-      <div className="flex flex-col justify-center items-center bg-white/10 border-[2px] border-dashed border-white/50 w-full h-full mt-2 rounded-xl p-2 text-center lg:p-4">
-        {!isEdit && link_file?.split("/").pop() != "undefined" ? (
-          <a
-            target="_blank"
-            href={link_file}
-            className="flex items-center gap-2"
-          >
-            <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
-            <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-              {link_file}
-            </p>
-          </a>
-        ) : (
-          <div className="flex items-center gap-2">
-            <Icon className="text-white text-lg md:text-xl lg:text-2xl" />
-            <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-              {checked ? fileName : placeholder}
-            </p>
-            {checked && (
-              <FaX
-                className="text-white text-xs md:text-sm lg:text-base cursor-pointer"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  handleClick();
-                }}
-              />
-            )}
-          </div>
-        )}
-
-        {formatName && (
-          <p className="text-white/50 font-fredoka text-[10px] md:text-sm lg:text-base">
-            Format:{" "}
-            <span className="bg-vertical-gta bg-clip-text text-transparent font-fredoka text-[10px] md:text-sm lg:text-base">
-              {formatName}
-            </span>
-          </p>
-        )}
-        {(formatFile || maxFileSize) && (
-          <p className="font-fredoka font-medium text-[10px] md:text-sm lg:text-base text-white/20">
-            ({formatFile}
-            {formatFile && maxFileSize && " | "}
-            {maxFileSize && "max. " + maxFileSize})
-          </p>
-        )}
-      </div>
-      <input
-        {...props}
-        disabled={disabled}
-        type="file"
-        placeholder={placeholder}
-        className="m-0 hidden"
-        onChange={changeFile}
-      />
-    </label>
   );
 };
 
