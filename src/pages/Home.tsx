@@ -32,6 +32,8 @@ import line from "@/assets/sosialMedia/line.svg";
 import linkedin from "@/assets/sosialMedia/linkedin.svg";
 import puzzleFooter from "@/assets/puzzle/puzzleFooter.svg";
 
+import jagoTeknik from "@/assets/medparAndSponsor/jagoteknik.png";
+
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
 import { JustifyPuzzle } from "@/components/JustifyPuzzle";
@@ -752,7 +754,26 @@ export default function Home() {
           <NeonSquare className="absolute -right-[2%] sm:right-[3%] bottom-24 sm:bottom-56 z-10 scale-[0.6] sm:scale-[1.5] rotate-[-20deg]" />
         </div>
         {/* end socialmedia section */}
-        <div className="bg-vertical-gta h-fit rounded-xl md:rounded-[40px] py-[15px] sm:py-[38px] relative overflow-hidden">
+        <div className="w-fit h-fit bg-gray-1 mx-auto p-4 z-10">
+          <div className="font-roboto lg:text-[80px] sm:text-[60px] font-bold">
+            <span className="bg-vertical-gta bg-clip-text text-transparent font-bold font-roboto w-fit text-3xl sm:text-5xl md:text-6xl">
+              Thank You
+            </span>
+          </div>
+          <div className="text-white font-roboto font-bold text-[10px] sm:text-base md:text-xl z-10">
+            <span>To All Sponsors and Media Partner!</span>
+          </div>
+        </div>
+        <div className="lg:h-[672px] sm:h-[372px] p-2 bg-vertical-gta place-items-center rounded-[10px] mt-[-80px] sm:mt-[-120px] md:mt-[-130px] z-0">
+          <div className="bg-gray-1 w-full h-full rounded-[10px] pt-5">
+            <img
+              src={jagoTeknik}
+              className="lg:w-[600px] md:w-[400px] sm:w-[300px] w-[200px] mx-auto"
+            />
+          </div>
+        </div>
+
+        <div className="bg-vertical-gta h-fit rounded-xl md:rounded-[40px] py-[15px] sm:py-[38px] relative overflow-hidden mt-10">
           <div className="relative z-10">
             <h1 className="font-roboto font-bold text-xl sm:text-3xl lg:text-5xl text-light mb-2">
               Your Journey Begins Here!
