@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DropButton from "@/assets/dashboardWorkshop/dropButton.svg"
+import DropButton from "@/assets/dashboardWorkshop/dropButton.svg";
+import { Workshop, Multimedia, Robotics, InternetOfThings } from "@/constant/dashboardWorkshop";
 
 interface DropdownProps {
-  selectedCategory: 'Multimedia' | 'Robotika' | 'Internet of Things';
-  setSelectedCategory: (category: 'Multimedia' | 'Robotika' | 'Internet of Things') => void;
+  currentWorkshop: Workshop;
+  setCurrentWorkshop: (workshop: Workshop) => void;
 }
 
-const categories = ['Multimedia', 'Robotika', 'Internet of Things'];
+const categories = [
+  { name: 'Multimedia', workshop: Multimedia },
+  { name: 'Robotika', workshop: Robotics },
+  { name: 'Internet of Things', workshop: InternetOfThings }
+];
 
-const Dropdown: React.FC<DropdownProps> = ({ selectedCategory, setSelectedCategory }) => {
+const Dropdown: React.FC<DropdownProps> = ({ currentWorkshop, setCurrentWorkshop }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-  const selectCategory = (category: 'Multimedia' | 'Robotika' | 'Internet of Things') => {
-    setSelectedCategory(category);
+  const selectCategory = (workshop: Workshop) => {
+    setCurrentWorkshop(workshop);
     setIsDropdownOpen(false);
   };
 
@@ -27,8 +32,8 @@ const Dropdown: React.FC<DropdownProps> = ({ selectedCategory, setSelectedCatego
         onClick={toggleDropdown}
         className="bg-gray-5 h-full px-8 py-3 rounded-[0.5rem] flex justify-between items-center w-full"
       >
-        {selectedCategory}
-        <img src={DropButton}></img>
+        {currentWorkshop.title}
+        <img src={DropButton} alt="Drop button" />
       </button>
       <AnimatePresence>
         {isDropdownOpen && (
@@ -40,11 +45,11 @@ const Dropdown: React.FC<DropdownProps> = ({ selectedCategory, setSelectedCatego
           >
             {categories.map((category) => (
               <button
-                key={category}
-                onClick={() => selectCategory(category as 'Multimedia' | 'Robotika' | 'Internet of Things')}
+                key={category.name}
+                onClick={() => selectCategory(category.workshop)}
                 className="w-full text-left px-4 text-white rounded-[0.5rem] hover:bg-gray-4"
               >
-                {category}
+                {category.name}
               </button>
             ))}
           </motion.div>

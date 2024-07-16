@@ -5,8 +5,8 @@ import Home from "./Home";
 import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
-import DashboardHome from "./Dashboard-Home"
-import DashboardWorkshop from "./Dashboard-Workshop"
+import DashboardHome from "./DashboardHome"
+import DashboardWorkshop from "./DashboardWorkshop"
 import DashboardCompetition from "./DashboardCompetition";
 
 const router = createBrowserRouter([
