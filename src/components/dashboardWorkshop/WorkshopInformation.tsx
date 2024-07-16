@@ -18,7 +18,7 @@ const WorkshopInformation: React.FC<WorkshopInformationProps> = ({ currentWorksh
                     desktop:mx-[0] desktop:mt-0">
       <div 
         ref={scrollRef}
-        className="w-full bg-gray-5 h-[85%] overflow-auto custom-scroll no-scrollbar rounded-[1rem] justify-center px-10 py-6 items-center" 
+        className="w-full bg-gray-5 h-[80%] overflow-auto custom-scroll no-scrollbar rounded-[1rem] justify-center px-10 py-6 items-center" 
         style={{ cursor: 'grab' }}>
         <div>
           <div className="text-justify font-airstrike
@@ -39,9 +39,9 @@ const WorkshopInformation: React.FC<WorkshopInformationProps> = ({ currentWorksh
         </div>
       </div>
       <div className="h-[1rem]"></div>
-      <div className="w-full py-[8px] h-[calc(15%-1rem)] bg-gray-5 rounded-[0.5rem] font-fredoka justify-center items-center flex">
-        <img src={WhatsAppLogo} className='mobile:h-[2rem] ipad:h-[3rem] desktop:h-[1rem]' alt="WhatsApp Logo" />
-        <div className="ml-4">{currentWorkshop.contact}</div>
+      <div className="w-full py-[8px] h-[calc(20%-1rem)] bg-gray-5 rounded-[0.5rem] font-fredoka justify-center items-center flex">
+        <img src={WhatsAppLogo} className='mobile:h-[2rem] ipad:h-[3rem] desktop:h-[2rem]' alt="WhatsApp Logo" />
+        <div className="ml-4 mobile:text-[1rem] ipad:text-[18px] desktop:text-[20px]">{currentWorkshop.contact}</div>
       </div>
     </div>
   );

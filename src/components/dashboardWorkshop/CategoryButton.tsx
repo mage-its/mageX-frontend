@@ -22,8 +22,8 @@ const Dropdown: React.FC = () => {
   };
 
   return (
-    <div className="relative flex h-fit font-fredoka text-light select-none 
-                    mobile:text-[1rem] ipad:text-[23px] desktop:text-[20px]">
+    <div className="relative flex h-fit font-fredoka text-light select-none
+                    mobile:text-[12px] ipad:text-[14px] desktop:text-[1rem]">
       <button
         onClick={toggleDropdown}
         className="bg-white/10 h-full px-4 py-1 rounded-[0.5rem] flex justify-between items-center w-full"

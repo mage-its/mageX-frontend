@@ -31,8 +31,8 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
               ref={scrollRef}
               style={{ cursor: 'grab' }}
             >
-              <div className="flex-col">
-                {currentWorkshop.content}
+              <div className="flex-col font-roboto">
+                {currentWorkshop.informasiDiri}
                 <div className="mt-4">Tanggal: {currentWorkshop.tanggal}</div>
                 <div>Jam: {currentWorkshop.jam}</div>
                 <div>Tempat: {currentWorkshop.tempat}</div>
@@ -45,7 +45,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
                 <img src={currentWorkshop.foto} className="w-full h-full" alt={currentWorkshop.pembicara} />
               </div>
               
-              <div className="mt-[-1rem] p-2 bg-white rounded-md text-center shadow-md">
+              <div className="mt-[-1rem] px-2 bg-white rounded-md text-center shadow-md">
                 <div className="w-full relative flex text-justify select-none">
                   <span
                     style={{
@@ -98,13 +98,14 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
                       mobile:mx-6 mobile:mt-6 mobile:block
                       ipad:mx-6 ipad:mt-6 ipad:block 
                       desktop:hidden">
-        <div className="bg-gray-5 px-8 py-2 flex rounded-t-[1rem] items-center
-                        mobile:h-[5rem] ipad:h-[5rem]">
+        <div className="bg-gray-5  py-2 flex rounded-t-[1rem] items-center
+                        mobile:h-[5rem] mobile:px-4
+                        ipad:h-[5rem] ipad:px-8">
           {/* Mobile */}
           <div className="items-center mobile:flex ipad:hidden">
             <img src={PersonalLogo} className="select-none w-[1rem]" alt="Trophy Logo" />
-            <div className="flex-col ml-[1rem] items-center">
-              <h2 className="text-light font-fredoka mb-1 select-none text-[16px]">
+            <div className="flex-col ml-[0.5rem] items-center">
+              <h2 className="text-light font-fredoka mb-1 select-none text-[12px]">
                 Personal Information
               </h2>
               <h2 className="text-gray-5 w-fit font-medium bg-light rounded-[1rem] px-2 py-1 font-fredoka select-none text-[9px]">
@@ -133,7 +134,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
                                 mobile:w-[10rem] mobile:h-[10rem] ipad:w-[15rem] ipad:h-[15rem]">
                 <img src={currentWorkshop.foto} className="w-full h-full" alt={currentWorkshop.pembicara} />
               </div>
-              <div className="mt-[-1rem] p-2 bg-white rounded-md text-center shadow-md">
+              <div className="mt-[-1rem] px-2 bg-white rounded-md text-center shadow-md">
                 <div className="w-full relative flex text-justify select-none">
                   <span
                     style={{
@@ -188,8 +189,8 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
               ref={scrollRef}
               style={{ cursor: 'grab' }}
             >
-              <div className="flex-col">
-                {currentWorkshop.content}
+              <div className="flex-col font-roboto">
+                {currentWorkshop.informasiDiri}
                 <div className="mt-4">Tanggal: {currentWorkshop.tanggal}</div>
                 <div>Jam: {currentWorkshop.jam}</div>
                 <div>Tempat: {currentWorkshop.tempat}</div>

@@ -5,6 +5,7 @@ import PersonalLogo from '@/assets/dashboardWorkshop/personalLogo.svg';
 import useDragScroll from '@/components/dashboardHome/useDragScroll';
 import cn from "@/utils/cn";
 import { Workshop } from '@/constant/dashboardWorkshop';
+import Timeline from '@/components/dashboardWorkshop/Timeline';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
   FaAngleRight,
@@ -229,11 +230,11 @@ const InputFile = ({
 const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   const scrollRef = useDragScroll();
   const [step, setStep] = useState<number>(1);
-  // const { data: user, isSuccess } = useUserData();
-  // if (isSuccess && !user?.is_logged_in) {
-  //   console.log("Redirecting to login page");
-  //   window.location.href = "https://api.mage-its.id/users/login";
-  // }
+  const { data: user, isSuccess } = useUserData();
+  if (isSuccess && !user?.is_logged_in) {
+    console.log("Redirecting to login page");
+  //window.location.href = "https://api.mage-its.id/users/login";
+  }
 
   const { data: teams } = useLeadTeams();
   console.log(teams);
@@ -488,51 +489,80 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
     }
   }, [teams, resetRegistStepOne, resetRegistStepTwo]);
 
+  const showPaymentProof = currentWorkshop.title !== "Multimedia";
+
+
   return (
     <div className="text-light flex flex-col font-fredoka bg-transparent_black rounded-[1rem] h-full overflow-hidden
                       mobile:mx-6 mobile:mt-6
                       ipad:mx-6 ipad:mt-6
                       desktop:mx-[0] desktop:mt-0">
-      <div className="bg-gray-5 px-8 py-2 flex rounded-t-[1rem] items-center
-                        mobile:h-[5rem] ipad:h-[5rem] desktop:h-[3rem]">
-        <img src={PersonalLogo} className='mobile:h-[1rem] ipad:h-[2rem] desktop:h-[1.25rem]'></img>
-        <div className="text-medium
-                        mobile:text-[1rem] mobile:ml-4
-                        ipad:text-[23px] ipad:ml-4
-                        desktop:text-[20px] desktop:ml-4">
-          Registration and Verification
+      <div className="bg-gray-5 py-2 flex rounded-t-[1rem] items-center justify-between
+                        mobile:h-[5rem] mobile:px-4
+                        ipad:h-[5rem] ipad:px-8
+                        desktop:h-[3rem] desktop:px-8">
+        <div className="flex items-center gap-2 desktop:gap-4">
+          <img src={PersonalLogo} className='mobile:h-[1rem] ipad:h-[2rem] desktop:h-[1.25rem]'></img>
+          <div className="text-medium
+                          mobile:text-[12px] mobile:ml-4
+                          ipad:text-[23px] ipad:ml-4
+                          desktop:text-[20px] desktop:ml-4">
+            Registration and Verification
+          </div>
+        </div>
+        <div className="flex gap-2 desktop:gap-4">
+          <CompetitionButton onClick={decreaseStep} disabled>
+            <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
+            <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+              Previous
+            </h1>
+          </CompetitionButton>
+          <CompetitionButton
+            onClick={increaseStep}
+            disabled={teams?.divisi == "Robotics"}
+          >
+            <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+              Next
+            </h1>
+            <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
+          </CompetitionButton>
         </div>
       </div>
       <div className="px-8 items-center">
-        <div className="text-medium py-2 mobile:text-[1rem] ipad:text-[23px] desktop:text-[20px]">
+        <div className="text-medium py-2 mobile:text-[12px] ipad:text-[14px] desktop:text-[1rem]">
           How did you know about MAGE X workshop?
         </div>
 
         <CategoryButton />
 
-        <div className='flex gap-2 mt-4'>
-          <div className='w-[50%]'>
-            <Controller
-              name="paymentProof"
-              control={registStepOneControl}
-              render={({ field }) => (
-                <InputFile
-                  {...field}
-                  label="Payment Proof"
-                  placeholder="Upload Here"
-                  formatName={`Pembayaran_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
-                  formatFile=".png, .jpg, .jpeg"
-                  maxFileSize="1MB"
-                  accept=".png, .jpg, .jpeg"
-                  value={undefined}
-                  onRemove={onRemovePayment}
-                  onChange={handleChangeBuktiPembayaran}
-                  link_file={linkBuktiPembayaran}
-                />
-              )}
-            />
-          </div>
-          <div className='w-[50%]'>
+        {/* <Timeline events={currentWorkshop.alur} /> */}
+
+        {/* iPad and Desktop */}
+        <div className='gap-2 mt-4 mb-4 mobile:hidden ipad:flex desktop:flex'>
+          {showPaymentProof && (
+            <div className='w-full h-full'>
+              <Controller
+                name="paymentProof"
+                control={registStepOneControl}
+                render={({ field }) => (
+                  <InputFile
+                    {...field}
+                    label="Payment Proof"
+                    placeholder="Upload Here"
+                    formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                    formatFile=".png, .jpg, .jpeg"
+                    maxFileSize="1MB"
+                    accept=".png, .jpg, .jpeg"
+                    value={undefined}
+                    onRemove={onRemovePayment}
+                    onChange={handleChangeBuktiPembayaran}
+                    link_file={linkBuktiPembayaran}
+                  />
+                )}
+              />
+            </div>
+          )}
+          <div className='w-full h-full'>
             <Controller
               name="followIgAndTwibbon"
               control={registStepOneControl}
@@ -541,7 +571,55 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   {...field}
                   label="Follow Instagram + Twibbon Post"
                   placeholder="Upload Here"
-                  formatName={`IG_Twibbon_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
+                  formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                  formatFile=".pdf"
+                  maxFileSize="5MB"
+                  accept=".pdf"
+                  value={undefined}
+                  onRemove={onRemoveFollowIgAndTwibbon}
+                  onChange={handleChangeTwibbonDanIG}
+                  link_file={linkTwibbonDanIG}
+                />
+              )}
+            />
+          </div>
+        </div>
+
+        {/* Mobile */}
+        <div className='gap-2 mt-4 mobile:block ipad:hidden desktop:hidden'>
+          <div className='w-full h-full'>
+            {showPaymentProof && (
+              <Controller
+                name="paymentProof"
+                control={registStepOneControl}
+                render={({ field }) => (
+                  <InputFile
+                    {...field}
+                    label="Payment Proof"
+                    placeholder="Upload Here"
+                    formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                    formatFile=".png, .jpg, .jpeg"
+                    maxFileSize="1MB"
+                    accept=".png, .jpg, .jpeg"
+                    value={undefined}
+                    onRemove={onRemovePayment}
+                    onChange={handleChangeBuktiPembayaran}
+                    link_file={linkBuktiPembayaran}
+                  />
+                )}
+              />
+            )}
+          </div>
+          <div className='w-full h-full mt-4 mb-4'>
+            <Controller
+              name="followIgAndTwibbon"
+              control={registStepOneControl}
+              render={({ field }) => (
+                <InputFile
+                  {...field}
+                  label="Follow Instagram + Twibbon Post"
+                  placeholder="Upload Here"
+                  formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                   formatFile=".pdf"
                   maxFileSize="5MB"
                   accept=".pdf"
