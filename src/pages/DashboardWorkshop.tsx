@@ -7,6 +7,8 @@ import CategoryButton from '@/components/dashboardWorkshop/CategoryButton';
 import WorkshopInformation from '@/components/dashboardWorkshop/WorkshopInformation';
 import PersonalInformation from "@/components/dashboardWorkshop/PersonalInformation";
 import RegistrationAndVerification from '@/components/dashboardWorkshop/RegistrationAndVerification';
+import { useLocation } from "react-router-dom";
+
 import {
   Workshop,
   Multimedia,
@@ -17,13 +19,16 @@ import {
 const queryClient = new QueryClient();
 
 const DashboardHome: React.FC = () => {
-  const [currentWorkshop, setCurrentWorkshop] = useState<Workshop>(Multimedia);
+  const location = useLocation();
+  const currentRoute = location.pathname;
 
   const workshopPath: { [key: string]: Workshop } = {
-    "Multimedia": Multimedia,
-    "Robotics": Robotics,
-    "Internet of Things": InternetOfThings,
+    "/dashboard/workshop/multimedia": Multimedia,
+    "/dashboard/workshop/robotics": Robotics,
+    "/dashboard/workshop/iot": InternetOfThings,
   };
+
+  const x: Workshop = workshopPath[currentRoute];
 
   return (
     <main className="bg-black">
@@ -35,25 +40,22 @@ const DashboardHome: React.FC = () => {
                         dekstop:bg-blue-purple-orange-1 desktop:flex">
           <SideBar />
           <div
-            className="relative py-6 px-12 grid grid-rows-18 grid-cols-10 gap-[1vw] w-full
+            className="relative py-6 px-6 grid grid-rows-18 grid-cols-10 gap-[1rem] w-full
                       mobile:hidden ipad:hidden desktop:grid">
             <div className="col-span-10 row-span-1">
-              {/* <WorkshopAndProfile currentWorkshop={currentWorkshop} /> */}
+              <WorkshopAndProfile currentWorkshop={x} />
             </div>
             <div className="col-span-10 row-span-1 my-auto">
               <img src={WhiteLine} className="w-full" alt="White Line"/>
             </div>
-            <div className="col-span-7 row-span-2 pl-[1rem] pb-[1rem] ">
-              <CategoryButton currentWorkshop={currentWorkshop} setCurrentWorkshop={setCurrentWorkshop} />
+            <div className="col-span-7 row-span-8 pl-[1rem] ">
+              <PersonalInformation currentWorkshop={x} />
             </div>
-            <div className="col-span-3 row-span-12 px-[1rem] ">
-              {/* <WorkshopInformation currentWorkshop={currentWorkshop} /> */}
+            <div className="col-span-3 row-span-8 pr-[1rem] ">
+              <WorkshopInformation currentWorkshop={x} />
             </div>
-            <div className="col-span-7 row-span-10 pl-[1rem] ">
-              {/* <PersonalInformation currentWorkshop={currentWorkshop} /> */}
-            </div>
-            <div className="col-span-10 row-span-4 px-[1rem]">
-              {/* <RegistrationAndVerification currentWorkshop={currentWorkshop} /> */}
+            <div className="col-span-10 row-span-8 px-[1rem]">
+              <RegistrationAndVerification currentWorkshop={x} />
             </div>
           </div>
         </div>
@@ -70,17 +72,14 @@ const DashboardHome: React.FC = () => {
           </div>
           <div className="h-[4.2rem]"></div>
           <div className='z-[10]'>
-            <div className="w-full h-[3rem]">
-              <CategoryButton currentWorkshop={currentWorkshop} setCurrentWorkshop={setCurrentWorkshop} />
-            </div>
             <div className="w-full mobile:h-[30rem] ipad:h-[40rem] mt-6">
-              {/* <WorkshopInformation currentWorkshop={currentWorkshop} /> */}
+              <WorkshopInformation currentWorkshop={x} />
             </div>
-            <div className="w-full mobile:h-[30rem] ipad:h-[40rem] mt-6">
-              {/* <PersonalInformation currentWorkshop={currentWorkshop} /> */}
+            <div className="w-full mobile:h-[40rem] ipad:h-[56rem] mt-6">
+              <PersonalInformation currentWorkshop={x} />
             </div>
-            <div className="w-full mobile:h-[15rem] ipad:h-[20rem] mt-6 mb-[4rem]">
-              {/* <RegistrationAndVerification currentWorkshop={currentWorkshop} /> */}
+            <div className="w-full mobile:h-[20rem] ipad:h-[25rem] mt-6 mb-[4rem]">
+              <RegistrationAndVerification currentWorkshop={x} />
             </div>
           </div>
         </div>

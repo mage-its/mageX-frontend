@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DropButton from "@/assets/dashboardWorkshop/dropButton.svg";
-import { Workshop, Multimedia, Robotics, InternetOfThings } from "@/constant/dashboardWorkshop";
 
-interface DropdownProps {
-  currentWorkshop: Workshop;
-  setCurrentWorkshop: (workshop: Workshop) => void;
-}
-
-const categories = [
-  { name: 'Multimedia', workshop: Multimedia },
-  { name: 'Robotika', workshop: Robotics },
-  { name: 'Internet of Things', workshop: InternetOfThings }
+const choices = [
+  { name: 'Friends' },
+  { name: 'School' },
+  { name: 'Roadshow' },
+  { name: 'Social Media' },
+  { name: 'Others' }
 ];
 
-const Dropdown: React.FC<DropdownProps> = ({ currentWorkshop, setCurrentWorkshop }) => {
+const Dropdown: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState<string | null>("Choose");
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-  const selectCategory = (workshop: Workshop) => {
-    setCurrentWorkshop(workshop);
+
+  const selectCategory = (name: string) => {
+    setSelectedValue(name);
     setIsDropdownOpen(false);
   };
 
   return (
     <div className="relative flex h-fit font-fredoka text-light select-none 
-                    mobile:mx-6 mobile:mt-6 mobile:text-[1rem]
-                    ipad:mx-[8rem] ipad:mt-6 ipad:mobile:text-[1.5rem]
-                    desktop:mx-[0] desktop:mt-0 desktop:text-[1rem]">
+                    mobile:text-[1rem] ipad:text-[23px] desktop:text-[20px]">
       <button
         onClick={toggleDropdown}
-        className="bg-gray-5 h-full px-8 py-3 rounded-[0.5rem] flex justify-between items-center w-full"
+        className="bg-white/10 h-full px-4 py-1 rounded-[0.5rem] flex justify-between items-center w-full"
       >
-        {currentWorkshop.title}
-        <img src={DropButton} alt="Drop button" />
+        <span
+          className={`${
+            selectedValue === "Choose" ? "opacity-70" : "opacity-100"
+          }`}
+        >
+          {selectedValue}
+        </span>
+        <img src={DropButton} className="h-[12px]" alt="Drop button" />
       </button>
       <AnimatePresence>
         {isDropdownOpen && (
@@ -43,13 +45,13 @@ const Dropdown: React.FC<DropdownProps> = ({ currentWorkshop, setCurrentWorkshop
             exit={{ opacity: 0, y: -10 }}
             className="absolute top-full w-full rounded-[0.5rem] shadow-lg bg-transparent_black z-10"
           >
-            {categories.map((category) => (
+            {choices.map((choice) => (
               <button
-                key={category.name}
-                onClick={() => selectCategory(category.workshop)}
+                key={choice.name}
+                onClick={() => selectCategory(choice.name)}
                 className="w-full text-left px-4 text-white rounded-[0.5rem] hover:bg-gray-4"
               >
-                {category.name}
+                {choice.name}
               </button>
             ))}
           </motion.div>

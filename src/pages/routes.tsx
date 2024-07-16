@@ -6,8 +6,8 @@ import Workshop from "./Workshop";
 import ComingSoon from "./ComingSoon";
 import Competition from "./Competition";
 import Profile from "./Dashboard/User/Profile";
-import DashboardHome from "./Dashboard-Home";
-import DashboardWorkshop from "./Dashboard-Workshop";
+import DashboardHome from "./DashboardHome";
+import DashboardWorkshop from "./DashboardWorkshop";
 import DashboardCompetition from "./DashboardCompetition";
 
 const router = createBrowserRouter([
@@ -16,7 +16,15 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/dashboard/workshop",
+        path: "/dashboard/workshop/multimedia",
+        element: <DashboardWorkshop />,
+      },
+      {
+        path: "/dashboard/workshop/robotics",
+        element: <DashboardWorkshop />,
+      },
+      {
+        path: "/dashboard/workshop/iot",
         element: <DashboardWorkshop />,
       },
       {
