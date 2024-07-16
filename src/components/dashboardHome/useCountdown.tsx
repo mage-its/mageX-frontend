@@ -47,10 +47,10 @@ const UseCountdown: React.FC<CountdownProps> = ({ targetDate }) => {
     <div className="flex text-[50px] h-full items-center justify-center text-center mt-2">
       <div className="w-[30%] h-full">
         <div className="font-medium leading-none items-center
-                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] desktop:h-[80%] desktop:text-[60px]">
+                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] lg:h-[80%] lg:text-[60px]">
           {timeLeft.days}
         </div>
-        <div className="text-[15px] mobile:h-[50%] ipad:h-[50%] desktop:h-[20%]">
+        <div className="text-[15px] mobile:h-[50%] ipad:h-[50%] lg:h-[20%]">
           Hari
         </div>
       </div>
@@ -59,10 +59,10 @@ const UseCountdown: React.FC<CountdownProps> = ({ targetDate }) => {
       </div>
       <div className="w-[30%] h-full">
         <div className="font-medium leading-none items-center
-                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] desktop:h-[80%] desktop:text-[60px]">
+                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] lg:h-[80%] lg:text-[60px]">
           {timeLeft.hours}
         </div>
-        <div className="text-[15px] desktop:h-[20%]">
+        <div className="text-[15px] lg:h-[20%]">
           Jam
         </div>
       </div>
@@ -71,10 +71,10 @@ const UseCountdown: React.FC<CountdownProps> = ({ targetDate }) => {
       </div>
       <div className="w-[30%] h-full">
         <div className="font-medium leading-none items-center
-                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] desktop:h-[80%] desktop:text-[60px]">
+                        mobile:h-[50%] mobile:text-[50px] ipad:h-[50%] ipad:text-[60px] lg:h-[80%] lg:text-[60px]">
           {timeLeft.minutes} 
         </div>
-        <div className="text-[15px] desktop:h-[20%]">
+        <div className="text-[15px] lg:h-[20%]">
           Menit
         </div>
       </div>

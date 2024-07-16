@@ -56,8 +56,8 @@ const CountdownSlide: React.FC = () => {
 
   return (
     <div className="w-full h-full">
-      {/* Desktop Display */}
-      <div className="relative select-none justify-center w-full h-full mobile:hidden ipad:hidden desktop:block">
+      {/* lg Display */}
+      <div className="relative select-none justify-center w-full h-full mobile:hidden ipad:hidden lg:block">
         <div
           className="bg-transparent_black w-full h-full transition-colors duration-500 ease-in items-center overflow-hidden rounded-[2rem] relative"
         >
@@ -107,7 +107,7 @@ const CountdownSlide: React.FC = () => {
       </div>
 
       {/* Mobile and iPad Display */}
-      <div className="relative select-none justify-center w-full h-full mobile:block ipad:block desktop:hidden">
+      <div className="relative select-none justify-center w-full h-full mobile:block ipad:block lg:hidden">
         <div
           className="bg-transparent_black h-full transition-colors duration-500 ease-in items-center overflow-hidden  relative
                      mobile:mt-6 mobile:mx-6 mobile:rounded-[1rem]

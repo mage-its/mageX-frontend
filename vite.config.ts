@@ -10,4 +10,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 443,
+    https: {
+      key: path.resolve(__dirname, "cert", "mage-its.test.key"),
+      cert: path.resolve(__dirname, "cert", "mage-its.test.crt"),
+    },
+  },
 });

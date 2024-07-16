@@ -18,7 +18,7 @@ export default function CButton({ children, theme }: buttonProps) {
         },
         {
           "bg-orange-primary-5 shadow-[0_3px_7px_0_rgba(253,135,78,1)]":
-            theme == "orange" && children == "Log In",
+            theme == "orange" && (children == "Log In" || children == "Daftar"),
         },
         {
           "bg-gradient-to-b from-[#FFC291] from-0% via-[#E24BB3] via-75% to-[#EE96D3] to-100% shadow-[0_3px_7px_0_rgba(58,13,73,1)]":
@@ -26,7 +26,7 @@ export default function CButton({ children, theme }: buttonProps) {
         },
         {
           "bg-[#FBE4D0] shadow-[0_3px_7px_0_rgba(58,13,73,1)]":
-            theme == "purple" && children == "Log In",
+            theme == "purple" && (children == "Log In" || children == "Daftar"),
         }
       )}
     >
@@ -37,11 +37,11 @@ export default function CButton({ children, theme }: buttonProps) {
             "bg-orange-primary-5":
               theme == "orange" && children == "Guide Book",
           },
-          { "bg-orange-primary-2": theme == "orange" && children == "Log In" },
+          { "bg-orange-primary-2": theme == "orange" && (children == "Log In" || children == "Daftar") },
           { "bg-[#FBE4D0]": theme == "purple" && children == "Guide Book" },
           {
             "bg-gradient-to-b from-[#F59B9C] from-33% to-[#E24BB3] to-100%":
-              theme == "purple" && children == "Log In",
+              theme == "purple" && (children == "Log In" || children == "Daftar"),
           }
         )}
       >
@@ -51,10 +51,10 @@ export default function CButton({ children, theme }: buttonProps) {
             { "text-[#FE874F]": theme == "orange" && children == "Guide Book" },
             {
               "text-orange-primary-5":
-                theme == "orange" && children == "Log In",
+                theme == "orange" && (children == "Log In" || children == "Daftar"),
             },
             { "text-mage-pink": theme == "purple" && children == "Guide Book" },
-            { "text-[#FBE4D0]": theme == "purple" && children == "Log In" }
+            { "text-[#FBE4D0]": theme == "purple" && (children == "Log In" || children == "Daftar") }
           )}
         >
           {children}

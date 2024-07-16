@@ -1,7 +1,7 @@
 import logo from "@/assets/brand/logo.svg";
 import { IconType } from "react-icons";
 import { GoHomeFill } from "react-icons/go";
-import { PiTrophyFill, PiChalkboardTeacherFill } from "react-icons/pi";
+import { PiTrophyFill } from "react-icons/pi";
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -15,13 +15,15 @@ import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import cn from "@/utils/cn";
 import { FaCaretDown } from "react-icons/fa6";
+import { useLeadTeams } from "@/services/team";
+import { Link } from "react-router-dom";
 
 interface DashboardSideBarItemProps {
   title: string;
   Icon: IconType;
   isExpanded: boolean;
   isActive?: boolean;
-  collapseItem?: string[];
+  collapseItem?: { name: string; id: string }[];
 }
 
 const DashboardSideBarItem = ({
@@ -51,10 +53,10 @@ const DashboardSideBarItem = ({
     }
   }, [isCollapsed, collapseControl]);
   return (
-    <div onClick={toggleCollapse}>
+    <div onClick={toggleCollapse} className="overflow-hidden">
       <div
         className={cn(
-          "flex gap-[23px] items-center justify-start p-2 md:p-[15px] cursor-pointer rounded-2xl",
+          "flex gap-[23px] items-center justify-start p-2 md:p-[15px] cursor-pointer rounded-2xl mb-2",
           { "bg-vertical-gta": isActive }
         )}
       >
@@ -120,16 +122,18 @@ const DashboardSideBarItem = ({
         className="flex flex-col gap-2"
       >
         {collapseItem?.map((item) => (
-          <div
+          <Link
+            to={`/dashboard/competition`}
+            key={item.id}
             className={cn(
               "border-gray-2 border-[1px] rounded-xl px-2 md:px-[15px] py-1.5"
               // { "mt-2": !isCollapsed }
             )}
           >
             <p className="text-white/50 font-fredoka font-medium text-base">
-              {item}
+              {item.name}
             </p>
-          </div>
+          </Link>
         ))}
       </motion.div>
     </div>
@@ -137,6 +141,7 @@ const DashboardSideBarItem = ({
 };
 
 export default function DashboardSideBar() {
+  const { data: teams } = useLeadTeams();
   const [isExpanded, setIsExpanded] = useState(
     window.innerWidth > 1024 ? false : true
   );
@@ -187,12 +192,12 @@ export default function DashboardSideBar() {
             </p>
             <FaAngleRight className="text-white text-[14px]" />
           </div>
-          <div className="flex gap-[15px] justify-center items-center">
+          <Link to="/" className="flex gap-[15px] justify-center items-center">
             <img className="h-[54px]" src={logo} alt="logo" />
             <h1 className="bg-vertical-gta bg-clip-text text-transparent font-airstrike text-3xl pr-2">
               MAGE X
             </h1>
-          </div>
+          </Link>
         </div>
       )}
       <motion.div
@@ -245,7 +250,7 @@ export default function DashboardSideBar() {
           visible: {
             position: "fixed",
             left: "0%",
-            zIndex: 20,
+            zIndex: 60,
           },
         }}
         animate={expansionControl}
@@ -255,7 +260,7 @@ export default function DashboardSideBar() {
           type: "tween",
           ease: "easeInOut",
         }}
-        className=" bg-black flex flex-col items-center justify-between"
+        className=" bg-black flex flex-col items-center justify-between z-40"
       >
         <div className="mb-4 relative">
           <div
@@ -268,7 +273,10 @@ export default function DashboardSideBar() {
               <FaAngleLeft className="text-white text-[14px]" />
             )}
           </div>
-          <div className="flex gap-[15px] justify-center items-center mb-[30px] md:mb-[60px]">
+          <Link
+            to="/"
+            className="flex gap-[15px] justify-center items-center mb-[30px] md:mb-[60px]"
+          >
             <img className="h-[54px]" src={logo} alt="logo" />
             <motion.h1
               variants={{
@@ -289,40 +297,46 @@ export default function DashboardSideBar() {
             >
               MAGE X
             </motion.h1>
-          </div>
+          </Link>
           <div className="flex flex-col gap-[10px] md:gap-[30px]">
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Home"
-              Icon={GoHomeFill}
-              isActive={currentRoute === "home"}
-            />
-            <div onClick={setTrueExpansion}>
+            <Link to="/dashboard/home">
               <DashboardSideBarItem
                 isExpanded={isExpanded}
-                title="Competition"
-                Icon={PiTrophyFill}
-                isActive={currentRoute === "competition"}
-                collapseItem={[
-                  "competition",
-                  "competition-detail",
-                  "competition-create",
-                  "competition-edit",
-                ]}
+                title="Home"
+                Icon={GoHomeFill}
+                isActive={currentRoute === "home"}
               />
+            </Link>
+            <div onClick={setTrueExpansion}>
+              {teams && (
+                <DashboardSideBarItem
+                  isExpanded={isExpanded}
+                  title="Competition"
+                  Icon={PiTrophyFill}
+                  isActive={currentRoute === "competition"}
+                  collapseItem={[
+                    {
+                      name: teams?.divisi || "",
+                      id: teams?.id || "",
+                    },
+                  ]}
+                />
+              )}
             </div>
-            <DashboardSideBarItem
+            {/* <DashboardSideBarItem
               isExpanded={isExpanded}
               title="Workshop"
               Icon={PiChalkboardTeacherFill}
               isActive={currentRoute === "workshop"}
-            />
-            <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Profile"
-              Icon={FaUser}
-              isActive={currentRoute === "profile"}
-            />
+            /> */}
+            <Link to="/dashboard/profile">
+              <DashboardSideBarItem
+                isExpanded={isExpanded}
+                title="Profile"
+                Icon={FaUser}
+                isActive={currentRoute === "profile"}
+              />
+            </Link>
           </div>
         </div>
         <motion.div
@@ -358,38 +372,36 @@ export default function DashboardSideBar() {
             className="bg-diagonal-gta h-fit w-full rounded-xl mb-[11px]"
           >
             <div className="flex flex-col gap-[5px] p-2 md:p-3 w-full h-full bg-black/50 rounded-xl">
-              <DashboardSummaryItem
-                key={1}
-                competition="MAGE X"
-                teamName="Team 1"
-                teamMembers={["A", "B", "C"]}
-              />
-              <DashboardSummaryItem
-                key={2}
-                competition="MAGE X"
-                teamName="Team 1"
-                teamMembers={["A", "B", "C"]}
-              />
-              <DashboardSummaryItem
-                key={3}
-                competition="MAGE X"
-                teamName="Team 1"
-                teamMembers={["A", "B", "C"]}
-              />
-              <div className="p-1 md:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px] mt-2 md:mt-3">
+              {teams && (
+                <div className=" mb-2 md:mb-3">
+                  <DashboardSummaryItem
+                    key={1}
+                    competition={teams?.divisi || ""}
+                    teamName={teams?.nama || ""}
+                    teamMembers={teams?.anggota || [""]}
+                  />
+                </div>
+              )}
+
+              <div className="p-1 md:p-2.5 bg-white/30 rounded-lg border-white border-dashed border-[1px]">
                 <div className="flex justify-center items-center gap-[6px] cursor-pointer">
                   <div className="flex flex-col items-center justify-center w-3.5 h-3.5 border-[1px] border-white rounded-md">
                     <FaPlus className="text-white text-[10px]" />
                   </div>
-                  <p className="text-white font-fredoka font-medium text-[10px]">
-                    Register
-                  </p>
+                  <Link to="/dashboard/home">
+                    <p className="text-white font-fredoka font-medium text-[10px]">
+                      Register
+                    </p>
+                  </Link>
                 </div>
               </div>
             </div>
           </motion.div>
           <div>
-            <div className="flex justify-center items-center gap-[6px] p-1.5 md:p-3 bg-red-1 rounded-xl cursor-pointer">
+            <a
+              href="https://api.mage-its.id/users/logout"
+              className="flex justify-center items-center gap-[6px] p-1.5 md:p-3 bg-red-1 rounded-xl cursor-pointer"
+            >
               <IoExit className="text-white text-[32px] rotate-180" />
               <motion.p
                 variants={{
@@ -408,7 +420,7 @@ export default function DashboardSideBar() {
               >
                 Logout
               </motion.p>
-            </div>
+            </a>
           </div>
         </motion.div>
       </motion.div>
