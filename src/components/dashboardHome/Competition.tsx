@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { competition } from "@/constant/dashboardCompetitionCard";
 import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard";
 import TrophyLogo from "@/assets/dashboardHome/trophyLogo.svg";
-import Seven from "@/assets/dashboardHome/seven.svg";
 import Popup from "@/components/dashboardHome/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useCreateTeam, useLeadTeams } from "@/services/team";
@@ -115,11 +114,12 @@ const CompetitionComponent: React.FC = () => {
         >
           Competitions
         </h2>
-        <img
-          src={Seven}
-          className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
-          alt="Seven"
-        />
+        <h2
+          className="text-gray-5 w-fit font-medium bg-light rounded-[1rem] px-2 py-1 font-fredoka select-none
+                           mobile:text-[9px] ipad:text-[18px] desktop:text-[1rem]"
+        >
+          Swipe to see more
+        </h2>
       </div>
       <div className="w-full h-[calc(100%_-_3rem)]">
         <motion.div

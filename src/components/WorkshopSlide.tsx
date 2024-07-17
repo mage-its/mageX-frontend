@@ -14,8 +14,8 @@ const slides = [
     header: "MULTIMEDIA",
     content:
       'Workshop Multimedia adalah sebuah kegiatan yang diadakan sebagai bagian dari MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum tentang bidang multimedia. Tema tahun ini adalah "Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0." Workshop ini akan fokus pada "Mengembangkan Portofolio Website Anda Sendiri" dan mencakup topik-topik seperti: pengetahuan dasar tentang multimedia, pengembangan website, desain dan pengembangan front-end website untuk pemula, dan motivasi untuk terus belajar dan berinovasi di dunia digital. Workshop online selama 3 hari ini akan terdiri dari presentasi materi dan tugas pada hari pertama dan kedua, serta review tugas peserta oleh instruktur pada hari ketiga.',
-    tempat: "To be announced",
-    waktu: "20 & 28 Juli 2024",
+    tempat: "Online (Zoom)",
+    waktu: "3, 4 & 10 Agustus 2024",
     pemateri1: "Keanu Fortuna Taufan",
     pemateri2: "Software Engineer | Front End Web Developer Jagoteknik",
     color1: "#F77F5A",

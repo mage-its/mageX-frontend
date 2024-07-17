@@ -306,15 +306,6 @@ const SummaryList: React.FC<{
                                         ipad:w-fit ipad:px-8 ipad:mx-auto
                                         lg:w-[50%]"
             >
-              <img src={CheckLogo} className=""></img>
-              Verifikasi E-mail
-            </div>
-            <div
-              className="flex gap-1 items-center justify-center bg-light rounded-[2rem] h-[1.5rem] 
-                                        mobile:w-fit mobile:px-4 mobile:mx-auto
-                                        ipad:w-fit ipad:px-8 ipad:mx-auto
-                                        lg:w-[50%]"
-            >
               {user?.verified === "true" ? (
                 <img src={CheckLogo} className=""></img>
               ) : (
@@ -356,86 +347,6 @@ const SummaryList: React.FC<{
 
 const App: React.FC = () => {
   const { data: userTeams } = useUserTeam();
-  console.log(userTeams);
-  // const competition: SummaryProps[] = [
-  //   {
-  //     id: 1,
-  //     title: "Robotics",
-  //     type: "X", // C = Competitions, W = Workshop, X = none
-  //     content: ["Jean", "Diluc", "Klee"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Mondstadt",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Game Dev",
-  //     type: "X",
-  //     content: ["Hu Tao", "Xingqiu", "Chongyun"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Liyue",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "IoT",
-  //     type: "X",
-  //     content: ["Kamisato Ayato", "Kamisato Ayaka", "Yoimiya"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Inazuma",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "App Dev",
-  //     type: "X",
-  //     content: ["Alhaitham", "Nahida", "Nilou"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Sumeru",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "UI/UX",
-  //     type: "X",
-  //     content: ["Furina", "Neuvillette", "Focalor"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Fontaine",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Comp. Programming",
-  //     type: "X",
-  //     content: ["Nicole Demara", "Anby Demara", "Billy Kid"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Cunning Hares",
-  //     logo: TeamLogo,
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "E-sports",
-  //     type: "X",
-  //     content: ["Kafka", "Silver Wolf", "Firefly"],
-  //     date: "-",
-  //     time: "-",
-  //     link: "-",
-  //     team: "Stellaron Hunters",
-  //     logo: TeamLogo,
-  //   },
-  // ];
 
   const workshop: SummaryProps[] = [
     {

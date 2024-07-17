@@ -4,7 +4,6 @@ import { competition } from "@/constant/dashboardWorkshopCard";
 import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard";
 import useMeasure from "react-use-measure";
 import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
-import Three from "@/assets/dashboardHome/three.svg";
 import Popup from "@/components/dashboardHome/PopUp";
 // import { useUserData } from "@/services/users";
 
@@ -90,10 +89,12 @@ const App: React.FC = () => {
         >
           Workshop
         </h2>
-        <img
-          src={Three}
-          className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
-        />
+        <h2
+          className="text-gray-5 w-fit font-medium bg-light rounded-[1rem] px-2 py-1 font-fredoka select-none
+                           mobile:text-[9px] ipad:text-[18px] desktop:text-[1rem]"
+        >
+          Swipe to see more
+        </h2>
       </div>
       <div className="w-full h-[calc(100%_-_3rem)]">
         <motion.div

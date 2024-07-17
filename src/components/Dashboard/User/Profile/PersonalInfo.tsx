@@ -25,6 +25,7 @@ export default function PersonalInformation() {
         nama: `${data.firstName} ${data.lastName}`,
         tanggal_lahir: data.tanggal_lahir,
         no_hp: data.no_hp,
+        username_ig: data.username_ig,
       });
     }
   };

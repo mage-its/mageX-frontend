@@ -34,6 +34,7 @@ import {
 import Popup from "@/components/dashboardHome/PopUp";
 import InputFile from "@/components/InputFile";
 import InputField from "@/components/InputField";
+import { useSearchParams } from "react-router-dom";
 
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
@@ -78,7 +79,8 @@ type RegistStepThree = {
 };
 
 export default function DashboardCompetition() {
-  const [step, setStep] = useState<number>(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const step = searchParams.get("step") ? Number(searchParams.get("step")) : 1;
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
     console.log("Redirecting to login page");
@@ -145,10 +147,9 @@ export default function DashboardCompetition() {
       await updateTeamInformation({
         nama: data.teamName,
       });
-      for (const member of data.teamMembers) {
-        await addMembers({ email: member });
-      }
+      await addMembers({ email: data.teamMembers });
     }
+
     toggleEditTeamInformation();
   };
 
@@ -305,11 +306,47 @@ export default function DashboardCompetition() {
     setValueRegistStepTwo("proposal", null);
   };
 
-  const toggleEditTeamInformation = () =>
+  const toggleEditTeamInformation = () => {
     setIsEditTeamInformation(!isEditTeamInformation);
+    if (!isEditTeamInformation) {
+      setValueTeamControl(
+        "teamMembers",
+        (members && members?.map((item) => item.email)) || [""]
+      );
+    } else {
+      setValueTeamControl(
+        "teamMembers",
+        (members && members?.map((item) => item.nama)) || [""]
+      );
+    }
+  };
 
-  const increaseStep = () => setStep((prev) => prev + 1);
-  const decreaseStep = () => setStep((prev) => prev - 1);
+  const increaseStep = () => {
+    if (
+      step === 3 ||
+      teams?.divisi == "Robotics" ||
+      teams?.status === "" ||
+      (step === 2 && teams?.status === "tahap-1") ||
+      (step === 3 && teams?.status === "tahap-2")
+    )
+      return;
+    setSearchParams(new URLSearchParams("step=" + (step + 1)));
+  };
+
+  const decreaseStep = () => {
+    if (step === 1) return;
+    setSearchParams(new URLSearchParams("step=" + (step - 1)));
+  };
+  useEffect(() => {
+    if (
+      step === 4 ||
+      teams?.divisi == "Robotics" ||
+      teams?.status === "" ||
+      (step === 3 && teams?.status === "tahap-1")
+    ) {
+      setSearchParams(new URLSearchParams("step=1"));
+    }
+  }, [step, teams, setSearchParams]);
 
   const competitionPath: { [key: string]: Contest } = {
     "UI/UX": uiUx,
@@ -384,7 +421,7 @@ export default function DashboardCompetition() {
               <div className="flex gap-2 lg:gap-4">
                 <CompetitionButton
                   onClick={toggleEditTeamInformation}
-                  disabled={isEditTeamInformation}
+                  disabled={isEditTeamInformation || teams?.status !== ""}
                 >
                   <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                     Edit
@@ -412,6 +449,7 @@ export default function DashboardCompetition() {
                     {...field}
                     label="Team Name"
                     placeholder="Enter your team name"
+                    disabled={teams?.status !== "" || !isEditTeamInformation}
                   />
                 )}
               />
@@ -449,6 +487,9 @@ export default function DashboardCompetition() {
                         <InputField
                           {...field}
                           placeholder="Enter member email"
+                          disabled={
+                            teams?.status !== "" || !isEditTeamInformation
+                          }
                         />
                       )}
                     />
@@ -493,14 +534,23 @@ export default function DashboardCompetition() {
         {step === 1 && (
           <form
             onSubmit={registStepOneHandleSubmit(onSubmitRegistStepOne)}
-            className="flex flex-col h-[700px] md:basis-[47%] lg:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
+            className="flex flex-col h-[700px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex items-center gap-2 lg:gap-4">
                 <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
-                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Registration and Verification
-                </h1>
+                <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
+                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    Registration
+                  </h1>
+                  {teams?.status !== "" && (
+                    <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                      <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Step 1 Verified
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2 lg:gap-4">
                 <CompetitionButton onClick={decreaseStep} disabled>
@@ -510,7 +560,10 @@ export default function DashboardCompetition() {
                   </h1>
                 </CompetitionButton>
                 {window.innerWidth > 768 && (
-                  <CompetitionButton type="submit">
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== ""}
+                  >
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                       Submit
                     </h1>
@@ -519,7 +572,10 @@ export default function DashboardCompetition() {
                 )}
                 <CompetitionButton
                   onClick={increaseStep}
-                  disabled={teams?.divisi == "Robotics"}
+                  disabled={
+                    teams?.status === "" || teams?.divisi === "Robotics"
+                  }
+                  type="button"
                 >
                   <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                     Next
@@ -554,6 +610,7 @@ export default function DashboardCompetition() {
                       onRemove={onRemovePayment}
                       onChange={handleChangeBuktiPembayaran}
                       link_file={linkBuktiPembayaran}
+                      disabled={teams?.status !== ""}
                     />
                   )}
                 />
@@ -563,19 +620,24 @@ export default function DashboardCompetition() {
                   name="category"
                   control={registStepOneControl}
                   render={({ field }) => (
-                    <Select {...field} label="Category" id="category">
+                    <Select
+                      {...field}
+                      label="Category"
+                      id="category"
+                      disabled={teams?.status !== ""}
+                    >
                       {teams?.divisi === "Robotics" && (
                         <Option value="sma">SMA</Option>
                       )}
                       {(teams?.divisi === "App Dev" ||
                         teams?.divisi === "Game Dev") && (
                         <>
-                          <Option value="sd">Mahasiswa</Option>
-                          <Option value="smp">SMA</Option>
+                          <Option value="mahasiswa">Mahasiswa</Option>
+                          <Option value="sma">SMA</Option>
                         </>
                       )}
                       {teams?.divisi == "IoT" && (
-                        <Option value="sma">Umum</Option>
+                        <Option value="umum">Umum</Option>
                       )}
                     </Select>
                   )}
@@ -596,11 +658,15 @@ export default function DashboardCompetition() {
                       onRemove={onRemoveFollowIgAndTwibbon}
                       onChange={handleChangeTwibbonDanIG}
                       link_file={linkTwibbonDanIG}
+                      disabled={teams?.status !== ""}
                     />
                   )}
                 />
                 {window.innerWidth <= 768 && (
-                  <CompetitionButton type="submit">
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== ""}
+                  >
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                       Submit
                     </h1>
@@ -614,14 +680,23 @@ export default function DashboardCompetition() {
         {step === 2 && teams?.divisi !== "Robotics" && (
           <form
             onSubmit={registStepTwoHandleSubmit(onSubmitRegistStepTwo)}
-            className=" flex flex-col basis-[47%] bg-black/80 rounded-[20px] h-full overflow-hidden"
+            className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex items-center gap-2 lg:gap-4">
                 <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
-                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Registration and Verification
-                </h1>
+                <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
+                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    Registration
+                  </h1>
+                  {teams?.status !== "tahap-1" && (
+                    <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                      <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Step 2 Verified
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2 lg:gap-4">
                 <CompetitionButton onClick={decreaseStep}>
@@ -631,14 +706,21 @@ export default function DashboardCompetition() {
                   </h1>
                 </CompetitionButton>
                 {window.innerWidth > 768 && (
-                  <CompetitionButton type="submit">
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== "tahap-1"}
+                  >
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                       Submit
                     </h1>
                     <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
                   </CompetitionButton>
                 )}
-                <CompetitionButton onClick={increaseStep}>
+                <CompetitionButton
+                  onClick={increaseStep}
+                  disabled={teams?.status === "tahap-1"}
+                  type="button"
+                >
                   <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                     Next
                   </h1>
@@ -647,7 +729,7 @@ export default function DashboardCompetition() {
               </div>
             </div>
             <div className="p-4 w-full h-full grow">
-              <div className="flex flex-col w-full h-full">
+              <div className="flex flex-col w-full h-full gap-4">
                 <Controller
                   name="proposal"
                   control={registStepTwoControl}
@@ -664,9 +746,21 @@ export default function DashboardCompetition() {
                       onRemove={onRemoveProposal}
                       onChange={handleChangeProposal}
                       link_file={linkProposal}
+                      disabled={teams?.status === "tahap-2"}
                     />
                   )}
                 />
+                {window.innerWidth <= 768 && (
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== "tahap-1"}
+                  >
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Submit
+                    </h1>
+                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                  </CompetitionButton>
+                )}
               </div>
             </div>
           </form>
@@ -674,14 +768,23 @@ export default function DashboardCompetition() {
         {step === 3 && teams?.divisi !== "Robotics" && (
           <form
             onSubmit={registStepThreeHandleSubmit(onSubmitRegistStepThree)}
-            className=" flex flex-col basis-[47%] bg-black/80 rounded-[20px] h-full overflow-hidden"
+            className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex items-center gap-2 lg:gap-4">
                 <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
-                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Registration and Verification
-                </h1>
+                <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
+                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    Registration
+                  </h1>
+                  {teams?.status !== "tahap-2" && (
+                    <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                      <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Step 3 Verified
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2 lg:gap-4">
                 <CompetitionButton onClick={decreaseStep}>
@@ -691,7 +794,10 @@ export default function DashboardCompetition() {
                   </h1>
                 </CompetitionButton>
                 {window.innerWidth > 768 && (
-                  <CompetitionButton type="submit">
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== "tahap-2"}
+                  >
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                       Submit
                     </h1>
@@ -717,6 +823,7 @@ export default function DashboardCompetition() {
                       label="Video"
                       placeholder="Enter link here"
                       className="py-7"
+                      disabled={teams?.status === "tahap-3"}
                     />
                   )}
                 />
@@ -729,9 +836,21 @@ export default function DashboardCompetition() {
                       label="Work/Product (Karya)"
                       placeholder="Enter link here"
                       className="py-7"
+                      disabled={teams?.status === "tahap-3"}
                     />
                   )}
                 />
+                {window.innerWidth <= 768 && (
+                  <CompetitionButton
+                    type="submit"
+                    disabled={teams?.status !== "tahap-2"}
+                  >
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Submit
+                    </h1>
+                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                  </CompetitionButton>
+                )}
               </div>
             </div>
           </form>
