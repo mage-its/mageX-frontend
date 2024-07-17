@@ -5,7 +5,7 @@ import PersonalLogo from '@/assets/dashboardWorkshop/personalLogo.svg';
 import useDragScroll from '@/components/dashboardHome/useDragScroll';
 import cn from "@/utils/cn";
 import { Workshop } from '@/constant/dashboardWorkshop';
-import Timeline from '@/components/dashboardWorkshop/Timeline';
+import Timeline from '@/components/Timeline';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
   FaAngleRight,
@@ -491,148 +491,194 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
 
   const showPaymentProof = currentWorkshop.title !== "Multimedia";
 
-
   return (
     <div className="text-light flex flex-col font-fredoka bg-transparent_black rounded-[1rem] h-full overflow-hidden
                       mobile:mx-6 mobile:mt-6
                       ipad:mx-6 ipad:mt-6
                       desktop:mx-[0] desktop:mt-0">
-      <div className="bg-gray-5 py-2 flex rounded-t-[1rem] items-center justify-between
-                        mobile:h-[5rem] mobile:px-4
-                        ipad:h-[5rem] ipad:px-8
-                        desktop:h-[3rem] desktop:px-8">
-        <div className="flex items-center gap-2 desktop:gap-4">
-          <img src={PersonalLogo} className='mobile:h-[1rem] ipad:h-[2rem] desktop:h-[1.25rem]'></img>
-          <div className="text-medium
-                          mobile:text-[12px] mobile:ml-4
-                          ipad:text-[23px] ipad:ml-4
-                          desktop:text-[20px] desktop:ml-4">
-            Registration and Verification
-          </div>
-        </div>
-        <div className="flex gap-2 desktop:gap-4">
-          <CompetitionButton onClick={decreaseStep} disabled>
-            <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
-            <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-              Previous
-            </h1>
-          </CompetitionButton>
-          <CompetitionButton
-            onClick={increaseStep}
-            disabled={teams?.divisi == "Robotics"}
-          >
-            <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-              Next
-            </h1>
-            <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
-          </CompetitionButton>
-        </div>
-      </div>
-      <div className="px-8 items-center">
-        <div className="text-medium py-2 mobile:text-[12px] ipad:text-[14px] desktop:text-[1rem]">
-          How did you know about MAGE X workshop?
-        </div>
-
-        <CategoryButton />
-
-        {/* <Timeline events={currentWorkshop.alur} /> */}
-
-        {/* iPad and Desktop */}
-        <div className='gap-2 mt-4 mb-4 mobile:hidden ipad:flex desktop:flex'>
-          {showPaymentProof && (
-            <div className='w-full h-full'>
-              <Controller
-                name="paymentProof"
-                control={registStepOneControl}
-                render={({ field }) => (
-                  <InputFile
-                    {...field}
-                    label="Payment Proof"
-                    placeholder="Upload Here"
-                    formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
-                    formatFile=".png, .jpg, .jpeg"
-                    maxFileSize="1MB"
-                    accept=".png, .jpg, .jpeg"
-                    value={undefined}
-                    onRemove={onRemovePayment}
-                    onChange={handleChangeBuktiPembayaran}
-                    link_file={linkBuktiPembayaran}
-                  />
-                )}
-              />
+      {step === 1 && (
+        <form
+          onSubmit={registStepOneHandleSubmit(onSubmitRegistStepOne)}
+          className="w-full h-full"
+        >
+          <div className="bg-gray-5 py-2 flex rounded-t-[1rem] items-center justify-between
+                            mobile:h-[5rem] mobile:px-4
+                            ipad:h-[5rem] ipad:px-8
+                            desktop:h-[3rem] desktop:px-8">
+            <div className="flex items-center gap-2 desktop:gap-4">
+              <img src={PersonalLogo} className='mobile:h-[1rem] ipad:h-[2rem] desktop:h-[1.25rem]'></img>
+              <div className="text-medium
+                              mobile:text-[12px] mobile:ml-4
+                              ipad:text-[23px] ipad:ml-4
+                              desktop:text-[20px] desktop:ml-4">
+                Registration and Verification
+              </div>
             </div>
-          )}
-          <div className='w-full h-full'>
-            <Controller
-              name="followIgAndTwibbon"
-              control={registStepOneControl}
-              render={({ field }) => (
-                <InputFile
-                  {...field}
-                  label="Follow Instagram + Twibbon Post"
-                  placeholder="Upload Here"
-                  formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
-                  formatFile=".pdf"
-                  maxFileSize="5MB"
-                  accept=".pdf"
-                  value={undefined}
-                  onRemove={onRemoveFollowIgAndTwibbon}
-                  onChange={handleChangeTwibbonDanIG}
-                  link_file={linkTwibbonDanIG}
-                />
-              )}
-            />
+            <div className="flex gap-2 desktop:gap-4">
+              <CompetitionButton onClick={decreaseStep} disabled>
+                <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
+                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                  Previous
+                </h1>
+              </CompetitionButton>
+              <CompetitionButton
+                onClick={increaseStep}
+                disabled={teams?.divisi == "Robotics"}
+              >
+                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                  Next
+                </h1>
+                <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
+              </CompetitionButton>
+            </div>
           </div>
-        </div>
+          <div className="px-8 w-full items-center
+                          mobile:h-[calc(100%-5rem)] ipad:h-[calc(100%-5rem)] desktop:h-[calc(100%-3rem)]">
+            <div className="text-medium py-2 mobile:text-[12px] ipad:text-[14px] desktop:text-[1rem]">
+              How did you know about MAGE X workshop?
+            </div>
 
-        {/* Mobile */}
-        <div className='gap-2 mt-4 mobile:block ipad:hidden desktop:hidden'>
-          <div className='w-full h-full'>
-            {showPaymentProof && (
-              <Controller
-                name="paymentProof"
-                control={registStepOneControl}
-                render={({ field }) => (
-                  <InputFile
-                    {...field}
-                    label="Payment Proof"
-                    placeholder="Upload Here"
-                    formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
-                    formatFile=".png, .jpg, .jpeg"
-                    maxFileSize="1MB"
-                    accept=".png, .jpg, .jpeg"
-                    value={undefined}
-                    onRemove={onRemovePayment}
-                    onChange={handleChangeBuktiPembayaran}
-                    link_file={linkBuktiPembayaran}
+            <CategoryButton />
+            
+            {/* iPad and Desktop */}
+            <div className='gap-2 mt-4 mb-4 mobile:hidden ipad:flex desktop:flex'>
+              {showPaymentProof && (
+                <div className='w-full h-full'>
+                  <Controller
+                    name="paymentProof"
+                    control={registStepOneControl}
+                    render={({ field }) => (
+                      <InputFile
+                        {...field}
+                        label="Payment Proof"
+                        placeholder="Upload Here"
+                        formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                        formatFile=".png, .jpg, .jpeg"
+                        maxFileSize="1MB"
+                        accept=".png, .jpg, .jpeg"
+                        value={undefined}
+                        onRemove={onRemovePayment}
+                        onChange={handleChangeBuktiPembayaran}
+                        link_file={linkBuktiPembayaran}
+                      />
+                    )}
+                  />
+                </div>
+              )}
+              <div className='w-full h-full'>
+                <Controller
+                  name="followIgAndTwibbon"
+                  control={registStepOneControl}
+                  render={({ field }) => (
+                    <InputFile
+                      {...field}
+                      label="Follow Instagram + Twibbon Post"
+                      placeholder="Upload Here"
+                      formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                      formatFile=".pdf"
+                      maxFileSize="5MB"
+                      accept=".pdf"
+                      value={undefined}
+                      onRemove={onRemoveFollowIgAndTwibbon}
+                      onChange={handleChangeTwibbonDanIG}
+                      link_file={linkTwibbonDanIG}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+
+            {/* Mobile */}
+            <div className='gap-2 mt-4 mobile:block ipad:hidden desktop:hidden'>
+              <div className='w-full h-full'>
+                {showPaymentProof && (
+                  <Controller
+                    name="paymentProof"
+                    control={registStepOneControl}
+                    render={({ field }) => (
+                      <InputFile
+                        {...field}
+                        label="Payment Proof"
+                        placeholder="Upload Here"
+                        formatName={`Pembayaran_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                        formatFile=".png, .jpg, .jpeg"
+                        maxFileSize="1MB"
+                        accept=".png, .jpg, .jpeg"
+                        value={undefined}
+                        onRemove={onRemovePayment}
+                        onChange={handleChangeBuktiPembayaran}
+                        link_file={linkBuktiPembayaran}
+                      />
+                    )}
                   />
                 )}
-              />
-            )}
-          </div>
-          <div className='w-full h-full mt-4 mb-4'>
-            <Controller
-              name="followIgAndTwibbon"
-              control={registStepOneControl}
-              render={({ field }) => (
-                <InputFile
-                  {...field}
-                  label="Follow Instagram + Twibbon Post"
-                  placeholder="Upload Here"
-                  formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
-                  formatFile=".pdf"
-                  maxFileSize="5MB"
-                  accept=".pdf"
-                  value={undefined}
-                  onRemove={onRemoveFollowIgAndTwibbon}
-                  onChange={handleChangeTwibbonDanIG}
-                  link_file={linkTwibbonDanIG}
+              </div>
+              <div className='w-full h-full mt-4 mb-4'>
+                <Controller
+                  name="followIgAndTwibbon"
+                  control={registStepOneControl}
+                  render={({ field }) => (
+                    <InputFile
+                      {...field}
+                      label="Follow Instagram + Twibbon Post"
+                      placeholder="Upload Here"
+                      formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                      formatFile=".pdf"
+                      maxFileSize="5MB"
+                      accept=".pdf"
+                      value={undefined}
+                      onRemove={onRemoveFollowIgAndTwibbon}
+                      onChange={handleChangeTwibbonDanIG}
+                      link_file={linkTwibbonDanIG}
+                    />
+                  )}
                 />
-              )}
-            />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </form>
+      )}
+      {step === 2 && (
+        <form
+          onSubmit={registStepOneHandleSubmit(onSubmitRegistStepOne)}
+          className="w-full h-full"
+        >
+          <div className="bg-gray-5 py-2 flex rounded-t-[1rem] items-center justify-between
+                            mobile:h-[5rem] mobile:px-4
+                            ipad:h-[5rem] ipad:px-8
+                            desktop:h-[3rem] desktop:px-8">
+            <div className="flex items-center gap-2 desktop:gap-4">
+              <img src={PersonalLogo} className='mobile:h-[1rem] ipad:h-[2rem] desktop:h-[1.25rem]'></img>
+              <div className="text-medium
+                              mobile:text-[12px] mobile:ml-4
+                              ipad:text-[23px] ipad:ml-4
+                              desktop:text-[20px] desktop:ml-4">
+                Registration and Verification
+              </div>
+            </div>
+            <div className="flex gap-2 desktop:gap-4">
+              <CompetitionButton onClick={decreaseStep}>
+                <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
+                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                  Previous
+                </h1>
+              </CompetitionButton>
+              <CompetitionButton onClick={increaseStep} disabled>
+                <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                  Next
+                </h1>
+                <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
+              </CompetitionButton>
+            </div>
+          </div>
+          <div className="px-8 w-full items-center
+                          mobile:h-[calc(100%-5rem)] ipad:h-[calc(100%-5rem)] desktop:h-[calc(100%-3rem)]">
+            <div className='w-full h-full overflow-auto no-scrollbar justify-center'>
+              <Timeline items={currentWorkshop.tl} />
+            </div>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

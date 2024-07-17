@@ -78,7 +78,7 @@ const DashboardHome: React.FC = () => {
             <div className="w-full mobile:h-[40rem] ipad:h-[56rem] mt-6">
               <PersonalInformation currentWorkshop={x} />
             </div>
-            <div className="w-full mobile:h-fit ipad:h-fit mt-6 mb-[4rem]">
+            <div className="w-full mobile:h-[22rem] ipad:h-[30rem] mt-6 mb-[4rem]">
               <RegistrationAndVerification currentWorkshop={x} />
             </div>
           </div>

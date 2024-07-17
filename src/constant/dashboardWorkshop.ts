@@ -2,14 +2,9 @@ import PemateriMultimedia from '@/assets/dashboardWorkshop/pemateriMultimedia.pn
 import Furina from '@/assets/dashboardHome/Furina_3.jpg';
 import Firefly from '@/assets/dashboardWorkshop/firefly.jpg';
 
-type Event = {
-  label: string;
+type timeline = {
+  title: string;
   date: string;
-  color: string;
-};
-
-type TimelineProps = {
-  events: Event[];
 };
 
 export type Workshop = {
@@ -27,7 +22,7 @@ export type Workshop = {
     price: string,
     contact: string,
     link: string,
-    alur: Event[],
+    tl: timeline[],
 };
 
 export const Multimedia: Workshop = {
@@ -43,12 +38,12 @@ export const Multimedia: Workshop = {
     pembicara: 'Keanu Fortuna Taufan',
     foto: PemateriMultimedia,
     price: 'GRATIS',
-    contact: 'Coming Soon',
+    contact: 'Mahija +62 1288-092-766',
     link: '#',
-    alur: [
-        { label: 'Pendaftaran', date: '1 Juli - 19 Juli 2024', color: 'bg-purple-500' },
-        { label: 'Day - 1', date: '20 Juli 2024', color: 'bg-pink-500' },
-        { label: 'Day - 2', date: '28 Juli 2024', color: 'bg-orange-500' }
+    tl: [
+        { title: 'Pendaftaran', date: '1 Juli - 19 Juli 2024' },
+        { title: 'Day - 1', date: '20 Juli 2024' },
+        { title: 'Day - 2', date: '28 Juli 2024' }
     ]
 };
 
@@ -68,10 +63,10 @@ export const Robotics: Workshop = {
     price: 'Coming Soon',
     contact: 'Coming Soon',
     link: '#',
-    alur: [
-        { label: 'Pendaftaran', date: '1 Juli - 19 Juli 2024', color: 'bg-purple-500' },
-        { label: 'Day - 1', date: '20 Juli 2024', color: 'bg-pink-500' },
-        { label: 'Day - 2', date: '28 Juli 2024', color: 'bg-orange-500' }
+    tl: [
+        { title: 'Pendaftaran', date: '1 Juli - 19 Juli 2024' },
+        { title: 'Day - 1', date: '20 Juli 2024' },
+        { title: 'Day - 2', date: '28 Juli 2024' }
     ]
 };
 
@@ -90,9 +85,9 @@ export const InternetOfThings: Workshop = {
     price: 'Coming Soon',
     contact: 'Coming Soon',
     link: '#',
-    alur: [
-        { label: 'Pendaftaran', date: '1 Juli - 19 Juli 2024', color: 'bg-purple-500' },
-        { label: 'Day - 1', date: '20 Juli 2024', color: 'bg-pink-500' },
-        { label: 'Day - 2', date: '28 Juli 2024', color: 'bg-orange-500' }
+    tl: [
+        { title: 'Pendaftaran', date: '1 Juli - 19 Juli 2024' },
+        { title: 'Day - 1', date: '20 Juli 2024' },
+        { title: 'Day - 2', date: '28 Juli 2024' }
     ]
 };

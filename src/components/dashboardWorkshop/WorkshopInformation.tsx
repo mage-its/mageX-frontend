@@ -40,8 +40,8 @@ const WorkshopInformation: React.FC<WorkshopInformationProps> = ({ currentWorksh
       </div>
       <div className="h-[1rem]"></div>
       <div className="w-full py-[8px] h-[calc(20%-1rem)] bg-gray-5 rounded-[0.5rem] font-fredoka justify-center items-center flex">
-        <img src={WhatsAppLogo} className='mobile:h-[2rem] ipad:h-[3rem] desktop:h-[2rem]' alt="WhatsApp Logo" />
-        <div className="ml-4 mobile:text-[1rem] ipad:text-[18px] desktop:text-[20px]">{currentWorkshop.contact}</div>
+        <img src={WhatsAppLogo} className='mobile:h-[2rem] ipad:h-[3rem] desktop:h-[1.5rem]' alt="WhatsApp Logo" />
+        <div className="ml-4 mobile:text-[1rem] ipad:text-[18px] desktop:text-[18px]">{currentWorkshop.contact}</div>
       </div>
     </div>
   );

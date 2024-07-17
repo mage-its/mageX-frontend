@@ -67,7 +67,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
                       pointerEvents: 'none',
                       zIndex: -1
                     }}
-                    className="font-airstrike font-italic font-bold inline-block text-[12px]"
+                    className="font-airstrike font-italic font-bold inline-block text-[18px]"
                   >
                     {currentWorkshop.pembicara}
                   </span>
@@ -76,7 +76,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ currentWorksh
                       WebkitBackgroundClip: 'text',
                       color: 'transparent',
                     }}
-                    className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1 text-[12px]"
+                    className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1 text-[18px]"
                   >
                     {currentWorkshop.pembicara}
                   </span>
