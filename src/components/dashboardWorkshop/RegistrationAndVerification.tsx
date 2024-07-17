@@ -673,8 +673,10 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
           </div>
           <div className="px-8 w-full items-center
                           mobile:h-[calc(100%-5rem)] ipad:h-[calc(100%-5rem)] desktop:h-[calc(100%-3rem)]">
-            <div className='w-full h-full overflow-auto no-scrollbar justify-center'>
-              <Timeline items={currentWorkshop.tl} />
+            <div className='w-full h-full overflow-auto no-scrollbar'>
+              <div className="mobile:scale-75 ipad:scale-75 desktop:scale-[0.65] h-full">
+                <Timeline items={currentWorkshop.tl} />
+              </div>
             </div>
           </div>
         </form>
