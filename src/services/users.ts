@@ -35,6 +35,7 @@ export interface UpdateUser {
   image_kartu?: File | null;
   tanggal_lahir?: string;
   no_hp?: string;
+  username_ig?: string;
 }
 
 export const getUserData = async (): Promise<User> => {
@@ -63,6 +64,7 @@ export const updateUser = async (
   data.asal_provinsi && form.append("asal_provinsi", data.asal_provinsi);
   data.alamat && form.append("alamat", data.alamat);
   data.image_kartu && form.append("img_kartu", data.image_kartu);
+  data.username_ig && form.append("username_ig", data.username_ig);
 
   return apiClient
     .put("users/details", form, {

@@ -28,7 +28,7 @@ export interface UpdateTeams {
 }
 
 export interface AddMembers {
-  email: string;
+  email: string[];
 }
 
 const getLeadTeams = async (): Promise<Teams> => {
@@ -85,14 +85,9 @@ export const useUpdateTeamInformation = () => {
 export const addMember = async (
   data: AddMembers
 ): Promise<ResponseSchema<AddMembers>> => {
-  const form = new FormData();
-  data.email && form.append("email", data.email);
-
   return apiClient
-    .put("/teams/add-members", form, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+    .put("/teams/lead/members", {
+      email: data.email,
     })
     .then((res) => res.data)
     .catch((error) => {
