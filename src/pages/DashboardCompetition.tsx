@@ -626,6 +626,7 @@ export default function DashboardCompetition() {
                       id="category"
                       disabled={teams?.status !== ""}
                     >
+                      <Option value="">Choose</Option>
                       {teams?.divisi === "Robotics" && (
                         <Option value="sma">SMA</Option>
                       )}
