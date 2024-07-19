@@ -8,6 +8,7 @@ import Profile from "./Dashboard/User/Profile";
 import DashboardHome from "./Dashboard-Home";
 import DashboardWorkshop from "./Dashboard-Workshop";
 import DashboardCompetition from "./DashboardCompetition";
+import Error from './Error'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/workshop",
         element: <DashboardWorkshop />,
+      },
+      {
+        path: '/error',
+        element: <Error />,
       },
       {
         path: "/",

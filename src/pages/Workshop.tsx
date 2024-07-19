@@ -39,7 +39,7 @@ const Workshop: React.FC = () => {
         <div className="mobile:mt-[52.5%] ipad:mt-[52.5%] desktop:mt-[52.5%]">
           <PuzzleBg2 />
           <InformationText />
-          <div className="mobile:mt-[1rem] mobile:w-[90%] mobile:mx-[5%] ipad:mt-[4rem] ipad:mx-[12.5%] ipad:w-[75%] desktop:mt-[4rem] desktop:mx-[12.5%] desktop:w-[75%]">
+          <div className="mobile:mt-[1rem] mobile:w-[90%] mobile:mx-[5%] ipad:mt-[4rem] ipad:mx-[10%] ipad:w-[80%] desktop:mt-[4rem] desktop:mx-[10%] desktop:w-[80%]">
             <WorkshopSlide />
           </div>
         </div>
