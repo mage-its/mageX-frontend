@@ -13,9 +13,9 @@ const Error: React.FC = () => {
       <div className="relative w-full">
         <img src={ErrorImage} className="w-full" alt="Error" />
         <div className="absolute transform -translate-y-1/2 text-white
-                        mobile:left-[2rem] mobile:top-[60%]
-                        ipad:left-[4rem] ipad:top-[60%]
-                        desktop:left-[8rem] desktop:top-[55%]">
+                        mobile:left-[2rem] mobile:top-[50%]
+                        ipad:left-[4rem] ipad:top-[50%]
+                        desktop:left-[8rem] desktop:top-[50%]">
           <h1 className="font-roboto font-medium mobile:text-xl ipad:text-[40px] desktop:text-[54px]">
             OOPS...
           </h1>
