@@ -57,7 +57,6 @@ const InputFile = ({
       setIsEdit(false);
     }
   }, [link_file]);
-  console.log(link_file?.split("/").pop() == "undefined");
   return (
     <label className="flex flex-col text-white font-fredoka font-medium text-xs md:text-sm lg:text-base w-full h-full">
       {label}
