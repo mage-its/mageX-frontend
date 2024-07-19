@@ -74,7 +74,8 @@ export const TimelineCard = ({
 export default function Timeline({ items }: TimelineProps) {
   const [timlineRef, { width: itemsWidth }] = useMeasure();
   const timelineCardXpos = window.innerWidth > 640 ? 300 : 150;
-
+  console.log(itemsWidth);
+  console.log(items.length * timelineCardXpos);
   return (
     <motion.div
       drag="x"
@@ -95,7 +96,7 @@ export default function Timeline({ items }: TimelineProps) {
       />
       <div
         className="absolute top-1/2 -translate-y-1/2 w-4 h-4 sm:w-8 sm:h-8 rounded-full bg-gray-3"
-        style={{ left: itemsWidth }}
+        style={{ left: items.length * timelineCardXpos }}
       />
       <div className="flex flex-nowrap h-full w-full gap-5 ">
         {items.map((item, index) => (
