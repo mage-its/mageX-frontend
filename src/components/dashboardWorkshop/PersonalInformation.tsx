@@ -1,6 +1,5 @@
 import React from "react";
 import PersonalLogo from "@/assets/dashboardWorkshop/personalLogo.svg";
-import WhiteLine2 from "@/assets/dashboardWorkshop/whiteLine2.svg";
 import useDragScroll from "@/components/dashboardHome/useDragScroll";
 import { Workshop } from "@/constant/dashboardWorkshop";
 

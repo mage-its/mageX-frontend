@@ -1,62 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { useUserData } from "@/services/users"; // API
 import SummaryLogo from "@/assets/dashboardHome/summaryLogo.svg";
 import TeamLogo from "@/assets/dashboardHome/teamLogo.svg";
-import CalendarLogo from "@/assets/dashboardHome/calendarLogo.svg";
+// import CalendarLogo from "@/assets/dashboardHome/calendarLogo.svg";
 import TrophyLogo from "@/assets/dashboardHome/trophyLogo.svg";
 import CheckLogo from "@/assets/dashboardHome/checkLogo.svg";
-import PersonLogo from "@/assets/dashboardHome/personLogo.svg";
-import LocationLogo from "@/assets/dashboardHome/locationLogo.svg";
-import TimeLogo from "@/assets/dashboardHome/timeLogo.svg";
-import DashedLine1 from "@/assets/dashboardHome/dashedLine1.svg";
+// import PersonLogo from "@/assets/dashboardHome/personLogo.svg";
+// import LocationLogo from "@/assets/dashboardHome/locationLogo.svg";
+// import TimeLogo from "@/assets/dashboardHome/timeLogo.svg";
+// import DashedLine1 from "@/assets/dashboardHome/dashedLine1.svg";
 import DashedLine2 from "@/assets/dashboardHome/dashedLine2.svg";
-import RollButton from "@/assets/dashboardHome/summaryRollButton.svg";
+// import RollButton from "@/assets/dashboardHome/summaryRollButton.svg";
 import useDragScroll from "./useDragScroll"; // Import the custom hook
 import { FaX } from "react-icons/fa6";
 import { Teams, useUserTeam } from "@/services/team";
 import { useGetWorkshops, Workshop } from "@/services/workshop-regist";
 
-interface SummaryProps {
-  id: number;
-  type: string;
-  title: string;
-  content: string[];
-  team: string;
-  date: string;
-  time: string;
-  link: string;
-  logo: string;
-}
+// interface SummaryProps {
+//   id: number;
+//   type: string;
+//   title: string;
+//   content: string[];
+//   team: string;
+//   date: string;
+//   time: string;
+//   link: string;
+//   logo: string;
+// }
 
-const DateWithSuperscript: React.FC<{ date: string }> = ({ date }) => {
-  // Split the date string into parts before and after "21th"
-  const [before, after] = date.split("th");
+// const DateWithSuperscript: React.FC<{ date: string }> = ({ date }) => {
+//   // Split the date string into parts before and after "21th"
+//   const [before, after] = date.split("th");
 
-  return (
-    <div className="">
-      <span className="">
-        {before}
-        <sup>th</sup>
-        {after}
-      </span>
-    </div>
-  );
-};
+//   return (
+//     <div className="">
+//       <span className="">
+//         {before}
+//         <sup>th</sup>
+//         {after}
+//       </span>
+//     </div>
+//   );
+// };
 
 const SummaryWorkshop: React.FC<{ summary: Workshop }> = ({ summary }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleOpen = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <div className="my-2">
       <div
-        className={`flex flex-col justify-between items-center p-2 rounded-[1rem] bg-light cursor-pointer transition-all duration-1000 ease-in-out ${isOpen ? "shadow-lg" : ""}`}
+        // className={`flex flex-col justify-between items-center p-2 rounded-[1rem] bg-light cursor-pointer transition-all duration-1000 ease-in-out ${isOpen ? "shadow-lg" : ""}`}
+        className={`flex flex-col justify-between items-center p-2 rounded-[1rem] bg-light cursor-pointer transition-all duration-1000 ease-in-out`}
       >
         <div className="flex w-full">
           <div className="w-full">

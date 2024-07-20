@@ -234,21 +234,23 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                 src={PersonalLogo}
                 className="mobile:h-[1rem] ipad:h-[2rem] lg:h-[1.25rem]"
               ></img>
-              <div
-                className="text-medium
-                              mobile:text-[12px] mobile:ml-4
-                              ipad:text-[23px] ipad:ml-4
-                              lg:text-[20px] lg:ml-4"
-              >
-                Registration
-              </div>
-              {workshop?.verified == "true" && (
-                <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
-                  <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Verified
-                  </p>
+              <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
+                <div
+                  className="text-medium
+                              mobile:text-[12px]
+                              ipad:text-[23px]
+                              lg:text-[20px]"
+                >
+                  Registration
                 </div>
-              )}
+                {workshop?.verified == "true" && (
+                  <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                    <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Verified
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex gap-2 lg:gap-4">
               <CompetitionButton onClick={decreaseStep} disabled>
