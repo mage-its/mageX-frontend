@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import CategoryButton from "@/components/dashboardWorkshop/CategoryButton";
 import PersonalLogo from "@/assets/dashboardWorkshop/personalLogo.svg";
 import cn from "@/utils/cn";
 import { Workshop } from "@/constant/dashboardWorkshop";
@@ -12,13 +11,14 @@ import { useUserData } from "@/services/users";
 
 import InputFile from "../InputFile";
 import {
-  RegisterWorkshop,
+  updateWorkshop,
   useGetWorkshops,
-  useRegisterWorkshop,
+  useUpdateWorkshop,
 } from "@/services/workshop-regist";
 import Select, { Option } from "../Select";
 import { PiPaperPlaneRightFill } from "react-icons/pi";
 import Popup from "../dashboardHome/PopUp";
+import { useSearchParams } from "react-router-dom";
 
 interface RegistAndVerifProps {
   currentWorkshop: Workshop;
@@ -55,13 +55,16 @@ const CompetitionButton = ({
 const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   const { data: workshops } = useGetWorkshops();
   console.log(workshops);
-  const workshop = workshops?.find((w) => w.workshop === currentWorkshop.title);
+  const workshop = workshops?.find(
+    (w) => w["workshop-registration"] === currentWorkshop.title
+  );
   const {
     mutateAsync: registerWorkshop,
     data: responseRegister,
     isError: isErrorRegister,
-  } = useRegisterWorkshop();
-  const [step, setStep] = useState<number>(1);
+  } = useUpdateWorkshop();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const step = searchParams.get("step") ? Number(searchParams.get("step")) : 1;
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
     console.log("Redirecting to login page");
@@ -152,11 +155,11 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
 
   const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
     console.log(data);
-    const payload: RegisterWorkshop = {
+    const payload: updateWorkshop = {
       sumber_informasi: data.sumber_informasi,
       bukti_pembayaran: data.bukti_pembayaran || new File([], ""),
       bukti_follow: data.bukti_follow || new File([], ""),
-      workshop: currentWorkshop.title,
+      "workshop-registration": currentWorkshop.title,
     };
 
     await registerWorkshop(payload);
@@ -172,15 +175,27 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
     setValue("bukti_follow", null);
   };
 
-  const increaseStep = () => setStep((prev) => prev + 1);
-  const decreaseStep = () => setStep((prev) => prev - 1);
-
-  const format: { [key: string]: string } = {
-    "App Dev": "AppDev",
-    IoT: "IoT",
-    Robotics: "Robotik",
-    "Game Dev": "GameDev",
+  const increaseStep = () => {
+    if (workshop?.verified !== "true") return;
+    setSearchParams(new URLSearchParams("step=" + (step + 1)));
   };
+
+  const decreaseStep = () => {
+    if (step === 1) return;
+    setSearchParams(new URLSearchParams("step=" + (step - 1)));
+  };
+
+  useEffect(() => {
+    if (workshop?.verified !== "true") {
+      setSearchParams(new URLSearchParams("step=1"));
+    }
+  }, [workshop, setSearchParams]);
+  // const format: { [key: string]: string } = {
+  //   "App Dev": "AppDev",
+  //   IoT: "IoT",
+  //   Robotics: "Robotik",
+  //   "Game Dev": "GameDev",
+  // };
 
   useEffect(() => {
     if (workshop?.bukti_pembayaran !== "000000000000000000000000") {
@@ -225,8 +240,15 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                               ipad:text-[23px] ipad:ml-4
                               lg:text-[20px] lg:ml-4"
               >
-                Registration and Verification
+                Registration
               </div>
+              {workshop?.verified == "true" && (
+                <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                  <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                    Verified
+                  </p>
+                </div>
+              )}
             </div>
             <div className="flex gap-2 lg:gap-4">
               <CompetitionButton onClick={decreaseStep} disabled>
@@ -243,7 +265,10 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
                 </CompetitionButton>
               )}
-              <CompetitionButton onClick={increaseStep}>
+              <CompetitionButton
+                onClick={increaseStep}
+                disabled={workshop?.verified !== "true"}
+              >
                 <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                   Next
                 </h1>
@@ -263,7 +288,12 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
               name="sumber_informasi"
               control={control}
               render={({ field }) => (
-                <Select {...field} label="Sumber" id="sumber">
+                <Select
+                  {...field}
+                  label="Sumber"
+                  id="sumber"
+                  disabled={workshop?.verified == "true"}
+                >
                   <Option value="">--</Option>
                   <Option value="family">Family</Option>
                   <Option value="friend">Friend</Option>
@@ -297,6 +327,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                         onRemove={onRemovePayment}
                         onChange={handleChangeBuktiPembayaran}
                         link_file={linkBuktiPembayaran}
+                        disabled={workshop?.verified == "true"}
                       />
                     )}
                   />
@@ -319,6 +350,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                       onRemove={onRemovebukti_follow}
                       onChange={handleChangeTwibbonDanIG}
                       link_file={linkTwibbonDanIG}
+                      disabled={workshop?.verified == "true"}
                     />
                   )}
                 />
@@ -345,6 +377,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                         onRemove={onRemovePayment}
                         onChange={handleChangeBuktiPembayaran}
                         link_file={linkBuktiPembayaran}
+                        disabled={workshop?.verified == "true"}
                       />
                     )}
                   />
@@ -366,6 +399,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                       value={undefined}
                       onRemove={onRemovebukti_follow}
                       onChange={handleChangeTwibbonDanIG}
+                      disabled={workshop?.verified == "true"}
                       link_file={linkTwibbonDanIG}
                     />
                   )}

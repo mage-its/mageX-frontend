@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import Home from "./Home";
@@ -9,7 +9,7 @@ import Profile from "./Dashboard/User/Profile";
 import DashboardHome from "./DashboardHome";
 import DashboardWorkshop from "./DashboardWorkshop";
 import DashboardCompetition from "./DashboardCompetition";
-import Error from './Error'
+import Error from "./Error";
 
 const router = createBrowserRouter([
   {
@@ -27,10 +27,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/workshop/iot",
         element: <DashboardWorkshop />,
-      },
-      {
-        path: '/error',
-        element: <Error />,
       },
       {
         path: "/",
@@ -85,6 +81,7 @@ const router = createBrowserRouter([
         element: <DashboardCompetition />,
       },
     ],
+    errorElement: <Error />,
   },
 ]);
 

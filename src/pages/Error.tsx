@@ -10,22 +10,24 @@ const Error: React.FC = () => {
   return (
     <main className="bg-gradient-to-r from-dark to-black relative min-h-screen overflow-clip">
       <Navbar theme="black" />
-      <div className="relative w-full">
+      <div className="relative w-full -mt-[8%]  md:-mt-[15%]">
         <img src={ErrorImage} className="w-full" alt="Error" />
-        <div className="absolute transform -translate-y-1/2 text-white
+        <div
+          className="absolute transform -translate-y-1/2 text-white
                         mobile:left-[2rem] mobile:top-[50%]
                         ipad:left-[4rem] ipad:top-[50%]
-                        desktop:left-[8rem] desktop:top-[50%]">
+                        desktop:left-[8rem] desktop:top-[50%]"
+        >
           <h1 className="font-roboto font-medium mobile:text-xl ipad:text-[40px] desktop:text-[54px]">
             OOPS...
           </h1>
-          <p className="font-roboto font-light 
+          <p
+            className="font-roboto font-light 
                         mobile:text-[10px] mobile:ml-0 mobile:mt-1
                         ipad:text-[18px] ipad:ml-1 ipad:mt-4
-                        desktop:text-[20px] desktop:ml-1 desktop:mt-4">
-            looks like this page doesn't exist
-            <br></br>
-            or was errored
+                        desktop:text-[20px] desktop:ml-1 desktop:mt-4 w-20 sm:w-36 md:w-72"
+          >
+            looks like this page doesn't exist or was errored
           </p>
           <button
             onClick={() => navigate("/")}

@@ -1,7 +1,7 @@
 import logo from "@/assets/brand/logo.svg";
 import { IconType } from "react-icons";
 import { GoHomeFill } from "react-icons/go";
-import { PiTrophyFill } from "react-icons/pi";
+import { PiChalkboardTeacherFill, PiTrophyFill } from "react-icons/pi";
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -17,13 +17,14 @@ import cn from "@/utils/cn";
 import { FaCaretDown } from "react-icons/fa6";
 import { useLeadTeams } from "@/services/team";
 import { Link } from "react-router-dom";
+import { useGetWorkshops } from "@/services/workshop-regist";
 
 interface DashboardSideBarItemProps {
   title: string;
   Icon: IconType;
   isExpanded: boolean;
   isActive?: boolean;
-  collapseItem?: { name: string; id: string }[];
+  collapseItem?: { name: string; id: string; route: string }[];
 }
 
 const DashboardSideBarItem = ({
@@ -123,7 +124,7 @@ const DashboardSideBarItem = ({
       >
         {collapseItem?.map((item) => (
           <Link
-            to={`/dashboard/competition`}
+            to={`/dashboard/${item.route}`}
             key={item.id}
             className={cn(
               "border-gray-2 border-[1px] rounded-xl px-2 md:px-[15px] py-1.5"
@@ -141,6 +142,8 @@ const DashboardSideBarItem = ({
 };
 
 export default function DashboardSideBar() {
+  const { data: workshops } = useGetWorkshops();
+  console.log(workshops);
   const { data: teams } = useLeadTeams();
   const [isExpanded, setIsExpanded] = useState(
     window.innerWidth > 1024 ? false : true
@@ -318,17 +321,27 @@ export default function DashboardSideBar() {
                     {
                       name: teams?.divisi || "",
                       id: teams?.id || "",
+                      route: "competition",
                     },
                   ]}
                 />
               )}
             </div>
-            {/* <DashboardSideBarItem
-              isExpanded={isExpanded}
-              title="Workshop"
-              Icon={PiChalkboardTeacherFill}
-              isActive={currentRoute === "workshop"}
-            /> */}
+            <div onClick={setTrueExpansion}>
+              {workshops && (
+                <DashboardSideBarItem
+                  isExpanded={isExpanded}
+                  title="Workshop"
+                  Icon={PiChalkboardTeacherFill}
+                  isActive={currentRoute === "workshop"}
+                  collapseItem={workshops?.map((workshop) => ({
+                    name: workshop["workshop-registration"],
+                    id: workshop.id,
+                    route: `workshop/${workshop["workshop-registration"].toLowerCase()}`,
+                  }))}
+                />
+              )}
+            </div>
             <Link to="/dashboard/profile">
               <DashboardSideBarItem
                 isExpanded={isExpanded}

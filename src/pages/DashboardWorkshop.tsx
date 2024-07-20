@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
 import SideBar from "@/components/DashboardSideBar";
 import WorkshopAndProfile from "@/components/dashboardWorkshop/WorkshopAndProfile";
 import WhiteLine from "@/assets/dashboardWorkshop/whiteLine.svg";
-import CategoryButton from "@/components/dashboardWorkshop/CategoryButton";
 import WorkshopInformation from "@/components/dashboardWorkshop/WorkshopInformation";
 import PersonalInformation from "@/components/dashboardWorkshop/PersonalInformation";
 import RegistrationAndVerification from "@/components/dashboardWorkshop/RegistrationAndVerification";

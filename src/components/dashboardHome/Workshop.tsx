@@ -5,18 +5,21 @@ import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard
 import useMeasure from "react-use-measure";
 import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
 import Popup from "@/components/dashboardHome/PopUp";
-// import { useUserData } from "@/services/users";
+import { useUserData } from "@/services/users";
+import { registerWorkshop } from "@/services/workshop-regist";
+import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
+  const navigate = useNavigate();
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
   const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
   const [dragOffset, setDragOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  // const { data: user } = useUserData();
+  const { data: user } = useUserData();
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  // const [popupDestination, setPopupDestination] = useState("");
+  const [popupDestination, setPopupDestination] = useState("");
 
   const [dragConstraints, setDragConstraints] = useState({
     left: 0,
@@ -60,8 +63,13 @@ const App: React.FC = () => {
 
   const handleCardClick = (destination: string) => {
     console.log(destination);
-    // setPopupDestination(destination);
+    setPopupDestination(destination);
     setIsPopupVisible(true);
+  };
+
+  const handleYesClick = async () => {
+    await registerWorkshop(popupDestination);
+    navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
   };
 
   const handleClosePopup = () => {
@@ -156,19 +164,28 @@ const App: React.FC = () => {
         onClose={handleClosePopup}
         text={`Coming soon!`}
       />
-      {/* {user?.verified === "true" ? (
-        <Popup
-          isVisible={isPopupVisible}
-          onClose={handleClosePopup}
-          text={`Do you want to join the ${popupDestination} workshop?`}
-        />
+      {popupDestination == "Multimedia" ? (
+        user?.verified === "true" ? (
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            handleYesClick={handleYesClick}
+            text={`Do you want to register to Multimedia Workshop?`}
+          />
+        ) : (
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            text={`You are not verified. Please complete your data first and wait while we verify your data`}
+          />
+        )
       ) : (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
-          text="You are not verified. Please complete your data first"
+          text={`Coming soon!`}
         />
-      )} */}
+      )}
     </div>
   );
 };

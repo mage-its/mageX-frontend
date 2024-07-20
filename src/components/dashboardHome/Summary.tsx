@@ -17,6 +17,7 @@ import RollButton from "@/assets/dashboardHome/summaryRollButton.svg";
 import useDragScroll from "./useDragScroll"; // Import the custom hook
 import { FaX } from "react-icons/fa6";
 import { Teams, useUserTeam } from "@/services/team";
+import { useGetWorkshops, Workshop } from "@/services/workshop-regist";
 
 interface SummaryProps {
   id: number;
@@ -45,16 +46,12 @@ const DateWithSuperscript: React.FC<{ date: string }> = ({ date }) => {
   );
 };
 
-const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
+const SummaryWorkshop: React.FC<{ summary: Workshop }> = ({ summary }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
-
-  if (summary.type === "X") {
-    return null; // Return nothing for type X
-  }
 
   return (
     <div className="my-2">
@@ -87,7 +84,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                 className="font-airstrike font-italic font-bold inline-block
                                            mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
-                {summary.title}
+                Workshop
               </span>
               <span
                 style={{
@@ -97,39 +94,33 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
                 className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
                                            mobile:text-[1rem] ipad:text-[23px] lg:text-[1rem]"
               >
-                {summary.title}
+                Workshop
               </span>
             </div>
             <div className="flex gap-2">
               <img
-                src={summary.logo}
+                src={TeamLogo}
                 className="my-auto mobile:w-[12px] ipad:w-[1rem] lg:w-[12px]"
               ></img>
               <div
                 className="text-dark font-medium
                                             mobile:text-[12px] ipad:text-[18px] lg:text-[12px]"
               >
-                {summary.type === "C" ? (
-                  <div>{summary.team}</div>
-                ) : summary.type === "W" ? (
-                  <div>
-                    <DateWithSuperscript date={summary.date} />
-                  </div>
-                ) : null}
+                <div>{summary["workshop-registration"]}</div>
               </div>
             </div>
           </div>
 
-          <motion.img
+          {/* <motion.img
             src={RollButton}
             className="mobile:w-[20px] ipad:w-[30px] lg:w-[20px]"
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.5 }}
             onClick={toggleOpen}
-          />
+          /> */}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={false}
           animate={{ height: isOpen ? "auto" : 0 }}
           transition={{ duration: 0.5 }}
@@ -179,7 +170,7 @@ const SummaryContent: React.FC<{ summary: SummaryProps }> = ({ summary }) => {
               </div>
             </div>
           ) : null}
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   );
@@ -251,7 +242,7 @@ const SummaryCompetition: React.FC<{ summary: Teams }> = ({ summary }) => {
 
 const SummaryList: React.FC<{
   competitions: Teams[];
-  workshops: SummaryProps[];
+  workshops: Workshop[];
 }> = ({ competitions, workshops }) => {
   const scrollRef = useDragScroll();
 
@@ -338,7 +329,7 @@ const SummaryList: React.FC<{
           </p>
         </div>
         {workshops.map((workshop) => (
-          <SummaryContent key={workshop.id} summary={workshop} />
+          <SummaryWorkshop key={workshop.id} summary={workshop} />
         ))}
       </div>
     </div>
@@ -347,47 +338,51 @@ const SummaryList: React.FC<{
 
 const App: React.FC = () => {
   const { data: userTeams } = useUserTeam();
+  const { data: workshops } = useGetWorkshops();
 
-  const workshop: SummaryProps[] = [
-    {
-      id: 1,
-      title: "MULTIMEDIA",
-      type: "X", // W = Workshop
-      content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
-      date: "Wednesday, July 21th, 2024",
-      time: "01:00 PM - 04:00 PM",
-      link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
-      team: "-",
-      logo: CalendarLogo,
-    },
-    {
-      id: 2,
-      title: "IOT",
-      type: "X",
-      content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
-      date: "Sunday, August 30th, 2077",
-      time: "09:00 AM - 09:00 PM",
-      link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
-      team: "-",
-      logo: CalendarLogo,
-    },
-    {
-      id: 3,
-      title: "ROBOTICS",
-      type: "X",
-      content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
-      date: "Friday, January 31th, 2099",
-      time: "21:00 PM - 00:00 AM",
-      link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
-      team: "-",
-      logo: CalendarLogo,
-    },
-  ];
+  // const workshop: SummaryProps[] = [
+  //   {
+  //     id: 1,
+  //     title: "MULTIMEDIA",
+  //     type: "X", // W = Workshop
+  //     content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
+  //     date: "Wednesday, July 21th, 2024",
+  //     time: "01:00 PM - 04:00 PM",
+  //     link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
+  //     team: "-",
+  //     logo: CalendarLogo,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "IOT",
+  //     type: "X",
+  //     content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
+  //     date: "Sunday, August 30th, 2077",
+  //     time: "09:00 AM - 09:00 PM",
+  //     link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
+  //     team: "-",
+  //     logo: CalendarLogo,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "ROBOTICS",
+  //     type: "X",
+  //     content: ["Lorem Ipsum Lorem", "Lorem Ipsum Lorem", "Lorem Ipsum Lorem"],
+  //     date: "Friday, January 31th, 2099",
+  //     time: "21:00 PM - 00:00 AM",
+  //     link: "https://genshin.hoyoverse.com/en/character/Fontaine?char=6",
+  //     team: "-",
+  //     logo: CalendarLogo,
+  //   },
+  // ];
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="flex mx-auto justify-center w-full h-full select-none">
-        <SummaryList competitions={userTeams || []} workshops={workshop} />
+        <SummaryList
+          competitions={userTeams || []}
+          workshops={workshops || []}
+        />
       </div>
     </DndProvider>
   );
