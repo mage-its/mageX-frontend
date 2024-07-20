@@ -51,6 +51,7 @@ import SocialMediaCard from "@/components/SocialMediaCard";
 import NeonSquare from "@/components/NeonSquare";
 import GallerySlider from "@/components/GallerySlider";
 import { Link } from "react-router-dom";
+import FrequentlyAskedQuestion from "./FAQ";
 
 const RunningText = () => {
   return (
@@ -803,6 +804,7 @@ export default function Home() {
           />
         </div>
       </div>
+      <FrequentlyAskedQuestion/>
       <Footer />
     </main>
   );

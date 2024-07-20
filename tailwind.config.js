@@ -113,6 +113,7 @@ export default {
           "linear-gradient(169.21deg, #FFFFFF 19.1%, #EFA264 121.73%)",
         "white-purple":
           "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #410327 108.78%)",
+        "black-pink":"linear-gradient(180deg, #141414, #71315D)",
         "skin-grad": "linear-gradient(180deg, #FFE1C9 0%, #FFC291 100%)",
         "orange-purple":
           "linear-gradient(181.25deg, #E553A8 -43.94%, #F77F5A 8.83%, #F77F5A 51.94%, #E553A8 99.51%)",
