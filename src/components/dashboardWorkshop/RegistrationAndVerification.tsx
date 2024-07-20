@@ -292,7 +292,6 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
               render={({ field }) => (
                 <Select
                   {...field}
-                  label="Sumber"
                   id="sumber"
                   disabled={workshop?.verified == "true"}
                 >
@@ -342,7 +341,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label="Follow Instagram + Twibbon Post"
+                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
                       placeholder="Upload Here"
                       formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
@@ -392,7 +391,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label="Follow Instagram + Twibbon Post"
+                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
                       placeholder="Upload Here"
                       formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
