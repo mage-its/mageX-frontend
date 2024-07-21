@@ -62,7 +62,7 @@ const InputFile = ({
   return (
     <label className="flex flex-col text-white font-fredoka font-medium text-xs md:text-sm lg:text-base w-full h-full">
       {label}
-        <div className="font-nomral text-white/50 text-xs md:text-sm lg:text-sm">
+        <div className="font-normal text-white/50 text-xs md:text-sm lg:text-sm">
         {description}
         </div>
       <div className="flex flex-col justify-center items-center bg-white/10 border-[2px] border-dashed border-white/50 w-full h-full mt-2 rounded-xl p-2 text-center lg:p-4">
