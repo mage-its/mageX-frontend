@@ -338,7 +338,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                       label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
                       description="Dijadikan satu file"
                       placeholder="Upload Here"
-                      formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
+                      formatName={`Bukti_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
                       maxFileSize="5MB"
                       accept=".pdf"
