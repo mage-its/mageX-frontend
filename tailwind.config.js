@@ -70,7 +70,7 @@ export default {
         // Custom screen size
         mobile: "300px", // extra sm
         ipad: "768px", // md
-        desktop: "1280px", // xl
+        desktop: "1024px", // lg
       },
       backgroundImage: {
         "diagonal-gta":

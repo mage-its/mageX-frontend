@@ -68,7 +68,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
     console.log("Redirecting to login page");
-    //window.location.href = "https://api.mage-its.id/users/login";
+    window.location.href = "https://api.mage-its.id/users/login";
   }
   const [linkBuktiPembayaran, setLinkBuktiPembayaran] = useState<
     string | undefined
@@ -190,12 +190,6 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
       setSearchParams(new URLSearchParams("step=1"));
     }
   }, [workshop, setSearchParams]);
-  // const format: { [key: string]: string } = {
-  //   "App Dev": "AppDev",
-  //   IoT: "IoT",
-  //   Robotics: "Robotik",
-  //   "Game Dev": "GameDev",
-  // };
 
   useEffect(() => {
     if (workshop?.bukti_pembayaran !== "000000000000000000000000") {
@@ -300,9 +294,9 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   <Option value="friend">Friend</Option>
                   <Option value="instagram">Instagram</Option>
                   <Option value="Tiktok">Tiktok</Option>
-                  <Option value="friend">Friend</Option>
-                  <Option value="friend">School</Option>
-                  <Option value="friend">Roadshow</Option>
+                  <Option value="twitterX">Twitter (X)</Option>
+                  <Option value="school">School</Option>
+                  <Option value="roadshow">Roadshow</Option>
                   <Option value="others">Others</Option>
                 </Select>
               )}
@@ -342,6 +336,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                     <InputFile
                       {...field}
                       label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
+                      description="Dijadikan satu file"
                       placeholder="Upload Here"
                       formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
