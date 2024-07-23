@@ -19,7 +19,7 @@ export type Workshop = {
   tempat: string;
   pembicara: string;
   foto: any;
-  price: string;
+  biaya_pendaftaran: string;
   contact: string;
   link: string;
   tl: timeline[];
@@ -35,17 +35,18 @@ export const Multimedia: Workshop = {
   background: "Jagoteknik",
   spesialis: "Front End Web Developer",
   tanggal: "3 - 4 Agustus 2024 & 10 Agustus 2024",
-  jam: "Coming Soon",
+  jam: "08.00 - Selesai",
   tempat: "Zoom Meeting",
   pembicara: "Keanu Fortuna Taufan",
   foto: PemateriMultimedia,
-  price: "GRATIS",
-  contact: "Mahija +62 812-8809-2766",
+  biaya_pendaftaran: "GRATIS",
+  contact: "Hendrik +62 812-6992-3325",
   link: "#",
   tl: [
-    { title: "Pendaftaran", date: "1 Juli - 19 Juli 2024" },
-    { title: "Day - 1", date: "20 Juli 2024" },
-    { title: "Day - 2", date: "28 Juli 2024" },
+    { title: "Pendaftaran", date: "16 Juli - 2 Agustus 2024" },
+    { title: "Day - 1", date: "3 Agustus 2024" },
+    { title: "Day - 2", date: "4 Agustus 2024" },
+    { title: "Day - 3", date: "10 Agustus 2024" },
   ],
 };
 
@@ -62,7 +63,7 @@ export const Robotics: Workshop = {
   tempat: "Coming Soon",
   pembicara: "Furina de Fontaine",
   foto: Furina,
-  price: "Coming Soon",
+  biaya_pendaftaran: "Coming Soon",
   contact: "Coming Soon",
   link: "#",
   tl: [
@@ -85,7 +86,7 @@ export const InternetOfThings: Workshop = {
   tempat: "Coming Soon",
   pembicara: "Firefly",
   foto: Firefly,
-  price: "Coming Soon",
+  biaya_pendaftaran: "Coming Soon",
   contact: "Coming Soon",
   link: "#",
   tl: [
