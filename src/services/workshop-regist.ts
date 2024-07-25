@@ -10,6 +10,16 @@ export type Workshop = {
   verified: string;
 };
 
+export type GetAllWorkshops = {
+  id: string;
+  bukti_pembayaran: string;
+  bukti_follow: string;
+  sumber_informasi: string;
+  "workshop-registration": string;
+  verified: string;
+  user_id: string;
+};
+
 export type updateWorkshop = {
   bukti_pembayaran: File;
   bukti_follow: File;
@@ -28,6 +38,9 @@ export const registerWorkshop = async (workshop: string) => {
     })
     .then((res) => res.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -45,6 +58,9 @@ export const getWorkshops = async (): Promise<Workshop[]> => {
     .get("/workshop/user")
     .then((res) => res.data.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -61,7 +77,7 @@ export const updateWorkshop = async (workshop: updateWorkshop) => {
   form.append("bukti_pembayaran", workshop.bukti_pembayaran);
   form.append("bukti_follow", workshop.bukti_follow);
   form.append("sumber_informasi", workshop.sumber_informasi);
-  console.log(workshop);
+  // console.log(workshop);
   return apiClient
     .put(`/workshop/Multimedia`, form, {
       headers: {
@@ -70,7 +86,11 @@ export const updateWorkshop = async (workshop: updateWorkshop) => {
     })
     .then((res) => res.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
+      return error.response.data;
     });
 };
 
@@ -78,6 +98,49 @@ export const useUpdateWorkshop = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateWorkshop,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["workshops"] }),
+  });
+};
+
+export const getAllWorkshops = async (
+  search: string
+): Promise<GetAllWorkshops[]> => {
+  return apiClient
+    .get(`workshop/participants?workshop=${search}`)
+    .then((res) => res.data.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+    });
+};
+
+export const useGetAllWorkshops = (search: string) => {
+  return useQuery({
+    queryKey: ["workshops", search],
+    queryFn: () => getAllWorkshops(search),
+  });
+};
+
+export const verifyWorkshop = async (id: string) => {
+  // console.log(id);
+  return apiClient
+    .put(`/workshops/${id}/verify?verified=true`)
+    .then((res) => res.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+      return error.response.data;
+    });
+};
+
+export const useVerifyWorkshop = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: verifyWorkshop,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["workshops"] }),
   });
 };

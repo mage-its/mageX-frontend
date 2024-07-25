@@ -1,14 +1,23 @@
 import { useUpdateUser, useUserData } from "@/services/users";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { UpdateUserProps } from "./PersonalInfo";
 
 type AddressInformationSchema = {
   alamat: string;
   asal_provinsi: string;
 };
 
-export default function AddressInformation() {
-  const { mutateAsync: updateUser } = useUpdateUser();
+export default function AddressInformation({
+  handleUpdateUser,
+}: UpdateUserProps) {
+  const {
+    mutateAsync: updateUser,
+    data: responseUpdateUser,
+    isError: isErrorUpdateUser,
+    isSuccess: isSuccessUpdateUser,
+    reset: resetUpdateUser,
+  } = useUpdateUser();
   const { data: user } = useUserData();
 
   const { control, handleSubmit, setValue } =
@@ -17,9 +26,9 @@ export default function AddressInformation() {
   const onSubmit: SubmitHandler<AddressInformationSchema> = async (
     data: AddressInformationSchema
   ) => {
-    console.log(data);
+    // console.log(data);
     if (!isEditingAddressInformation) {
-      console.log("Updating User Data");
+      // console.log("Updating User Data");
       await updateUser(data);
     }
   };
@@ -33,6 +42,19 @@ export default function AddressInformation() {
   const handleEditAddressInformation = () => {
     setIsEditingAddressInformation(!isEditingAddressInformation);
   };
+
+  useEffect(() => {
+    if (isSuccessUpdateUser || isErrorUpdateUser) {
+      handleUpdateUser(responseUpdateUser?.message || "Error");
+      resetUpdateUser();
+    }
+  }, [
+    isSuccessUpdateUser,
+    isErrorUpdateUser,
+    handleUpdateUser,
+    responseUpdateUser,
+    resetUpdateUser,
+  ]);
 
   return (
     <form

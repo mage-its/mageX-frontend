@@ -1,15 +1,29 @@
+import Popup from "@/components/Dashboard/User/Home/PopUp";
 import AdditionalInformation from "@/components/Dashboard/User/Profile/AdditionalInfo";
 import AddressInformation from "@/components/Dashboard/User/Profile/AddressInfo";
 import PersonalInformation from "@/components/Dashboard/User/Profile/PersonalInfo";
 import ProfileMain from "@/components/Dashboard/User/Profile/ProfileMain";
 import DashboardSideBar from "@/components/DashboardSideBar";
 import { useUserData } from "@/services/users";
+import { useState } from "react";
 
 export default function Profile() {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [responseUpdateUser, setResponseUpdateUser] = useState<string>("");
+
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
     window.location.href = "https://api.mage-its.id/users/login";
   }
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
+
+  const handleUpdateUser = (data: string) => {
+    setResponseUpdateUser(data);
+    setIsPopupVisible(true);
+  };
   return (
     <div className="font-fredoka flex overflow-hidden">
       <DashboardSideBar />
@@ -20,15 +34,20 @@ export default function Profile() {
           <ProfileMain />
           <div className="flex flex-col md:flex-row gap-4 md:gap-6">
             <div className="flex flex-col gap-4 md:gap-6 w-full">
-              <PersonalInformation />
-              <AddressInformation />
+              <PersonalInformation handleUpdateUser={handleUpdateUser} />
+              <AddressInformation handleUpdateUser={handleUpdateUser} />
             </div>
             <div className="w-full md:w-1/3">
-              <AdditionalInformation />
+              <AdditionalInformation handleUpdateUser={handleUpdateUser} />
             </div>
           </div>
         </div>
       </div>
+      <Popup
+        isVisible={isPopupVisible}
+        onClose={handleClosePopup}
+        text={responseUpdateUser}
+      />
     </div>
   );
 }

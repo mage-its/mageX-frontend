@@ -10,17 +10,29 @@ type PersonalInformationSchema = {
   username_ig: string;
 };
 
-export default function PersonalInformation() {
-  const { mutateAsync: updateUser } = useUpdateUser();
+export interface UpdateUserProps {
+  handleUpdateUser: (data: string) => void;
+}
+
+export default function PersonalInformation({
+  handleUpdateUser,
+}: UpdateUserProps) {
+  const {
+    mutateAsync: updateUser,
+    data: responseUpdateUser,
+    isError: isErrorUpdateUser,
+    isSuccess: isSuccessUpdateUser,
+    reset: resetUpdateUser,
+  } = useUpdateUser();
   const { data: user } = useUserData();
   const { control, handleSubmit, setValue } =
     useForm<PersonalInformationSchema>();
   const onSubmit: SubmitHandler<PersonalInformationSchema> = async (
     data: PersonalInformationSchema
   ) => {
-    console.log(data);
+    // console.log(data);
     if (!isEditingPersonalInformation) {
-      console.log("Updating User Data");
+      // console.log("Updating User Data");
       await updateUser({
         nama: `${data.firstName} ${data.lastName}`,
         tanggal_lahir: data.tanggal_lahir,
@@ -41,9 +53,22 @@ export default function PersonalInformation() {
     useState(false);
 
   const handleEditPersonalInformation = () => {
-    console.log("Edit Personal Information");
+    // console.log("Edit Personal Information");
     setIsEditingPersonalInformation(!isEditingPersonalInformation);
   };
+
+  useEffect(() => {
+    if (isSuccessUpdateUser || isErrorUpdateUser) {
+      handleUpdateUser(responseUpdateUser?.message || "Error");
+      resetUpdateUser();
+    }
+  }, [
+    isSuccessUpdateUser,
+    isErrorUpdateUser,
+    handleUpdateUser,
+    responseUpdateUser,
+    resetUpdateUser,
+  ]);
 
   return (
     <form

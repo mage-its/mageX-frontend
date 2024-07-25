@@ -1,7 +1,7 @@
 import React from "react";
 import GradientLine from "@/assets/dashboardWorkshop/gradientLine.svg";
 import WhatsAppLogo from "@/assets/dashboardWorkshop/whatsappLogo.svg";
-import useDragScroll from "@/components/dashboardHome/useDragScroll";
+import useDragScroll from "@/components/Dashboard/User/Home/useDragScroll";
 import { Workshop } from "@/constant/dashboardWorkshop";
 
 interface WorkshopInformationProps {

@@ -2,25 +2,34 @@ import { useUpdateUser, useUserData } from "@/services/users";
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa6";
+import { UpdateUserProps } from "./PersonalInfo";
 
 type AdditionalSchema = {
   institusi: string;
   img_kartu: File | null;
 };
 
-export default function AdditionalInformation() {
-  const { mutateAsync: updateUser } = useUpdateUser();
+export default function AdditionalInformation({
+  handleUpdateUser,
+}: UpdateUserProps) {
+  const {
+    mutateAsync: updateUser,
+    data: responseUpdateUser,
+    isError: isErrorUpdateUser,
+    isSuccess: isSuccessUpdateUser,
+    reset: resetUpdateUser,
+  } = useUpdateUser();
   const { data: user } = useUserData();
-  console.log(user);
+  // console.log(user);
   const [fileName, setFileName] = useState<string | undefined>();
   const { control, handleSubmit, setValue, resetField, setError } =
     useForm<AdditionalSchema>();
   const onSubmit: SubmitHandler<AdditionalSchema> = async (
     data: AdditionalSchema
   ) => {
-    console.log(data);
+    // console.log(data);
     if (!isEditingAdditional) {
-      console.log("Updating User Data");
+      // console.log("Updating User Data");
       await updateUser({
         institusi: data.institusi,
         image_kartu: data.img_kartu,
@@ -69,6 +78,19 @@ export default function AdditionalInformation() {
 
     setValue("img_kartu", files ? files[0] : null);
   };
+
+  useEffect(() => {
+    if (isSuccessUpdateUser || isErrorUpdateUser) {
+      handleUpdateUser(responseUpdateUser?.message || "Error");
+      resetUpdateUser();
+    }
+  }, [
+    isSuccessUpdateUser,
+    isErrorUpdateUser,
+    handleUpdateUser,
+    responseUpdateUser,
+    resetUpdateUser,
+  ]);
 
   return (
     <form

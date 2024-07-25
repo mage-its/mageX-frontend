@@ -1,40 +1,22 @@
 import { useAnimation, motion, useDragControls } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { competition } from "@/constant/dashboardCompetitionCard";
-import CompetitionCard from "@/components/dashboardHome/DashboardCompetitionCard";
-import TrophyLogo from "@/assets/dashboardHome/trophyLogo.svg";
-import Popup from "@/components/dashboardHome/PopUp";
+import { competition } from "@/constant/dashboardWorkshopCard";
+import CompetitionCard from "@/components/Dashboard/User/Home/DashboardCompetitionCard";
+import useMeasure from "react-use-measure";
+import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
+import Popup from "@/components/Dashboard/User/Home/PopUp";
+// import { useUserData } from "@/services/users";
+import { registerWorkshop } from "@/services/workshop-regist";
 import { useNavigate } from "react-router-dom";
-import { useCreateTeam, useLeadTeams } from "@/services/team";
-import { useUserData } from "@/services/users";
 
-const CompetitionComponent: React.FC = () => {
+const App: React.FC = () => {
   const navigate = useNavigate();
-  const { mutateAsync: createTeam } = useCreateTeam();
-  const { data: teams } = useLeadTeams();
-  const { data: user } = useUserData();
-  console.log("User data:", user);
-  const handleYesClick = async () => {
-    await createTeam(popupDestination);
-    navigate(`/dashboard/competition`);
-  };
-
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
-  const competitionCardRef = useRef<HTMLDivElement>(null);
-  const [competitionCardDimensions, setCompetitionCardDimensions] = useState({
-    width: 0,
-  });
-  useEffect(() => {
-    const { width } = competitionCardRef.current?.getBoundingClientRect() || {
-      width: 0,
-    };
-    setCompetitionCardDimensions({ width });
-  }, []);
-
-  const competitionCardWidth = competitionCardDimensions.width;
+  const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
   const [dragOffset, setDragOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  // const { data: user } = useUserData();
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [popupDestination, setPopupDestination] = useState("");
@@ -69,7 +51,7 @@ const CompetitionComponent: React.FC = () => {
         const totalWidth = cardWidthWithMargin * competition.length;
         const rightConstraint = totalWidth - width;
         setDragConstraints({
-          left: -rightConstraint,
+          left: -Math.max(rightConstraint, 0),
           right: 0,
         });
       }
@@ -84,8 +66,14 @@ const CompetitionComponent: React.FC = () => {
   }, [competitionCardWidth]);
 
   const handleCardClick = (destination: string) => {
+    // console.log(destination);
     setPopupDestination(destination);
     setIsPopupVisible(true);
+  };
+
+  const handleYesClick = async () => {
+    await registerWorkshop(popupDestination);
+    navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
   };
 
   const handleClosePopup = () => {
@@ -95,24 +83,23 @@ const CompetitionComponent: React.FC = () => {
   return (
     <div
       className="h-full
-                    mobile:mt-12 mobile:mx-6 mobile:bg-transparent_black mobile:rounded-[1rem]
-                    ipad:mt-12 ipad:mx-[8rem] ipad:bg-transparent_black ipad:rounded-[2rem]
-                    lg:mx-0 lg:mt-0 lg:bg-transparent lg:w-full relative"
+                    mobile:mt-6 mobile:mx-6 mobile:bg-transparent_black mobile:rounded-[1rem]
+                    ipad:mt-6 ipad:mx-[8rem] ipad:bg-transparent_black ipad:rounded-[2rem]
+                    lg:mx-0 lg:mt-0 lg:bg-transparent lg:w-full"
     >
       <div
         className="flex p-4 items-center select-none bg-gray-5 mobile:rounded-t-[1rem] ipad:rounded-t-[2rem]
                       mobile:h-[5rem] ipad:h-[5rem] lg:h-[3rem]"
       >
         <img
-          src={TrophyLogo}
+          src={WorkshopLogo}
           className="select-none mobile:w-[2rem] mobile:h-[2rem] ipad:w-[2rem] ipad:h-[2rem] lg:w-5 lg:h-5"
-          alt="Trophy Logo"
         />
         <h2
           className="text-light font-fredoka mx-[1rem] select-none
                        mobile:text-[23px] ipad:text-[23px] lg:text-[1rem]"
         >
-          Competitions
+          Workshop
         </h2>
         <h2
           className="text-gray-5 w-fit font-medium bg-light rounded-[1rem] px-2 py-1 font-fredoka select-none
@@ -176,41 +163,27 @@ const CompetitionComponent: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      {popupDestination == "App Dev" ||
-      popupDestination == "Game Dev" ||
-      popupDestination == "IoT" ||
-      popupDestination == "Robotics" ? (
-        user?.verified === "true" ? (
-          teams == undefined ? (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              handleYesClick={handleYesClick}
-              text="You will be registered as Team Leader Do you want to continue?"
-            />
-          ) : (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              text="You're already leader of a team. Cannot create another team"
-            />
-          )
-        ) : (
-          <Popup
-            isVisible={isPopupVisible}
-            onClose={handleClosePopup}
-            text="You are not verified. Please complete your data first and wait while we verify your data"
-          />
-        )
+      <Popup
+        isVisible={isPopupVisible}
+        onClose={handleClosePopup}
+        text={`Coming soon!`}
+      />
+      {popupDestination == "Multimedia" ? (
+        <Popup
+          isVisible={isPopupVisible}
+          onClose={handleClosePopup}
+          handleYesClick={handleYesClick}
+          text={`Do you want to register to Multimedia Workshop?`}
+        />
       ) : (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
-          text="Coming Soon"
+          text={`Coming soon!`}
         />
       )}
     </div>
   );
 };
 
-export default CompetitionComponent;
+export default App;

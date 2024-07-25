@@ -9,15 +9,15 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import { useUserData } from "@/services/users";
 
-import InputFile from "../InputFile";
+import InputFile from "../../../InputFile";
 import {
   updateWorkshop,
   useGetWorkshops,
   useUpdateWorkshop,
 } from "@/services/workshop-regist";
-import Select, { Option } from "../Select";
+import Select, { Option } from "../../../Select";
 import { PiPaperPlaneRightFill } from "react-icons/pi";
-import Popup from "../dashboardHome/PopUp";
+import Popup from "../Home/PopUp";
 import { useSearchParams } from "react-router-dom";
 
 interface RegistAndVerifProps {
@@ -54,7 +54,7 @@ const CompetitionButton = ({
 
 const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   const { data: workshops } = useGetWorkshops();
-  console.log(workshops);
+  // console.log(workshops);
   const workshop = workshops?.find(
     (w) => w["workshop-registration"] === currentWorkshop.title
   );
@@ -67,7 +67,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   const step = searchParams.get("step") ? Number(searchParams.get("step")) : 1;
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
-    console.log("Redirecting to login page");
+    // console.log("Redirecting to login page");
     window.location.href = "https://api.mage-its.id/users/login";
   }
   const [linkBuktiPembayaran, setLinkBuktiPembayaran] = useState<
@@ -154,7 +154,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   };
 
   const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
-    console.log(data);
+    // console.log(data);
     const payload: updateWorkshop = {
       sumber_informasi: data.sumber_informasi,
       bukti_pembayaran: data.bukti_pembayaran || new File([], ""),
@@ -176,7 +176,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
   };
 
   const increaseStep = () => {
-    if (workshop?.verified !== "true") return;
+    // if (workshop?.verified !== "true") return;
     setSearchParams(new URLSearchParams("step=" + (step + 1)));
   };
 
@@ -185,11 +185,11 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
     setSearchParams(new URLSearchParams("step=" + (step - 1)));
   };
 
-  useEffect(() => {
-    if (workshop?.verified !== "true") {
-      setSearchParams(new URLSearchParams("step=1"));
-    }
-  }, [workshop, setSearchParams]);
+  // useEffect(() => {
+  //   if (workshop?.verified !== "true") {
+  //     setSearchParams(new URLSearchParams("step=1"));
+  //   }
+  // }, [workshop, setSearchParams]);
 
   useEffect(() => {
     if (workshop?.bukti_pembayaran !== "000000000000000000000000") {
@@ -263,7 +263,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
               )}
               <CompetitionButton
                 onClick={increaseStep}
-                disabled={workshop?.verified !== "true"}
+                // disabled={workshop?.verified !== "true"}
               >
                 <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                   Next

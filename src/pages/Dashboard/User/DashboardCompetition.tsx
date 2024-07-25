@@ -31,7 +31,7 @@ import {
   robotic,
   uiUx,
 } from "@/constant/competitionPage";
-import Popup from "@/components/dashboardHome/PopUp";
+import Popup from "@/components/Dashboard/User/Home/PopUp";
 import InputFile from "@/components/InputFile";
 import InputField from "@/components/InputField";
 import { useSearchParams } from "react-router-dom";
@@ -83,11 +83,11 @@ export default function DashboardCompetition() {
   const step = searchParams.get("step") ? Number(searchParams.get("step")) : 1;
   const { data: user, isSuccess } = useUserData();
   if (isSuccess && !user?.is_logged_in) {
-    console.log("Redirecting to login page");
+    // console.log("Redirecting to login page");
     window.location.href = "https://api.mage-its.id/users/login";
   }
   const { data: teams } = useLeadTeams();
-  console.log(teams);
+  // console.log(teams);
   const { data: members } = useTeamMembers();
   const {
     mutateAsync: updateTeamInformation,
@@ -141,9 +141,9 @@ export default function DashboardCompetition() {
   const onSubmit: SubmitHandler<TeamInformation> = async (
     data: TeamInformation
   ) => {
-    console.log(data);
+    // console.log(data);
     if (isEditTeamInformation) {
-      console.log("Updating Team Data");
+      // console.log("Updating Team Data");
       await updateTeamInformation({
         nama: data.teamName,
       });
@@ -268,14 +268,14 @@ export default function DashboardCompetition() {
   }, [teams, setValueRegistStepThree]);
 
   const onSubmitRegistStepTwo: SubmitHandler<RegistStepTwo> = async (data) => {
-    console.log(data);
+    // console.log(data);
     await updateTeamInformation({
       proposal: data.proposal,
     });
   };
 
   const onSubmitRegistStepOne: SubmitHandler<RegistStepOne> = async (data) => {
-    console.log(data);
+    // console.log(data);
     await updateTeamInformation({
       kategori: data.category,
       bukti_pembayaran: data.paymentProof,
@@ -284,7 +284,7 @@ export default function DashboardCompetition() {
   };
 
   const onSubmitRegistStepThree: SubmitHandler<RegistStepThree> = (data) => {
-    console.log(data);
+    // console.log(data);
     updateTeamInformation({
       link_video: data.link_video,
       link_karya: data.link_karya,
@@ -534,7 +534,7 @@ export default function DashboardCompetition() {
         {step === 1 && (
           <form
             onSubmit={registStepOneHandleSubmit(onSubmitRegistStepOne)}
-            className="flex flex-col h-[700px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
+            className="flex flex-col h-[800px] md:basis-[50%] bg-black/80 rounded-[20px] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex items-center gap-2 lg:gap-4">

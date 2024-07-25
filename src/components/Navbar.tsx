@@ -161,7 +161,7 @@ export function Navbar({ theme = "orange" }: NavbarProps) {
     }
   };
   const { data: user } = useUserData();
-  console.log(user);
+  // console.log(user);
   const logoutRedirectURL = "https://api.mage-its.id/users/logout";
   const loginRedirectURL = "https://api.mage-its.id/users/login";
 

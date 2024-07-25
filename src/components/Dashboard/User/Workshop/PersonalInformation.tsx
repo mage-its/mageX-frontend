@@ -1,6 +1,6 @@
 import React from "react";
 import PersonalLogo from "@/assets/dashboardWorkshop/personalLogo.svg";
-import useDragScroll from "@/components/dashboardHome/useDragScroll";
+import useDragScroll from "@/components/Dashboard/User/Home/useDragScroll";
 import { Workshop } from "@/constant/dashboardWorkshop";
 
 interface PersonalInformationProps {

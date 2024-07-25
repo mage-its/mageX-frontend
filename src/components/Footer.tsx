@@ -275,11 +275,17 @@ function Footer() {
   ];
 
   const socialMediaItems: FooterItemProps[] = [
-    { href: "mailto:example@example.com", icon: <FaEnvelope size={25} /> },
-    { href: "https://www.instagram.com", icon: <FaInstagram size={25} /> },
-    { href: "https://www.tiktok.com", icon: <FaTiktok size={25} /> },
-    { href: "https://line.me", icon: <FaLine size={25} /> },
-    { href: "https://www.linkedin.com", icon: <FaLinkedin size={25} /> },
+    { href: "mailto:mage.ce.its@gmail.com", icon: <FaEnvelope size={25} /> },
+    {
+      href: "https://www.instagram.com/mage_its",
+      icon: <FaInstagram size={25} />,
+    },
+    { href: "https://www.tiktok.com/@magex_its", icon: <FaTiktok size={25} /> },
+    { href: "https://line.me/R/ti/p/@rio5948f", icon: <FaLine size={25} /> },
+    {
+      href: "https://www.linkedin.com/company/mage-x",
+      icon: <FaLinkedin size={25} />,
+    },
   ];
 
   return (

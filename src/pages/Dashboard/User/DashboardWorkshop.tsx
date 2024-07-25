@@ -1,10 +1,10 @@
 import React from "react";
 import SideBar from "@/components/DashboardSideBar";
-import WorkshopAndProfile from "@/components/dashboardWorkshop/WorkshopAndProfile";
+import WorkshopAndProfile from "@/components/Dashboard/User/Workshop/WorkshopAndProfile";
 import WhiteLine from "@/assets/dashboardWorkshop/whiteLine.svg";
-import WorkshopInformation from "@/components/dashboardWorkshop/WorkshopInformation";
-import PersonalInformation from "@/components/dashboardWorkshop/PersonalInformation";
-import RegistrationAndVerification from "@/components/dashboardWorkshop/RegistrationAndVerification";
+import WorkshopInformation from "@/components/Dashboard/User/Workshop/WorkshopInformation";
+import PersonalInformation from "@/components/Dashboard/User/Workshop/PersonalInformation";
+import RegistrationAndVerification from "@/components/Dashboard/User/Workshop/RegistrationAndVerification";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -77,7 +77,7 @@ const DashboardHome: React.FC = () => {
           <div className="w-full mobile:h-[40rem] ipad:h-[56rem] mt-6">
             <PersonalInformation currentWorkshop={x} />
           </div>
-          <div className="w-full mobile:h-[22rem] ipad:h-[30rem] mt-6 mb-[4rem]">
+          <div className="w-full mobile:h-[24rem] ipad:h-[30rem] mt-6 mb-[4rem]">
             <RegistrationAndVerification currentWorkshop={x} />
           </div>
         </div>

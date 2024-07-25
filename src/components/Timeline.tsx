@@ -72,10 +72,10 @@ export const TimelineCard = ({
 };
 
 export default function Timeline({ items }: TimelineProps) {
-  const [timlineRef, { width: itemsWidth }] = useMeasure();
+  const [timlineRef] = useMeasure();
   const timelineCardXpos = window.innerWidth > 640 ? 300 : 150;
-  console.log(itemsWidth);
-  console.log(items.length * timelineCardXpos);
+  // console.log(itemsWidth);
+  // console.log(items.length * timelineCardXpos);
   return (
     <motion.div
       drag="x"

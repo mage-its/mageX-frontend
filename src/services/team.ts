@@ -27,6 +27,11 @@ export interface UpdateTeams {
   bukti_twibbon_follow?: File | null;
 }
 
+export interface verifyTeam {
+  id: string;
+  status: string;
+}
+
 export interface AddMembers {
   email: string[];
 }
@@ -36,6 +41,9 @@ const getLeadTeams = async (): Promise<Teams> => {
     .get(`teams/lead`)
     .then((res) => res.data.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -70,7 +78,11 @@ export const updateTeamInformation = async (
     })
     .then((res) => res.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error updating data:", error);
+      return error.response.data;
     });
 };
 
@@ -91,6 +103,9 @@ export const addMember = async (
     })
     .then((res) => res.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error updating data:", error);
     });
 };
@@ -107,13 +122,16 @@ export const useAddMember = () => {
 };
 
 export const createTeam = async (divisi: string) => {
-  console.log("Creating team with divisi:", divisi);
+  // console.log("Creating team with divisi:", divisi);
   // const form = new FormData();
   // form.append("divisi", divisi);
   return apiClient
     .post(`teams`, { divisi })
     .then((res) => res)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -131,6 +149,9 @@ export const getTeamMembers = async (): Promise<User[]> => {
     .get(`teams/lead/members`)
     .then((res) => res.data.data.anggota)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -148,6 +169,9 @@ export const getUserTeam = async (): Promise<Teams[]> => {
     .get(`teams`)
     .then((res) => res.data.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error fetching data:", error);
     });
 };
@@ -156,6 +180,73 @@ export function useUserTeam() {
   return useQuery({
     queryKey: ["userTeams"],
     queryFn: () => getUserTeam(),
+    staleTime: 86400000,
+  });
+}
+
+export const getAllTeams = async (search: string): Promise<Teams[]> => {
+  return apiClient
+    .get(`admin/teams?search=${search}`)
+    .then((res) => res.data.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+    });
+};
+
+export function useAllTeams(search: string) {
+  return useQuery({
+    queryKey: ["allTeams", search],
+    queryFn: () => getAllTeams(search),
+    staleTime: 86400000,
+  });
+}
+
+export const verifyTeam = async (req: verifyTeam) => {
+  const form = new FormData();
+  form.append("status", req.status);
+  return apiClient
+    .put(`teams/${req.id}/verify`, form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+      return error.response.data;
+    });
+};
+
+export const useVerifyTeam = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: verifyTeam,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["allTeams"] }),
+  });
+};
+
+export const getTeamMembersById = async (id: string): Promise<User[]> => {
+  return apiClient
+    .get(`teams/${id}/members`)
+    .then((res) => res.data.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+    });
+};
+
+export function useTeamMembersById(id: string) {
+  return useQuery({
+    queryKey: ["members", id],
+    queryFn: () => getTeamMembersById(id),
     staleTime: 86400000,
   });
 }

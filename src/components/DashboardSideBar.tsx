@@ -143,7 +143,7 @@ const DashboardSideBarItem = ({
 
 export default function DashboardSideBar() {
   const { data: workshops } = useGetWorkshops();
-  console.log(workshops);
+  // console.log(workshops);
   const { data: teams } = useLeadTeams();
   const [isExpanded, setIsExpanded] = useState(
     window.innerWidth > 1024 ? false : true

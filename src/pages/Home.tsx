@@ -143,14 +143,14 @@ export default function Home() {
 
   const handleFLip = (index: number) => {
     if (isCompetitionMore) {
-      console.log("flip");
+      // console.log("flip");
       setIsFLip((prev) => {
         const newFLip = [...prev];
         newFLip[index] = !newFLip[index];
         return newFLip;
       });
       competitionCardControl.start(index.toString());
-      console.log(isFLip);
+      // console.log(isFLip);
     }
   };
 
@@ -701,11 +701,11 @@ export default function Home() {
               </div>
               <div className="relative justify-self-end">
                 <SocialMediaCard
-                  href="https://line.me/R/ti/p/rio5948f"
+                  href="https://line.me/R/ti/p/@rio5948f"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Line"
-                  description="@rio5498f"
+                  description="@rio5948f"
                   img={line}
                   className="relative z-10 xl:-ml-[53%]"
                   rotate={innerWidth > 1024 ? 6.44 : 0}
@@ -715,7 +715,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Line"
-                  description="@rio5498f"
+                  description="@rio5948f"
                   img={line}
                   className="absolute scale-[1.05] top-0 left-0 blur-lg animate-pulse  xl:-ml-[53%]"
                   rotate={innerWidth > 1024 ? 6.44 : 0}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, wrap, AnimatePresence } from "framer-motion";
 import { useDrag } from "@use-gesture/react";
-import UseCountdown from "@/components/dashboardHome/useCountdown"; // Make sure to import the Countdown component
+import UseCountdown from "@/components/Dashboard/User/Home/useCountdown"; // Make sure to import the Countdown component
 import DashedLine2 from "@/assets/dashboardHome/dashedLine2.svg";
 import left from "@/assets/dashboardHome/leftButton.svg";
 import right from "@/assets/dashboardHome/rightButton.svg";

@@ -71,7 +71,7 @@ interface CompetitionProps {
 
 const Home = ({ x }: CompetitionProps) => {
   const { data: user } = useUserData();
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <div className="w-full h-screen relative">
@@ -155,15 +155,13 @@ const Home = ({ x }: CompetitionProps) => {
                   </Link>
                 </div>
               )}
-              {
-                !user?.is_logged_in && (
-                  <div className="z-10">
-                    <a href="https://api.mage-its.id/users/login">
-                      <CButton theme={x?.theme}>Log In</CButton>
-                    </a>
-                  </div>
-                )
-              }
+              {!user?.is_logged_in && (
+                <div className="z-10">
+                  <a href="https://api.mage-its.id/users/login">
+                    <CButton theme={x?.theme}>Log In</CButton>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -801,7 +799,7 @@ export default function Competition() {
   const pageIndex = wrap(0, pages.length, page);
 
   useEffect(() => {
-    console.log(currentRoute);
+    // console.log(currentRoute);
   }, [currentRoute]);
 
   const paginate = (newDirection: number) => {

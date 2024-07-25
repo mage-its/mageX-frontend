@@ -67,7 +67,7 @@ const AnnouncementsList: React.FC<{ announcements: Announcement[] }> = ({
 
 const App: React.FC = () => {
   const { data: announcements } = useAnnouncement();
-  console.log(announcements);
+  // console.log(announcements);
   // const announcements: Announcement[] = [];
 
   return (

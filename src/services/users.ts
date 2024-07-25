@@ -42,7 +42,12 @@ export const getUserData = async (): Promise<User> => {
   return apiClient
     .get("users/details")
     .then((res) => ({ is_logged_in: true, ...res.data.data }))
-    .catch(() => ({ is_logged_in: false }));
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      return { is_logged_in: false };
+    });
 };
 
 export function useUserData() {
@@ -74,7 +79,11 @@ export const updateUser = async (
     })
     .then((res) => res.data)
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error updating data:", error);
+      return error.response.data;
     });
 };
 
@@ -93,6 +102,9 @@ export const logout = async (): Promise<void> => {
       window.location.reload();
     })
     .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
       console.error("Error logging out:", error);
     });
 };
@@ -104,5 +116,50 @@ export const useLogout = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
+  });
+};
+
+export const getAllUsers = async (search: string): Promise<User[]> => {
+  // console.log(search);
+  return apiClient
+    .get(`users?search=${search}`)
+    .then((res) => res.data.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+    });
+};
+
+export const useGetAllUsers = (search: string) => {
+  // console.log(search);
+  return useQuery({
+    queryKey: ["users", search],
+    queryFn: () => getAllUsers(search),
+    staleTime: 86400000,
+  });
+};
+
+export const verifyUser = async (
+  userId: string
+): Promise<ResponseSchema<void>> => {
+  return apiClient
+    .put(`users/${userId}/verify?verified=true`)
+    .then((res) => res.data)
+    .catch((error) => {
+      if (error.response.data.message === "Invalid session") {
+        window.location.href = "/";
+      }
+      console.error("Error fetching data:", error);
+      return error.response.data;
+    });
+};
+
+export const useVerifyUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: verifyUser,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["users"] }),
   });
 };

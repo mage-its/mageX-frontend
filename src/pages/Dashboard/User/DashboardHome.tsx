@@ -1,14 +1,14 @@
 import React from "react";
 import { StyledEngineProvider } from "@mui/material/styles";
 import SideBar from "@/components/DashboardSideBar";
-import Announcements from "@/components/dashboardHome/Announcements";
-import HomeAndProfile from "@/components/dashboardHome/HomeAndProfile";
-import Calendar from "@/components/dashboardHome/Calendar";
-import AlternateCalendar from "@/components/dashboardHome/AlternateCalendar";
-import Summary from "@/components/dashboardHome/Summary";
-import Countdown from "@/components/dashboardHome/Countdown";
-import Competition from "@/components/dashboardHome/Competition";
-import Workshop from "@/components/dashboardHome/Workshop";
+import Announcements from "@/components/Dashboard/User/Home/Announcements";
+import HomeAndProfile from "@/components/Dashboard/User/Home/HomeAndProfile";
+import Calendar from "@/components/Dashboard/User/Home/Calendar";
+import AlternateCalendar from "@/components/Dashboard/User/Home/AlternateCalendar";
+import Summary from "@/components/Dashboard/User/Home/Summary";
+import Countdown from "@/components/Dashboard/User/Home/Countdown";
+import Competition from "@/components/Dashboard/User/Home/Competition";
+import Workshop from "@/components/Dashboard/User/Home/Workshop";
 import { useUserData } from "@/services/users";
 
 const DashboardHome: React.FC = () => {
