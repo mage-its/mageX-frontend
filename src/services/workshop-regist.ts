@@ -38,9 +38,6 @@ export const registerWorkshop = async (workshop: string) => {
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -58,9 +55,6 @@ export const getWorkshops = async (): Promise<Workshop[]> => {
     .get("/workshop/user")
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -86,9 +80,6 @@ export const updateWorkshop = async (workshop: updateWorkshop) => {
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
       return error.response.data;
     });
@@ -109,9 +100,6 @@ export const getAllWorkshops = async (
     .get(`workshop/participants?workshop=${search}`)
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -129,9 +117,6 @@ export const verifyWorkshop = async (id: string) => {
     .put(`/workshops/${id}/verify?verified=true`)
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
       return error.response.data;
     });

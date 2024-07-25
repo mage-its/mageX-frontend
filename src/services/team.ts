@@ -41,9 +41,6 @@ const getLeadTeams = async (): Promise<Teams> => {
     .get(`teams/lead`)
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -78,9 +75,6 @@ export const updateTeamInformation = async (
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error updating data:", error);
       return error.response.data;
     });
@@ -103,9 +97,6 @@ export const addMember = async (
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error updating data:", error);
     });
 };
@@ -129,9 +120,6 @@ export const createTeam = async (divisi: string) => {
     .post(`teams`, { divisi })
     .then((res) => res)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -149,9 +137,6 @@ export const getTeamMembers = async (): Promise<User[]> => {
     .get(`teams/lead/members`)
     .then((res) => res.data.data.anggota)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -169,9 +154,6 @@ export const getUserTeam = async (): Promise<Teams[]> => {
     .get(`teams`)
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -189,9 +171,6 @@ export const getAllTeams = async (search: string): Promise<Teams[]> => {
     .get(`admin/teams?search=${search}`)
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -215,9 +194,6 @@ export const verifyTeam = async (req: verifyTeam) => {
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
       return error.response.data;
     });
@@ -236,9 +212,6 @@ export const getTeamMembersById = async (id: string): Promise<User[]> => {
     .get(`teams/${id}/members`)
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };

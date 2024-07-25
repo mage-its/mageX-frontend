@@ -6,9 +6,6 @@ export const getImage = async (id: string): Promise<string> => {
     .get(`images/${id}`)
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching image:", error);
     });
 };

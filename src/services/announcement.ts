@@ -27,9 +27,6 @@ export const getAnnouncement = async (): Promise<Announcement[]> => {
     .get("announcements")
     .then((res) => res.data.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error fetching data:", error);
     });
 };
@@ -49,9 +46,6 @@ export const deleteAnnouncement = async (
     .delete(`announcements/${id}`)
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error deleting data:", error);
       return error.response.data;
     });
@@ -81,9 +75,6 @@ export const addAnnouncement = async (
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error adding data:", error);
       return error.response.data;
     });
@@ -114,9 +105,6 @@ export const updateAnnouncement = async (
     })
     .then((res) => res.data)
     .catch((error) => {
-      if (error.response.data.message === "Invalid session") {
-        window.location.href = "/";
-      }
       console.error("Error updating data:", error);
       return error.response.data;
     });
