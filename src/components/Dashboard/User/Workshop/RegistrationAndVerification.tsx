@@ -335,7 +335,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
+                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Follow Jago Teknik + Share Poster (Tag 3 teman melalui ig story)"
                       description="Dijadikan satu file"
                       placeholder="Upload Here"
                       formatName={`Bukti_${currentWorkshop.title}_[Nama Peserta].pdf`}
