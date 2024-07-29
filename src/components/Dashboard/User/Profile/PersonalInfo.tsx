@@ -1,54 +1,32 @@
-import { useUpdateUser, useUserData } from "@/services/users";
+import { UpdateUserSchema } from "@/pages/Dashboard/User/Profile";
+import { ResponseSchema } from "@/services/api-client";
+import { User, useUserData } from "@/services/users";
 import { useEffect, useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-
-type PersonalInformationSchema = {
-  firstName: string;
-  lastName: string;
-  no_hp: string;
-  tanggal_lahir: string;
-  username_ig: string;
-};
+import {
+  Control,
+  Controller,
+  SubmitHandler,
+  UseFormHandleSubmit,
+  UseFormResetField,
+  UseFormSetValue,
+} from "react-hook-form";
+import { FaX } from "react-icons/fa6";
 
 export interface UpdateUserProps {
-  handleUpdateUser: (data: string) => void;
+  control: Control<UpdateUserSchema>;
+  handleSubmit: UseFormHandleSubmit<UpdateUserSchema>;
+  resetField?: UseFormResetField<UpdateUserSchema>;
+  setValue?: UseFormSetValue<UpdateUserSchema>;
+  onSubmit: SubmitHandler<UpdateUserSchema>;
+  responseUpdateUser?: ResponseSchema<User>;
 }
 
 export default function PersonalInformation({
-  handleUpdateUser,
+  control,
+  handleSubmit,
+  onSubmit,
+  responseUpdateUser,
 }: UpdateUserProps) {
-  const {
-    mutateAsync: updateUser,
-    data: responseUpdateUser,
-    isError: isErrorUpdateUser,
-    isSuccess: isSuccessUpdateUser,
-    reset: resetUpdateUser,
-  } = useUpdateUser();
-  const { data: user } = useUserData();
-  const { control, handleSubmit, setValue } =
-    useForm<PersonalInformationSchema>();
-  const onSubmit: SubmitHandler<PersonalInformationSchema> = async (
-    data: PersonalInformationSchema
-  ) => {
-    // console.log(data);
-    if (!isEditingPersonalInformation) {
-      // console.log("Updating User Data");
-      await updateUser({
-        nama: `${data.firstName} ${data.lastName}`,
-        tanggal_lahir: data.tanggal_lahir,
-        no_hp: data.no_hp,
-        username_ig: data.username_ig,
-      });
-    }
-  };
-  useEffect(() => {
-    setValue("firstName", user?.nama.split(" ")[0] || "");
-    setValue("lastName", user?.nama.split(" ").splice(1).join(" ") || "");
-    setValue("no_hp", user?.no_hp || "");
-    setValue("tanggal_lahir", user?.tanggal_lahir.slice(0, 10) || "");
-    setValue("username_ig", user?.username_ig || "");
-  }, [user, setValue]);
-
   const [isEditingPersonalInformation, setIsEditingPersonalInformation] =
     useState(false);
 
@@ -57,18 +35,13 @@ export default function PersonalInformation({
     setIsEditingPersonalInformation(!isEditingPersonalInformation);
   };
 
+  const { data: user } = useUserData();
+
   useEffect(() => {
-    if (isSuccessUpdateUser || isErrorUpdateUser) {
-      handleUpdateUser(responseUpdateUser?.message || "Error");
-      resetUpdateUser();
+    if (responseUpdateUser) {
+      setIsEditingPersonalInformation(false);
     }
-  }, [
-    isSuccessUpdateUser,
-    isErrorUpdateUser,
-    handleUpdateUser,
-    responseUpdateUser,
-    resetUpdateUser,
-  ]);
+  }, [responseUpdateUser]);
 
   return (
     <form
@@ -79,14 +52,31 @@ export default function PersonalInformation({
         <h2 className="text-white text-3xl font-medium">
           Personal Information
         </h2>
-        <button
-          onClick={handleEditPersonalInformation}
-          className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
-        >
-          <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
-            {isEditingPersonalInformation ? "Save" : "Edit"}
-          </p>
-        </button>
+        {isEditingPersonalInformation ? (
+          <div className="flex items-center justify-center gap-3">
+            <button
+              type="submit"
+              className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
+            >
+              <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
+                Save
+              </p>
+            </button>
+            <button type="button" onClick={handleEditPersonalInformation}>
+              <FaX className="text-white text-2xl" />
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={handleEditPersonalInformation}
+            className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
+          >
+            <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
+              Edit
+            </p>
+          </button>
+        )}
       </div>
 
       {isEditingPersonalInformation ? (

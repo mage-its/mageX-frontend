@@ -1,41 +1,17 @@
-import { useUpdateUser, useUserData } from "@/services/users";
+import { useUserData } from "@/services/users";
 import { useEffect, useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { UpdateUserProps } from "./PersonalInfo";
-
-type AddressInformationSchema = {
-  alamat: string;
-  asal_provinsi: string;
-};
+import { FaX } from "react-icons/fa6";
 
 export default function AddressInformation({
-  handleUpdateUser,
+  control,
+  handleSubmit,
+  onSubmit,
+  responseUpdateUser,
 }: UpdateUserProps) {
-  const {
-    mutateAsync: updateUser,
-    data: responseUpdateUser,
-    isError: isErrorUpdateUser,
-    isSuccess: isSuccessUpdateUser,
-    reset: resetUpdateUser,
-  } = useUpdateUser();
   const { data: user } = useUserData();
 
-  const { control, handleSubmit, setValue } =
-    useForm<AddressInformationSchema>();
-
-  const onSubmit: SubmitHandler<AddressInformationSchema> = async (
-    data: AddressInformationSchema
-  ) => {
-    // console.log(data);
-    if (!isEditingAddressInformation) {
-      // console.log("Updating User Data");
-      await updateUser(data);
-    }
-  };
-  useEffect(() => {
-    setValue("alamat", user?.alamat || "");
-    setValue("asal_provinsi", user?.asal_provinsi || "");
-  }, [user, setValue]);
   const [isEditingAddressInformation, setIsEditingAddressInformation] =
     useState(false);
 
@@ -44,17 +20,10 @@ export default function AddressInformation({
   };
 
   useEffect(() => {
-    if (isSuccessUpdateUser || isErrorUpdateUser) {
-      handleUpdateUser(responseUpdateUser?.message || "Error");
-      resetUpdateUser();
+    if (responseUpdateUser) {
+      setIsEditingAddressInformation(false);
     }
-  }, [
-    isSuccessUpdateUser,
-    isErrorUpdateUser,
-    handleUpdateUser,
-    responseUpdateUser,
-    resetUpdateUser,
-  ]);
+  }, [responseUpdateUser]);
 
   return (
     <form
@@ -63,15 +32,31 @@ export default function AddressInformation({
     >
       <div className="flex flex-row justify-between items-center w-full">
         <h2 className="text-white text-3xl font-medium">Address Information</h2>
-        <button
-          onClick={handleEditAddressInformation}
-          type="submit"
-          className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
-        >
-          <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
-            {isEditingAddressInformation ? "Save" : "Edit"}
-          </p>
-        </button>
+        {isEditingAddressInformation ? (
+          <div className="flex items-center justify-center gap-3">
+            <button
+              type="submit"
+              className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
+            >
+              <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
+                Save
+              </p>
+            </button>
+            <button type="button" onClick={handleEditAddressInformation}>
+              <FaX className="text-white text-2xl" />
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={handleEditAddressInformation}
+            className="relative px-4 py-2 rounded-lg text-lg z-10 group transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:rounded-lg before:bg-gradient-to-r before:from-[#435ECF] before:via-[#E24BB3] before:to-[#FF9433] before:z-[-1] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:right-[2px] after:bottom-[2px] after:rounded-lg after:bg-black after:z-[-1] hover:after:bg-gradient-to-r hover:after:from-[#435ECF] hover:after:via-[#E24BB3] hover:after:to-[#FF9433] group-hover:text-white"
+          >
+            <p className="bg-vertical-gta bg-clip-text text-transparent font-medium group-hover:text-white">
+              Edit
+            </p>
+          </button>
+        )}
       </div>
 
       {isEditingAddressInformation ? (

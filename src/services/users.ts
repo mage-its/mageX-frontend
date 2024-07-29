@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import apiClient, { ResponseSchema } from "./api-client";
+import { removeCookie } from "@/utils/removeCookie";
 
 // export interface Details {
 //   status: string;
@@ -44,7 +45,6 @@ export const getUserData = async (): Promise<User> => {
     .then((res) => ({ is_logged_in: true, ...res.data.data }))
     .catch((error) => {
       console.error("Error fetching data:", error.response.data.message);
-
       return { is_logged_in: false };
     });
 };
@@ -95,7 +95,8 @@ export const logout = async (): Promise<void> => {
   return apiClient
     .put("users/logout")
     .then(() => {
-      window.location.reload();
+      removeCookie("session");
+      // window.location.reload();
     })
     .catch((error) => {
       console.error("Error logging out:", error);
