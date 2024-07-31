@@ -365,6 +365,25 @@ const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
                 className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
               ></img>
             </div>
+
+            {x.key == "Competitive Programming" && (
+              <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
+                <img
+                  src={ToRight}
+                  alt="line"
+                  className="desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-[252px] ipad:ml-[130px]"
+                ></img>
+                <div className="desktop:mt-[22px] ipad:mt-[24px]">
+                  <Timebox
+                    date={x?.timeline[7][0]}
+                    event={x?.timeline[7][1]}
+                    img={x?.timeline[7][2]}
+                    side="right"
+                    theme={x?.theme}
+                  ></Timebox>
+                </div>
+            </div>
+            )}
           </div>
         ) : null}
       </div>
@@ -904,7 +923,7 @@ export default function Competition() {
 
         <div
           className={cn(
-            "relative z-0 desktop:mt-[-60px] mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
+            "relative z-0 desktop:mt-[160px] mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
             { "desktop:mt-0 ipad:block ipad:mt-0": x?.theme == "orange" }
           )}
         >
