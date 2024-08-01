@@ -501,7 +501,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                         { "text-light": x?.theme == "purple" }
                       )}
                     >
-                      Poolprize
+                      Biaya Pendaftaran
                     </p>
                     <div
                       className={cn(
