@@ -172,8 +172,7 @@ const App: React.FC = () => {
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
-          handleYesClick={handleYesClick}
-          text={`Do you want to register to Multimedia Workshop?`}
+          text={`Registration Closed`}
         />
       ) : (
         <Popup
