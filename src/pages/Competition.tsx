@@ -626,7 +626,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
               <div>
                 <div
                   className={cn(
-                    "desktop:absolute mobile:relative w-[126px] h-[112px] desktop:mt-0 mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 bg-orange-primary-2 rounded",
+                    "desktop:absolute mobile:relative w-[126px] h-fit desktop:mt-0 mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 bg-orange-primary-2 rounded",
                     { "bg-[#F9E3FD]": x?.theme == "purple" }
                   )}
                 >
@@ -680,7 +680,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
 
                 <div
                   className={cn(
-                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[130px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 rounded",
+                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[172px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 rounded",
                     {
                       "bg-gradient-to-r from-[#3A0D49] to-[#7B2A62]":
                         x?.theme == "purple",

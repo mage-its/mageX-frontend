@@ -329,6 +329,24 @@ export const eSport: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Hendrik (ML)",
+      phone: "081269923325 (WA)",
+    },
+    {
+      name: "Davi (ML)",
+      phone: "085776143714 (WA)",
+    },
+    {
+      name: "Wildan (Valorant)",
+      phone: "081519971319 (WA)",
+    },
+    {
+      name: "Rizky (Valorant)",
+      phone: "087876967987 (WA)",
+    },
+  ],
 };
 
 export const uiUx: Contest = {
@@ -460,4 +478,14 @@ export const competitiveProgramming: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Zadun",
+      phone: "085229801965 (WA)",
+    },
+    {
+      name: "Thoriq",
+      phone: "081249007271 (WA)"
+    },
+  ]
 };
