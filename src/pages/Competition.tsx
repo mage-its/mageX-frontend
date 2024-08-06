@@ -365,6 +365,25 @@ const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
                 className="z-10 desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-0 ipad:ml-[144px]"
               ></img>
             </div>
+
+            {x.key == "Competitive Programming" && (
+              <div className="w-fit flex flex-nowrap gap-4 desktop:mt-[21px] ipad:mt-[21px]">
+                <img
+                  src={ToRight}
+                  alt="line"
+                  className="desktop:block ipad:block mobile:hidden w-[126px] h-[75px] desktop:ml-[252px] ipad:ml-[130px]"
+                ></img>
+                <div className="desktop:mt-[22px] ipad:mt-[24px]">
+                  <Timebox
+                    date={x?.timeline[7][0]}
+                    event={x?.timeline[7][1]}
+                    img={x?.timeline[7][2]}
+                    side="right"
+                    theme={x?.theme}
+                  ></Timebox>
+                </div>
+            </div>
+            )}
           </div>
         ) : null}
       </div>
@@ -482,7 +501,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                         { "text-light": x?.theme == "purple" }
                       )}
                     >
-                      Poolprize
+                      Biaya Pendaftaran
                     </p>
                     <div
                       className={cn(
@@ -607,7 +626,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
               <div>
                 <div
                   className={cn(
-                    "desktop:absolute mobile:relative w-[126px] h-[112px] desktop:mt-0 mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 bg-orange-primary-2 rounded",
+                    "desktop:absolute mobile:relative w-[126px] h-fit desktop:mt-0 mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 bg-orange-primary-2 rounded",
                     { "bg-[#F9E3FD]": x?.theme == "purple" }
                   )}
                 >
@@ -661,7 +680,7 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
 
                 <div
                   className={cn(
-                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[130px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 rounded",
+                    "desktop:absolute mobile:relative desktop:pt-0 mobile:pt-[1px] w-[118px] h-[19px] rounded bg-gradient-to-l from-[#FFA567] to-[#FE874F] desktop:mt-[172px] mobile:mt-[32px] desktop:ml-[221px] mobile:ml-0 rounded",
                     {
                       "bg-gradient-to-r from-[#3A0D49] to-[#7B2A62]":
                         x?.theme == "purple",
@@ -904,7 +923,7 @@ export default function Competition() {
 
         <div
           className={cn(
-            "relative z-0 desktop:mt-[-60px] mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
+            "relative z-0 desktop:mt-[160px] mobile:mt-0 desktop:block ipad:block ipad:mt-0 mobile:hidden",
             { "desktop:mt-0 ipad:block ipad:mt-0": x?.theme == "orange" }
           )}
         >
