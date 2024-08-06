@@ -7,7 +7,7 @@ import Popup from "@/components/Dashboard/User/Home/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useCreateTeam, useLeadTeams } from "@/services/team";
 import { useUserData } from "@/services/users";
-import Select, { Option } from "@/components/Select";
+// import Select, { Option } from "@/components/Select";
 
 const CompetitionComponent: React.FC = () => {
   const navigate = useNavigate();
@@ -99,10 +99,10 @@ const CompetitionComponent: React.FC = () => {
     setIsPopupVisible(false);
   };
 
-  const handleSelectEsport = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setPopupDestination(e.target.value);
-  };
+  // const handleSelectEsport = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   console.log(e.target.value);
+  //   setPopupDestination(e.target.value);
+  // };
 
   return (
     <div
