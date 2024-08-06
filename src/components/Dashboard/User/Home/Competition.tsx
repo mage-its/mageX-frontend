@@ -7,6 +7,7 @@ import Popup from "@/components/Dashboard/User/Home/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useCreateTeam, useLeadTeams } from "@/services/team";
 import { useUserData } from "@/services/users";
+import Select, { Option } from "@/components/Select";
 
 const CompetitionComponent: React.FC = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const CompetitionComponent: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [isPopupEsportVisible, setIsPopupEsportVisible] = useState(false);
   const [popupDestination, setPopupDestination] = useState("");
 
   const [dragConstraints, setDragConstraints] = useState({
@@ -84,12 +86,22 @@ const CompetitionComponent: React.FC = () => {
   }, [competitionCardWidth]);
 
   const handleCardClick = (destination: string) => {
-    setPopupDestination(destination);
-    setIsPopupVisible(true);
+    if (destination === "Esport") {
+      setIsPopupEsportVisible(true);
+    } else {
+      setIsPopupEsportVisible(false);
+      setPopupDestination(destination);
+      setIsPopupVisible(true);
+    }
   };
 
   const handleClosePopup = () => {
     setIsPopupVisible(false);
+  };
+
+  const handleSelectEsport = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setPopupDestination(e.target.value);
   };
 
   return (
@@ -176,39 +188,39 @@ const CompetitionComponent: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      {popupDestination == "App Dev" ||
-      popupDestination == "Game Dev" ||
-      popupDestination == "IoT" ||
-      popupDestination == "Robotics" ? (
-        user?.verified === "true" ? (
-          teams == undefined ? (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              handleYesClick={handleYesClick}
-              text="You will be registered as Team Leader Do you want to continue?"
-            />
-          ) : (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              text="You're already leader of a team. Cannot create another team"
-            />
-          )
+      {user?.verified === "true" ? (
+        teams == undefined ? (
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            handleYesClick={handleYesClick}
+            text="You will be registered as Team Leader Do you want to continue?"
+          />
         ) : (
           <Popup
             isVisible={isPopupVisible}
             onClose={handleClosePopup}
-            text="You are not verified. Please complete your data first and wait while we verify your data"
+            text="You're already leader of a team. Cannot create another team"
           />
         )
       ) : (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
-          text="Coming Soon"
+          text="You are not verified. Please complete your data first and wait while we verify your data"
         />
       )}
+      <Popup
+        isVisible={isPopupEsportVisible}
+        onClose={() => setIsPopupEsportVisible(false)}
+        handleYesClick={() => handleCardClick(popupDestination)}
+        text="Please select the e-sport category you would like to compete in"
+      >
+        <Select onChange={handleSelectEsport}>
+          <Option value="Mobile Legends">Mobile Legends</Option>
+          <Option value="Valorant">Valorant</Option>
+        </Select>
+      </Popup>
     </div>
   );
 };

@@ -330,3 +330,39 @@ export const competitiveProgramming: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
 };
+
+export const valorant: Contest = {
+  maxMember: 5,
+  icon: EsportIcon,
+  homeCaption: "Show off your skill as a gamer, explore widely with us!",
+  title: "VALORANT",
+  key: "Valorant",
+  theme: "purple",
+  leftVector: PurpleLeftDecor,
+  rightVector: PurpleRightDecor,
+  aboutCaption:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget vulputate enim. Mauris viverra semper lectus, vel porta ante luctus in. Praesent eget faucibus lectus. ",
+  aboutImage: Placeholder,
+  timeline: [
+    ["21 Agustus - 28 Agustus 2024", "PENDAFTARAN", keypad],
+    ["7 September - 6 Oktober", "PENYISIHAN", announce],
+    ["12 Oktober", "SEMIFINAL", timepen],
+    ["13 Oktober", "FINAL", announce],
+  ],
+  overviewDesc:
+    "Perlombaan ini terdiri dari 2 cabang yaitu adalah turnamen game Valorant dan Turnamen game Mobile legend. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Tujuan dari perlombaan ini yaitu menciptakan nilai kompeten dari peserta lomba dan meramaikan acara MAGE X ini.",
+  overviewImage: Placeholder2,
+  participant: "5 Orang/tim",
+  category: "SMA/SMK/sederajat dan Mahasiswa",
+  prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Wildan",
+      phone: "081519971319 (WA)",
+    },
+    {
+      name: "Rizky",
+      phone: "087876967987 (WA)",
+    },
+  ],
+};

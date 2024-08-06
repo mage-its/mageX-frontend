@@ -2,11 +2,11 @@ import React from "react";
 import InformationLogo from "@/assets/dashboardHome/informationLogo.svg";
 import CloseButton from "@/assets/dashboardHome/closeButton.svg";
 
-interface PopupProps {
+interface PopupProps extends React.ComponentPropsWithoutRef<"div"> {
   isVisible: boolean;
   onClose: () => void;
   handleYesClick?: () => void;
-  text: string;
+  text?: string;
 }
 
 const Popup: React.FC<PopupProps> = ({
@@ -14,6 +14,7 @@ const Popup: React.FC<PopupProps> = ({
   onClose,
   handleYesClick,
   text,
+  children,
 }) => {
   if (!isVisible) return null;
   return (
@@ -28,7 +29,8 @@ const Popup: React.FC<PopupProps> = ({
           <img src={InformationLogo} alt="Information" />
           <span className="ml-2">Information</span>
         </div>
-        <p className="mt-4 mb-3 mx-3">{text}</p>
+        {text && <p className="mt-4 mb-3 mx-3">{text}</p>}
+        {children && <div className="mt-4 mb-3 mx-3">{children}</div>}
         {handleYesClick && (
           <div className="flex-col px-6 mt-6">
             <button

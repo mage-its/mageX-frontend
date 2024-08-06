@@ -30,6 +30,7 @@ import {
   iot,
   robotic,
   uiUx,
+  valorant,
 } from "@/constant/competitionPage";
 import Popup from "@/components/Dashboard/User/Home/PopUp";
 import InputFile from "@/components/InputFile";
@@ -325,12 +326,12 @@ export default function DashboardCompetition() {
     if (
       step === 3 ||
       teams?.divisi == "Robotics" ||
+      teams?.divisi == "Competitive Programming" ||
       teams?.status === "" ||
       (step === 2 && teams?.status === "tahap-1") ||
       (step === 3 && teams?.status === "tahap-2")
     )
       return;
-    setSearchParams(new URLSearchParams("step=" + (step + 1)));
   };
 
   const decreaseStep = () => {
@@ -341,6 +342,7 @@ export default function DashboardCompetition() {
     if (
       step === 4 ||
       teams?.divisi == "Robotics" ||
+      teams?.divisi == "Competitive Programming" ||
       teams?.status === "" ||
       (step === 3 && teams?.status === "tahap-1")
     ) {
@@ -356,6 +358,7 @@ export default function DashboardCompetition() {
     IoT: iot,
     Robotics: robotic,
     "Game Dev": gameDev,
+    Valorant: valorant,
   };
 
   const format: { [key: string]: string } = {
@@ -363,6 +366,10 @@ export default function DashboardCompetition() {
     IoT: "IoT",
     Robotics: "Robotik",
     "Game Dev": "GameDev",
+    "UI/UX": "UIUX",
+    Valorant: "Valorant",
+    "Mobile Legends": "MobileLegends",
+    "Competitive Programming": "CP",
   };
 
   useEffect(() => {
@@ -406,10 +413,10 @@ export default function DashboardCompetition() {
             <img src={profilePIcture} alt="" />
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col h-[450px] md:h-[600px] lg:basis-[47%] gap-2.5 lg:gap-6">
+        <div className="flex lg:flex-row flex-col h-max lg:basis-[47%] gap-2.5 lg:gap-6 shrink-0">
           <form
             onSubmit={teamHandleSubmit(onSubmit)}
-            className="bg-black/80 rounded-[20px] basis-[70%] h-full overflow-hidden"
+            className="bg-black/80 rounded-[20px] h-fit shrink-0 lg:shrink lg:basis-[70%] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex gap-2 lg:gap-4">
@@ -498,14 +505,14 @@ export default function DashboardCompetition() {
               </div>
             </div>
           </form>
-          <div className="flex flex-col bg-black/80 rounded-[20px] basis-[30%] h-full overflow-hidden">
+          <div className="flex flex-col bg-black/80 rounded-[20px] lg:basis-[30%] shrink-0  overflow-hidden">
             <div className="flex items-center gap-2 lg:gap-4 bg-gray-2 px-4 py-3">
               <FaPhone className="text-white text-base md:text-lg lg:text-xl" />
               <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                 Contact Person
               </h1>
             </div>
-            <div className="grow flex flex-row justify-center lg:flex-col gap-[15px] px-4 py-3">
+            <div className="grow flex flex-row justify-center lg:flex-col gap-[15px] h-[120px] px-4 py-3">
               <div className="flex flex-col justify-center items-center bg-grayscale basis-1/2 w-full rounded-[15px]">
                 <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
                   {competitionPath[teams?.divisi as string]?.contact?.[0]
@@ -553,12 +560,6 @@ export default function DashboardCompetition() {
                 </div>
               </div>
               <div className="flex gap-2 lg:gap-4">
-                <CompetitionButton onClick={decreaseStep} disabled>
-                  <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Previous
-                  </h1>
-                </CompetitionButton>
                 {window.innerWidth > 768 && (
                   <CompetitionButton
                     type="submit"
@@ -570,18 +571,19 @@ export default function DashboardCompetition() {
                     <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
                   </CompetitionButton>
                 )}
-                <CompetitionButton
-                  onClick={increaseStep}
-                  disabled={
-                    teams?.status === "" || teams?.divisi === "Robotics"
-                  }
-                  type="button"
-                >
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Next
-                  </h1>
-                  <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
-                </CompetitionButton>
+                {teams?.divisi !== "Robotics" &&
+                  teams?.divisi !== "Competitive Programming" && (
+                    <CompetitionButton
+                      onClick={increaseStep}
+                      type="button"
+                      disabled={teams?.status == ""}
+                    >
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Next
+                      </h1>
+                      <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
+                    </CompetitionButton>
+                  )}
               </div>
             </div>
             <div className="p-4 w-full grow flex flex-col md:grid grid-cols-2 gap-2.5">
@@ -637,7 +639,9 @@ export default function DashboardCompetition() {
                           <Option value="sma">SMA</Option>
                         </>
                       )}
-                      {teams?.divisi == "IoT" && (
+                      {(teams?.divisi == "IoT" ||
+                        teams?.divisi == "Valorant" ||
+                        teams?.divisi == "Mobile Legends") && (
                         <Option value="umum">Umum</Option>
                       )}
                     </Select>
@@ -678,184 +682,188 @@ export default function DashboardCompetition() {
             </div>
           </form>
         )}
-        {step === 2 && teams?.divisi !== "Robotics" && (
-          <form
-            onSubmit={registStepTwoHandleSubmit(onSubmitRegistStepTwo)}
-            className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
-          >
-            <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
-              <div className="flex items-center gap-2 lg:gap-4">
-                <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
-                <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Registration
-                  </h1>
-                  {teams?.status !== "tahap-1" && (
-                    <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
-                      <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                        Step 2 Verified
-                      </p>
-                    </div>
+        {step === 2 &&
+          teams?.divisi !== "Robotics" &&
+          teams?.divisi !== "Competitive Programming" && (
+            <form
+              onSubmit={registStepTwoHandleSubmit(onSubmitRegistStepTwo)}
+              className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
+            >
+              <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
+                <div className="flex items-center gap-2 lg:gap-4">
+                  <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
+                  <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Registration
+                    </h1>
+                    {teams?.status !== "tahap-1" && (
+                      <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                        <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                          Step 2 Verified
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex gap-2 lg:gap-4">
+                  <CompetitionButton onClick={decreaseStep}>
+                    <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Previous
+                    </h1>
+                  </CompetitionButton>
+                  {window.innerWidth > 768 && (
+                    <CompetitionButton
+                      type="submit"
+                      disabled={teams?.status !== "tahap-1"}
+                    >
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Submit
+                      </h1>
+                      <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    </CompetitionButton>
+                  )}
+                  <CompetitionButton
+                    onClick={increaseStep}
+                    disabled={teams?.status === "tahap-1"}
+                    type="button"
+                  >
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Next
+                    </h1>
+                    <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
+                  </CompetitionButton>
+                </div>
+              </div>
+              <div className="p-4 w-full h-full grow">
+                <div className="flex flex-col w-full h-full gap-4">
+                  <Controller
+                    name="proposal"
+                    control={registStepTwoControl}
+                    render={({ field }) => (
+                      <InputFile
+                        {...field}
+                        label="Proposal"
+                        placeholder="Upload Here"
+                        formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
+                        formatFile=".pdf"
+                        maxFileSize="5MB"
+                        accept=".pdf"
+                        value={undefined}
+                        onRemove={onRemoveProposal}
+                        onChange={handleChangeProposal}
+                        link_file={linkProposal}
+                        disabled={teams?.status === "tahap-2"}
+                      />
+                    )}
+                  />
+                  {window.innerWidth <= 768 && (
+                    <CompetitionButton
+                      type="submit"
+                      disabled={teams?.status !== "tahap-1"}
+                    >
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Submit
+                      </h1>
+                      <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    </CompetitionButton>
                   )}
                 </div>
               </div>
-              <div className="flex gap-2 lg:gap-4">
-                <CompetitionButton onClick={decreaseStep}>
-                  <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Previous
-                  </h1>
-                </CompetitionButton>
-                {window.innerWidth > 768 && (
-                  <CompetitionButton
-                    type="submit"
-                    disabled={teams?.status !== "tahap-1"}
-                  >
+            </form>
+          )}
+        {step === 3 &&
+          teams?.divisi !== "Robotics" &&
+          teams?.divisi !== "Competitive Programming" && (
+            <form
+              onSubmit={registStepThreeHandleSubmit(onSubmitRegistStepThree)}
+              className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
+            >
+              <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
+                <div className="flex items-center gap-2 lg:gap-4">
+                  <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
+                  <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Submit
+                      Registration
                     </h1>
-                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    {teams?.status !== "tahap-2" && (
+                      <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
+                        <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                          Step 3 Verified
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex gap-2 lg:gap-4">
+                  <CompetitionButton onClick={decreaseStep}>
+                    <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Previous
+                    </h1>
                   </CompetitionButton>
-                )}
-                <CompetitionButton
-                  onClick={increaseStep}
-                  disabled={teams?.status === "tahap-1"}
-                  type="button"
-                >
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Next
-                  </h1>
-                  <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
-                </CompetitionButton>
-              </div>
-            </div>
-            <div className="p-4 w-full h-full grow">
-              <div className="flex flex-col w-full h-full gap-4">
-                <Controller
-                  name="proposal"
-                  control={registStepTwoControl}
-                  render={({ field }) => (
-                    <InputFile
-                      {...field}
-                      label="Proposal"
-                      placeholder="Upload Here"
-                      formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
-                      formatFile=".pdf"
-                      maxFileSize="5MB"
-                      accept=".pdf"
-                      value={undefined}
-                      onRemove={onRemoveProposal}
-                      onChange={handleChangeProposal}
-                      link_file={linkProposal}
-                      disabled={teams?.status === "tahap-2"}
-                    />
+                  {window.innerWidth > 768 && (
+                    <CompetitionButton
+                      type="submit"
+                      disabled={teams?.status !== "tahap-2"}
+                    >
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Submit
+                      </h1>
+                      <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    </CompetitionButton>
                   )}
-                />
-                {window.innerWidth <= 768 && (
-                  <CompetitionButton
-                    type="submit"
-                    disabled={teams?.status !== "tahap-1"}
-                  >
+                  <CompetitionButton onClick={increaseStep} disabled>
                     <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Submit
+                      Next
                     </h1>
-                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
                   </CompetitionButton>
-                )}
+                </div>
               </div>
-            </div>
-          </form>
-        )}
-        {step === 3 && teams?.divisi !== "Robotics" && (
-          <form
-            onSubmit={registStepThreeHandleSubmit(onSubmitRegistStepThree)}
-            className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
-          >
-            <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
-              <div className="flex items-center gap-2 lg:gap-4">
-                <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
-                <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Registration
-                  </h1>
-                  {teams?.status !== "tahap-2" && (
-                    <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
-                      <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                        Step 3 Verified
-                      </p>
-                    </div>
+              <div className="p-4 w-full h-full grow">
+                <div className="flex flex-col justify-around w-full h-full">
+                  <Controller
+                    name="link_video"
+                    control={registStepThreeControl}
+                    render={({ field }) => (
+                      <InputField
+                        {...field}
+                        label="Video"
+                        placeholder="Enter link here"
+                        className="py-7"
+                        disabled={teams?.status === "tahap-3"}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name="link_karya"
+                    control={registStepThreeControl}
+                    render={({ field }) => (
+                      <InputField
+                        {...field}
+                        label="Work/Product (Karya)"
+                        placeholder="Enter link here"
+                        className="py-7"
+                        disabled={teams?.status === "tahap-3"}
+                      />
+                    )}
+                  />
+                  {window.innerWidth <= 768 && (
+                    <CompetitionButton
+                      type="submit"
+                      disabled={teams?.status !== "tahap-2"}
+                    >
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Submit
+                      </h1>
+                      <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
+                    </CompetitionButton>
                   )}
                 </div>
               </div>
-              <div className="flex gap-2 lg:gap-4">
-                <CompetitionButton onClick={decreaseStep}>
-                  <FaArrowLeft className="text-white text-xs md:text-sm lg:text-base" />
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Previous
-                  </h1>
-                </CompetitionButton>
-                {window.innerWidth > 768 && (
-                  <CompetitionButton
-                    type="submit"
-                    disabled={teams?.status !== "tahap-2"}
-                  >
-                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Submit
-                    </h1>
-                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
-                  </CompetitionButton>
-                )}
-                <CompetitionButton onClick={increaseStep} disabled>
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Next
-                  </h1>
-                  <FaArrowRight className="text-white text-xs md:text-sm lg:text-base" />
-                </CompetitionButton>
-              </div>
-            </div>
-            <div className="p-4 w-full h-full grow">
-              <div className="flex flex-col justify-around w-full h-full">
-                <Controller
-                  name="link_video"
-                  control={registStepThreeControl}
-                  render={({ field }) => (
-                    <InputField
-                      {...field}
-                      label="Video"
-                      placeholder="Enter link here"
-                      className="py-7"
-                      disabled={teams?.status === "tahap-3"}
-                    />
-                  )}
-                />
-                <Controller
-                  name="link_karya"
-                  control={registStepThreeControl}
-                  render={({ field }) => (
-                    <InputField
-                      {...field}
-                      label="Work/Product (Karya)"
-                      placeholder="Enter link here"
-                      className="py-7"
-                      disabled={teams?.status === "tahap-3"}
-                    />
-                  )}
-                />
-                {window.innerWidth <= 768 && (
-                  <CompetitionButton
-                    type="submit"
-                    disabled={teams?.status !== "tahap-2"}
-                  >
-                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Submit
-                    </h1>
-                    <PiPaperPlaneRightFill className="text-white text-xs md:text-sm lg:text-base" />
-                  </CompetitionButton>
-                )}
-              </div>
-            </div>
-          </form>
-        )}
+            </form>
+          )}
       </div>
       <Popup
         isVisible={isPopupVisible}
