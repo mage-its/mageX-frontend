@@ -75,10 +75,26 @@ export const gameDev: Contest = {
       "Pengumpulan Tahap Realisasi Karya & Video",
       timepen,
     ],
-    ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-    ["24 November 2024", "Presentasi Final", announce],
-    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
+    [
+      "13 November 2024", 
+      "PengUMUman Tahap Seleksi Karya", 
+      announce
+    ],
+    [
+      "15 november 2024", 
+      "TECHNICAL MEETING FINAL", 
+      techmeet
+    ],
+    [
+      "24 November 2024", 
+      "Presentasi Final", 
+      announce
+    ],
+    [
+      "25 November 2024", 
+      "Awarding, Talkshow, dan Exhibition",
+      keypad
+    ],
   ],
   extraBox: true,
   overviewDesc:
@@ -218,16 +234,36 @@ export const iot: Contest = {
       "PENDAFTARAN DAN PENGUMPULAN PROPOSAL",
       keypad,
     ],
-    ["16 September 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
+    [
+      "16 September 2024", 
+      "PENGUMUMAN TAHAP PROPOSAL", 
+      announce
+    ],
     [
       "16 September - 10 November 2024",
       "Pengumpulan Tahap Realisasi Karya & Video",
       timepen,
     ],
-    ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
-    ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-    ["24 November 2024", "Presentasi Final", announce],
-    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
+    [
+      "13 November 2024", 
+      "PengUMUman Tahap Seleksi Karya", 
+      announce
+    ],
+    [
+      "15 november 2024", 
+      "TECHNICAL MEETING FINAL", 
+      techmeet
+    ],
+    [
+      "24 November 2024", 
+      "Presentasi Final", 
+      announce
+    ],
+    [
+      "25 November 2024", 
+      "Awarding, Talkshow, dan Exhibition", 
+      keypad
+    ],
   ],
   extraBox: true,
   overviewDesc:
@@ -266,10 +302,26 @@ export const eSport: Contest = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget vulputate enim. Mauris viverra semper lectus, vel porta ante luctus in. Praesent eget faucibus lectus. ",
   aboutImage: Placeholder,
   timeline: [
-    ["20 Mei - 5 November 2024", "PENDAFTARAN", keypad],
-    ["12 November 2024", "PENGUMUMAN TAHAP PROPOSAL", announce],
-    ["8 Oktober - 9 November 2024", "Pengumpulan Tahap Seleksi Karya", timepen],
-    ["11 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
+    [
+      "21 Agustus - 28 Agustus 2024", 
+      "PENDAFTARAN", 
+      keypad
+    ],
+    [
+      "7 September - 6 Oktober 2024", 
+      "PENYISIHAN", 
+      announce
+    ],
+    [
+      "12 Oktober 2024", 
+      "SEMIFINAL", 
+      timepen
+    ],
+    [
+      "13 Oktober 2024", 
+      "FINAL & BRONZE MATCH", 
+      announce
+    ],
   ],
   overviewDesc:
     "Perlombaan ini terdiri dari 2 cabang yaitu adalah turnamen game Valorant dan Turnamen game Mobile legend. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Untuk memenangkan game ini peserta harus memiliki kerja sama tim dan mempunyai strategi yang efektif untuk mengalahkan peserta lainnya. Tujuan dari perlombaan ini yaitu menciptakan nilai kompeten dari peserta lomba dan meramaikan acara MAGE X ini.",
@@ -277,6 +329,24 @@ export const eSport: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Hendrik (ML)",
+      phone: "081269923325 (WA)",
+    },
+    {
+      name: "Davi (ML)",
+      phone: "085776143714 (WA)",
+    },
+    {
+      name: "Wildan (Valorant)",
+      phone: "081519971319 (WA)",
+    },
+    {
+      name: "Rizky (Valorant)",
+      phone: "087876967987 (WA)",
+    },
+  ],
 };
 
 export const uiUx: Contest = {
@@ -291,11 +361,43 @@ export const uiUx: Contest = {
   aboutCaption:
     "UI/UX adalah cabang perlombaan dari event MAGE X dimana peserta akan berkompetisi dalam mendesain UI/UX tentang pembuatan aplikasi dan web.",
   aboutImage: Placeholder,
+  extraBox: true,
   timeline: [
-    ["20 Mei - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["17 November 2024", "FINAL DAN EXHIBITION", robot],
+    [
+      "6 Agustus - 14 September 2024", 
+      "Pendaftaran & Pengumpulan Abstrak", 
+      keypad
+    ],
+    [
+      "16 September 2024", 
+      "Pengumuman Tahap 1 (Abstrak)", 
+      announce
+    ],
+    [
+      "16 September - 10 November 2024", 
+      "Pengumuman Tahap 2 (Proposal & Video)", 
+      announce
+    ],
+    [
+      "13 November 2024", 
+      "Pengumuman Tahap 2 (Realisasi Karya)", 
+      announce
+    ],
+    [
+      "15 November 2024", 
+      "Technical Meeting Final", 
+      techmeet
+    ],
+    [
+      "24 November 2024", 
+      "Presentasi Final", 
+      keypad
+    ],
+    [
+      "25 November 2024", 
+      "Awarding & Exhibition", 
+      announce
+    ],
   ],
   overviewDesc:
     "Pada perlombaan ini, peserta lomba akan dituntut untuk berkompetisi dalam pembuatan desain tentang tampilan web dan aplikasi yang dapat berfungsi dengan baik dan memiliki kemudahan akses dari sudut pengguna serta memiliki desain gambar yang menarik. Kriteria penilaian dari perlombaan ini yaitu dari fungsi, kemudahan akses serta desain gambar yang menarik.",
@@ -303,6 +405,16 @@ export const uiUx: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Rigel",
+      phone: "085234115941 (WA)",
+    },
+    {
+      name: "Syawal",
+      phone: "081354055259 (WA)",
+    },
+  ],
 };
 
 export const competitiveProgramming: Contest = {
@@ -317,11 +429,48 @@ export const competitiveProgramming: Contest = {
   aboutCaption:
     "Competitive Programming adalah cabang perlombaan dari event MAGE X dimana peserta akan bersaing satu sama lain untuk menyelesaikan soal-soal logika dan pemrograman dalam waktu yang terbatas.",
   aboutImage: Placeholder,
+  extraBox: true,
   timeline: [
-    ["20 Mei - 5 November 2024", "Pendaftaran", keypad],
-    ["12 November 2024", "Technical Meeting Perlombaan", announce],
-    ["16 November 2024", "Penyisihan Robotik Tahap 1", truck],
-    ["Final Dan Exhibition", "17 November 2024", robot],
+    [
+      "7 Agustus - 30 September 2024", 
+      "Pendaftaran", 
+      keypad
+    ],
+    [
+      "5 Oktober 2024", 
+      "Technical Meeting Babak Penyisihan",
+      techmeet
+    ],
+    [
+      "6 Oktober 2024", 
+      "Warmup", 
+      timepen
+    ],
+    [
+      "13 Oktober 2024", 
+      "Babak Penyisihan", 
+      truck
+    ],
+    [
+      "20 Oktober 2024", 
+      "Pengumuman Finalis", 
+      announce
+    ],
+    [
+      "17 November 2024", 
+      "Technical Meeting Babak Final", 
+      techmeet
+    ],
+    [
+      "24 November 2024", 
+      "Babak Final", 
+      robot
+    ],
+    [
+      "25 November 2024", 
+      "Awarding & Exhibition", 
+      announce
+    ],
   ],
   overviewDesc:
     "Peserta akan ditantang untuk memberikan program serta algoritma terbaik mereka dalam menyelesaikan masalah yang diberikan. Perlombaan ini dilaksanakan secara online sepenuhnya di platform Kaggle yang terdiri  dua babak yaitu penyisihan dan final. Tujuan dilaksanakannya kompetisi ini adalah untuk memperkenalkan bagaimana Departemen Teknik Komputer ITS akan banyak berkutat terkait pemecahan masalah melalui pemrograman.",
@@ -329,4 +478,14 @@ export const competitiveProgramming: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  contact: [
+    {
+      name: "Zadun",
+      phone: "085229801965 (WA)",
+    },
+    {
+      name: "Thoriq",
+      phone: "081249007271 (WA)"
+    },
+  ]
 };
