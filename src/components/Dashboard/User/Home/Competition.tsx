@@ -210,7 +210,7 @@ const CompetitionComponent: React.FC = () => {
           text="You are not verified. Please complete your data first and wait while we verify your data"
         />
       )}
-      <Popup
+      {/* <Popup
         isVisible={isPopupEsportVisible}
         onClose={() => setIsPopupEsportVisible(false)}
         handleYesClick={() => handleCardClick(popupDestination)}
@@ -220,7 +220,12 @@ const CompetitionComponent: React.FC = () => {
           <Option value="Mobile Legends">Mobile Legends</Option>
           <Option value="Valorant">Valorant</Option>
         </Select>
-      </Popup>
+      </Popup> */}
+      <Popup
+        isVisible={isPopupEsportVisible}
+        onClose={() => setIsPopupEsportVisible(false)}
+        text="Coming soon"
+      />
     </div>
   );
 };

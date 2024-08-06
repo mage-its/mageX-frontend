@@ -285,9 +285,9 @@ export default function DashboardCompetition() {
   };
 
   const onSubmitRegistStepThree: SubmitHandler<RegistStepThree> = (data) => {
-    // console.log(data);
+    console.log(data);
     updateTeamInformation({
-      link_video: data.link_video,
+      link_video: "-",
       link_karya: data.link_karya,
     });
   };
@@ -323,6 +323,7 @@ export default function DashboardCompetition() {
   };
 
   const increaseStep = () => {
+    console.log(teams?.status);
     if (
       step === 3 ||
       teams?.divisi == "Robotics" ||
@@ -332,6 +333,7 @@ export default function DashboardCompetition() {
       (step === 3 && teams?.status === "tahap-2")
     )
       return;
+    setSearchParams(new URLSearchParams("step=" + (step + 1)));
   };
 
   const decreaseStep = () => {
@@ -366,10 +368,17 @@ export default function DashboardCompetition() {
     IoT: "IoT",
     Robotics: "Robotik",
     "Game Dev": "GameDev",
-    "UI/UX": "UIUX",
+    "UI/UX": "UI/UX",
     Valorant: "Valorant",
     "Mobile Legends": "MobileLegends",
     "Competitive Programming": "CP",
+  };
+
+  const labelTahap3: { [key: string]: string } = {
+    "UI/UX": "Link Proposal & Video (disatukan dalam .rar)",
+    "App Dev": "Link Work/Product (Karya) & Video (disatukan dalam .rar)",
+    IoT: "Link Laporan & Video (disatukan dalam .rar)",
+    "Game Dev": "Link Work/Product (Karya) & Video (disatukan dalam .rar)",
   };
 
   useEffect(() => {
@@ -413,10 +422,10 @@ export default function DashboardCompetition() {
             <img src={profilePIcture} alt="" />
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col h-max lg:basis-[47%] gap-2.5 lg:gap-6 shrink-0">
+        <div className="flex lg:flex-row flex-col h-max lg:basis-[47%] gap-2.5 lg:gap-6 shrink-0 lg:shrink">
           <form
             onSubmit={teamHandleSubmit(onSubmit)}
-            className="bg-black/80 rounded-[20px] h-fit shrink-0 lg:shrink lg:basis-[70%] overflow-hidden"
+            className="bg-black/80 rounded-[20px] h-fit lg:h-full shrink-0 lg:shrink lg:basis-[70%] overflow-hidden"
           >
             <div className="flex items-center justify-between bg-gray-2 px-4 py-3">
               <div className="flex gap-2 lg:gap-4">
@@ -505,7 +514,7 @@ export default function DashboardCompetition() {
               </div>
             </div>
           </form>
-          <div className="flex flex-col bg-black/80 rounded-[20px] lg:basis-[30%] shrink-0  overflow-hidden">
+          <div className="flex flex-col bg-black/80 rounded-[20px] lg:basis-[30%] shrink-0 lg:shrink overflow-hidden">
             <div className="flex items-center gap-2 lg:gap-4 bg-gray-2 px-4 py-3">
               <FaPhone className="text-white text-base md:text-lg lg:text-xl" />
               <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
@@ -633,7 +642,9 @@ export default function DashboardCompetition() {
                         <Option value="sma">SMA</Option>
                       )}
                       {(teams?.divisi === "App Dev" ||
-                        teams?.divisi === "Game Dev") && (
+                        teams?.divisi === "Game Dev" ||
+                        teams?.divisi === "Competitive Programming" ||
+                        teams?.divisi === "UI/UX") && (
                         <>
                           <Option value="mahasiswa">Mahasiswa</Option>
                           <Option value="sma">SMA</Option>
@@ -743,7 +754,9 @@ export default function DashboardCompetition() {
                     render={({ field }) => (
                       <InputFile
                         {...field}
-                        label="Proposal"
+                        label={
+                          teams?.divisi === "UI/UX" ? "Abstrak" : "Proposal"
+                        }
                         placeholder="Upload Here"
                         formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
                         formatFile=".pdf"
@@ -824,25 +837,12 @@ export default function DashboardCompetition() {
               <div className="p-4 w-full h-full grow">
                 <div className="flex flex-col justify-around w-full h-full">
                   <Controller
-                    name="link_video"
-                    control={registStepThreeControl}
-                    render={({ field }) => (
-                      <InputField
-                        {...field}
-                        label="Video"
-                        placeholder="Enter link here"
-                        className="py-7"
-                        disabled={teams?.status === "tahap-3"}
-                      />
-                    )}
-                  />
-                  <Controller
                     name="link_karya"
                     control={registStepThreeControl}
                     render={({ field }) => (
                       <InputField
                         {...field}
-                        label="Work/Product (Karya)"
+                        label={labelTahap3[teams?.divisi as string]}
                         placeholder="Enter link here"
                         className="py-7"
                         disabled={teams?.status === "tahap-3"}
