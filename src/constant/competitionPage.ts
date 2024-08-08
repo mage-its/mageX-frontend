@@ -344,6 +344,8 @@ export const uiUx: Contest = {
       phone: "081354055259 (WA)",
     },
   ],
+  guidebook:
+    "https://drive.google.com/file/d/1B7CYZBSldxNQ4RSqxWWNrBLAgZ_fwU6H/view?usp=sharing",
 };
 
 export const competitiveProgramming: Contest = {
@@ -386,6 +388,8 @@ export const competitiveProgramming: Contest = {
       phone: "081249007271 (WA)",
     },
   ],
+  guidebook:
+    "https://drive.google.com/file/d/1PIAiQ3bBiYWq55eB98ND-WJg94rnZARq/view?usp=sharing",
 };
 
 export const valorant: Contest = {
