@@ -11,6 +11,7 @@ import NextArrow2 from "@/assets/competition/nextArrow2.svg";
 import PrevArrow2 from "@/assets/competition/prevArrow2.svg";
 import Wave from "@/components/Wave";
 import CButton from "@/components/Button";
+import CompetitionPopUp from "@/components/CompetitionPopUp";
 
 //TIMELINE ASSET
 import Timebox from "@/components/Timebox";
@@ -69,8 +70,23 @@ interface CompetitionProps {
   existExtraBox?: boolean;
 }
 
+
 const Home = ({ x }: CompetitionProps) => {
   const { data: user } = useUserData();
+
+  // For esport guide book pop up
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const handleClosePopup = () => {
+    console.log("Closing popup"); // Check if this gets logged
+    setIsPopupVisible(false);
+    console.log("isPopupVisible:", isPopupVisible);
+  };
+  const handleOpenPopup = () => {
+    console.log("isPopupVisible:", isPopupVisible);
+    console.log("TES");
+    setIsPopupVisible(true);
+  }
+
   // console.log(user);
   return (
     <>
@@ -144,9 +160,26 @@ const Home = ({ x }: CompetitionProps) => {
             <div className="flex mt-[25px] gap-[10px] place-content-center">
               {x?.guidebook ? (
                 <div className="z-10">
-                  <a href={x?.guidebook} target="_blank">
-                    <CButton theme={x?.theme}>Guide Book</CButton>
-                  </a>
+                  {/* Two guide books for esport */}
+                  {x?.title == "E-SPORT COMPETITION" ? (
+                    <div className="z-10">
+                      <div onClick={handleOpenPopup}>
+                        <CButton theme={x?.theme}>Guide Book</CButton>
+                      </div>
+                      <CompetitionPopUp
+                        isVisible={isPopupVisible}
+                        onClose={handleClosePopup}
+                        text1="Mobile Legends"
+                        text2="Valorant"
+                        link1={x?.guidebook}
+                        link2={x?.guidebook2}
+                      />
+                    </div>
+                  ) : (
+                    <a href={x?.guidebook} target="_blank">
+                      <CButton theme={x?.theme}>Guide Book</CButton>
+                    </a>
+                  )}
                 </div>
               ) : (
                 <div className="z-10">
@@ -171,6 +204,19 @@ const Home = ({ x }: CompetitionProps) => {
 };
 
 const About = ({ x }: CompetitionProps) => {
+  // For esport guide book pop up
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const handleClosePopup = () => {
+    console.log("Closing popup"); // Check if this gets logged
+    setIsPopupVisible(false);
+    console.log("isPopupVisible:", isPopupVisible);
+  };
+  const handleOpenPopup = () => {
+    console.log("isPopupVisible:", isPopupVisible);
+    console.log("TES");
+    setIsPopupVisible(true);
+  }
+
   return (
     <>
       <div className="desktop:w-fit desktop:h-[610px] desktop:ml-0 desktop:mr-0 desktop:flex ipad:flex desktop:gap-[35px] ipad:gap-[22px] mobile:grid mobile:h-fit mobile:ml-auto mobile:mr-auto ipad:ml-auto ipad:mx-auto">
@@ -213,13 +259,29 @@ const About = ({ x }: CompetitionProps) => {
             >
               {x?.aboutCaption}
             </p>
-
             <div className="mt-[22px] flex gap-[29px]">
               {x?.guidebook ? (
                 <div className="z-10">
-                  <a href={x?.guidebook} target="_blank">
-                    <CButton theme={x?.theme}>Guide Book</CButton>
-                  </a>
+                  {/* Two guide books for esport */}
+                  {x?.title == "E-SPORT COMPETITION" ? (
+                    <div className="z-10">
+                      <div onClick={handleOpenPopup}>
+                        <CButton theme={x?.theme}>Guide Book</CButton>
+                      </div>
+                      <CompetitionPopUp
+                        isVisible={isPopupVisible}
+                        onClose={handleClosePopup}
+                        text1="Mobile Legends"
+                        text2="Valorant"
+                        link1={x?.guidebook}
+                        link2={x?.guidebook2}
+                      />
+                    </div>
+                  ) : (
+                    <a href={x?.guidebook} target="_blank">
+                      <CButton theme={x?.theme}>Guide Book</CButton>
+                    </a>
+                  )}
                 </div>
               ) : (
                 <div className="z-10">
@@ -393,6 +455,19 @@ const Timeline = ({ x, existExtraBox }: CompetitionProps) => {
 
 const Overview = ({ x, existPoint }: CompetitionProps) => {
   const isOrange = x?.theme === "orange";
+
+  // For esport guide book pop up
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const handleClosePopup = () => {
+    console.log("Closing popup"); // Check if this gets logged
+    setIsPopupVisible(false);
+    console.log("isPopupVisible:", isPopupVisible);
+  };
+  const handleOpenPopup = () => {
+    console.log("isPopupVisible:", isPopupVisible);
+    console.log("TES");
+    setIsPopupVisible(true);
+  }
 
   return (
     <>
@@ -738,28 +813,54 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
               </div>
             )}
             {x?.guidebook ? (
-              <a href={x?.guidebook} target="_blank">
-                <p
-                  className={cn(
-                    "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
-                    { "text-[#3A0D49]": x?.theme == "purple" }
+                <div className="">
+                  {/* Two guide books for esport */}
+                  {x?.title == "E-SPORT COMPETITION" ? (
+                    <div>
+                      <div onClick={handleOpenPopup}>
+                        <p
+                          className={cn(
+                            "text-justify font-airstrike text-[20px] font-normal text-mage-orange select-none",
+                            { "text-[#3A0D49]": x?.theme == "purple" }
+                          )}
+                        >
+                          GUIDEBOOK
+                        </p>
+                      </div>
+                      <CompetitionPopUp
+                        isVisible={isPopupVisible}
+                        onClose={handleClosePopup}
+                        text1="Mobile Legends"
+                        text2="Valorant"
+                        link1={x?.guidebook}
+                        link2={x?.guidebook2}
+                      />
+                    </div>
+                  ) : (
+                    <a href={x?.guidebook} target="_blank">
+                      <p
+                        className={cn(
+                          "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
+                          { "text-[#3A0D49]": x?.theme == "purple" }
+                        )}
+                      >
+                        GUIDEBOOK
+                      </p>
+                    </a>
                   )}
-                >
-                  GUIDEBOOK
-                </p>
-              </a>
-            ) : (
-              <Link to="/coming-soon">
-                <p
-                  className={cn(
-                    "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
-                    { "text-[#3A0D49]": x?.theme == "purple" }
-                  )}
-                >
-                  GUIDEBOOK
-                </p>
-              </Link>
-            )}
+                </div>
+              ) : (
+                <Link to="/coming-soon">
+                  <p
+                    className={cn(
+                      "text-justify font-airstrike text-[20px] font-normal text-mage-orange",
+                      { "text-[#3A0D49]": x?.theme == "purple" }
+                    )}
+                  >
+                    GUIDEBOOK
+                  </p>
+                </Link>
+              )}
           </div>
         </div>
       </div>

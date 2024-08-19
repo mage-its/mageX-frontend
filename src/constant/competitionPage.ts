@@ -43,6 +43,7 @@ export type Contest = {
   category: string;
   prize: string;
   guidebook?: string;
+  guidebook2?: string;
   contact?: {
     name: string;
     phone: string;
@@ -263,7 +264,7 @@ export const eSport: Contest = {
   leftVector: PurpleLeftDecor,
   rightVector: PurpleRightDecor,
   aboutCaption:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget vulputate enim. Mauris viverra semper lectus, vel porta ante luctus in. Praesent eget faucibus lectus. ",
+    "Kompetisi Esport MAGE X adalah kompetisi sampingan yang diselenggarakan oleh MAGE X. Kompetisi ini memperlombakan game Mobile Legend dan Valorant, dua game dengan potensi besar dalam ekosistem esport Indonesia. Tujuan acara ini adalah untuk memajukan industri esport dengan menyediakan platform kompetitif yang profesional.",
   aboutImage: Placeholder,
   timeline: [
     ["21 Agustus - 28 Agustus 2024", "PENDAFTARAN", keypad],
@@ -277,6 +278,8 @@ export const eSport: Contest = {
   participant: "5 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
+  guidebook: "https://drive.google.com/file/d/1MOTU9Cxwz-kWqD9GvsmNs37G-VZB0q70/view?usp=sharing ", // ML
+  guidebook2: "https://drive.google.com/file/d/1kX-PqUAW9-d7cubIEx39ffkos9MhRoTN/view?usp=sharing", // Valorant
   contact: [
     {
       name: "Hendrik (ML)",
