@@ -5,6 +5,7 @@ import { User } from "./users";
 export interface Teams {
   id: string;
   anggota: string[];
+  username_ingame: string[];
   nama: string;
   ketua: string;
   divisi: string;
@@ -25,6 +26,7 @@ export interface UpdateTeams {
   link_karya?: string;
   bukti_pembayaran?: File | null;
   bukti_twibbon_follow?: File | null;
+  username_ingame?: string[];
 }
 
 export interface verifyTeam {
@@ -66,7 +68,10 @@ export const updateTeamInformation = async (
     form.append("bukti_twibbon_follow", data.bukti_twibbon_follow);
   data.bukti_pembayaran &&
     form.append("bukti_pembayaran", data.bukti_pembayaran);
-
+  data.username_ingame &&
+    data.username_ingame.forEach((username) => {
+      form.append("username_ingame[]", username);
+    });
   return apiClient
     .put("/teams", form, {
       headers: {

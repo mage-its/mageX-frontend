@@ -28,6 +28,7 @@ import {
   eSport,
   gameDev,
   iot,
+  mobileLegends,
   robotic,
   uiUx,
   valorant,
@@ -62,6 +63,7 @@ const CompetitionButton = ({
 type TeamInformation = {
   teamName: string;
   teamMembers: string[];
+  usernameIngame: string[];
 };
 
 type RegistStepOne = {
@@ -126,6 +128,7 @@ export default function DashboardCompetition() {
     defaultValues: {
       teamName: teams?.nama || "",
       teamMembers: (members && members?.map((item) => item.nama)) || [""],
+      usernameIngame: teams?.username_ingame || [""],
     },
   });
 
@@ -137,6 +140,12 @@ export default function DashboardCompetition() {
         (members && members?.map((item) => item.nama)) || [""]
       );
     }
+    teams?.username_ingame?.map((username_ingame, i) => {
+      setValueTeamControl(
+        `usernameIngame.${i}`,
+        username_ingame == "undefined" ? "" : username_ingame
+      );
+    });
   }, [teams, setValueTeamControl, members]);
 
   const onSubmit: SubmitHandler<TeamInformation> = async (
@@ -147,6 +156,7 @@ export default function DashboardCompetition() {
       // console.log("Updating Team Data");
       await updateTeamInformation({
         nama: data.teamName,
+        username_ingame: data.usernameIngame,
       });
       await addMembers({ email: data.teamMembers });
     }
@@ -328,6 +338,8 @@ export default function DashboardCompetition() {
       step === 3 ||
       teams?.divisi == "Robotics" ||
       teams?.divisi == "Competitive Programming" ||
+      teams?.divisi == "Valorant" ||
+      teams?.divisi == "Mobile Legends" ||
       teams?.status === "" ||
       (step === 2 && teams?.status === "tahap-1") ||
       (step === 3 && teams?.status === "tahap-2")
@@ -345,6 +357,8 @@ export default function DashboardCompetition() {
       step === 4 ||
       teams?.divisi == "Robotics" ||
       teams?.divisi == "Competitive Programming" ||
+      teams?.divisi == "Valorant" ||
+      teams?.divisi == "Mobile Legends" ||
       teams?.status === "" ||
       (step === 3 && teams?.status === "tahap-1")
     ) {
@@ -361,6 +375,7 @@ export default function DashboardCompetition() {
     Robotics: robotic,
     "Game Dev": gameDev,
     Valorant: valorant,
+    "Mobile Legends": mobileLegends,
   };
 
   const format: { [key: string]: string } = {
@@ -471,14 +486,43 @@ export default function DashboardCompetition() {
               />
               <div className="flex flex-col gap-2.5 mt-4">
                 <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                  Members
+                  {teams?.divisi === "Valorant" ||
+                  teams?.divisi === "Mobile Legends"
+                    ? "Members  |  In-game Username"
+                    : "Members"}
                 </p>
-                <div className="bg-white rounded-xl py-2 px-2.5 mb-2.5">
-                  <p className="font-roboto font-medium text-xs md:text-sm lg:text-base text-dark">
-                    {user?.nama}
-                    <span className="text-dark"> (Leader)</span>
-                  </p>
-                </div>
+                {teams?.divisi === "Valorant" ||
+                teams?.divisi === "Mobile Legends" ? (
+                  <div className="grid sm:grid-cols-2 gap-1.5 sm:gap-2.5 w-full mb-2.5">
+                    <div className="bg-white rounded-xl py-2 px-2.5">
+                      <p className="font-roboto font-medium text-xs md:text-sm lg:text-base text-dark">
+                        {user?.nama}
+                        <span className="text-dark"> (Leader)</span>
+                      </p>
+                    </div>
+                    <Controller
+                      disabled={!isEditTeamInformation}
+                      name={`usernameIngame.0`}
+                      control={teamControl}
+                      render={({ field }) => (
+                        <InputField
+                          {...field}
+                          placeholder={`Enter leader in-game username`}
+                          disabled={
+                            teams?.status !== "" || !isEditTeamInformation
+                          }
+                        />
+                      )}
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-white rounded-xl py-2 px-2.5 mb-2.5">
+                    <p className="font-roboto font-medium text-xs md:text-sm lg:text-base text-dark">
+                      {user?.nama}
+                      <span className="text-dark"> (Leader)</span>
+                    </p>
+                  </div>
+                )}
 
                 {Array.from(
                   {
@@ -486,30 +530,72 @@ export default function DashboardCompetition() {
                       (competitionPath[teams?.divisi as string]?.maxMember ||
                         0) - 1,
                   },
-                  (_, index) => (
-                    <Controller
-                      key={index}
-                      disabled={!isEditTeamInformation}
-                      name={`teamMembers.${index}`}
-                      control={teamControl}
-                      rules={{
-                        pattern: {
-                          value:
-                            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-                          message: "Email harus valid",
-                        },
-                      }}
-                      render={({ field }) => (
-                        <InputField
-                          {...field}
-                          placeholder="Enter member email"
-                          disabled={
-                            teams?.status !== "" || !isEditTeamInformation
-                          }
+                  (_, index) =>
+                    teams?.divisi === "Valorant" ||
+                    teams?.divisi === "Mobile Legends" ? (
+                      <div className="grid sm:grid-cols-2 gap-1.5 sm:gap-2.5 w-full">
+                        <Controller
+                          key={index}
+                          disabled={!isEditTeamInformation}
+                          name={`teamMembers.${index}`}
+                          control={teamControl}
+                          rules={{
+                            pattern: {
+                              value:
+                                /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                              message: "Email harus valid",
+                            },
+                          }}
+                          render={({ field }) => (
+                            <InputField
+                              {...field}
+                              placeholder={`Enter member email ${index + 1}`}
+                              disabled={
+                                teams?.status !== "" || !isEditTeamInformation
+                              }
+                            />
+                          )}
                         />
-                      )}
-                    />
-                  )
+                        <Controller
+                          key={index}
+                          disabled={!isEditTeamInformation}
+                          name={`usernameIngame.${index + 1}`}
+                          control={teamControl}
+                          render={({ field }) => (
+                            <InputField
+                              {...field}
+                              placeholder={`Enter member in-game username ${index + 1}`}
+                              disabled={
+                                teams?.status !== "" || !isEditTeamInformation
+                              }
+                            />
+                          )}
+                        />
+                      </div>
+                    ) : (
+                      <Controller
+                        key={index}
+                        disabled={!isEditTeamInformation}
+                        name={`teamMembers.${index}`}
+                        control={teamControl}
+                        rules={{
+                          pattern: {
+                            value:
+                              /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                            message: "Email harus valid",
+                          },
+                        }}
+                        render={({ field }) => (
+                          <InputField
+                            {...field}
+                            placeholder={`Enter member email ${index + 1}`}
+                            disabled={
+                              teams?.status !== "" || !isEditTeamInformation
+                            }
+                          />
+                        )}
+                      />
+                    )
                 )}
               </div>
             </div>
@@ -581,7 +667,9 @@ export default function DashboardCompetition() {
                   </CompetitionButton>
                 )}
                 {teams?.divisi !== "Robotics" &&
-                  teams?.divisi !== "Competitive Programming" && (
+                  teams?.divisi !== "Competitive Programming" &&
+                  teams?.divisi !== "Valorant" &&
+                  teams?.divisi !== "Mobile Legends" && (
                     <CompetitionButton
                       onClick={increaseStep}
                       type="button"
@@ -695,7 +783,9 @@ export default function DashboardCompetition() {
         )}
         {step === 2 &&
           teams?.divisi !== "Robotics" &&
-          teams?.divisi !== "Competitive Programming" && (
+          teams?.divisi !== "Competitive Programming" &&
+          teams?.divisi !== "Valorant" &&
+          teams?.divisi !== "Mobile Legends" && (
             <form
               onSubmit={registStepTwoHandleSubmit(onSubmitRegistStepTwo)}
               className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"
@@ -787,7 +877,9 @@ export default function DashboardCompetition() {
           )}
         {step === 3 &&
           teams?.divisi !== "Robotics" &&
-          teams?.divisi !== "Competitive Programming" && (
+          teams?.divisi !== "Competitive Programming" &&
+          teams?.divisi !== "Valorant" &&
+          teams?.divisi !== "Mobile Legends" && (
             <form
               onSubmit={registStepThreeHandleSubmit(onSubmitRegistStepThree)}
               className=" flex flex-col h-[350px] md:basis-[47%] bg-black/80 rounded-[20px] overflow-hidden"

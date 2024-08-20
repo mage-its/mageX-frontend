@@ -60,5 +60,7 @@ export const competition = [
     to: "/competition/esport",
     description: "Game On, Win Big!",
     image: esport,
+    guidebook: "https://drive.google.com/file/d/1MOTU9Cxwz-kWqD9GvsmNs37G-VZB0q70/view?usp=sharing",
+    secondGuidebook: "https://drive.google.com/file/d/1kX-PqUAW9-d7cubIEx39ffkos9MhRoTN/view?usp=sharing"
   },
 ];

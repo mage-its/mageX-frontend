@@ -7,7 +7,7 @@ import Popup from "@/components/Dashboard/User/Home/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useCreateTeam, useLeadTeams } from "@/services/team";
 import { useUserData } from "@/services/users";
-// import Select, { Option } from "@/components/Select";
+import Select, { Option } from "@/components/Select";
 
 const CompetitionComponent: React.FC = () => {
   const navigate = useNavigate();
@@ -15,10 +15,6 @@ const CompetitionComponent: React.FC = () => {
   const { data: teams } = useLeadTeams();
   const { data: user } = useUserData();
   // console.log("User data:", user);
-  const handleYesClick = async () => {
-    await createTeam(popupDestination);
-    navigate(`/dashboard/competition`);
-  };
 
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
@@ -40,6 +36,11 @@ const CompetitionComponent: React.FC = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isPopupEsportVisible, setIsPopupEsportVisible] = useState(false);
   const [popupDestination, setPopupDestination] = useState("");
+
+  const handleYesClick = async () => {
+    await createTeam(popupDestination);
+    navigate(`/dashboard/competition`);
+  };
 
   const [dragConstraints, setDragConstraints] = useState({
     left: 0,
@@ -87,8 +88,10 @@ const CompetitionComponent: React.FC = () => {
 
   const handleCardClick = (destination: string) => {
     if (destination === "Esport") {
+      setPopupDestination("Mobile Legends");
       setIsPopupEsportVisible(true);
     } else {
+      console.log(destination);
       setIsPopupEsportVisible(false);
       setPopupDestination(destination);
       setIsPopupVisible(true);
@@ -99,10 +102,10 @@ const CompetitionComponent: React.FC = () => {
     setIsPopupVisible(false);
   };
 
-  // const handleSelectEsport = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   console.log(e.target.value);
-  //   setPopupDestination(e.target.value);
-  // };
+  const handleSelectEsport = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setPopupDestination(e.target.value);
+  };
 
   return (
     <div
@@ -210,7 +213,7 @@ const CompetitionComponent: React.FC = () => {
           text="You are not verified. Please complete your data first and wait while we verify your data"
         />
       )}
-      {/* <Popup
+      <Popup
         isVisible={isPopupEsportVisible}
         onClose={() => setIsPopupEsportVisible(false)}
         handleYesClick={() => handleCardClick(popupDestination)}
@@ -220,12 +223,7 @@ const CompetitionComponent: React.FC = () => {
           <Option value="Mobile Legends">Mobile Legends</Option>
           <Option value="Valorant">Valorant</Option>
         </Select>
-      </Popup> */}
-      <Popup
-        isVisible={isPopupEsportVisible}
-        onClose={() => setIsPopupEsportVisible(false)}
-        text="Coming soon"
-      />
+      </Popup>
     </div>
   );
 };

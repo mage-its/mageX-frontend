@@ -10,6 +10,7 @@ interface CompetitionCardProps extends HTMLMotionProps<"div"> {
   image: string;
   to: string;
   guidebook?: string;
+  secondGuidebook?: string;
   isFlipped?: boolean;
   theme?: "orange" | "purple";
 }
@@ -24,6 +25,7 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
       isFlipped = false,
       theme = "orange",
       guidebook,
+      secondGuidebook,
       ...props
     },
     ref
@@ -38,7 +40,7 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
         className={cn(
           "w-[30vw] lg:w-[26vw] h-[39vw] lg:h-[32vw] relative select-none rounded-[14px] md:rounded-3xl xl:rounded-[48px] bg-purple-grad-1 cursor-pointer border-[3px] md:border-[10px]  px-5 lg:px-[25px] 2xl:px-[69px] py-3 lg:py-[25px] 2xl:py-[50px] border-light/50 shrink-0 will-change-auto",
           { "bg-purple-grad-1": theme == "purple" },
-          { "bg-orange-grad": theme == "orange" },
+          { "bg-orange-grad": theme == "orange" }
         )}
         animate
         {...props}
@@ -87,9 +89,28 @@ const CompetitionCard = forwardRef<HTMLDivElement, CompetitionCardProps>(
                 }
               )}
             >
-              Guide Book
+              {secondGuidebook ? "Guide Book Mobile Legends" : "Guide Book"}
             </button>
           </a>
+          {secondGuidebook && (
+            <a target="_blank" href={secondGuidebook}>
+              <button
+                className={cn(
+                  "rounded-xl border-4 font-fredoka px-5 py-1 sm:px-10 sm:py-2.5 text-[8px] md:text-base xl:text-xl",
+                  {
+                    "border-orange-primary-5 bg-orange-grad text-orange-primary-5":
+                      theme == "orange",
+                  },
+                  {
+                    "border-orange-primary-5 bg-purple-gradient text-orange-primary-5":
+                      theme == "purple",
+                  }
+                )}
+              >
+                Guide Book Valorant
+              </button>
+            </a>
+          )}
           <Link to={to}>
             <button
               className={cn(
