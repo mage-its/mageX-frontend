@@ -110,7 +110,7 @@ const router = createBrowserRouter([
         element: <EditAnnouncement />,
       },
     ],
-    // errorElement: <Error />,
+    errorElement: <Error />,
   },
 ]);
 
