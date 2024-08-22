@@ -39,6 +39,7 @@ import { useGetAllUsers } from "@/services/users";
 interface Team {
   id: string;
   anggota: string;
+  username_ingame: string;
   nama: string;
   ketua: string;
   divisi: string;
@@ -137,6 +138,12 @@ const headCells: readonly HeadCell[] = [
     label: "Anggota",
   },
   {
+    id: "username_ingame",
+    numeric: false,
+    disablePadding: false,
+    label: "Username Ingame",
+  },
+  {
     id: "kategori",
     numeric: false,
     disablePadding: false,
@@ -167,16 +174,10 @@ const headCells: readonly HeadCell[] = [
     label: "Proposal",
   },
   {
-    id: "link_video",
-    numeric: false,
-    disablePadding: false,
-    label: "Link Video",
-  },
-  {
     id: "link_karya",
     numeric: false,
     disablePadding: false,
-    label: "Link Karya",
+    label: "Link Drive",
   },
 ];
 
@@ -317,6 +318,10 @@ export default function TeamTable() {
       teams?.map((team) => ({
         ...team,
         ketua: users?.find((user) => user.id === team.ketua)?.email || "",
+        username_ingame:
+          team.username_ingame
+            ?.filter((username) => username !== "undefined")
+            .join(", ") || "",
         anggota: team.anggota
           ? team.anggota
               .map((id) => users?.find((user) => user.id === id)?.email || "")
@@ -408,6 +413,9 @@ export default function TeamTable() {
                       {row.anggota || "--"}
                     </StyledTableCell>
                     <StyledTableCell align="right">
+                      {row.username_ingame || "--"}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
                       {row.kategori || "--"}
                     </StyledTableCell>
                     <StyledTableCell align="right">
@@ -446,19 +454,6 @@ export default function TeamTable() {
                       ) : (
                         <a
                           href={`https://api.mage-its.id/images/${row.proposal}`}
-                          className="flex items-center justify-center"
-                          target="_blank"
-                        >
-                          <FaArrowUpRightFromSquare />
-                        </a>
-                      )}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {!row.link_video ? (
-                        "--"
-                      ) : (
-                        <a
-                          href={row.link_video}
                           className="flex items-center justify-center"
                           target="_blank"
                         >
