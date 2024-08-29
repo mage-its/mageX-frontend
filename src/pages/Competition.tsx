@@ -607,9 +607,15 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                   ) : (
                     <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
                       <p>Phase 1</p>
-                      <p className="indent-1">
+                      {x.isUiUx ? (
+                         <p className="indent-1">
+                         SMA/SMK/sederajat : Rp80.000,00
+                       </p>
+                      ):(
+                        <p className="indent-1">
                         SMA/SMK/sederajat : Rp100.000,00
                       </p>
+                      )}
                     </div>
                   )}
                 </div>
