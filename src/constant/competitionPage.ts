@@ -50,6 +50,7 @@ export type Contest = {
   }[];
   secondPhase?: boolean;
   maxMember?: number;
+  isUiUx?: boolean;
 };
 
 export const gameDev: Contest = {
@@ -336,7 +337,7 @@ export const uiUx: Contest = {
   overviewDesc:
     "Pada perlombaan ini, peserta lomba akan dituntut untuk berkompetisi dalam pembuatan desain tentang tampilan web dan aplikasi yang dapat berfungsi dengan baik dan memiliki kemudahan akses dari sudut pengguna serta memiliki desain gambar yang menarik. Kriteria penilaian dari perlombaan ini yaitu dari fungsi, kemudahan akses serta desain gambar yang menarik.",
   overviewImage: Placeholder2,
-  participant: "5 Orang/tim",
+  participant: "3 Orang/tim",
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
   contact: [
@@ -351,6 +352,7 @@ export const uiUx: Contest = {
   ],
   guidebook:
     "https://drive.google.com/file/d/1B7CYZBSldxNQ4RSqxWWNrBLAgZ_fwU6H/view?usp=sharing",
+  isUiUx: true
 };
 
 export const competitiveProgramming: Contest = {
