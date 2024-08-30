@@ -41,7 +41,7 @@ import { useSearchParams } from "react-router-dom";
 interface CompetitionButtonProps
   extends React.ComponentPropsWithoutRef<"button"> {}
 
-const CompetitionButton = ({
+export const CompetitionButton = ({
   children,
   disabled,
   ...props
@@ -847,6 +847,7 @@ export default function DashboardCompetition() {
                         label={
                           teams?.divisi === "UI/UX" ? "Abstrak" : "Proposal"
                         }
+                        example="https://drive.google.com/drive/folders/1h2UG7IQJvA-Sy98rkyD0e2x6TImRGjNi"
                         placeholder="Upload Here"
                         formatName={`MAGEX_Tahap 1_${format[teams?.divisi || ""]}_[Nama Tim].pdf`}
                         formatFile=".pdf"
