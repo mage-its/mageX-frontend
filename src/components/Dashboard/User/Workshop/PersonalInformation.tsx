@@ -29,8 +29,8 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
             Scroll to see more
           </h2>
         </div>
-        <div className="flex h-[calc(100%-3rem)] max-h-full items-center py-8">
-          <div className="flex flex-col w-[50%] h-full pl-16 pr-2 text-[13px] justify-center">
+        <div className="flex h-[calc(100%-3rem)] max-h-full items-center py-8 px-4">
+          <div className="flex flex-col w-[50%] h-full pl-12 pr-2 text-[13px] justify-center">
             <div
               className="border-light border-[2px] rounded-xl p-4 h-full overflow-auto no-scrollbar"
               ref={scrollRef}
@@ -54,8 +54,8 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                 />
               </div>
 
-              <div className="mt-[-1rem] px-2 bg-white rounded-md text-center shadow-md">
-                <div className="w-full relative flex text-justify select-none">
+              <div className="mt-[-1rem] px-2 mx-4 bg-white rounded-md text-center shadow-md">
+                <div className="w-full relative flex text-center select-none">
                   <span
                     style={{
                       position: "absolute",
@@ -76,7 +76,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                       pointerEvents: "none",
                       zIndex: -1,
                     }}
-                    className="font-airstrike font-italic font-bold inline-block text-[18px]"
+                    className="font-airstrike font-italic font-bold inline-block text-[1rem]"
                   >
                     {currentWorkshop.pembicara}
                   </span>
@@ -85,13 +85,13 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                       WebkitBackgroundClip: "text",
                       color: "transparent",
                     }}
-                    className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1 text-[18px]"
+                    className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1 text-[1rem]"
                   >
                     {currentWorkshop.pembicara}
                   </span>
                 </div>
               </div>
-              <div className="text-[8px] mt-3 h-[3rem] text-gray-5 text-center">
+              <div className="text-[10px] mt-3 h-[3rem] text-gray-5 text-center">
                 <div className="flex-col font-medium align-left my-auto bg-light px-4 py-2 rounded-xl opacity-70">
                   {currentWorkshop.background} <br />
                   {currentWorkshop.spesialis}
@@ -162,7 +162,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                 />
               </div>
               <div className="mt-[-1rem] px-2 bg-white rounded-md text-center shadow-md">
-                <div className="w-full relative flex text-justify select-none">
+                <div className="w-full relative flex text-center select-none">
                   <span
                     style={{
                       position: "absolute",
@@ -184,7 +184,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                       zIndex: -1,
                     }}
                     className="font-airstrike font-italic font-bold inline-block
-                                mobile:text-[1rem] ipad:text-[25px] lg:text-[1rem]"
+                                mobile:text-[13px] ipad:text-[22px] lg:text-[13px]"
                   >
                     {currentWorkshop.pembicara}
                   </span>
@@ -194,7 +194,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({
                       color: "transparent",
                     }}
                     className="font-airstrike font-italic font-bold bg-blue-purple-orange-1 inline-block px-1
-                                mobile:text-[1rem] ipad:text-[25px] lg:text-[1rem]"
+                                mobile:text-[13px] ipad:text-[22px] lg:text-[13px]"
                   >
                     {currentWorkshop.pembicara}
                   </span>

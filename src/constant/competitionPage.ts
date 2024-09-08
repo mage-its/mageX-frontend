@@ -280,9 +280,9 @@ export const eSport: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1MOTU9Cxwz-kWqD9GvsmNs37G-VZB0q70/view?usp=sharing ", // ML
+    "https://drive.google.com/file/d/1JyMD336AWFXkb1uFSK6Fa_lH3g0Xh1QI/view?usp=drivesdk", // ML
   guidebook2:
-    "https://drive.google.com/file/d/1kX-PqUAW9-d7cubIEx39ffkos9MhRoTN/view?usp=sharing", // Valorant
+    "https://drive.google.com/file/d/1K24ILKxOko-VvVH5ijUQ7mclpAi-wytk/view?usp=drivesdk", // Valorant
   contact: [
     {
       name: "Hendrik (ML)",

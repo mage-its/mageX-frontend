@@ -6,9 +6,7 @@ import { Workshop } from "@/constant/dashboardWorkshop";
 import Timeline from "@/components/Timeline";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-
 import { useUserData } from "@/services/users";
-
 import InputFile from "../../../InputFile";
 import {
   updateWorkshop,
@@ -111,7 +109,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
     if (files && files[0]) {
       const extname = files[0].name.split(".").pop();
       const IMG_EXTS = ["jpg", "jpeg", "png"];
-
+      
       if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
         setError("bukti_pembayaran", {
           type: "manual",
@@ -335,7 +333,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Follow Jago Teknik + Share Poster (Tag 3 teman melalui ig story)"
+                      label= {currentWorkshop.teks_bukti_follow}
                       description="Dijadikan satu file"
                       placeholder="Upload Here"
                       formatName={`Bukti_${currentWorkshop.title}_[Nama Peserta].pdf`}
@@ -386,7 +384,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label="Bukti Follow Instagram + Follow Line + Follow Tiktok + Share Poster (Tag 3 teman melalui ig story)"
+                      label= {currentWorkshop.teks_bukti_follow}
                       placeholder="Upload Here"
                       formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
