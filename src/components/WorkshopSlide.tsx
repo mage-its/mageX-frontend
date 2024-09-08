@@ -6,7 +6,8 @@ import timeIcon1 from "../assets/workshop/timeIcon1.svg";
 import locationIcon1 from "../assets/workshop/locationIcon1.svg";
 import timeIcon2 from "../assets/workshop/timeIcon2.svg";
 import locationIcon2 from "../assets/workshop/locationIcon2.svg";
-import keanu from "@/assets/workshop/pemateri/keanu.png";
+import pemateriMultimedia from "@/assets/workshop/pemateri/pemateriMultimedia.png";
+import pemateriRobotika from "@/assets/workshop/pemateri/pemateriRobotika.png";
 import { Link } from "react-router-dom";
 
 const slides = [
@@ -25,17 +26,16 @@ const slides = [
     color4: "#CA4F14",
     timeIcon: timeIcon1,
     locationIcon: locationIcon1,
-    imgPemateri: keanu,
+    imgPemateri: pemateriMultimedia,
   },
   {
     header: "ROBOTIK",
-    content:
-      "Workshop robotika menyediakan pembelajaran dasar ilmu ilmu robotik, membantu anda mengaktualisasi ide robotik anda, mulai penggunaan sensor dan aktuator hingga melatih ketrampilan pemrograman anda.",
+    content: "Workshop Robotics merupakan salah satu kegiatan yang diadakan sebagai bagian dari rangkaian acara MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum mengenai dunia robotics, dengan tema \"Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0.\" Workshop ini berfokus pada pengembangan control system, di mana peserta akan merakit sebuah robot dan menggunakan controller untuk menggerakkan robot yang telah dirakit tersebut. Acara ini akan diadakan secara offline dan berlangsung selama 1 hari.",
     tempat: "To be announced",
-    waktu: "24 & 25 Agustus 2024",
-    namaPemateri: "To be announced",
-    spesialis: "To be announced",
-    background: "To be announced",
+    waktu: "22 September 2024",
+    namaPemateri: "Dewa Pramudya Istiqfariandi | Paminto Nugroho",
+    spesialis: "Robotics",
+    background: "Robot Education",
     color1: "#6F56B4",
     color2:
       "linear-gradient(179.15deg, #FFFFFF -3.62%, #FCD5EB 36.28%, #F8AAD7 75.06%, #7E0F4F 108.78%)",
@@ -43,6 +43,7 @@ const slides = [
     color4: "#6F56B4",
     timeIcon: timeIcon2,
     locationIcon: locationIcon2,
+    imgPemateri: pemateriRobotika,
   },
   {
     header: "INTERNET OF THINGS",
