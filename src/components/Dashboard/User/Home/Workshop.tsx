@@ -6,11 +6,11 @@ import useMeasure from "react-use-measure";
 import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
 import Popup from "@/components/Dashboard/User/Home/PopUp";
 // import { useUserData } from "@/services/users";
-// import { registerWorkshop } from "@/services/workshop-regist";
-// import { useNavigate } from "react-router-dom";
+import { registerWorkshop } from "@/services/workshop-regist";
+import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
   const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
@@ -71,10 +71,10 @@ const App: React.FC = () => {
     setIsPopupVisible(true);
   };
 
-  // const handleYesClick = async () => {
-  //   await registerWorkshop(popupDestination);
-  //   navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
-  // };
+  const handleYesClick = async () => {
+    await registerWorkshop(popupDestination);
+    navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
+  };
 
   const handleClosePopup = () => {
     setIsPopupVisible(false);
@@ -163,16 +163,18 @@ const App: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      <Popup
-        isVisible={isPopupVisible}
-        onClose={handleClosePopup}
-        text={`Coming soon!`}
-      />
       {popupDestination == "Multimedia" ? (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
           text={`Registration Closed`}
+        />
+      ) : popupDestination == "Robotika" ? (
+        <Popup
+          isVisible={isPopupVisible}
+          onClose={handleClosePopup}
+          handleYesClick={handleYesClick}
+          text={`Are you sure you want to register for the robotics workshop?`}
         />
       ) : (
         <Popup

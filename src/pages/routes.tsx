@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: <DashboardWorkshop />,
       },
       {
-        path: "/dashboard/workshop/robotics",
+        path: "/dashboard/workshop/robotika",
         element: <DashboardWorkshop />,
       },
       {

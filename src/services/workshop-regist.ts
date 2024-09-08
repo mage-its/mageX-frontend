@@ -71,9 +71,8 @@ export const updateWorkshop = async (workshop: updateWorkshop) => {
   form.append("bukti_pembayaran", workshop.bukti_pembayaran);
   form.append("bukti_follow", workshop.bukti_follow);
   form.append("sumber_informasi", workshop.sumber_informasi);
-  // console.log(workshop);
   return apiClient
-    .put(`/workshop/Multimedia`, form, {
+    .put(`/workshop/${workshop["workshop-registration"]}`, form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

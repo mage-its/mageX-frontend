@@ -20,7 +20,7 @@ const DashboardHome: React.FC = () => {
 
   const workshopPath: { [key: string]: Workshop } = {
     "/dashboard/workshop/multimedia": Multimedia,
-    "/dashboard/workshop/robotics": Robotics,
+    "/dashboard/workshop/robotika": Robotics,
     "/dashboard/workshop/iot": InternetOfThings,
   };
 
@@ -86,4 +86,4 @@ const DashboardHome: React.FC = () => {
   );
 };
 
-export default DashboardHome;//
+export default DashboardHome; //

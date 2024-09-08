@@ -1,5 +1,5 @@
 import PemateriMultimedia from "@/assets/dashboardWorkshop/pemateriMultimedia.png";
-import PemateriRobotika from "@/assets/dashboardWorkshop/pemateriRobotika.png"
+import PemateriRobotika from "@/assets/dashboardWorkshop/pemateriRobotika.png";
 import Firefly from "@/assets/dashboardWorkshop/firefly.jpg";
 
 type timeline = {
@@ -49,14 +49,17 @@ export const Multimedia: Workshop = {
     { title: "Day - 2", date: "4 Agustus 2024" },
     { title: "Day - 3", date: "10 Agustus 2024" },
   ],
-  teks_bukti_follow: "Bukti Follow Instagram + Follow Line + Follow Tiktok + Follow Jago Teknik + Share Poster (Tag 3 teman melalui ig story)" 
+  teks_bukti_follow:
+    "Bukti Follow Instagram + Follow Line + Follow Tiktok + Follow Jago Teknik + Share Poster (Tag 3 teman melalui ig story)",
 };
 
 export const Robotics: Workshop = {
   title: "Robotika",
-  content: "Workshop Robotics merupakan salah satu kegiatan yang diadakan sebagai bagian dari rangkaian acara MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum mengenai dunia robotics, dengan tema \"Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0.\" Workshop ini berfokus pada pengembangan control system, di mana peserta akan merakit sebuah robot dan menggunakan controller untuk menggerakkan robot yang telah dirakit tersebut. Acara ini akan diadakan secara offline dan berlangsung selama 1 hari.",
+  content:
+    'Workshop Robotics merupakan salah satu kegiatan yang diadakan sebagai bagian dari rangkaian acara MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum mengenai dunia robotics, dengan tema "Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0." Workshop ini berfokus pada pengembangan control system, di mana peserta akan merakit sebuah robot dan menggunakan controller untuk menggerakkan robot yang telah dirakit tersebut. Acara ini akan diadakan secara offline dan berlangsung selama 1 hari.',
   materi: "Control and Assemble Your First Robot!",
-  informasiDiri: "[Dewa] Detail-oriented Electrical Engineering graduate with a D4 degree from Politeknik Elektronika Negeri Surabaya (PENS EEPIS). Currently working full-time at PT. Insera Sena (Polygon Bikes Factory), where I am expertizing my skills in electrical systems, embedded system development, and robotic design. With immersive previous experience includes internships at PT. Telkom Indonesia and PT. Panasonic Manufacturing Indonesia. [Paminto] As an electrical project specialist with 5 years of diverse experience in manufacturing, LNG EPC construction, and automation systems, I am committed to driving technology transformation and process optimization.",
+  informasiDiri:
+    "[Dewa] Detail-oriented Electrical Engineering graduate with a D4 degree from Politeknik Elektronika Negeri Surabaya (PENS EEPIS). Currently working full-time at PT. Insera Sena (Polygon Bikes Factory), where I am expertizing my skills in electrical systems, embedded system development, and robotic design. With immersive previous experience includes internships at PT. Telkom Indonesia and PT. Panasonic Manufacturing Indonesia. [Paminto] As an electrical project specialist with 5 years of diverse experience in manufacturing, LNG EPC construction, and automation systems, I am committed to driving technology transformation and process optimization.",
   background: "Robot Education",
   spesialis: "Robotics",
   tanggal: "22 September 2024",
@@ -71,11 +74,11 @@ export const Robotics: Workshop = {
     { title: "Pendaftaran", date: "9 September - 20 September 2024" },
     { title: "Workshop Day", date: "22 September 2024" },
   ],
-  teks_bukti_follow: "Bukti Follow Instagram Mage X"
+  teks_bukti_follow: "Bukti Follow Instagram Mage X",
 };
 
 export const InternetOfThings: Workshop = {
-  title: "Internet of Things",
+  title: "IoT",
   content:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   materi: "Coming Soon",
@@ -95,5 +98,5 @@ export const InternetOfThings: Workshop = {
     { title: "Day - 1", date: "20 Juli 2024" },
     { title: "Day - 2", date: "28 Juli 2024" },
   ],
-  teks_bukti_follow: ""
+  teks_bukti_follow: "",
 };

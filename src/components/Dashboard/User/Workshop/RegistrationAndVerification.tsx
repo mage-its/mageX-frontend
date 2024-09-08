@@ -109,7 +109,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
     if (files && files[0]) {
       const extname = files[0].name.split(".").pop();
       const IMG_EXTS = ["jpg", "jpeg", "png"];
-      
+
       if (IMG_EXTS.includes(extname || "") && files[0].size > 1 * 1024 * 1024) {
         setError("bukti_pembayaran", {
           type: "manual",
@@ -333,8 +333,12 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label= {currentWorkshop.teks_bukti_follow}
-                      description="Dijadikan satu file"
+                      label={currentWorkshop.teks_bukti_follow}
+                      description={
+                        currentWorkshop.title == "Robotika"
+                          ? undefined
+                          : "Dijadikan satu file"
+                      }
                       placeholder="Upload Here"
                       formatName={`Bukti_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
@@ -384,7 +388,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                   render={({ field }) => (
                     <InputFile
                       {...field}
-                      label= {currentWorkshop.teks_bukti_follow}
+                      label={currentWorkshop.teks_bukti_follow}
                       placeholder="Upload Here"
                       formatName={`IG_Twibbon_${currentWorkshop.title}_[Nama Peserta].pdf`}
                       formatFile=".pdf"
