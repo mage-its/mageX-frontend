@@ -33,6 +33,9 @@ import linkedin from "@/assets/sosialMedia/linkedin.svg";
 import puzzleFooter from "@/assets/puzzle/puzzleFooter.svg";
 
 import jagoTeknik from "@/assets/medparAndSponsor/jagoteknik.png";
+import livoc from "@/assets/medparAndSponsor/livoc.png";
+import mrobot from "@/assets/medparAndSponsor/mrobot.png";
+import theater from "@/assets/medparAndSponsor/theater.jpg";
 
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
@@ -754,6 +757,8 @@ export default function Home() {
           <NeonSquare className="absolute -right-[2%] sm:right-[3%] bottom-24 sm:bottom-56 z-10 scale-[0.6] sm:scale-[1.5] rotate-[-20deg]" />
         </div>
         {/* end socialmedia section */}
+
+        {/* Media Partner & Sponsors */}
         <div className="w-fit h-fit bg-gray-1 mx-auto p-4 z-10">
           <div className="font-roboto lg:text-[80px] sm:text-[60px] font-bold">
             <span className="bg-vertical-gta bg-clip-text text-transparent font-bold font-roboto w-fit text-3xl sm:text-5xl md:text-6xl">
@@ -764,14 +769,35 @@ export default function Home() {
             <span>To All Sponsors and Media Partner!</span>
           </div>
         </div>
-        <div className="lg:h-[672px] sm:h-[372px] p-2 bg-vertical-gta place-items-center rounded-[10px] mt-[-80px] sm:mt-[-120px] md:mt-[-130px] z-0">
-          <div className="bg-gray-1 w-full h-full rounded-[10px] pt-5">
-            <img
-              src={jagoTeknik}
-              className="lg:w-[600px] md:w-[400px] sm:w-[300px] w-[200px] mx-auto"
-            />
+        <div className="h-fit p-2 bg-vertical-gta place-items-center rounded-[10px] mt-[-80px] sm:mt-[-120px] md:mt-[-130px] z-0">
+          <div className="bg-gray-1 w-full h-full rounded-[10px] pt-10">
+            <div className="h-fit flex place-content-center sm:gap-[90px] gap-[30px]">
+              <img
+                src={jagoTeknik}
+                className="w-[150px] h-[150px] sm:w-[300px] sm:h-[300px]"
+              />
+              <img
+                src={livoc}
+                className="hidden sm:block sm:w-[350px] sm:h-[90px] sm:mt-[105px]"
+              />
+              <img
+                src={theater}
+                className="w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] sm:mt-[75px] mt-[40px]"
+              />
+            </div>
+            <div className="grid sm:place-content-center">
+              <img
+                src={livoc}
+                className="sm:hidden w-[180px] h-[50px] block mx-auto mt-[20px]"
+              />
+              <img
+                src={mrobot}
+                className="w-[260px] h-[50px] mt-[60px] mb-[60px] sm:w-[500px] sm:h-[90px] sm:mt-[-5px] sm:mb-[90px] sm:ml-[40px] mx-auto"
+              />
+            </div>
           </div>
         </div>
+        {/* End of Media Partner & Sponsors */}
 
         <div className="bg-vertical-gta h-fit rounded-xl md:rounded-[40px] py-[15px] sm:py-[38px] relative overflow-hidden mt-10">
           <div className="relative z-10">
