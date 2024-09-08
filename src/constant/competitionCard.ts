@@ -12,7 +12,7 @@ export const competition = [
     to: "/competition/robotic",
     description: "Innovate, Build, Triumph!",
     guidebook:
-      "https://drive.google.com/file/d/1KuQPzmJk0rmdzW0fRW__kfIlQ9JkV74m/view",
+      "https://drive.google.com/file/d/1Xk3MHTWYfL-42uO_drPlqpa0_fgm5lgZ/view?usp=drive_link",
     image: robotic,
   },
   {
@@ -20,7 +20,7 @@ export const competition = [
     to: "/competition/game-development",
     description: "Create, Compete, Dominate!",
     guidebook:
-      "https://drive.google.com/file/d/1jV6mbg9MJzxfgU4lqIRELTqGFQ1Ra2VM/view",
+      "https://drive.google.com/file/d/17cHExh0y4rBoJZtM8qFpZ6itsSbCbTOq/view?usp=drive_link",
     image: game,
   },
   {
@@ -28,7 +28,7 @@ export const competition = [
     to: "/competition/iot",
     description: "Innovate, Connect, Win!",
     guidebook:
-      "https://drive.google.com/file/d/1FzDjvo0dAXda6jkdZ4qy99sRMsnpf_NN/view",
+      "https://drive.google.com/file/d/1TtARF18yuI7s0MhMygmwF7q5ROz4Gdpx/view?usp=drive_link",
     image: iot,
   },
   {
@@ -36,7 +36,7 @@ export const competition = [
     to: "/competition/app-development",
     description: "Code, Compete, Conquer!",
     guidebook:
-      "https://drive.google.com/file/d/1dOkDsJ63ABk5P5HMZ2ksHWb6tNc7W49g/view",
+      "https://drive.google.com/file/d/1X6NyTTnSpSYljQKyCnKPSasBV-H8fLET/view?usp=drive_link",
     image: app,
   },
   {
