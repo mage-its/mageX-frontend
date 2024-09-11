@@ -68,7 +68,7 @@ export const Robotics: Workshop = {
   pembicara: "Dewa Pramudya Istiqfariandi | Paminto Nugroho",
   foto: PemateriRobotika,
   biaya_pendaftaran: "35k [Pembayaran melalui 4114993188 (Permata) a/n Alhadiid Muhammad Aufaa Prayitno 081334556053 (ShopeePay) a/n Fawaazd]",
-  contact: "Imanuel +628211788657",
+  contact: "Imanuel +6288211788657",
   link: "#",
   tl: [
     { title: "Pendaftaran", date: "9 September - 20 September 2024" },
