@@ -45,8 +45,10 @@ const WorkshopInformation: React.FC<WorkshopInformationProps> = ({
           <div className="mt-4">Materi : {currentWorkshop.materi}</div>
           <div>Pembicara : {currentWorkshop.pembicara}</div>
           <div className="flex">
-            Biaya Pendaftaran : &nbsp;
-            <p className="font-medium">{currentWorkshop.biaya_pendaftaran}</p>
+            <p>
+              Biaya Pendaftaran:&nbsp;
+              <span className="font-medium">{currentWorkshop.biaya_pendaftaran}</span>
+            </p>
           </div>
         </div>
       </div>

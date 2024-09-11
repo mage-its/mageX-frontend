@@ -64,10 +64,10 @@ export const Robotics: Workshop = {
   spesialis: "Robotics",
   tanggal: "22 September 2024",
   jam: "08.00 - 16.00",
-  tempat: "Coming Soon",
+  tempat: "Tower 2 ITS (Ruang 602-603)",
   pembicara: "Dewa Pramudya Istiqfariandi | Paminto Nugroho",
   foto: PemateriRobotika,
-  biaya_pendaftaran: "35k",
+  biaya_pendaftaran: "35k [Pembayaran melalui 4114993188 (Permata) a/n Alhadiid Muhammad Aufaa Prayitno 081334556053 (ShopeePay) a/n Fawaazd]",
   contact: "Imanuel +628211788657",
   link: "#",
   tl: [
