@@ -31,7 +31,7 @@ const slides = [
   {
     header: "ROBOTIK",
     content: "Workshop Robotics merupakan salah satu kegiatan yang diadakan sebagai bagian dari rangkaian acara MAGE X. Kegiatan ini bertujuan untuk memperkenalkan dan mendidik masyarakat umum mengenai dunia robotics, dengan tema \"Transformasi Digital: Perjalanan Menuju Masyarakat yang Lebih Inklusif Menuju Masyarakat 5.0.\" Workshop ini berfokus pada pengembangan control system, di mana peserta akan merakit sebuah robot dan menggunakan controller untuk menggerakkan robot yang telah dirakit tersebut. Acara ini akan diadakan secara offline dan berlangsung selama 1 hari.",
-    tempat: "To be announced",
+    tempat: "Tower 2 ITS (Ruang 602-603)",
     waktu: "22 September 2024",
     namaPemateri: "Dewa Pramudya Istiqfariandi | Paminto Nugroho",
     spesialis: "Robotics",
