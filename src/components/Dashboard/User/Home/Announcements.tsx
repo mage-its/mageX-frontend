@@ -10,13 +10,8 @@ const Announcement: React.FC<{ announcement: Announcement }> = ({
 }) => {
   return (
     <div className="p-2 text-light font-fredoka overflow-hidden">
-      <div className="font-medium mobile:text-[18px] ipad:text-[18px] lg:text-[14px]">
-        {announcement.id}
-      </div>
-      <div className="font-light mt-1 mobile:text-[14px] ipad:text-[14px] lg:text-[10px]">
-        {announcement.pengumuman}
-      </div>
-      <div className="font-extralight mt-1 mobile:text-[12px] ipad:text-[12px] lg:text-[8px]">
+      <div className="font-light mt-1 text-base">{announcement.pengumuman}</div>
+      <div className="font-extralight mt-1 text-[10px]">
         {announcement.tanggal_awal} - {announcement.tanggal_akhir}
       </div>
     </div>

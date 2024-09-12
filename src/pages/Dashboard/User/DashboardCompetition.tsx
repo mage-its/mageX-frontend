@@ -642,9 +642,18 @@ export default function DashboardCompetition() {
               <div className="flex items-center gap-2 lg:gap-4">
                 <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
                 <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
-                  <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                    Registration
-                  </h1>
+                  <div>
+                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                      Registration
+                    </h1>
+                    {teams?.status === "" && (
+                      <h1 className="text-white font-fredoka font-light text-[10px] md:text-xs lg:text-sm">
+                        Wait for data verification after submitting. If not
+                        verified within 2x24 hours, contact support.
+                      </h1>
+                    )}
+                  </div>
+
                   {teams?.status !== "" && (
                     <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
                       <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
@@ -794,9 +803,17 @@ export default function DashboardCompetition() {
                 <div className="flex items-center gap-2 lg:gap-4">
                   <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
                   <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
-                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Registration
-                    </h1>
+                    <div>
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Registration
+                      </h1>
+                      {teams?.status === "tahap-1" && (
+                        <h1 className="text-white font-fredoka font-light text-[10px] md:text-xs lg:text-sm">
+                          Wait for data verification after submitting. If not
+                          verified within 2x24 hours, contact support.
+                        </h1>
+                      )}
+                    </div>
                     {teams?.status !== "tahap-1" && (
                       <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
                         <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
@@ -889,9 +906,17 @@ export default function DashboardCompetition() {
                 <div className="flex items-center gap-2 lg:gap-4">
                   <FaTableList className="text-white text-lg md:text-xl lg:text-2xl" />
                   <div className="flex md:flex-row flex-col md:items-center justify-center md:gap-4 gap-1">
-                    <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
-                      Registration
-                    </h1>
+                    <div>
+                      <h1 className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
+                        Registration
+                      </h1>
+                      {teams?.status === "tahap-2" && (
+                        <h1 className="text-white font-fredoka font-light text-[10px] md:text-xs lg:text-sm">
+                          Wait for data verification after submitting. If not
+                          verified within 2x24 hours, contact support.
+                        </h1>
+                      )}
+                    </div>
                     {teams?.status !== "tahap-2" && (
                       <div className="rounded-xl bg-vertical-gta md:px-3 md:py-2 py-1 px-2">
                         <p className="text-white font-fredoka font-medium text-xs md:text-sm lg:text-base">
