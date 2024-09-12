@@ -93,7 +93,7 @@ export const gameDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "5 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/17cHExh0y4rBoJZtM8qFpZ6itsSbCbTOq/view?usp=drive_link",
+    "https://drive.google.com/file/d/1hopZfn0VeAtUp_9sQ8aPGywUuMuy3q_5/view?usp=sharing",
   contact: [
     {
       name: "Aqbil",
@@ -148,7 +148,7 @@ export const appDev: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1X6NyTTnSpSYljQKyCnKPSasBV-H8fLET/view?usp=drive_link",
+    "https://drive.google.com/file/d/1kHaa2H-_Y5TVUQcXwaxjcZpW7Ps-WSSZ/view?usp=sharing",
   contact: [
     {
       name: "Hasan",
@@ -192,7 +192,7 @@ export const robotic: Contest = {
   category: "SMA/SMK/sederajat",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1Xk3MHTWYfL-42uO_drPlqpa0_fgm5lgZ/view?usp=drive_link",
+    "https://drive.google.com/file/d/1bhuSRdw_FZyupYwFKmvseQpJsxQnSg87/view?usp=sharing",
   contact: [
     {
       name: "Ernita",
@@ -242,7 +242,7 @@ export const iot: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "3 jt ++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1TtARF18yuI7s0MhMygmwF7q5ROz4Gdpx/view?usp=drive_link",
+    "https://drive.google.com/file/d/1t2F7mU8Sy1etrNtxwdCZflr849CrM3bX/view?usp=sharing",
   contact: [
     {
       name: "Candra",
@@ -280,9 +280,9 @@ export const eSport: Contest = {
   category: "SMA/SMK/sederajat dan Mahasiswa",
   prize: "2 jt++ dan e-certif",
   guidebook:
-    "https://drive.google.com/file/d/1JyMD336AWFXkb1uFSK6Fa_lH3g0Xh1QI/view?usp=drivesdk", // ML
+    "https://drive.google.com/file/d/1foo15v5QDJ1n_x3SaKVUBB5Yi2Sr1zp6/view?usp=sharing", // ML
   guidebook2:
-    "https://drive.google.com/file/d/1K24ILKxOko-VvVH5ijUQ7mclpAi-wytk/view?usp=drivesdk", // Valorant
+    "https://drive.google.com/file/d/1v14PNHwW3o0KLAbAzFX-n2ZV4LO0bLcT/view?usp=sharing", // Valorant
   contact: [
     {
       name: "Hendrik (ML)",
@@ -351,8 +351,8 @@ export const uiUx: Contest = {
     },
   ],
   guidebook:
-    "https://drive.google.com/file/d/1B7CYZBSldxNQ4RSqxWWNrBLAgZ_fwU6H/view?usp=sharing",
-  isUiUx: true
+    "https://drive.google.com/file/d/154IM5hRDD-js1_1BVYpkoFbNUldnz3UZ/view?usp=sharing",
+  isUiUx: true,
 };
 
 export const competitiveProgramming: Contest = {
@@ -396,7 +396,7 @@ export const competitiveProgramming: Contest = {
     },
   ],
   guidebook:
-    "https://drive.google.com/file/d/1PIAiQ3bBiYWq55eB98ND-WJg94rnZARq/view?usp=sharing",
+    "https://drive.google.com/file/d/1tYIroyFjqHDYniHc7hRRjodcE6sPUTug/view?usp=sharing",
 };
 
 export const valorant: Contest = {
