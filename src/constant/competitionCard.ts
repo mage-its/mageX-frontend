@@ -12,7 +12,7 @@ export const competition = [
     to: "/competition/robotic",
     description: "Innovate, Build, Triumph!",
     guidebook:
-      "https://drive.google.com/file/d/1Xk3MHTWYfL-42uO_drPlqpa0_fgm5lgZ/view?usp=drive_link",
+      "https://drive.google.com/file/d/1bhuSRdw_FZyupYwFKmvseQpJsxQnSg87/view?usp=sharing",
     image: robotic,
   },
   {
@@ -20,7 +20,7 @@ export const competition = [
     to: "/competition/game-development",
     description: "Create, Compete, Dominate!",
     guidebook:
-      "https://drive.google.com/file/d/17cHExh0y4rBoJZtM8qFpZ6itsSbCbTOq/view?usp=drive_link",
+      "https://drive.google.com/file/d/1hopZfn0VeAtUp_9sQ8aPGywUuMuy3q_5/view?usp=sharing",
     image: game,
   },
   {
@@ -28,7 +28,7 @@ export const competition = [
     to: "/competition/iot",
     description: "Innovate, Connect, Win!",
     guidebook:
-      "https://drive.google.com/file/d/1TtARF18yuI7s0MhMygmwF7q5ROz4Gdpx/view?usp=drive_link",
+      "https://drive.google.com/file/d/1t2F7mU8Sy1etrNtxwdCZflr849CrM3bX/view?usp=sharing",
     image: iot,
   },
   {
@@ -36,7 +36,7 @@ export const competition = [
     to: "/competition/app-development",
     description: "Code, Compete, Conquer!",
     guidebook:
-      "https://drive.google.com/file/d/1X6NyTTnSpSYljQKyCnKPSasBV-H8fLET/view?usp=drive_link",
+      "https://drive.google.com/file/d/1kHaa2H-_Y5TVUQcXwaxjcZpW7Ps-WSSZ/view?usp=sharing",
     image: app,
   },
   {
@@ -44,7 +44,7 @@ export const competition = [
     to: "/competition/ui-ux",
     description: "Design, Impress, Win!",
     guidebook:
-      "https://drive.google.com/file/d/1B7CYZBSldxNQ4RSqxWWNrBLAgZ_fwU6H/view?usp=sharing",
+      "https://drive.google.com/file/d/154IM5hRDD-js1_1BVYpkoFbNUldnz3UZ/view?usp=sharing",
     image: ui,
   },
   {
@@ -52,7 +52,7 @@ export const competition = [
     to: "/competition/competitive-programming",
     description: "Code, Conquer, Triumph!",
     guidebook:
-      "https://drive.google.com/file/d/1PIAiQ3bBiYWq55eB98ND-WJg94rnZARq/view?usp=sharing",
+      "https://drive.google.com/file/d/1tYIroyFjqHDYniHc7hRRjodcE6sPUTug/view?usp=sharing",
     image: cp,
   },
   {
@@ -60,7 +60,9 @@ export const competition = [
     to: "/competition/esport",
     description: "Game On, Win Big!",
     image: esport,
-    guidebook: "https://drive.google.com/file/d/1MOTU9Cxwz-kWqD9GvsmNs37G-VZB0q70/view?usp=sharing",
-    secondGuidebook: "https://drive.google.com/file/d/1kX-PqUAW9-d7cubIEx39ffkos9MhRoTN/view?usp=sharing"
+    guidebook:
+      "https://drive.google.com/file/d/1foo15v5QDJ1n_x3SaKVUBB5Yi2Sr1zp6/view?usp=sharing",
+    secondGuidebook:
+      "https://drive.google.com/file/d/1v14PNHwW3o0KLAbAzFX-n2ZV4LO0bLcT/view?usp=sharing",
   },
 ];
