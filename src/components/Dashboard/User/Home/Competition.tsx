@@ -87,6 +87,7 @@ const CompetitionComponent: React.FC = () => {
   }, [competitionCardWidth]);
 
   const handleCardClick = (destination: string) => {
+    console.log(destination);
     if (destination === "Esport") {
       setPopupDestination("Mobile Legends");
       setIsPopupEsportVisible(true);
@@ -193,12 +194,20 @@ const CompetitionComponent: React.FC = () => {
       </div>
       {user?.verified === "true" ? (
         teams == undefined ? (
-          <Popup
-            isVisible={isPopupVisible}
-            onClose={handleClosePopup}
-            handleYesClick={handleYesClick}
-            text="You will be registered as Team Leader Do you want to continue?"
-          />
+          popupDestination == "Robotics" ? (
+            <Popup
+              isVisible={isPopupVisible}
+              onClose={handleClosePopup}
+              handleYesClick={handleYesClick}
+              text="You will be registered as Team Leader Do you want to continue?"
+            />
+          ) : (
+            <Popup
+              isVisible={isPopupVisible}
+              onClose={handleClosePopup}
+              text="Registration Closed"
+            />
+          )
         ) : (
           <Popup
             isVisible={isPopupVisible}
