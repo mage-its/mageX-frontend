@@ -194,20 +194,12 @@ const CompetitionComponent: React.FC = () => {
       </div>
       {user?.verified === "true" ? (
         teams == undefined ? (
-          popupDestination == "Robotics" ? (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              handleYesClick={handleYesClick}
-              text="You will be registered as Team Leader Do you want to continue?"
-            />
-          ) : (
-            <Popup
-              isVisible={isPopupVisible}
-              onClose={handleClosePopup}
-              text="Registration Closed"
-            />
-          )
+          <Popup
+            isVisible={isPopupVisible}
+            onClose={handleClosePopup}
+            handleYesClick={handleYesClick}
+            text="You will be registered as Team Leader Do you want to continue?"
+          />
         ) : (
           <Popup
             isVisible={isPopupVisible}
