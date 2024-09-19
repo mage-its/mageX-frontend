@@ -52,7 +52,7 @@ const DashboardHome: React.FC = () => {
           <div className="col-span-3 row-span-8 pr-[1rem] ">
             <WorkshopInformation currentWorkshop={x} />
           </div>
-          <div className="col-span-10 row-span-8 px-[1rem]">
+          <div className="col-span-full row-span-8 px-[1rem]">
             <RegistrationAndVerification currentWorkshop={x} />
           </div>
         </div>
@@ -77,7 +77,7 @@ const DashboardHome: React.FC = () => {
           <div className="w-full mobile:h-[40rem] ipad:h-[56rem] mt-6">
             <PersonalInformation currentWorkshop={x} />
           </div>
-          <div className="w-full mobile:h-[24rem] ipad:h-[30rem] mt-6 mb-[4rem]">
+          <div className="w-full mobile:h-[27rem] ipad:h-[30rem] mt-6 mb-[4rem]">
             <RegistrationAndVerification currentWorkshop={x} />
           </div>
         </div>

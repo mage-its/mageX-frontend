@@ -271,7 +271,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
             </div>
           </div>
           <div
-            className="px-8 w-full items-center
+            className="px-8 w-full items-center 
                           mobile:h-[calc(100%-5rem)] ipad:h-[calc(100%-5rem)] lg:h-[calc(100%-3rem)]"
           >
             <div className="text-medium py-2 mobile:text-[12px] ipad:text-[14px] lg:text-[1rem]">
