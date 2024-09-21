@@ -163,18 +163,11 @@ const App: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      {popupDestination == "Multimedia" ? (
+      {popupDestination == "Multimedia" || popupDestination == "Robotika" ? (
         <Popup
           isVisible={isPopupVisible}
           onClose={handleClosePopup}
           text={`Registration Closed`}
-        />
-      ) : popupDestination == "Robotika" ? (
-        <Popup
-          isVisible={isPopupVisible}
-          onClose={handleClosePopup}
-          handleYesClick={handleYesClick}
-          text={`Are you sure you want to register for the robotics workshop?`}
         />
       ) : (
         <Popup
