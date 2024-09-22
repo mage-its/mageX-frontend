@@ -192,7 +192,8 @@ const CompetitionComponent: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      {popupDestination == "Robotics" ? (
+      {popupDestination == "Robotics" ||
+      popupDestination == "Competitive Programming" ? (
         user?.verified === "true" ? (
           teams == undefined ? (
             <Popup
