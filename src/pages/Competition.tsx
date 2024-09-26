@@ -607,16 +607,29 @@ const Overview = ({ x, existPoint }: CompetitionProps) => {
                   ) : (
                     <div className="relative w-[172px] mt-[13px] ml-[10px] text-[8px] font-fredoka font-medium">
                       <p>Phase 1</p>
-                      {x.isUiUx ? (
-                         <p className="indent-1">
-                         SMA/SMK/sederajat : Rp80.000,00
-                       </p>
+                      {x.isEsport ? (
+                        <div>
+                          <p className="indent-1">
+                            Mobile Legend : Rp50.000.00
+                          </p>
+                          <p className="indent-1" >
+                            Valorant : Rp50.000.00
+                          </p>
+                        </div>
                       ):(
-                        <p className="indent-1">
-                        SMA/SMK/sederajat : Rp100.000,00
-                      </p>
-                      )}
-                    </div>
+                        <div>
+                          <p className="indent-1">
+                            SMA/SMK/sederajat : {x.std_fee}
+                          </p>
+                          {x.isOnlyStd ? (
+                            null
+                          ):(
+                            <p className="indent-1" >
+                              Mahasiswa : {x.mhs_fee}
+                            </p>
+                          )}
+                        </div>
+                      )}</div>
                   )}
                 </div>
 

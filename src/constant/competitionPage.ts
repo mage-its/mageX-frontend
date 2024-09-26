@@ -44,13 +44,16 @@ export type Contest = {
   prize: string;
   guidebook?: string;
   guidebook2?: string;
+  mhs_fee?: string;
+  std_fee?: string;
   contact?: {
     name: string;
     phone: string;
   }[];
   secondPhase?: boolean;
   maxMember?: number;
-  isUiUx?: boolean;
+  isEsport?: boolean;
+  isOnlyStd? : boolean;
 };
 
 export const gameDev: Contest = {
@@ -199,6 +202,8 @@ export const robotic: Contest = {
       phone: "083873974622 (WA)",
     },
   ],
+  std_fee: "Rp100.000.00",
+  isOnlyStd: true,
 };
 
 export const iot: Contest = {
@@ -301,6 +306,7 @@ export const eSport: Contest = {
       phone: "087876967987 (WA)",
     },
   ],
+  isEsport: true,
 };
 
 export const uiUx: Contest = {
@@ -352,7 +358,8 @@ export const uiUx: Contest = {
   ],
   guidebook:
     "https://drive.google.com/file/d/154IM5hRDD-js1_1BVYpkoFbNUldnz3UZ/view?usp=sharing",
-  isUiUx: true,
+  mhs_fee: "Rp80.000.00",
+  std_fee: "Rp80.000.00",
 };
 
 export const competitiveProgramming: Contest = {
@@ -397,6 +404,8 @@ export const competitiveProgramming: Contest = {
   ],
   guidebook:
     "https://drive.google.com/file/d/1tYIroyFjqHDYniHc7hRRjodcE6sPUTug/view?usp=sharing",
+  mhs_fee: "Rp80.000.00",
+  std_fee: "Rp100.000.00",
 };
 
 export const valorant: Contest = {
