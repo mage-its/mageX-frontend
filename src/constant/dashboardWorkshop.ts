@@ -1,6 +1,6 @@
 import PemateriMultimedia from "@/assets/dashboardWorkshop/pemateriMultimedia.png";
 import PemateriRobotika from "@/assets/dashboardWorkshop/pemateriRobotika.png";
-import Firefly from "@/assets/dashboardWorkshop/firefly.jpg";
+import PemateriIoT from "@/assets/dashboardWorkshop/pemateriIoT.png";
 
 type timeline = {
   title: string;
@@ -74,29 +74,29 @@ export const Robotics: Workshop = {
     { title: "Pendaftaran", date: "9 September - 20 September 2024" },
     { title: "Workshop Day", date: "22 September 2024" },
   ],
-  teks_bukti_follow: "Bukti Follow Instagram Mage X",
+  teks_bukti_follow: "Bukti Follow Instagram MAGE X",
 };
 
 export const InternetOfThings: Workshop = {
   title: "IoT",
   content:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-  materi: "Coming Soon",
-  informasiDiri: "Coming Soon",
-  background: "Coming Soon",
-  spesialis: "Coming Soon",
-  tanggal: "Coming Soon",
-  jam: "Coming Soon",
-  tempat: "Coming Soon",
-  pembicara: "Firefly",
-  foto: Firefly,
-  biaya_pendaftaran: "Coming Soon",
-  contact: "Coming Soon",
+    "Workshop IoT MAGE X ini merupakan kegiatan pelatihan akan pengenalan dunia IoT dengan mempelajari dasar microcontroller. Workshop kali ini akan mengusung topik \"Simple Home Automation Using Microcontroller\" untuk kalangan umum agar mendapatkan pengetahuan dasar mengenai bidang IoT.",
+  materi: "Simple Home Automation Using Microcontroller",
+  informasiDiri: "[Ryan] Ryan Wiratara Prasetyo adalah seorang Front-End Developer dengan pengalaman pengembangan website sejak umur 15 tahun. Ryan juga menguasai berbagai framework seperti HTML, CSS  JavaScript, dan Bootstrap. Saat ini, Ryan bekerja sebagai Teacher di Timedoor Academy. Ryan mengajari mata kuliah seperti dasar pemrograman untuk anak-anak, website dan game development, serta AI development. Selain itu, Ryan juga merupakan Front-End Developer di dalam software house TC Flexoo ID. Saat ini Ryan juga sedang menempuh gelarnya dalam jurusan Teknik Informatika di Institut Teknologi Sepuluh Nopember. [Anderson] Anderson Montella adalah seorang Software Engineer dengan pengetahuan yang sangat melimpah mengenai pengembangan ranah Front-End dan Back-End. Saat ini, Anderson bekerja sebagai seorang Quality Assurance (QA) Engineer di McEasy, di mana ia berperan dalam mendeteksi error yang terkandung dalam produk sebelum dipublikasikan. Anderson juga bekerja sebagai Coding Teacher di Timedoor Academy. Sebagai teacher, Anderson bertugas untuk mendidik ilmu IT kepada anak-anak muda dan membimbing progres pembelajaran mereka. Anderson juga memiliki gelar jurusan Teknologi Informasi di Universitas Kristen Petra.",
+  background: "IT",
+  spesialis: "Front End & Back End Developer",
+  tanggal: "19 & 20 Oktober 2024",
+  jam: "08.00 - 15.00 (untuk tanggal 19 Oktober 2024) dan 08.00 - 11.35 (untuk tanggal 20 Oktober 2024)",
+  tempat: "TW2-603",
+  pembicara: "Anderson Montella | Ryan Wiratara Prasetyo",
+  foto: PemateriIoT,
+  biaya_pendaftaran: "35k [Pembayaran melalui 4114993188 (Permata) a/n Alhadiid Muhammad Aufaa Prayitno]",
+  contact: "Nathan +62 815-7412-5686",
   link: "#",
   tl: [
-    { title: "Pendaftaran", date: "1 Juli - 19 Juli 2024" },
-    { title: "Day - 1", date: "20 Juli 2024" },
-    { title: "Day - 2", date: "28 Juli 2024" },
+    { title: "Pendaftaran", date: "6 Oktober - 18 Oktober 2024" },
+    { title: "Day - 1", date: "19 Oktober 2024" },
+    { title: "Day - 2", date: "20 Oktober 2024" },
   ],
-  teks_bukti_follow: "",
+  teks_bukti_follow: "Bukti Follow Instagram MAGE X",
 };

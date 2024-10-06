@@ -36,6 +36,7 @@ import jagoTeknik from "@/assets/medparAndSponsor/jagoteknik.png";
 import livoc from "@/assets/medparAndSponsor/livoc.png";
 import mrobot from "@/assets/medparAndSponsor/mrobot.png";
 import theater from "@/assets/medparAndSponsor/theater.jpg";
+import timedoorAcademy from "@/assets/medparAndSponsor/timedoorAcademy.png"
 
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
@@ -792,6 +793,10 @@ export default function Home() {
               />
               <img
                 src={mrobot}
+                className="w-[260px] h-[50px] mt-[60px] mb-[60px] sm:w-[500px] sm:h-[90px] sm:mt-[-5px] sm:mb-[90px] sm:ml-[40px] mx-auto"
+              />
+              <img
+                src={timedoorAcademy}
                 className="w-[260px] h-[50px] mt-[60px] mb-[60px] sm:w-[500px] sm:h-[90px] sm:mt-[-5px] sm:mb-[90px] sm:ml-[40px] mx-auto"
               />
             </div>
