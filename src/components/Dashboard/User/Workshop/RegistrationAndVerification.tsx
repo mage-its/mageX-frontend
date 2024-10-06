@@ -335,7 +335,7 @@ const RegistAndVerif: React.FC<RegistAndVerifProps> = ({ currentWorkshop }) => {
                       {...field}
                       label={currentWorkshop.teks_bukti_follow}
                       description={
-                        currentWorkshop.title == "Robotika"
+                        currentWorkshop.title === "Robotika" || currentWorkshop.title === "IoT"
                           ? undefined
                           : "Dijadikan satu file"
                       }

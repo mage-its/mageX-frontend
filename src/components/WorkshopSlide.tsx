@@ -8,6 +8,7 @@ import timeIcon2 from "../assets/workshop/timeIcon2.svg";
 import locationIcon2 from "../assets/workshop/locationIcon2.svg";
 import pemateriMultimedia from "@/assets/workshop/pemateri/pemateriMultimedia.png";
 import pemateriRobotika from "@/assets/workshop/pemateri/pemateriRobotika.png";
+import pemateriIoT from "@/assets/dashboardWorkshop/pemateriIoT.png";
 import { Link } from "react-router-dom";
 
 const slides = [
@@ -48,18 +49,19 @@ const slides = [
   {
     header: "INTERNET OF THINGS",
     content:
-      "Workshop IoT (Internet Of Things) merupakan salah satu pelaksanaan pelatihan yang diadakan oleh Teknik Komputer. Workshop ini dinaungi oleh salah satu lab Teknik Komputer yaitu B300. Workshop IoT berfokus kepada topik-topik pengolahan sinyal digital dan pengembangan teknologi berbasis digital. Seperti namanya, inovasi-inovasi yang diciptakan memiliki unsur internet yang berperan penting dalam proses kerjanya.",
-    tempat: "To be announced",
-    waktu: "21 September 2024",
-    namaPemateri: "To be announced",
-    spesialis: "To be announced",
-    background: "To be announced",
+      "Workshop IoT MAGE X ini merupakan kegiatan pelatihan akan pengenalan dunia IoT dengan mempelajari dasar microcontroller. Workshop kali ini akan mengusung topik \"Simple Home Automation Using Microcontroller\" untuk kalangan umum agar mendapatkan pengetahuan dasar mengenai bidang IoT.",
+    tempat: "TW2-603",
+    waktu: "19 & 20 Oktober 2024",
+    namaPemateri: "Anderson Montella | Ryan Wiratara Prasetyo",
+    spesialis: "Front End & Back End Developer",
+    background: "IT",
     color1: "#F77F5A",
     color2: "linear-gradient(169.21deg, #FFFFFF -9.1%, #EFA264 101.73%)",
     color3: "linear-gradient(180deg, #F77F5A 0%, #FFC291 100%)",
     color4: "#CA4F14",
     timeIcon: timeIcon1,
     locationIcon: locationIcon1,
+    imgPemateri: pemateriIoT,
   },
 ];
 
