@@ -94,7 +94,7 @@ export const InternetOfThings: Workshop = {
   contact: "Nathan +62 815-7412-5686",
   link: "#",
   tl: [
-    { title: "Pendaftaran", date: "1 Juli - 19 Juli 2024" },
+    { title: "Pendaftaran", date: "6 Oktober - 18 Oktober 2024" },
     { title: "Day - 1", date: "19 Oktober 2024" },
     { title: "Day - 2", date: "20 Oktober 2024" },
   ],
