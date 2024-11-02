@@ -365,7 +365,10 @@ export default function TeamTable() {
           team.username_ingame
             ?.filter((username) => username !== "undefined")
             .join(", ") || "",
-        nama_anggota: team.anggota?.map((anggota) => anggota).join(", ") || "",
+        nama_anggota:
+          team.anggota
+            ?.map((id) => users?.find((user) => user.id === id)?.nama || "")
+            .join(", ") || "",
         email_anggota: team.anggota
           ? team.anggota
               .map((id) => users?.find((user) => user.id === id)?.email || "")
@@ -455,6 +458,9 @@ export default function TeamTable() {
                     </StyledTableCell>
                     <StyledTableCell align="right">
                       {row.email_anggota || "--"}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {row.nama_anggota || "--"}
                     </StyledTableCell>
                     <StyledTableCell align="right">
                       {row.username_ingame || "--"}
