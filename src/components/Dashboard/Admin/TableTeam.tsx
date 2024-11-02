@@ -38,7 +38,8 @@ import { useGetAllUsers } from "@/services/users";
 
 interface Team {
   id: string;
-  anggota: string;
+  email_anggota: string;
+  nama_anggota: string;
   username_ingame: string;
   nama: string;
   ketua: string;
@@ -132,11 +133,53 @@ const headCells: readonly HeadCell[] = [
     label: "Ketua",
   },
   {
-    id: "anggota",
+    id: "email_anggota",
     numeric: false,
     disablePadding: false,
-    label: "Anggota",
+    label: "Email Anggota",
   },
+  {
+    id: "nama_anggota",
+    numeric: false,
+    disablePadding: false,
+    label: "Nama Anggota",
+  },
+  {
+    id: "kategori",
+    numeric: false,
+    disablePadding: false,
+    label: "Kategori",
+  },
+  {
+    id: "status",
+    numeric: false,
+    disablePadding: false,
+    label: "Status",
+  },
+  {
+    id: "bukti_pembayaran",
+    numeric: false,
+    disablePadding: false,
+    label: "Bukti Pembayaran",
+  },
+  {
+    id: "bukti_twibbon_follow",
+    numeric: false,
+    disablePadding: false,
+    label: "Bukti Twibbon Follow",
+  },
+  {
+    id: "proposal",
+    numeric: false,
+    disablePadding: false,
+    label: "Proposal",
+  },
+  {
+    id: "link_karya",
+    numeric: false,
+    disablePadding: false,
+    label: "Link Drive",
+  }
   {
     id: "username_ingame",
     numeric: false,
@@ -322,7 +365,8 @@ export default function TeamTable() {
           team.username_ingame
             ?.filter((username) => username !== "undefined")
             .join(", ") || "",
-        anggota: team.anggota
+        nama_anggota: team.anggota?.map((anggota) => anggota).join(", ") || "",
+        email_anggota: team.anggota
           ? team.anggota
               .map((id) => users?.find((user) => user.id === id)?.email || "")
               .join(", ")
@@ -410,7 +454,7 @@ export default function TeamTable() {
                       {row.ketua || "--"}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.anggota || "--"}
+                      {row.email_anggota || "--"}
                     </StyledTableCell>
                     <StyledTableCell align="right">
                       {row.username_ingame || "--"}
