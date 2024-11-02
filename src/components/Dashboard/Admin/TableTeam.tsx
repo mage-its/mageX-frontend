@@ -179,7 +179,7 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
     disablePadding: false,
     label: "Link Drive",
-  }
+  },
   {
     id: "username_ingame",
     numeric: false,
