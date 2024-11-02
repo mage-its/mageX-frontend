@@ -5,12 +5,12 @@ import CompetitionCard from "@/components/Dashboard/User/Home/DashboardCompetiti
 import useMeasure from "react-use-measure";
 import WorkshopLogo from "@/assets/dashboardHome/workshopLogo.svg";
 import Popup from "@/components/Dashboard/User/Home/PopUp";
-import { registerWorkshop } from "@/services/workshop-regist";
+// import { registerWorkshop } from "@/services/workshop-regist";
 // import { useUserData } from "@/services/users";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const competitionCardControl = useAnimation();
   const dragCompetitionControl = useDragControls();
   const [competitionCardRef, { width: competitionCardWidth }] = useMeasure();
@@ -19,7 +19,7 @@ const App: React.FC = () => {
   // const { data: user } = useUserData();
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [popupDestination, setPopupDestination] = useState("");
+  // const [popupDestination, setPopupDestination] = useState("");
 
   const [dragConstraints, setDragConstraints] = useState({
     left: 0,
@@ -65,16 +65,16 @@ const App: React.FC = () => {
     };
   }, [competitionCardWidth]);
 
-  const handleCardClick = (destination: string) => {
+  const handleCardClick = (/*destination: string*/) => {
     // console.log(destination);
-    setPopupDestination(destination);
+    // setPopupDestination(destination);
     setIsPopupVisible(true);
   };
 
-  const handleYesClick = async () => {
-    await registerWorkshop(popupDestination);
-    navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
-  };
+  // const handleYesClick = async () => {
+  //   await registerWorkshop(popupDestination);
+  //   navigate(`/dashboard/workshop/${popupDestination.toLowerCase()}`);
+  // };
 
   const handleClosePopup = () => {
     setIsPopupVisible(false);
@@ -127,7 +127,7 @@ const App: React.FC = () => {
               <div
                 className="mr-4"
                 key={index}
-                onClick={() => handleCardClick(item.title)}
+                onClick={() => handleCardClick(/*item.title*/)}
               >
                 <CompetitionCard
                   ref={competitionCardRef}
