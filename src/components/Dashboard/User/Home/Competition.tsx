@@ -4,16 +4,16 @@ import { competition } from "@/constant/dashboardCompetitionCard";
 import CompetitionCard from "@/components/Dashboard/User/Home/DashboardCompetitionCard";
 import TrophyLogo from "@/assets/dashboardHome/trophyLogo.svg";
 import Popup from "@/components/Dashboard/User/Home/PopUp";
-import { useNavigate } from "react-router-dom";
-import { useCreateTeam, useLeadTeams } from "@/services/team";
-import { useUserData } from "@/services/users";
+// import { useNavigate } from "react-router-dom";
+// import { useCreateTeam, useLeadTeams } from "@/services/team";
+// import { useUserData } from "@/services/users";
 import Select, { Option } from "@/components/Select";
 
 const CompetitionComponent: React.FC = () => {
-  const navigate = useNavigate();
-  const { mutateAsync: createTeam } = useCreateTeam();
-  const { data: teams } = useLeadTeams();
-  const { data: user } = useUserData();
+  // const navigate = useNavigate();
+  // const { mutateAsync: createTeam } = useCreateTeam();
+  // const { data: teams } = useLeadTeams();
+  // const { data: user } = useUserData();
   // console.log("User data:", user);
 
   const competitionCardControl = useAnimation();
@@ -37,10 +37,10 @@ const CompetitionComponent: React.FC = () => {
   const [isPopupEsportVisible, setIsPopupEsportVisible] = useState(false);
   const [popupDestination, setPopupDestination] = useState("");
 
-  const handleYesClick = async () => {
-    await createTeam(popupDestination);
-    navigate(`/dashboard/competition`);
-  };
+  // const handleYesClick = async () => {
+  //   await createTeam(popupDestination);
+  //   navigate(`/dashboard/competition`);
+  // };
 
   const [dragConstraints, setDragConstraints] = useState({
     left: 0,
