@@ -82,15 +82,19 @@ export const timeline = [
   },
   {
     title: "Penyisihan Robotik",
-    date: "24 November 2024",
+    date: "23 November 2024",
   },
   {
     title:
       "Presentasi Final - Development Competition (App Dev, Game Dev, dan IoT)",
-    date: "24 November 2024",
+    date: "23 November 2024",
+  },
+  {
+    title: "Final Competitive Programming",
+    date: "23 November 2024",
   },
   {
     title: "Awarding, Talkshow, Exhibition",
-    date: "25 November 2024",
+    date: "23 November 2024",
   },
 ];
