@@ -53,7 +53,7 @@ export type Contest = {
   secondPhase?: boolean;
   maxMember?: number;
   isEsport?: boolean;
-  isOnlyStd? : boolean;
+  isOnlyStd?: boolean;
 };
 
 export const gameDev: Contest = {
@@ -82,8 +82,8 @@ export const gameDev: Contest = {
     ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-    ["24 November 2024", "Presentasi Final", announce],
-    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
+    ["23 November 2024", "Presentasi Final", announce],
+    ["23 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
@@ -137,8 +137,8 @@ export const appDev: Contest = {
     ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-    ["24 November 2024", "Presentasi Final", announce],
-    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
+    ["23 November 2024", "Presentasi Final", announce],
+    ["23 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
@@ -185,8 +185,8 @@ export const robotic: Contest = {
   timeline: [
     ["11 Juli - 10 November 2024", "Pendaftaran", keypad],
     ["15 November 2024", "Technical Meeting Perlombaan", announce],
-    ["24 November 2024", "Penyisihan", truck],
-    ["25 November 2024", "Awarding, Talkshow, Exhibition", robot],
+    ["23 November 2024", "Penyisihan", truck],
+    ["23 November 2024", "Awarding, Talkshow, Exhibition", robot],
   ],
   overviewDesc:
     "Robotic Competition merupakan cabang perlombaan MAGE X yang berfokus pada pertandingan robot line tracer yang bergerak mengikuti garis sebagai lintasan dari start hingga finish. Kompetisi ini menawarkan panggung bagi para peserta untuk menunjukkan kemampuan kecepatan robot line tracer mereka.Tujuan dari perlombaan ini yaitu untuk memperkenalkan teknik komputer itu sendiri yang dimana sangat relevan dengan hal robotik dan peserta lomba dapat mengasah skill dari bidang elektrikal, mekanik, dan programming. Perlombaan ini akan dilombakan secara langsung atau offline di Institut Teknologi Sepuluh Nopember.",
@@ -233,8 +233,8 @@ export const iot: Contest = {
     ],
     ["13 November 2024", "PengUMUman Tahap Seleksi Karya", announce],
     ["15 november 2024", "TECHNICAL MEETING FINAL", techmeet],
-    ["24 November 2024", "Presentasi Final", announce],
-    ["25 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
+    ["23 November 2024", "Presentasi Final", announce],
+    ["23 November 2024", "Awarding, Talkshow, dan Exhibition", keypad],
   ],
   extraBox: true,
   overviewDesc:
@@ -337,8 +337,8 @@ export const uiUx: Contest = {
     ],
     ["13 November 2024", "Pengumuman Tahap 2 (Realisasi Karya)", announce],
     ["15 November 2024", "Technical Meeting Final", techmeet],
-    ["24 November 2024", "Presentasi Final", keypad],
-    ["25 November 2024", "Awarding & Exhibition", announce],
+    ["23 November 2024", "Presentasi Final", keypad],
+    ["23 November 2024", "Awarding & Exhibition", announce],
   ],
   overviewDesc:
     "Pada perlombaan ini, peserta lomba akan dituntut untuk berkompetisi dalam pembuatan desain tentang tampilan web dan aplikasi yang dapat berfungsi dengan baik dan memiliki kemudahan akses dari sudut pengguna serta memiliki desain gambar yang menarik. Kriteria penilaian dari perlombaan ini yaitu dari fungsi, kemudahan akses serta desain gambar yang menarik.",
@@ -383,8 +383,8 @@ export const competitiveProgramming: Contest = {
     ["13 Oktober 2024", "Babak Penyisihan", truck],
     ["20 Oktober 2024", "Pengumuman Finalis", announce],
     ["17 November 2024", "Technical Meeting Babak Final", techmeet],
-    ["24 November 2024", "Babak Final", robot],
-    ["25 November 2024", "Awarding & Exhibition", announce],
+    ["23 November 2024", "Babak Final", robot],
+    ["23 November 2024", "Awarding & Exhibition", announce],
   ],
   overviewDesc:
     "Peserta akan ditantang untuk memberikan program serta algoritma terbaik mereka dalam menyelesaikan masalah yang diberikan. Perlombaan ini dilaksanakan secara online sepenuhnya di platform Kaggle yang terdiri  dua babak yaitu penyisihan dan final. Tujuan dilaksanakannya kompetisi ini adalah untuk memperkenalkan bagaimana Departemen Teknik Komputer ITS akan banyak berkutat terkait pemecahan masalah melalui pemrograman.",
