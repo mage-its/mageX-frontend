@@ -77,8 +77,12 @@ export const timeline = [
     date: "13 November 2024",
   },
   {
-    title: "Technical Meeting",
+    title: "Technical Meeting: App Dev, Game Dev, Iot, dan Robotik",
     date: "15 November 2024",
+  },
+  {
+    title: "Technical Meeting: UI/UX, Competitive Programming",
+    date: "17 November 2024",
   },
   {
     title: "Penyisihan Robotik",
