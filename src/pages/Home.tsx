@@ -36,7 +36,11 @@ import jagoTeknik from "@/assets/medparAndSponsor/jagoteknik.png";
 import livoc from "@/assets/medparAndSponsor/livoc.png";
 import mrobot from "@/assets/medparAndSponsor/mrobot.png";
 import theater from "@/assets/medparAndSponsor/theater.jpg";
-import timedoorAcademy from "@/assets/medparAndSponsor/timedoorAcademy.png"
+import timedoorAcademy from "@/assets/medparAndSponsor/timedoorAcademy.png";
+import berin from "@/assets/medparAndSponsor/berin.png";
+import ginger from "@/assets/medparAndSponsor/ginger.png";
+import gantara from "@/assets/medparAndSponsor/gantara.png";
+import javadwipa from "@/assets/medparAndSponsor/javadwipa.jpg";
 
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { HiCursorClick } from "react-icons/hi";
@@ -771,8 +775,8 @@ export default function Home() {
           </div>
         </div>
         <div className="h-fit p-2 bg-vertical-gta place-items-center rounded-[10px] mt-[-80px] sm:mt-[-120px] md:mt-[-130px] z-0">
-          <div className="bg-gray-1 w-full h-full rounded-[10px] pt-10">
-            <div className="h-fit flex place-content-center sm:gap-[90px] gap-[30px]">
+          <div className="bg-gray-1 w-full h-full rounded-[10px] pt-10 px-10 pb-5 sm:pt-20 sm:pb-10 sm:px-20">
+            {/* <div className="h-fit flex place-content-center sm:gap-[90px] gap-[30px]">
               <img
                 src={jagoTeknik}
                 className="w-[150px] h-[150px] sm:w-[300px] sm:h-[300px]"
@@ -786,19 +790,29 @@ export default function Home() {
                 className="w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] sm:mt-[75px] mt-[40px]"
               />
             </div>
-            <div className="grid sm:place-content-center">
+            <div className="flex sm:place-content-center">
               <img
                 src={livoc}
                 className="sm:hidden w-[180px] h-[50px] block mx-auto mt-[20px]"
               />
-              <img
-                src={mrobot}
-                className="w-[260px] h-[50px] mt-[60px] mb-[60px] sm:w-[500px] sm:h-[90px] sm:mt-[-5px] sm:mb-[90px] sm:ml-[40px] mx-auto"
-              />
-              <img
-                src={timedoorAcademy}
-                className="w-[260px] h-[50px] mt-[60px] mb-[60px] sm:w-[500px] sm:h-[90px] sm:mt-[-5px] sm:mb-[90px] sm:ml-[40px] mx-auto"
-              />
+              <img src={mrobot} className="w-[270px] mx-auto" />
+              <img src={timedoorAcademy} className="w-[270px] mx-auto" />
+            </div>
+            <div className="flex sm:place-content-center">
+              <img src={berin} className="w-[200px] mx-auto" />
+              <img src={ginger} className="w-[200px] mx-auto" />
+              <img src={gantara} className="w-[200px] mx-auto" />
+            </div> */}
+            <div className="grid grid-cols-2 md:grid-cols-3 justify-center items-center gap-5">
+              <img src={jagoTeknik} className="w-[280px] mx-auto" />
+              <img src={livoc} className="w-[280px] mx-auto" />
+              <img src={theater} className="w-[200px] mx-auto" />
+              <img src={timedoorAcademy} className="w-[280px] mx-auto" />
+              <img src={berin} className="w-[200px] mx-auto" />
+              <img src={mrobot} className="w-[280px] mx-auto" />
+              <img src={ginger} className="w-[230px] mx-auto" />
+              <img src={gantara} className="w-[280px] mx-auto" />
+              <img src={javadwipa} className="w-[240px] mx-auto" />
             </div>
           </div>
         </div>
